@@ -62,7 +62,7 @@ export default {
         await this.$axios.post(`/api/auth/create-directory-product`, {
           business_name: this.$auth.user.business_name,
           product_name: this.product_name,
-          slug: this.business_name,
+          slug: this.$auth.user.business_name,
           description: this.description,
           phone: this.phone,
           location: this.$auth.user.biz_location,

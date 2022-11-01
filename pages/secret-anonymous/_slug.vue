@@ -20,10 +20,10 @@
 export default {
        
       async asyncData(context) {
-        let response = await context.$axios.get(`/api/auth/blog/${context.params.slug}`)
-        let post = response.data
+        let response = await context.$axios.get(`/api/auth/secret/${context.params.slug}`)
+        let secret = response.data
         return {
-                post          
+                secret          
             }
         }
 

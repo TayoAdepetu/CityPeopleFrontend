@@ -2,7 +2,7 @@
     <div>
         <h3 id="title"> Our Products </h3>
         <div v-for="product in products" :key="product.id" id="before-headlines">
-            <NuxtLink :to="`/business-directory/directory-product/${product.slug}`">
+            <NuxtLink :to="`/business-directory/directory-product/${product.product_name}`">
              <div id="headlines">              
                   <h3>{{product.product_name}}</h3>
                   <div>                    

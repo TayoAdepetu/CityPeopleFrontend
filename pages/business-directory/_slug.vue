@@ -7,8 +7,8 @@
                     <div id="author-date">
                        <div id="author"> 
                         <span> Established: {{directory.established}} </span>
-                        <span> Established: {{directory.location}} </span>
-                        <span> Established: {{directory.number_of_employees}} </span>
+                        <span> Location: {{directory.location}} </span>
+                        <span> No Of Employees: {{directory.number_of_employees}} </span>
                         <span> Registered On This Site Since: {{directory.registered_here}} </span>
                         <span> Verified?: {{directory.verified}} </span>
                         <span> Email Address: {{directory.email}} </span>

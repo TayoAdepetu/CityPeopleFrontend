@@ -45,7 +45,7 @@ export default {
   methods: {
   async createPost() {
       try {
-        await this.$axios.post(`/api/auth/create-post`, {
+        await this.$axios.post(`/api/auth/create-new-post`, {
           title: this.title,
           slug: this.slug,
           description: this.description,
