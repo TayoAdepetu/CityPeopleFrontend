@@ -2,32 +2,31 @@
 <div>
   <div class="posts-container">
 
-  <div v-for="post in posts" :key="post.id" id="before-headlines">
-        <div id="headlines">
-          <NuxtLink :to="post.slug">
-            <div id="short-body">
-              <img id="short-image" :src="post.image">
-              
-              <div id="before-title">
-                <h3 id="title"> {{ post.title }} </h3>
-                <p id="short-paragraph"> {{ post.description }} </p>            
-                <div id="author-date">
-                   <div id="author"><span>By</span> <span> {{ post.user_id }} {{ post.id }}</span></div>
-                   <div id="category-tag"><span>In</span> <span> {{ post.category }} </span></div>
-                </div>
-              </div>
-            </div>             
-          </NuxtLink>
-        </div>
+    <div v-for="post in posts" :key="post.id" id="before-headlines">
+      
+      <NuxtLink :to="`${post.slug}`">
         
-  </div>
+        <img id="short-image" :src="post.image">
+          <div id="before-title">
+            <h3 id="title"> {{ post.title }} </h3>           
+          </div>
+         <div id="short-body">
+          <p id="short-paragraph"> {{ post.description }} </p>
+         </div>
+                                        
+          <div id="author-date">
+              <div id="author"><span>By</span> <span> {{ post.user_id }} In {{ post.category }}</span></div>
+          </div>  
+        </NuxtLink> 
 
   </div>
-
+     
+  </div>
   <div>
-    <job-vacancy />
+      <job-vacancy />
   </div>
-</div>
+
+  </div>
 </template>
 
 <script scoped>
@@ -49,7 +48,7 @@ export default {
     async getPosts(){
       try {
         const { data } = await this.$axios.get(`/api/auth/posts`);
-        this.posts = data.posts.data
+        this.posts = data
         return true; 
       } catch (error) {
         this.loading = false;
@@ -70,9 +69,7 @@ export default {
 
 <style scoped>
 
-  #before-title {
-    min-height: 200px;
-  }
+
 .posts-container {
   display: flex;
   max-width: 80%;
@@ -80,16 +77,17 @@ export default {
   margin-left: auto;
   justify-content: space-around;
 }
+
 #before-headlines {
 margin-bottom: 20px;
 border-width: 2px;
 border-style: solid;
-border-radius: 5px;
 border-color: #c20017;
-  }
+max-width: 300px;
+min-width: 300px;
+}
 
 #short-body {
-  display: flex;
   margin-top: 1px;
 }
 
@@ -101,14 +99,15 @@ border-color: #c20017;
 #short-paragraph {
   width: auto;
   font-size: 14px;
-  text-align: justify;
+  text-align: center;
   margin-left: 4px;
   margin-right: 4px;
 }
 
 #short-image {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 220px;
+  margin-top: 0px;
 }
 
 #author-date {
@@ -122,9 +121,6 @@ border-color: #c20017;
 
 }
 
-#title {
-  margin-top: 0;
-}
 
 
 @media screen and (max-width: 700px) {
@@ -137,13 +133,6 @@ border-color: #c20017;
     display: block;
     width: 80%;
     
-  }
- 
-  #short-image {
-    width: 40%;
-    height: 200px;
-    margin-left: auto;
-    margin-right: auto;
   }
 }
 </style>

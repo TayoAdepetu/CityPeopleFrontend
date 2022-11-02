@@ -8,9 +8,9 @@
                   
                   <div>
                     <h3 id="title"> {{ secret.title }} </h3>
-                    <p> {{ secret.description }} </p>           
+                    <p> {{ secret.description }} </p>      
                     <div id="author-date">
-                       <div id="author"> <span> Posted: {{getDate(secret.date)}} </span></div>
+                       <div id="author"> <span> Posted: {{getDate(secret.created_at)}} </span></div>
                     </div>
                   
                 </div>             
@@ -38,11 +38,12 @@
                     let date = new Date(datetime).toJSON().slice(0,10).replace(/-/g,'/');
                     return date
                 },
+                
     
         async getSecrets(){
           try {
-            const { data } = await this.$axios.get(`/api/auth/secrets`);
-            this.secrets = data.secrets.data
+            const { data } = await this.$axios.get(`/api/auth/all-secrets`);
+            this.secrets = data
             return true; 
           } catch (error) {
             this.loading = false;

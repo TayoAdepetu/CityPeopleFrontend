@@ -5,7 +5,7 @@
 <p>{{ post[0].body }}</p>
 
 <div>
-    <comments />
+    <!--<comments />-->
 </div>
 </div>
 
