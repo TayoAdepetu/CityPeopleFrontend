@@ -19,6 +19,7 @@
                   
                 </div> 
 
+                <!--
 <div>
     <workinghours />
 </div>
@@ -29,6 +30,7 @@
     <directory-faq />
 </div>
 
+-->
 </div>
 
 </template>
@@ -37,12 +39,11 @@
 export default {
        
       async asyncData(context) {
-        let response = await context.$axios.get(`/api/auth/business-directory/${context.params.slug}`)
+        let response = await context.$axios.get(`/api/auth/biz-directory/${context.params.slug}`)
         let directory = response.data
         return {
-                directory         
+                directory      
             }
         }
-
 }
 </script>

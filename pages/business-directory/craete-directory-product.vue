@@ -4,19 +4,23 @@
 
        <input hidden type="" :value="user_id">
         <div class="form-group">
-          <textarea hidden v-model="business_name" class="form-control" id="title" placeholder="Enter business_name" required></textarea>
+          <textarea hidden v-model="business_name" class="form-control" id="title" placeholder="Enter business_name"></textarea>
         </div>
 
         <div class="form-group">
-          <input type="text" hidden v-model="slug" class="form-control" id="slug" required>
+          <input type="text" hidden v-model="slug" class="form-control" id="slug">
         </div>
 
         <div class="form-group">
-          <textarea hidden v-model="product_name" class="form-control" id="title" placeholder="Enter the name of the product" required></textarea>
+          <textarea v-model="product_name" class="form-control" id="title" placeholder="Enter the name of the product" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <textarea hidden v-model="product_name_slug" class="form-control" id="title" placeholder="Enter the name of the product"></textarea>
         </div>
         
         <div class="form-group">
-            <input type="text" v-model="website" placeholder="Enter price of the product">
+            <input type="text" v-model="price" placeholder="Enter price of the product">
         </div>
         <div class="form-group">
             <input type="tel" v-model="phone" placeholder="Add your WhatsApp number">
@@ -47,8 +51,10 @@ export default {
       user_id: '',
       product_name: '',
       business_name: '',
+      product_name_slug,
       slug: '',
       description: '',
+      price:'',
       //image: null,
       phone: '',
       biz_location: '',
@@ -62,10 +68,12 @@ export default {
         await this.$axios.post(`/api/auth/create-directory-product`, {
           business_name: this.$auth.user.business_name,
           product_name: this.product_name,
-          slug: this.$auth.user.business_name,
+          product_name_slug: this.product_name.replace(/ +/g, '-'),
+          slug: this.$auth.user.slug,
           description: this.description,
+          price: this.price,
           phone: this.phone,
-          location: this.$auth.user.biz_location,
+          location: this.biz_location,
           user_id: this.$auth.user.user_id,
           //image: this.onFileChange()
         })

@@ -19,10 +19,10 @@
 export default {
        
       async asyncData(context) {
-        let response = await context.$axios.get(`/api/auth/worktime/${context.params.slug}`)
+        let response = await context.$axios.get(`/api/auth/all-worktime/${context.params.slug}`)
         let secret = response.data
         return {
-                worktime         
+                worktime        
             }
         }
 

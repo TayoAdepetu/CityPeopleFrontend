@@ -23,7 +23,7 @@
 export default {
        
       async asyncData(context) {
-        let response = await context.$axios.get(`/api/auth/faq/${context.params.slug}`)
+        let response = await context.$axios.get(`/api/auth/all-faqs/${context.params.slug}`)
         let faq = response.data
         return {
                 faq         

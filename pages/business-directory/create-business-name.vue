@@ -1,23 +1,13 @@
 <template>
     <div class="container">
         <h2>Add A Frequestly Asked Question About Your Business</h2>
-      <form @submit.prevent="createFaq">
-
-       <input hidden type="" :value="user_id">
+      <form @submit.prevent="createBiz">
         <div class="form-group">
-          <textarea hidden v-model="business_name" class="form-control" id="title" placeholder="Enter business_name"></textarea>
+          <textarea v-model="business_name" class="form-control" id="title" placeholder="Enter business_name"></textarea>
         </div>
 
         <div class="form-group">
           <input type="text" hidden v-model="slug" class="form-control" id="slug">
-        </div>
-
-        <div class="form-group">
-          <textarea v-model="question" class="form-control" id="title" placeholder="Enter a question" required></textarea>
-        </div>
-
-        <div class="form-group">
-          <textarea v-model="answer" class="form-control" id="title" placeholder="Enter answer to the question" required></textarea>
         </div>
         
         <button type="submit" class="btn btn-primary block">
@@ -34,27 +24,21 @@ export default {
   layout: "admin",
   data() {
     return {
-      user_id: '',
       business_name: '',
       slug: '',
-      question: '',
-      answer: '',
       error: null
     }
   },
 
   methods: {
-  async createFaq() {
+  async createBiz() {
       try {
-        await this.$axios.post(`/api/auth/create-new-faq`, {
-          business_name: this.$auth.user.business_name,
-          slug: this.$auth.user.slug,
-          question: this.question,
-          answer: this.answer,
-          user_id: this.$auth.user.user.id,
+        await this.$axios.post(`/api/auth/update-business-name/${this.$auth.user.email}`, {
+          business_name: this.business_name,
+          slug: this.business_name.replace(/ +/g, '-'),
         })
 
-        this.$router.push('/business-directory/create-faq')
+        this.$router.push('/admin/dashboard')
       } catch (e) {
         this.error = e.response
       }

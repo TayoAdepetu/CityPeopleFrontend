@@ -4,11 +4,11 @@
 
        <input hidden type="" :value="user_id">
         <div class="form-group">
-          <textarea hidden v-model="business_name" class="form-control" id="title" placeholder="Enter business_name" required></textarea>
+          <textarea hidden v-model="business_name" class="form-control" id="title" placeholder="Enter business_name"></textarea>
         </div>
 
         <div class="form-group">
-          <input type="text" hidden v-model="slug" class="form-control" id="slug" required>
+          <input type="text" hidden v-model="slug" class="form-control" id="slug">
         </div>
 
         <div class="form-group">
@@ -70,9 +70,9 @@ export default {
   methods: {
   async createWorkingHours() {
       try {
-        await this.$axios.post(`/api/auth/create-directory`, {
-          business_name: this.business_name,
-          slug: this.business_name,
+        await this.$axios.post(`/api/auth/create-new-worktime`, {
+          business_name: this.$auth.user.business_name,
+          slug: this.$auth.user.business_name,
           monday: this.monday,
           tuesday: this.tuesday,
           wednesday: this.wednesday,

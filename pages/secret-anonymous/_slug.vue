@@ -17,7 +17,7 @@
 
 </template>
 
-<script>
+<script scoped>
 export default {
        
       async asyncData(context) {
