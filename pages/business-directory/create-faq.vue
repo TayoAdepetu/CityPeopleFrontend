@@ -8,3 +8,10 @@
         </div>
     </div>
 </template>
+
+<script scoped>
+
+export default {
+    middleware:'iscommenter',
+}
+</script>

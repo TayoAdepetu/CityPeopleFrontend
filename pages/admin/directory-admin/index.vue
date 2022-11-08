@@ -161,7 +161,7 @@
   <script>
   
   export default { 
-  
+    middleware:'isadmin',
     data() {
       return {
         jobs: [],
@@ -241,7 +241,7 @@
      {
      this.loading = true
   
-    const { data } = await this.$axios.put(`/api/auth/update-worktime/${this.selectedPost.business_name_slug}`, 
+    const { data } = await this.$axios.put(`/api/auth/update-directory/${this.selectedPost.business_name_slug}`, 
     {phone: this.selectedPost.phone,
      email: this.selectedPost.email,
      location: this.selectedPost.location,
@@ -267,7 +267,7 @@
   
       async deleteJob()
       {
-        await this.$axios.post(`/api/auth/delete-worktime/${this.selectedPost.business_name_slug}`);
+        await this.$axios.post(`/api/auth/delete-directory/${this.selectedPost.business_name_slug}`);
         this.deleteJobModal = false;
         this.getJobs();
   

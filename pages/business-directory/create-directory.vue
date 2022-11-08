@@ -41,6 +41,7 @@
 //import Notification from '~/components/Notification'
 
 export default {
+  middleware:'iscommenter',
   layout: "admin",
   data() {
     return {

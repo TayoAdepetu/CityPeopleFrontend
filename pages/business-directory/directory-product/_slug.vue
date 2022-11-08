@@ -18,7 +18,7 @@
 
 <script>
 export default {
-       
+       auth: false,
       async asyncData(context) {
         let response = await context.$axios.get(`/api/auth/product/${context.params.slug}`)
         let product = response.data

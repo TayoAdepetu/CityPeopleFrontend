@@ -25,10 +25,10 @@
     </div>
   </template>
 
-<script>
-//import Notification from '~/components/Notification'
+<script scoped>
 
 export default {
+  middleware: 'ispublisher',
   layout: "admin",
   data() {
     return {

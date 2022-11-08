@@ -163,7 +163,7 @@
   <script>
   
   export default { 
-  
+    middleware:'iscommenter',
     data() {
       return {
         jobs: [],

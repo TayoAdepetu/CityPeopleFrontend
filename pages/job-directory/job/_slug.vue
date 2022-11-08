@@ -1,4 +1,6 @@
 <template>
+<!--view a specific job-->
+
 <div>
     <div>
         <h3 id="title"> {{ job.title }} </h3>
@@ -16,9 +18,9 @@
 
 <script scoped>
 export default {
-       
+       auth: false,
 async asyncData(context) {
-        let data = await context.$axios.get(`/api/auth/job/${context.params.id}`)
+        let data = await context.$axios.get(`/api/auth/job/${context.params.slug}`)
         let job = data.data[0]
         return {
                 job         

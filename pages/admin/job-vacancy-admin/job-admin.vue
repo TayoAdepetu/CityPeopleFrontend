@@ -172,7 +172,7 @@
   <script>
   
   export default { 
-  
+    middleware:'isadmin',
     data() {
       return {
         jobs: [],

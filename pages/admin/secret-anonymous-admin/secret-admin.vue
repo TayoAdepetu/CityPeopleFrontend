@@ -4,11 +4,9 @@
     <thead>
       <tr>
         <th class="text-left">S/N</th>
-        <th class="text-left">Product Name</th>
+        <th class="text-left">Title</th>
         <th class="text-left">Description</th>
-        <th class="text-left">Price</th>
-        <th class="text-left">Phone</th>
-        <th class="text-left">Location</th>
+        <th class="text-left">Slug</th>
         <th class="text-left">Date</th>
         <th class="text-left">Actions</th>
       </tr>
@@ -22,19 +20,14 @@
           {{ index+1 }}
         </td>
         <td>
-          {{ job.product_name }}
-        </td>       
+          {{ job.title }}
+        </td>
         <td>
           {{ job.description }}
         </td>
+       
         <td>
-            {{ job.price }}
-        </td>
-        <td>            
-          {{ job.phone }}  
-        </td> 
-        <td>            
-          {{ job.biz_location }}  
+          {{ job.slug }}
         </td> 
         <td>
           {{ getDate(job.created_at) }}
@@ -66,33 +59,14 @@
   <form @submit.prevent="editPost()" class="selectBank normalInput2 fullWidth form-control mt-2">         
   
       <div>
-        <div class="form-group">
-            <input type="text" v-model="selectedPost.product_name" class="form-control" id="slug">
-          </div>
-
           <div class="form-group">
-            <input type="text" v-model="selectedPost.price" class="form-control" id="slug" required>
-          </div>
-
-          <div class="form-group">
-            <input type="text" v-model="selectedPost.phone" class="form-control" id="slug" required>
-          </div>
-          
-          <div class="form-group">
-            <input type="text" v-model="selectedPost.biz_location" class="form-control" id="slug" required>
-          </div>
+            <textarea v-model="selectedPost.title" class="form-control" id="title" required></textarea>
+          </div>        
 
           <div class="form-group">
             <textarea type="text" v-model="selectedPost.description" class="form-control" id="description" required></textarea>
           </div>
           
-          <!--
-          <div class="custom-file mb-3">
-            <label class="custom-file-label" >Add images...</label>
-            <input type="file" v-on:change="onFileChange" class="custom-file-input" id="image">
-            
-          </div>
-          -->
           <div class="flex justifyCenter mobileColumn">
               <v-btn type="submit" class="greyBtn mx-3 my-1">
                 Update
@@ -124,7 +98,7 @@
     >
   <div class="fordeleteback">
     <h3 class="darkGreyColor textCenter">
-    Delete <span class="deletepost">{{ selectedPost.product_name }}</span>
+    Delete <span class="deletepost">{{ selectedPost.title }}</span>
     </h3>
      
           <div class="flex justifyCenter mobileColumn">
@@ -155,7 +129,7 @@
   <script>
   
   export default { 
-  
+    middleware:'isadmin',
     data() {
       return {
         jobs: [],
@@ -163,13 +137,9 @@
         deleteJobModal: false,
                 loading: false,
                 selectedPost:{
-                      id: '',
-                      product_name: '',
-                      product_name_slug,
-                      description: '',
-                      price:'',
-                      phone: '',
-                      biz_location: '',      
+                    title: '',
+                     slug: '',
+                     description: '',
       },
       error: '',
     }
@@ -183,10 +153,10 @@
         return date;
     },
   
-    async getJobs(context) 
+    async getJobs() 
     {
         try {
-          const { data } = await this.$axios.get(`/api/auth/products/${context.params.slug}`);
+          const { data } = await this.$axios.get(`/api/auth/all-secrets`);
           this.jobs = data.data
           return true; 
         } catch (error) {
@@ -198,14 +168,11 @@
   
     openJobModal(job) 
       {
-      this.selectedPost.product_name = job.product_name
+      this.selectedPost.title = job.title
       this.selectedPost.id = job.id
-      this.selectedPost.product_name_slug = job.product_name_slug
+      this.selectedPost.slug = job.slug
       this.selectedPost.description = job.description
-      this.selectedPost.price = job.price
-      this.selectedPost.phone = job.phone
-      this.selectedPost.biz_location = job.biz_location
-  
+
       this.updateJobModal = true;
       
     },
@@ -213,14 +180,10 @@
     
     deleteJobModal(job) 
       {
-      this.selectedPost.product_name = job.product_name
+      this.selectedPost.title = job.title
       this.selectedPost.id = job.id
-      this.selectedPost.product_name_slug = job.product_name_slug
+      this.selectedPost.slug = job.slug
       this.selectedPost.description = job.description
-      this.selectedPost.price = job.price
-      this.selectedPost.phone = job.phone
-      this.selectedPost.biz_location = job.biz_location
-
   
       this.deleteJobModal = true;
       
@@ -230,13 +193,9 @@
      {
      this.loading = true
   
-    const { data } = await this.$axios.put(`/api/auth/update-post/${this.selectedPost.product_name_slug}`, 
-    {product_name: this.selectedPost.product_name,
-     product_name_slug: this.selectedPost.product_name_slug,
-     description: this.selectedPost.description,
-     phone: this.selectedPost.phone,
-     price: this.selectedPost.price,
-     biz_location: this.selectedPost.biz_location,});
+    const { data } = await this.$axios.put(`/api/auth/update-secret/${this.selectedPost.slug}`, 
+    {title: this.selectedPost.title,
+     description: this.selectedPost.description,});
   
      this.loading = false;
      this.updateJobModal = false;         
@@ -246,17 +205,9 @@
         
     },
   
-      /*
-      async asyncData(context) {
-        let response = await context.$axios.post(`/api/auth/delete-post/${context.selectedPost.slug}`);
-        this.getJobs();
-      },
-  
-      */
-  
-      async deleteJob()
+    async deleteJob()
       {
-        await this.$axios.post(`/api/auth/delete-post/${this.selectedPost.product_name_slug}`);
+        await this.$axios.post(`/api/auth/delete-secret/${this.selectedPost.slug}`);
         this.deleteJobModal = false;
         this.getJobs();
   

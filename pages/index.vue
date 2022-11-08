@@ -32,7 +32,7 @@
 <script scoped>
 
 export default { 
-
+  auth: false,
   data() {
     return {
       posts: [],

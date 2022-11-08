@@ -4,11 +4,13 @@
     <thead>
       <tr>
         <th class="text-left">S/N</th>
-        <th class="text-left">Product Name</th>
-        <th class="text-left">Description</th>
-        <th class="text-left">Price</th>
+        <th class="text-left">Business Name</th>
         <th class="text-left">Phone</th>
+        <th class="text-left">Email</th>
         <th class="text-left">Location</th>
+        <th class="text-left">Website</th>
+        <th class="text-left">Employees</th>
+        <th class="text-left">Description</th>
         <th class="text-left">Date</th>
         <th class="text-left">Actions</th>
       </tr>
@@ -22,20 +24,26 @@
           {{ index+1 }}
         </td>
         <td>
-          {{ job.product_name }}
+          {{ job.business_name }}
         </td>       
         <td>
-          {{ job.description }}
+          {{ job.phone }}
         </td>
         <td>
-            {{ job.price }}
+            {{ job.email }}
         </td>
         <td>            
-          {{ job.phone }}  
+          {{ job.location }}  
         </td> 
         <td>            
-          {{ job.biz_location }}  
+          {{ job.website }}  
         </td> 
+        <td>            
+          {{ job.number_of_employees }}  
+        </td>
+        <td>            
+          {{ job.description }}  
+        </td>
         <td>
           {{ getDate(job.created_at) }}
         </td>   
@@ -66,33 +74,31 @@
   <form @submit.prevent="editPost()" class="selectBank normalInput2 fullWidth form-control mt-2">         
   
       <div>
+
         <div class="form-group">
-            <input type="text" v-model="selectedPost.product_name" class="form-control" id="slug">
-          </div>
+            <input type="tel" v-model="selectedPost.phone" placeholder="Add the phone number for buyers to contact">
+        </div>
+        
+        <div class="form-group">
+            <input type="text" v-model="selectedPost.location" placeholder="Add your business location">
+        </div>
 
-          <div class="form-group">
-            <input type="text" v-model="selectedPost.price" class="form-control" id="slug" required>
-          </div>
+        <div class="form-group">
+            <input type="text" v-model="selectedPost.email" placeholder="State responsibilities of the role">
+        </div>
 
-          <div class="form-group">
-            <input type="text" v-model="selectedPost.phone" class="form-control" id="slug" required>
-          </div>
-          
-          <div class="form-group">
-            <input type="text" v-model="selectedPost.biz_location" class="form-control" id="slug" required>
-          </div>
+        <div class="form-group">
+            <input type="text" v-model="selectedPost.website" placeholder="State potential salary">
+        </div>
 
-          <div class="form-group">
-            <textarea type="text" v-model="selectedPost.description" class="form-control" id="description" required></textarea>
-          </div>
-          
-          <!--
-          <div class="custom-file mb-3">
-            <label class="custom-file-label" >Add images...</label>
-            <input type="file" v-on:change="onFileChange" class="custom-file-input" id="image">
-            
-          </div>
-          -->
+        <div class="form-group">
+            <input type="text" v-model="number_of_employees" placeholder="Add the number of employees in your firm">
+        </div>
+        
+        <div class="form-group">
+          <textarea type="text" v-model="selectedPost.description" class="form-control" id="description" placeholder="Describe your business" required></textarea>
+        </div>
+
           <div class="flex justifyCenter mobileColumn">
               <v-btn type="submit" class="greyBtn mx-3 my-1">
                 Update
@@ -124,7 +130,7 @@
     >
   <div class="fordeleteback">
     <h3 class="darkGreyColor textCenter">
-    Delete <span class="deletepost">{{ selectedPost.product_name }}</span>
+    Delete <span class="deletepost">{{ selectedPost.business_name }}</span>
     </h3>
      
           <div class="flex justifyCenter mobileColumn">
@@ -155,7 +161,7 @@
   <script>
   
   export default { 
-  
+    middleware:'iscommenter',
     data() {
       return {
         jobs: [],
@@ -163,13 +169,15 @@
         deleteJobModal: false,
                 loading: false,
                 selectedPost:{
-                      id: '',
-                      product_name: '',
-                      product_name_slug,
+                      id: '', 
+                      business_name: '',
+                      business_name_slug: '',
                       description: '',
-                      price:'',
+                      website: '',
+                      email: '',
                       phone: '',
-                      biz_location: '',      
+                      location: '',
+                      number_of_employees: '',   
       },
       error: '',
     }
@@ -183,10 +191,10 @@
         return date;
     },
   
-    async getJobs() 
+    async getJobs(context) 
     {
         try {
-          const { data } = await this.$axios.get(`/api/auth/all-products`);
+          const { data } = await this.$axios.get(`/api/auth/biz-directory/${context.params.slug}`);
           this.jobs = data.data
           return true; 
         } catch (error) {
@@ -198,14 +206,16 @@
   
     openJobModal(job) 
       {
-      this.selectedPost.product_name = job.product_name
+      this.selectedPost.business_name = job.business_name
+      this.selectedPost.business_name_slug = job.business_name_slug
       this.selectedPost.id = job.id
-      this.selectedPost.product_name_slug = job.product_name_slug
       this.selectedPost.description = job.description
-      this.selectedPost.price = job.price
       this.selectedPost.phone = job.phone
-      this.selectedPost.biz_location = job.biz_location
-  
+      this.selectedPost.location = job.location
+      this.selectedPost.number_of_employees = job.number_of_employees
+      this.selectedPost.website = job.website
+      this.selectedPost.email = job.email
+      
       this.updateJobModal = true;
       
     },
@@ -213,14 +223,15 @@
     
     deleteJobModal(job) 
       {
-      this.selectedPost.product_name = job.product_name
+      this.selectedPost.business_name = job.business_name
+      this.selectedPost.business_name_slug = job.business_name_slug
       this.selectedPost.id = job.id
-      this.selectedPost.product_name_slug = job.product_name_slug
       this.selectedPost.description = job.description
-      this.selectedPost.price = job.price
       this.selectedPost.phone = job.phone
-      this.selectedPost.biz_location = job.biz_location
-
+      this.selectedPost.location = job.location
+      this.selectedPost.number_of_employees = job.number_of_employees
+      this.selectedPost.website = job.website
+      this.selectedPost.email = job.email
   
       this.deleteJobModal = true;
       
@@ -230,13 +241,13 @@
      {
      this.loading = true
   
-    const { data } = await this.$axios.put(`/api/auth/update-post/${this.selectedPost.product_name_slug}`, 
-    {product_name: this.selectedPost.product_name,
-     product_name_slug: this.selectedPost.product_name_slug,
+    const { data } = await this.$axios.put(`/api/auth/update-directory/${this.selectedPost.business_name_slug}`, 
+    {phone: this.selectedPost.phone,
+     email: this.selectedPost.email,
+     location: this.selectedPost.location,
      description: this.selectedPost.description,
-     phone: this.selectedPost.phone,
-     price: this.selectedPost.price,
-     biz_location: this.selectedPost.biz_location,});
+     website: this.selectedPost.website,
+     number_of_employees: this.selectedPost.number_of_employees,});
   
      this.loading = false;
      this.updateJobModal = false;         
@@ -256,7 +267,7 @@
   
       async deleteJob()
       {
-        await this.$axios.post(`/api/auth/delete-post/${this.selectedPost.product_name_slug}`);
+        await this.$axios.post(`/api/auth/delete-directory/${this.selectedPost.business_name_slug}`);
         this.deleteJobModal = false;
         this.getJobs();
   

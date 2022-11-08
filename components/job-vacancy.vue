@@ -4,7 +4,7 @@
     
       <div v-for="job in jobs" :key="job.id" id="before-headlines">
             <div id="headlines">
-              <NuxtLink :to="`/job-directory/job/${job.id}`">
+              <NuxtLink :to="`/job-directory/job/${job.job_slug}`">
                   
                   <div>
                     <h3 id="title"> {{ job.title }} </h3>

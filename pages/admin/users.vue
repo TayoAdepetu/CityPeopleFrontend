@@ -108,6 +108,7 @@
 
   <script>
     export default {
+      middleware:'issuperadmin',
       layout: "admin",
 
         data() {

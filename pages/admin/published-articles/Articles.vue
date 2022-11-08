@@ -152,7 +152,7 @@
 <script>
 
 export default { 
-
+  middleware:'isadmin',
   data() {
     return {
       posts: [],

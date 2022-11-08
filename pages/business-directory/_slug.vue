@@ -19,7 +19,6 @@
                   
                 </div> 
 
-                <!--
 <div>
     <workinghours />
 </div>
@@ -30,13 +29,13 @@
     <directory-faq />
 </div>
 
--->
 </div>
 
 </template>
 
 <script>
 export default {
+    auth: false,
        
       async asyncData(context) {
         let response = await context.$axios.get(`/api/auth/biz-directory/${context.params.slug}`)

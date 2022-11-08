@@ -18,7 +18,9 @@
 </template>
 
 <script scoped>
+
 export default {
+    auth: false,
        
       async asyncData(context) {
         let data = await context.$axios.get(`/api/auth/secret/${context.params.slug}`)

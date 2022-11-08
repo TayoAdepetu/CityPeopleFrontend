@@ -152,7 +152,7 @@
   <script>
   
   export default { 
-  
+    middleware:'ispublisher',
     data() {
       return {
         posts: [],

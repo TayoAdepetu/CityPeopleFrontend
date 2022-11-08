@@ -2,7 +2,7 @@
 
 export default function ({ $auth, redirect }) {
   let user = $auth.user;
-    if (user === "admin") {
+    if (user.scope === "admin" || "superadmin") {
       
     }else {
       return redirect('/')

@@ -7,6 +7,7 @@
 <script>
 
     export default {
+        middleware:'iscommenter',
         layout: "admin",
         
         data(){

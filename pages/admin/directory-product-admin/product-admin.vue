@@ -4,14 +4,11 @@
     <thead>
       <tr>
         <th class="text-left">S/N</th>
-        <th class="text-left">Business Name</th>
-        <th class="text-left">Monday</th>
-        <th class="text-left">Tuesday</th>
-        <th class="text-left">Wednesday</th>
-        <th class="text-left">Thursday</th>
-        <th class="text-left">Friday</th>
-        <th class="text-left">Saturday</th>
-        <th class="text-left">Sunday</th>
+        <th class="text-left">Product Name</th>
+        <th class="text-left">Description</th>
+        <th class="text-left">Price</th>
+        <th class="text-left">Phone</th>
+        <th class="text-left">Location</th>
         <th class="text-left">Date</th>
         <th class="text-left">Actions</th>
       </tr>
@@ -25,29 +22,20 @@
           {{ index+1 }}
         </td>
         <td>
-          {{ job.business_name }}
+          {{ job.product_name }}
         </td>       
         <td>
-          {{ job.monday }}
+          {{ job.description }}
         </td>
         <td>
-            {{ job.tuesday }}
+            {{ job.price }}
         </td>
         <td>            
-          {{ job.wednesday }}  
+          {{ job.phone }}  
         </td> 
         <td>            
-          {{ job.thursday }}  
+          {{ job.biz_location }}  
         </td> 
-        <td>            
-          {{ job.friday }}  
-        </td> 
-        <td>            
-          {{ job.saturday }}  
-        </td>
-        <td>            
-          {{ job.sunday }}  
-        </td>  
         <td>
           {{ getDate(job.created_at) }}
         </td>   
@@ -79,37 +67,32 @@
   
       <div>
         <div class="form-group">
-            <input type="text" v-model="selectedPost.business_name" class="form-control" id="slug">
+            <input type="text" v-model="selectedPost.product_name" class="form-control" id="slug">
           </div>
 
           <div class="form-group">
-            <input type="text" v-model="selectedPost.monday" class="form-control" id="slug" required>
+            <input type="text" v-model="selectedPost.price" class="form-control" id="slug" required>
           </div>
 
           <div class="form-group">
-            <input type="text" v-model="selectedPost.tuesday" class="form-control" id="slug" required>
+            <input type="text" v-model="selectedPost.phone" class="form-control" id="slug" required>
           </div>
           
           <div class="form-group">
-            <input type="text" v-model="selectedPost.wednesday" class="form-control" id="slug" required>
+            <input type="text" v-model="selectedPost.biz_location" class="form-control" id="slug" required>
           </div>
 
           <div class="form-group">
-            <input type="text" v-model="selectedPost.thursday" class="form-control" id="slug" required>
-          </div>
-
-          <div class="form-group">
-            <input type="text" v-model="selectedPost.friday" class="form-control" id="slug" required>
-          </div>
-
-          <div class="form-group">
-            <input type="text" v-model="selectedPost.saturday" class="form-control" id="slug" required>
+            <textarea type="text" v-model="selectedPost.description" class="form-control" id="description" required></textarea>
           </div>
           
-          <div class="form-group">
-            <input type="text" v-model="selectedPost.sunday" class="form-control" id="slug" required>
+          <!--
+          <div class="custom-file mb-3">
+            <label class="custom-file-label" >Add images...</label>
+            <input type="file" v-on:change="onFileChange" class="custom-file-input" id="image">
+            
           </div>
-
+          -->
           <div class="flex justifyCenter mobileColumn">
               <v-btn type="submit" class="greyBtn mx-3 my-1">
                 Update
@@ -141,7 +124,7 @@
     >
   <div class="fordeleteback">
     <h3 class="darkGreyColor textCenter">
-    Delete <span class="deletepost">{{ selectedPost.business_name }}</span>
+    Delete <span class="deletepost">{{ selectedPost.product_name }}</span>
     </h3>
      
           <div class="flex justifyCenter mobileColumn">
@@ -180,16 +163,13 @@
         deleteJobModal: false,
                 loading: false,
                 selectedPost:{
-                      id: '', 
-                      business_name: '',
-                      business_name_slug: '',
-                      monday: '',
-                      tuesday: '',
-                      wednesday: '',
-                      thursday: '',
-                      friday: '',
-                      saturday: '',
-                      sunday: '',   
+                      id: '',
+                      product_name: '',
+                      product_name_slug,
+                      description: '',
+                      price:'',
+                      phone: '',
+                      biz_location: '',      
       },
       error: '',
     }
@@ -206,7 +186,7 @@
     async getJobs() 
     {
         try {
-          const { data } = await this.$axios.get(`/api/auth/worktime-admin`);
+          const { data } = await this.$axios.get(`/api/auth/all-products`);
           this.jobs = data.data
           return true; 
         } catch (error) {
@@ -218,17 +198,14 @@
   
     openJobModal(job) 
       {
-      this.selectedPost.business_name = job.business_name
-      this.selectedPost.business_name_slug = job.business_name_slug
+      this.selectedPost.product_name = job.product_name
       this.selectedPost.id = job.id
-      this.selectedPost.monday = job.monday
-      this.selectedPost.tuesday = job.tuesday
-      this.selectedPost.wednesday = job.wednesday
-      this.selectedPost.thursday = job.thursday
-      this.selectedPost.friday = job.friday
-      this.selectedPost.saturday = job.saturday
-      this.selectedPost.sunday = job.sunday
-      
+      this.selectedPost.product_name_slug = job.product_name_slug
+      this.selectedPost.description = job.description
+      this.selectedPost.price = job.price
+      this.selectedPost.phone = job.phone
+      this.selectedPost.biz_location = job.biz_location
+  
       this.updateJobModal = true;
       
     },
@@ -236,16 +213,14 @@
     
     deleteJobModal(job) 
       {
-      this.selectedPost.business_name = job.business_name
-      this.selectedPost.business_name_slug = job.business_name_slug
+      this.selectedPost.product_name = job.product_name
       this.selectedPost.id = job.id
-      this.selectedPost.monday = job.monday
-      this.selectedPost.tuesday = job.tuesday
-      this.selectedPost.wednesday = job.wednesday
-      this.selectedPost.thursday = job.thursday
-      this.selectedPost.friday = job.friday
-      this.selectedPost.saturday = job.saturday
-      this.selectedPost.sunday = job.sunday
+      this.selectedPost.product_name_slug = job.product_name_slug
+      this.selectedPost.description = job.description
+      this.selectedPost.price = job.price
+      this.selectedPost.phone = job.phone
+      this.selectedPost.biz_location = job.biz_location
+
   
       this.deleteJobModal = true;
       
@@ -255,14 +230,13 @@
      {
      this.loading = true
   
-    const { data } = await this.$axios.put(`/api/auth/update-worktime/${this.selectedPost.business_name_slug}`, 
-    {monday: this.selectedPost.monday,
-     tuesday: this.selectedPost.tuesday,
-     wednesday: this.selectedPost.wednesday,
-     thursday: this.selectedPost.thursday,
-     friday: this.selectedPost.friday,
-     saturday: this.selectedPost.saturday,
-     sunday: this.selectedPost.sunday});
+    const { data } = await this.$axios.put(`/api/auth/update-post/${this.selectedPost.product_name_slug}`, 
+    {product_name: this.selectedPost.product_name,
+     product_name_slug: this.selectedPost.product_name_slug,
+     description: this.selectedPost.description,
+     phone: this.selectedPost.phone,
+     price: this.selectedPost.price,
+     biz_location: this.selectedPost.biz_location,});
   
      this.loading = false;
      this.updateJobModal = false;         
@@ -282,7 +256,7 @@
   
       async deleteJob()
       {
-        await this.$axios.post(`/api/auth/delete-worktime/${this.selectedPost.business_name_slug}`);
+        await this.$axios.post(`/api/auth/delete-post/${this.selectedPost.product_name_slug}`);
         this.deleteJobModal = false;
         this.getJobs();
   
