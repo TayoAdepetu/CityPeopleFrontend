@@ -47,7 +47,7 @@ export default {
       try {
         await this.$axios.post(`/api/auth/create-new-post`, {
           title: this.title,
-          slug: this.slug,
+          slug: this.title.replace(/ +/g, '-'),
           description: this.description,
           body: this.body,
           user_id: this.user_id

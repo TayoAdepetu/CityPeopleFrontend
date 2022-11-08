@@ -183,7 +183,7 @@ export default {
   async getPosts() 
   {
       try {
-        const { data } = await this.$axios.get(`/api/auth/crud-all-posts`);
+        const { data } = await this.$axios.get(`/api/auth/posts`);
         this.posts = data.data
         return true; 
       } catch (error) {

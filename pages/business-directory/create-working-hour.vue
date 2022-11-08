@@ -8,7 +8,7 @@
         </div>
 
         <div class="form-group">
-          <input type="text" hidden v-model="slug" class="form-control" id="slug">
+          <input type="text" hidden v-model="business_name_slug" class="form-control" id="slug">
         </div>
 
         <div class="form-group">
@@ -55,7 +55,7 @@ export default {
     return {
       user_id: '',
       business_name: '',
-      slug: '',
+      business_name_slug: '',
       monday: '',
       tuesday: '',
       wednesday: '',
@@ -72,7 +72,7 @@ export default {
       try {
         await this.$axios.post(`/api/auth/create-new-worktime`, {
           business_name: this.$auth.user.business_name,
-          slug: this.$auth.user.business_name,
+          business_name_slug: this.$auth.user.business_name_slug,
           monday: this.monday,
           tuesday: this.tuesday,
           wednesday: this.wednesday,

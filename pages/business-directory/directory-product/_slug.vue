@@ -23,7 +23,7 @@ export default {
         let response = await context.$axios.get(`/api/auth/product/${context.params.slug}`)
         let product = response.data
         return {
-                product        
+                product
             }
         }
 

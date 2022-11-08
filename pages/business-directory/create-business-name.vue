@@ -35,7 +35,7 @@ export default {
       try {
         await this.$axios.post(`/api/auth/update-business-name/${this.$auth.user.email}`, {
           business_name: this.business_name,
-          slug: this.business_name.replace(/ +/g, '-'),
+          business_name_slug: this.business_name.replace(/ +/g, '-'),
         })
 
         this.$router.push('/admin/dashboard')

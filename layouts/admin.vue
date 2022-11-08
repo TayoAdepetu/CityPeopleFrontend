@@ -9,35 +9,35 @@
             <ul v-if="role==='superadmin'">
             <li>Moderators</li>
             <li>Register Users</li>
-            <li>Articles</li>
+            <li><nuxt-link to="/admin/articles">Articles</nuxt-link></li> 
             <li>Categories</li> 
             <li>Users</li>
             <li>Adverts</li>
             <li>FundHelp</li>
             <li>LendMe</li>
             <li>Artisans Directory</li>
-            <li>Job Vacancy Board</li>
+            <li><nuxt-link to="/admin/job-vacancy-admin/job-admin">Job Vacancy Board</nuxt-link></li>
             <li>Business Directory</li>
             <li>African Images</li>
             <li>Anonymous Secrets</li>
             <li>Make Money</li>
         </ul>
         <ul v-if="role==='admin'">
-            <li>Articles</li> 
+            <li><nuxt-link to="/admin/articles">Articles</nuxt-link></li>
             <li hidden>FundHelp</li>
             <li hidden>LendMe</li>
-            <li>Artisans Directory</li>
-            <li>Job Vacancy Board</li>
+            <li hidden>Artisans Directory</li>
+            <li><nuxt-link to="/admin/job-vacancy-admin/job-admin">Job Vacancy Board</nuxt-link></li>
             <li>Business Directory</li>
             <li hidden>African Images</li>
             <li>Anonymous Secrets</li>            
         </ul>
         <ul v-if="role==='publisher'">
-            <li>Articles</li>
+          <li><nuxt-link :to="`/admin/published-articles/${this.$auth.user.name}`">Articles</nuxt-link></li> 
             <li hidden>FundHelp</li>
             <li hidden>LendMe</li>
-            <li>Artisans Directory</li>
-            <li>Job Vacancy Board</li>
+            <li hidden>Artisans Directory</li>
+            <li><nuxt-link :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`">Job Vacancy Board</nuxt-link></li>
             <li>Business Directory</li>
             <li hidden>African Images</li>
             <li>Anonymous Secrets</li>
@@ -47,8 +47,8 @@
             <li hidden>FundHelp</li>
             <li>MyShop</li>
             <li hidden>LendMe</li>
-            <li>Artisans Directory</li>
-            <li>Job Vacancy Board</li>
+            <li hidden>Artisans Directory</li>
+            <li><nuxt-link :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`">Job Vacancy Board</nuxt-link></li>
             <li>Business Directory</li>
             <li hidden>African Images</li>
             <li>Anonymous Secrets</li>
@@ -57,8 +57,8 @@
             <li hidden>FundHelp</li>
             <li>MyShop</li>
             <li hidden>LendMe</li>
-            <li>Artisans Directory</li>
-            <li>Job Vacancy Board</li>
+            <li hidden>Artisans Directory</li>
+            <li><nuxt-link :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`">Job Vacancy Board</nuxt-link></li>
             <li>Business Directory</li>
             <li hidden>African Images</li>
             <li>Anonymous Secrets</li>

@@ -26,7 +26,7 @@ export default {
         let response = await context.$axios.get(`/api/auth/all-faqs/${context.params.slug}`)
         let faq = response.data
         return {
-                faq         
+                faq       
             }
         }
 

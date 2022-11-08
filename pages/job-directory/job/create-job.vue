@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-      <form @submit.prevent="createDirectoryProduct">
+      <form @submit.prevent="createDirectory">
 
        <input hidden type="" :value="user_id">
-        <div class="form-group">
-          <textarea hidden v-model="business_name" class="form-control" id="title" placeholder="Enter business_name"></textarea>
+       <div class="form-group">
+          <input type="text" hidden v-model="business_name" class="form-control" id="slug">
         </div>
 
         <div class="form-group">
@@ -12,22 +12,27 @@
         </div>
 
         <div class="form-group">
-          <textarea v-model="product_name" class="form-control" id="title" placeholder="Enter the name of the product" required></textarea>
+            <input type="text" v-model="title" placeholder="Enter to the job title">
+        </div>
+
+        <div class="form-group">
+            <input type="tel" v-model="phone" placeholder="Add the phone number for buyers to contact">
         </div>
         
         <div class="form-group">
-            <input type="text" v-model="price" placeholder="Enter price of the product">
-        </div>
-        <div class="form-group">
-            <input type="tel" v-model="phone" placeholder="Add your WhatsApp number">
+            <input type="text" v-model="location" placeholder="Add your business location">
         </div>
 
         <div class="form-group">
-            <input hidden type="text" v-model="biz_location" placeholder="Add your business location">
+            <input type="text" v-model="role_function" placeholder="State responsibilities of the role">
         </div>
 
         <div class="form-group">
-          <textarea type="text" v-model="description" class="form-control" id="description" placeholder="Describe the product" required></textarea>
+            <input type="text" v-model="salary" placeholder="State potential salary">
+        </div>
+        
+        <div class="form-group">
+          <textarea type="text" v-model="description" class="form-control" id="description" placeholder="Describe your business" required></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary block">
@@ -45,28 +50,30 @@ export default {
   data() {
     return {
       user_id: '',
-      product_name: '',
       business_name: '',
       business_name_slug: '',
       description: '',
-      price:'',
+      salary: '',
+      role_function: '',
       phone: '',
-      biz_location: '',
+      location: '',
+      title: '',
       error: null
     }
   },
 
   methods: {
-  async createDirectoryProduct() {
+  async createDirectory() {
       try {
-        await this.$axios.post(`/api/auth/create-directory-product`, {
+        await this.$axios.post(`/api/auth/create-new-job`, {
           business_name: this.$auth.user.business_name,
-          product_name: this.product_name,
-          business_name_slug: this.$auth.user.business_slug,
-          description: this.description,
-          price: this.price,
+          business_name_slug: this.$auth.user.business_name_slug,
+          title: this.title,
+          salary: this.salary,
           phone: this.phone,
-          location: this.biz_location,
+          location: this.location,
+          function: this.role_function,
+          description: this.description,
           user_id: this.$auth.user.user_id,
           //image: this.onFileChange()
         })
@@ -76,11 +83,12 @@ export default {
         this.error = e.response
       }
     },
-
+/*
   onFileChange(e) {
   var image = e.target.files || e.dataTransfer.files;
   return this.image;
 },
+*/
   }
 }
 </script>
