@@ -1,5 +1,9 @@
 <template>
     <div class="container">
+      <h2>Upload Your Products (This step is optional)</h2>
+      <p>Step 5 of 5</p>
+      <h3>No More Products or Services? Preview Your <span><nuxt-link :to="`/business-directory/${this.$auth.user.business_name_slug}`">Business Profile</nuxt-link></span></h3>
+
       <form @submit.prevent="createDirectoryProduct">
 
        <input hidden type="" :value="user_id">
@@ -72,7 +76,7 @@ export default {
           //image: this.onFileChange()
         })
 
-        this.$router.push('/business-directory')
+        this.$router.push('/business-directory/create-directory-product')
       } catch (e) {
         this.error = e.response
       }

@@ -1,6 +1,9 @@
 <template>
     <!-- This is admin Page for business owners to manage Faqs section, delete, update-->
     <div>
+      <div>
+        <nuxt-link to="/business-directory/create-faq">Add More FAQs</nuxt-link>
+      </div>
         <div>
     <thead>
       <tr>

@@ -2,66 +2,86 @@
   <v-app>
 <div>
     <nav>
-        <div class="list">
-            <p>Hi, {{ user.name }}</p>            
+      <div class="list">
+            <p>Hi, {{ user.name }}</p> 
+        <div v-if="this.$auth.user.business_name_slug == ''">
+          <p>Register your business and join millions of other businesses in our business directory</p>
+          <button><nuxt-link to="/business-directory/create-business-name">Register Business</nuxt-link></button>
         </div>
+      </div>
         <div class="list">
             <ul v-if="role==='superadmin'">
             <li>Moderators</li>
             <li>Register Users</li>
-            <li><nuxt-link to="/admin/articles">Articles</nuxt-link></li> 
-            <li>Categories</li> 
-            <li>Users</li>
+            <li>Categories</li>
             <li>Adverts</li>
             <li>FundHelp</li>
             <li>LendMe</li>
-            <li>Artisans Directory</li>
-            <li><nuxt-link to="/admin/job-vacancy-admin/job-admin">Job Vacancy Board</nuxt-link></li>
-            <li>Business Directory</li>
             <li>African Images</li>
-            <li>Anonymous Secrets</li>
             <li>Make Money</li>
+            <li>Artisans Directory</li>
+            <li><nuxt-link to="/create-post">Publish Article</nuxt-link></li> 
+            <li><nuxt-link to="/admin/articles">Articles</nuxt-link></li> 
+            <li><NuxtLink to="/admin/superadmin/">Users</NuxtLink></li>
+            <li><nuxt-link to="/admin/workinghours-admin/working-time">WorkingHours</nuxt-link></li>
+            <li><nuxt-link to="/admin/faq-admin">Faqs</nuxt-link></li>
+            <li><nuxt-link to="/admin/directory-product-admin/product-admin">Products</nuxt-link></li>
+            <li><nuxt-link to="/admin/job-vacancy-admin/job-admin">Job Vacancy Board</nuxt-link></li>
+            <li><nuxt-link to="/admin/directory-admin">Business Directory</nuxt-link></li>
+            <li><nuxt-link to="/admin/secret-anonymous-admin/secret-admin">Anonymous Secrets</nuxt-link></li>
         </ul>
         <ul v-if="role==='admin'">
-            <li><nuxt-link to="/admin/articles">Articles</nuxt-link></li>
             <li hidden>FundHelp</li>
             <li hidden>LendMe</li>
-            <li hidden>Artisans Directory</li>
-            <li><nuxt-link to="/admin/job-vacancy-admin/job-admin">Job Vacancy Board</nuxt-link></li>
-            <li>Business Directory</li>
             <li hidden>African Images</li>
-            <li>Anonymous Secrets</li>            
+            <li hidden>Artisans Directory</li>
+            <li><nuxt-link to="/create-post">Publish Article</nuxt-link></li> 
+            <li><nuxt-link to="/admin/articles">Articles</nuxt-link></li>
+            <li><nuxt-link to="/admin/directory-product-admin/product-admin">Products</nuxt-link></li>
+            <li><nuxt-link to="/admin/faq-admin">Faqs</nuxt-link></li>
+            <li><nuxt-link to="/admin/workinghours-admin/working-time">WorkingHours</nuxt-link></li>
+            <li><nuxt-link to="/admin/job-vacancy-admin/job-admin">Job Vacancy Board</nuxt-link></li>
+            <li><nuxt-link to="/admin/secret-anonymous-admin/secret-admin">Anonymous Secrets</nuxt-link></li>
+            <li><nuxt-link to="/admin/directory-admin">Business Directory</nuxt-link></li>
         </ul>
         <ul v-if="role==='publisher'">
-          <li><nuxt-link :to="`/admin/published-articles/${this.$auth.user.name}`">Articles</nuxt-link></li> 
-            <li hidden>FundHelp</li>
+           <li hidden>FundHelp</li>
             <li hidden>LendMe</li>
+            <li hidden>African Images</li> 
             <li hidden>Artisans Directory</li>
-            <li><nuxt-link :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`">Job Vacancy Board</nuxt-link></li>
-            <li>Business Directory</li>
-            <li hidden>African Images</li>
-            <li>Anonymous Secrets</li>
-            
+            <li v-if="this.$auth.user.business_name_slug != ''"><span><nuxt-link :to="`/business-directory/${this.$auth.user.business_name_slug}`">Preview Business Profile</nuxt-link></span></li>
+            <li><nuxt-link :to="`/admin/published-articles/${this.$auth.user.name}`">Articles</nuxt-link></li>
+            <li><nuxt-link to="/create-post">Publish Article</nuxt-link></li> 
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`">MyShop</nuxt-link></li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/faq-admin/published-faq/${this.$auth.user.business_name_slug}`">MyFaqs</nuxt-link></li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/workinghours-admin/${this.$auth.user.business_name_slug}`">MyWorkingHours</nuxt-link></li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`">Job Vacancy Board</nuxt-link></li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/directory-admin/${this.$auth.user.business_name_slug}`">Business Directory</nuxt-link></li>
+                       
         </ul>
         <ul v-if="role==='seller'">
             <li hidden>FundHelp</li>
-            <li>MyShop</li>
             <li hidden>LendMe</li>
             <li hidden>Artisans Directory</li>
-            <li><nuxt-link :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`">Job Vacancy Board</nuxt-link></li>
-            <li>Business Directory</li>
             <li hidden>African Images</li>
-            <li>Anonymous Secrets</li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><span><nuxt-link :to="`/business-directory/${this.$auth.user.business_name_slug}`">Preview Business Profile</nuxt-link></span></li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`">MyShop</nuxt-link></li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/faq-admin/published-faq/${this.$auth.user.business_name_slug}`">MyFaqs</nuxt-link></li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/workinghours-admin/${this.$auth.user.business_name_slug}`">MyWorkingHours</nuxt-link></li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`">Job Vacancy Board</nuxt-link></li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/directory-admin/${this.$auth.user.business_name_slug}`">Business Directory</nuxt-link></li>
         </ul>
         <ul v-if="role==='commenter'">
             <li hidden>FundHelp</li>
-            <li>MyShop</li>
             <li hidden>LendMe</li>
             <li hidden>Artisans Directory</li>
-            <li><nuxt-link :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`">Job Vacancy Board</nuxt-link></li>
-            <li>Business Directory</li>
             <li hidden>African Images</li>
-            <li>Anonymous Secrets</li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><span><nuxt-link :to="`/business-directory/${this.$auth.user.business_name_slug}`">Preview Business Profile</nuxt-link></span></li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`">MyShop</nuxt-link></li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/faq-admin/published-faq/${this.$auth.user.business_name_slug}`">MyFaqs</nuxt-link></li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/workinghours-admin/${this.$auth.user.business_name_slug}`">MyWorkingHours</nuxt-link></li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`">Job Vacancy Board</nuxt-link></li>
+            <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/directory-admin/${this.$auth.user.business_name_slug}`">Business Directory</nuxt-link></li>
         </ul>
         </div>
     </nav>

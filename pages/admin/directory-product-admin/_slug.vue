@@ -1,5 +1,8 @@
 <template>
     <div>
+      <div>
+        <nuxt-link to="/business-directory/create-directory-product">Add More Products</nuxt-link>
+      </div>
         <div>
     <thead>
       <tr>

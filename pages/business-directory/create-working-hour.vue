@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+      <h2>Tell Us Your Opening and Closing Time (This step is compulsory)</h2>
+      <p>Step 3 of 5</p>
       <form @submit.prevent="createDirectory">
 
        <input hidden type="" :value="user_id">
@@ -12,31 +14,31 @@
         </div>
 
         <div class="form-group">
-          <textarea v-model="monday" class="form-control" id="title" placeholder="Enter opening and closing time for Monday. e.g. 8am - 6pm" required></textarea>
+          <textarea v-model="monday" class="form-control" id="title" placeholder="Enter opening and closing time for Monday. e.g. 8am - 6pm or Closed" required></textarea>
         </div>
 
         <div class="form-group">
-          <textarea v-model="tuesday" class="form-control" id="title" placeholder="Enter opening and closing time for tuesday. e.g. 8am - 6pm" required></textarea>
+          <textarea v-model="tuesday" class="form-control" id="title" placeholder="Enter opening and closing time for tuesday. e.g. 8am - 6pm or Closed" required></textarea>
         </div>
 
         <div class="form-group">
-          <textarea v-model="wednesday" class="form-control" id="title" placeholder="Enter opening and closing time for wednesday. e.g. 8am - 6pm" required></textarea>
+          <textarea v-model="wednesday" class="form-control" id="title" placeholder="Enter opening and closing time for wednesday. e.g. 8am - 6pm or Closed" required></textarea>
         </div>
 
         <div class="form-group">
-          <textarea v-model="thursday" class="form-control" id="title" placeholder="Enter opening and closing time for thursday. e.g. 8am - 6pm" required></textarea>
+          <textarea v-model="thursday" class="form-control" id="title" placeholder="Enter opening and closing time for thursday. e.g. 8am - 6pm or Closed" required></textarea>
         </div>
 
         <div class="form-group">
-          <textarea v-model="friday" class="form-control" id="title" placeholder="Enter opening and closing time for friday. e.g. 8am - 6pm" required></textarea>
+          <textarea v-model="friday" class="form-control" id="title" placeholder="Enter opening and closing time for friday. e.g. 8am - 6pm or Closed" required></textarea>
         </div>
 
         <div class="form-group">
-          <textarea v-model="saturday" class="form-control" id="title" placeholder="Enter opening and closing time for saturday. e.g. 8am - 6pm" required></textarea>
+          <textarea v-model="saturday" class="form-control" id="title" placeholder="Enter opening and closing time for saturday. e.g. 8am - 6pm or Closed" required></textarea>
         </div>
 
         <div class="form-group">
-          <textarea v-model="sunday" class="form-control" id="title" placeholder="Enter opening and closing time for sunday. e.g. 8am - 6pm" required></textarea>
+          <textarea v-model="sunday" class="form-control" id="title" placeholder="Enter opening and closing time for sunday. e.g. 8am - 6pm or Closed" required></textarea>
         </div>
         
         <button type="submit" class="btn btn-primary block">
@@ -84,7 +86,7 @@ export default {
           user_id: this.$auth.user.user_id,
         })
 
-        this.$router.push('/business-directory')
+        this.$router.push('/business-directory/create-faq')
       } catch (e) {
         this.error = e.response
       }

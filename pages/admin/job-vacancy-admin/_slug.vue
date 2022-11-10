@@ -1,5 +1,8 @@
 <template>
     <div>
+      <div>
+        <nuxt-link to="/job-directory/create-job">Publish Job Vacancy</nuxt-link>
+      </div>
         <div>
     <thead>
       <tr>

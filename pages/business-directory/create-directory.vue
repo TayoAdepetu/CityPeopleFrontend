@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+      <h2>Provide More Details About Your Business (This step is compulsory)</h2>
+      <p>Step 2 of 5</p>
       <form @submit.prevent="createDirectory">
 
        <input hidden type="" :value="user_id">
@@ -75,7 +77,7 @@ export default {
           //image: this.onFileChange()
         })
 
-        this.$router.push('/business-directory')
+        this.$router.push('/business-directory/create-working-hour')
       } catch (e) {
         this.error = e.response
       }

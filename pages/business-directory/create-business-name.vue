@@ -1,6 +1,7 @@
 <template>
     <div class="container">
-        <h2>Add A Frequestly Asked Question About Your Business</h2>
+        <h2>Add Your Business Name (This step is compulsory)</h2>
+        <p>Step 1 of 5</p>
       <form @submit.prevent="createBiz">
         <div class="form-group">
           <textarea v-model="business_name" class="form-control" id="title" placeholder="Enter business_name"></textarea>
@@ -39,7 +40,7 @@ export default {
           business_name_slug: this.business_name.replace(/ +/g, '-'),
         })
 
-        this.$router.push('/admin/dashboard')
+        this.$router.push('/business-directory/create-directory')
       } catch (e) {
         this.error = e.response
       }
