@@ -14,6 +14,12 @@
         <div class="form-group">
           <textarea type="text" v-model="description" class="form-control" id="description" placeholder="Enter short description" required></textarea>
         </div>
+
+        <div>
+          <select v-model="category_id" v-for="category in categories" :key="category.id">
+            <option>{{category.name}}</option>
+          </select>
+        </div>
         
         <div class="form-group">
           <textarea class="form-control" v-model="body" id="body" placeholder="Enter a body" rows="8" required></textarea>
@@ -36,8 +42,10 @@ export default {
       title: '',
       slug: '',
       description: '',
+      category_id:'',
       //image: null,
       body: '',
+      categories:[],
       error: null
     }
   },
@@ -50,6 +58,7 @@ export default {
           slug: this.title.replace(/ +/g, '-'),
           description: this.description,
           body: this.body,
+          category_id: this.category_id,
           user_id: this.user_id
           //image: this.onFileChange()
         })
@@ -60,11 +69,25 @@ export default {
       }
     },
 
-  onFileChange(e) {
-  var image = e.target.files || e.dataTransfer.files;
-  return this.image;
-},
-  }
+    async getAllCategories(){
+      try {
+        const { data } = await this.$axios.get('/api/auth/category-admin');
+        if(data && data.data){
+          this.categories = data.data
+          // console.log(data.data)
+          return true; 
+        }
+      } catch (error) {
+        this.loading = false;
+       // console.log(error.response)
+        this.$toast.error(error.response.data.error);
+      }
+    },
+  },
+
+  mounted() {
+    this.getAllCategories();
+  },
 }
 </script>
 

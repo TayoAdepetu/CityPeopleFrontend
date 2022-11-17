@@ -155,6 +155,7 @@ export default {
   middleware:'isadmin',
   data() {
     return {
+      category_name:'',
       posts: [],
       updateStatusModal: false,
       deletePostModal: false,
@@ -256,7 +257,7 @@ export default {
       this.deleteStatusModal = false;
       this.getPosts();
 
-    }
+    },
 
     },
 
