@@ -69,7 +69,7 @@
       
       async logout () {
         console.log('logout')
-        await this.$axios.$post('/auth/logout')
+        await this.$axios.$post('/api/auth/logout')
         this.$router.push('/')
       }
     }

@@ -4,7 +4,7 @@
     
       <div v-for="directory in directories" :key="directory.id" id="before-headlines">
            
-              <NuxtLink :to="`/business-directory/${directory.slug}`">
+              <NuxtLink :to="`/business-directory/${directory.business_name_slug}`">
                 <div>
                   {{directory.business_name}}
                   {{directory.email}}

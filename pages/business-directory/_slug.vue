@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-                    <h2 id="title"> {{ directory.business_name }} </h2>
+                    <h2 id="title" v-for="user in directory"> {{ user.business_name }} </h2>
                     <img :src="`{{ directory.image }}`">
                     <div> {{ directory.description }} </div>       
                     <div id="author-date">
@@ -19,15 +19,19 @@
                   
                 </div> 
 
+                <!--
 <div>
     <workinghours />
 </div>
+
 <div>
     <directory-products />
 </div>
 <div>
     <directory-faq />
 </div>
+
+-->
 
 </div>
 

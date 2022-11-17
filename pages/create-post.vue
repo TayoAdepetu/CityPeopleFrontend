@@ -8,11 +8,11 @@
         </div>
 
         <div class="form-group">
-          <input type="text" v-model="slug" class="form-control" id="slug" placeholder="Enter title" required>
+          <input type="text" hidden v-model="slug" class="form-control" id="slug" placeholder="Enter title slug" >
         </div>
 
         <div class="form-group">
-          <textarea type="text" v-model="description" class="form-control" id="description" placeholder="Enter title" required></textarea>
+          <textarea type="text" v-model="description" class="form-control" id="description" placeholder="Enter short description" required></textarea>
         </div>
         
         <div class="form-group">
