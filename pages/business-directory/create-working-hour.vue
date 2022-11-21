@@ -83,7 +83,7 @@ export default {
           friday: this.friday,
           saturday: this.saturday,
           sunday: this.sunday,
-          user_id: this.$auth.user.user_id,
+          user_id: this.$auth.user.id,
         })
 
         this.$router.push('/business-directory/create-faq')

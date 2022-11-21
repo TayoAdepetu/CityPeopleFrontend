@@ -207,7 +207,7 @@
     {
         try {
           const { data } = await this.$axios.get(`/api/auth/jobs/${context.params.slug}`);
-          this.jobs = data.data
+          this.jobs = data
           return true; 
         } catch (error) {
           this.loading = false;

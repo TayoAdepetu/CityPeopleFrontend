@@ -7,13 +7,13 @@
       <form @submit.prevent="createDirectoryProduct">
 
        <input hidden type="" :value="user_id">
+
+       <!--
         <div class="form-group">
-          <textarea hidden v-model="business_name" class="form-control" id="title" placeholder="Enter business_name"></textarea>
+          <input type="text" hidden v-model="product_name_slug" class="form-control" id="slug">
         </div>
 
-        <div class="form-group">
-          <input type="text" hidden v-model="business_name_slug" class="form-control" id="slug">
-        </div>
+        -->
 
         <div class="form-group">
           <textarea v-model="product_name" class="form-control" id="title" placeholder="Enter the name of the product" required></textarea>
@@ -21,9 +21,6 @@
         
         <div class="form-group">
             <input type="text" v-model="price" placeholder="Enter price of the product">
-        </div>
-        <div class="form-group">
-            <input type="tel" v-model="phone" placeholder="Add your WhatsApp number">
         </div>
 
         <div class="form-group">
@@ -51,11 +48,9 @@ export default {
     return {
       user_id: '',
       product_name: '',
-      business_name: '',
-      business_name_slug: '',
+      //product_name_slug: '',
       description: '',
       price:'',
-      phone: '',
       biz_location: '',
       error: null
     }
@@ -65,14 +60,12 @@ export default {
   async createDirectoryProduct() {
       try {
         await this.$axios.post(`/api/auth/create-directory-product`, {
-          business_name: this.$auth.user.business_name,
           product_name: this.product_name,
-          business_name_slug: this.$auth.user.business_slug,
+          //product_name_slug: this.product_name.replace(/ +/g, '-'),
           description: this.description,
           price: this.price,
-          phone: this.phone,
           location: this.biz_location,
-          user_id: this.$auth.user.user_id,
+          user_id: this.$auth.user.id,
           //image: this.onFileChange()
         })
 

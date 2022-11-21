@@ -53,7 +53,7 @@ export default {
   async createDirectory() {
       try {
         await this.$axios.post(`/api/auth/create-directory`, {
-          user_id: this.user_id,
+          user_id: this.$auth.user.id,
           description: this.description,
           website: this.website,
           location: this.location,

@@ -19,9 +19,9 @@
                   
                 </div> 
 
-                <!--
+                
 <div>
-    <workinghours />
+   <workinghours />
 </div>
 
 <div>
@@ -30,8 +30,6 @@
 <div>
     <directory-faq />
 </div>
-
--->
 
 </div>
 

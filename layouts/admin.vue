@@ -21,7 +21,7 @@
             <li>Make Money</li>
             <li>Artisans Directory</li>
             <li><nuxt-link to="/create-post">Publish Article</nuxt-link></li> 
-            <li><nuxt-link to="/admin/articles">Articles</nuxt-link></li> 
+            <li><nuxt-link to="/admin/published-articles/articles">Articles</nuxt-link></li> 
             <li><NuxtLink to="/admin/superadmin/">Users</NuxtLink></li>
             <li><nuxt-link to="/admin/workinghours-admin/working-time">WorkingHours</nuxt-link></li>
             <li><nuxt-link to="/admin/faq-admin">Faqs</nuxt-link></li>
@@ -36,7 +36,7 @@
             <li hidden>African Images</li>
             <li hidden>Artisans Directory</li>
             <li><nuxt-link to="/create-post">Publish Article</nuxt-link></li> 
-            <li><nuxt-link to="/admin/articles">Articles</nuxt-link></li>
+            <li><nuxt-link to="/admin/published-articles/articles">Articles</nuxt-link></li>
             <li><nuxt-link to="/admin/directory-product-admin/product-admin">Products</nuxt-link></li>
             <li><nuxt-link to="/admin/faq-admin">Faqs</nuxt-link></li>
             <li><nuxt-link to="/admin/workinghours-admin/working-time">WorkingHours</nuxt-link></li>

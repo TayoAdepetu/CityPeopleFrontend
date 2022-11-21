@@ -10,7 +10,6 @@
         <th class="text-left">Product Name</th>
         <th class="text-left">Description</th>
         <th class="text-left">Price</th>
-        <th class="text-left">Phone</th>
         <th class="text-left">Location</th>
         <th class="text-left">Date</th>
         <th class="text-left">Actions</th>
@@ -34,10 +33,7 @@
             {{ job.price }}
         </td>
         <td>            
-          {{ job.phone }}  
-        </td> 
-        <td>            
-          {{ job.biz_location }}  
+          {{ job.location }}
         </td> 
         <td>
           {{ getDate(job.created_at) }}
@@ -75,10 +71,6 @@
 
           <div class="form-group">
             <input type="text" v-model="selectedPost.price" class="form-control" id="slug" required>
-          </div>
-
-          <div class="form-group">
-            <input type="text" v-model="selectedPost.phone" class="form-control" id="slug" required>
           </div>
           
           <div class="form-group">
@@ -168,10 +160,9 @@
                 selectedPost:{
                       id: '',
                       product_name: '',
-                      product_name_slug,
+                      product_name_slug:'',
                       description: '',
                       price:'',
-                      phone: '',
                       biz_location: '',      
       },
       error: '',
@@ -206,7 +197,6 @@
       this.selectedPost.product_name_slug = job.product_name_slug
       this.selectedPost.description = job.description
       this.selectedPost.price = job.price
-      this.selectedPost.phone = job.phone
       this.selectedPost.biz_location = job.biz_location
   
       this.updateJobModal = true;
@@ -221,7 +211,6 @@
       this.selectedPost.product_name_slug = job.product_name_slug
       this.selectedPost.description = job.description
       this.selectedPost.price = job.price
-      this.selectedPost.phone = job.phone
       this.selectedPost.biz_location = job.biz_location
 
   
@@ -235,9 +224,7 @@
   
     const { data } = await this.$axios.put(`/api/auth/update-post/${this.selectedPost.product_name_slug}`, 
     {product_name: this.selectedPost.product_name,
-     product_name_slug: this.selectedPost.product_name_slug,
      description: this.selectedPost.description,
-     phone: this.selectedPost.phone,
      price: this.selectedPost.price,
      biz_location: this.selectedPost.biz_location,});
   

@@ -174,7 +174,7 @@
     
        methods: {
            fetchComments() {
-               this.$axios.get('/api/auth/secret-anonymous-comments/' + this.$route.params.slug).then(res => {
+               this.$axios.get('/api/auth/review-comments/' + this.$route.params.slug).then(res => {
                    this.commentData = res.data;
                    this.commentsData = _.orderBy(res.data, ['date'], ['asc']);
                    this.comments = 1;
@@ -211,7 +211,7 @@
            saveComment() {
                if (this.message != null && this.message != ' ') {
                    this.errorComment = null;
-                   this.$axios.post('/api/auth/secret-comments', {
+                   this.$axios.post('/api/auth/directory-comments', {
                        page_slug: this.$route.params.slug,
                        comment: this.message,
                        user_id: this.user.id
@@ -229,7 +229,7 @@
            replyComment(commentId, index) {
                if (this.message != null && this.message != ' ') {
                    this.errorReply = null;
-                   this.$axios.post('/api/auth/secret-comments', {
+                   this.$axios.post('/api/auth/directory-comments', {
                        comment: this.message,
                        user_id: this.user.id,
                        reply_id: commentId

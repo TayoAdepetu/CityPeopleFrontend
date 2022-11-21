@@ -4,11 +4,13 @@
 <div>
     <div>
         <h3 id="title"> {{ job.title }} </h3>
-        <p> {{ job.employer }} </p> 
+        <p>{{ job.user.name }} </p> 
+        <p>{{ job.user.email }} </p>
+        <p>{{ job.user.phone_number }} </p>
         <p> {{ job.description }} </p>          
         <div id="author-date">
-           <div id="author"><span>{{ job.location }}</span> <span> Posted: {{getDate(job.created_at)}} </span></div>
-           <div id="category-tag"><span>{{job.salary}}</span> <span> {{ job.function }} </span></div>
+           <div id="author"><span>Location: {{ job.location }}</span> <span> Posted: {{getDate(job.created_at)}} </span></div>
+           <div id="category-tag"><span>Salary: {{job.salary}}</span> <span>Responsilities: {{ job.function }} </span></div>
         </div>
       
     </div>

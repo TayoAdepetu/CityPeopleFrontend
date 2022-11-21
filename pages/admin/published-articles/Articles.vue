@@ -35,7 +35,7 @@
           {{ post.image }}
       </td>
       <td>            
-        {{ post.author }}  
+        {{ post.user.name }}  
       </td> 
       <td>
         {{ getDate(post.created_at) }}
@@ -69,10 +69,6 @@
     <div>
         <div class="form-group">
           <textarea v-model="selectedPost.title" class="form-control" id="title" placeholder="Enter title" required></textarea>
-        </div>
-
-        <div class="form-group">
-          <input type="text" v-model="selectedPost.slug" class="form-control" id="slug" placeholder="Enter title" required>
         </div>
 
         <div class="form-group">
@@ -185,7 +181,7 @@ export default {
   {
       try {
         const { data } = await this.$axios.get(`/api/auth/posts`);
-        this.posts = data.data
+        this.posts = data
         return true; 
       } catch (error) {
         this.loading = false;
@@ -229,7 +225,7 @@ export default {
 
   const { data } = await this.$axios.put(`/api/auth/update-post/${this.selectedPost.slug}`, 
   {title: this.selectedPost.title,
-   slug: this.selectedPost.slug,
+   slug: this.selectedPost.title.replace(/ +/g, '-'),
    description: this.selectedPost.description,
    //image: this.selectedPost.image,
    //author: this.selectedPost.author,

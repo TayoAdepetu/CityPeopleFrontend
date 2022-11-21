@@ -157,7 +157,7 @@
     {
         try {
           const { data } = await this.$axios.get(`/api/auth/all-secrets`);
-          this.jobs = data.data
+          this.jobs = data
           return true; 
         } catch (error) {
           this.loading = false;

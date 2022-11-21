@@ -25,7 +25,7 @@
           {{ index+1 }}
         </td>
         <td>
-          {{ job.business_name }}
+          {{ job.user.business_name }}
         </td>       
         <td>
           {{ job.monday }}
@@ -78,10 +78,6 @@
   <form @submit.prevent="editPost()" class="selectBank normalInput2 fullWidth form-control mt-2">         
   
       <div>
-        <div class="form-group">
-            <input type="text" v-model="selectedPost.business_name" class="form-control" id="slug">
-          </div>
-
           <div class="form-group">
             <input type="text" v-model="selectedPost.monday" class="form-control" id="slug" required>
           </div>
@@ -181,15 +177,15 @@
                 loading: false,
                 selectedPost:{
                       id: '', 
-                      business_name: '',
-                      business_name_slug: '',
                       monday: '',
                       tuesday: '',
                       wednesday: '',
                       thursday: '',
                       friday: '',
                       saturday: '',
-                      sunday: '',   
+                      sunday: '', 
+                      business_name:'',
+                      business_name_slug:'',
       },
       error: '',
     }
@@ -207,7 +203,7 @@
     {
         try {
           const { data } = await this.$axios.get(`/api/auth/worktime-admin`);
-          this.jobs = data.data
+          this.jobs = data
           return true; 
         } catch (error) {
           this.loading = false;
@@ -218,8 +214,8 @@
   
     openJobModal(job) 
       {
-      this.selectedPost.business_name = job.business_name
-      this.selectedPost.business_name_slug = job.business_name_slug
+      this.selectedPost.business_name = job.user.business_name
+      this.selectedPost.business_name_slug = job.user.business_name_slug
       this.selectedPost.id = job.id
       this.selectedPost.monday = job.monday
       this.selectedPost.tuesday = job.tuesday
@@ -236,8 +232,8 @@
     
     deleteJobModal(job) 
       {
-      this.selectedPost.business_name = job.business_name
-      this.selectedPost.business_name_slug = job.business_name_slug
+      this.selectedPost.business_name = job.user.business_name
+      this.selectedPost.business_name_slug = job.user.business_name_slug
       this.selectedPost.id = job.id
       this.selectedPost.monday = job.monday
       this.selectedPost.tuesday = job.tuesday

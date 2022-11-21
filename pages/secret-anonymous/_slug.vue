@@ -11,7 +11,7 @@
                 </div> 
 
 <div>
-   <!-- <secret-comments />-->
+   <secret-comments />
 </div>
 </div>
 
