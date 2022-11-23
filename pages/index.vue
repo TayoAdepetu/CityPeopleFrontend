@@ -15,7 +15,7 @@
          </div>
                                         
           <div id="author-date">
-              <div id="author"><span>By</span> <span> {{ post.user.name }} In {{ post.category }}</span></div>
+              <div id="author"><span>By</span> <span> {{ post.user.name }} In {{ post.category.name }}</span></div>
           </div>  
         </NuxtLink> 
 
@@ -120,8 +120,6 @@ min-width: 300px;
  
 
 }
-
-
 
 @media screen and (max-width: 700px) {
   #short-body {

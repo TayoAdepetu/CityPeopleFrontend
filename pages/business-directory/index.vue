@@ -4,13 +4,17 @@
     
       <div v-for="directory in directories" :key="directory.id" id="before-headlines">
            
-              <NuxtLink :to="`/business-directory/${directory.business_name_slug}`">
-                <div>
-                  {{directory.business_name}}
-                  {{directory.email}}
-                  {{directory.location}}
-                  {{directory.phone}}
-                  {{directory.website}}
+              <NuxtLink :to="`/business-directory/${directory.user.business_name_slug}`">
+                <div class="list-description">
+                  <h2>
+                  {{directory.user.business_name}}
+                  </h2>
+                <div class="list-detail">
+                  <p><span class="list-contact">Location:</span> {{directory.location}}</p>
+                  <p><span class="list-contact">Email:</span> {{directory.user.email}}</p>
+                    <p><span class="list-contact">Phone:</span> {{directory.user.phone_number}}</p>
+                      <p><span class="list-contact">Website:</span> {{directory.website}}</p>
+                </div>
                 </div>           
               </NuxtLink>
         
@@ -61,8 +65,26 @@
     </script>
     
     <style scoped>
-    
+    .list-detail{
+      display:flex;
+      justify-content: space-between;
+    }
       
+    .list-description {
+      border: 2px solid #036;
+      margin-top: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      background-color: #F7F5F4;
+      margin-bottom: 3px !important;
+      text-align: left;
+
+  }
+
+  .list-contact{
+    font-weight: bold;
+
+  }
     
     @media screen and (max-width: 700px) {
       

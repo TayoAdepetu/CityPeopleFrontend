@@ -3,16 +3,24 @@
 
 <div>
     <div>
-        <h3 id="title"> {{ job.title }} </h3>
-        <p>{{ job.user.name }} </p> 
-        <p>{{ job.user.email }} </p>
-        <p>{{ job.user.phone_number }} </p>
-        <p> {{ job.description }} </p>          
-        <div id="author-date">
-           <div id="author"><span>Location: {{ job.location }}</span> <span> Posted: {{getDate(job.created_at)}} </span></div>
-           <div id="category-tag"><span>Salary: {{job.salary}}</span> <span>Responsilities: {{ job.function }} </span></div>
-        </div>
-      
+        <div class="list-description">
+                    <h3 style="color:red;"> {{ job.title }} </h3>
+                    <p><span class="list-contact"> Posted By:</span> {{ job.user.name }}</p>
+                    <p><span class="list-contact">Responsilities:</span> {{ job.function }}</p> 
+                    <div class="list-detail">
+                       <div id="author"><span class="list-contact">Location: {{ job.location }}</span></div>
+                       <div><span class="list-contact"> Posted: {{getDate(job.created_at)}} </span></div>
+                       <div id="category-tag"><span class="list-contact">Salary: {{job.salary}}</span> </div>
+                    </div>
+                    <div class="list-detail">
+                       <div id="author"><span class="list-contact">Email: {{ job.user.email }}</span></div>
+                       <div id="category-tag"><span class="list-contact">Phone: {{job.user.phone_number}}</span> </div>
+                    </div>
+                    <div class="job-description">
+                    <p> {{ job.description }} </p>
+                  </div>
+                  
+                </div>       
     </div>
 </div>
 

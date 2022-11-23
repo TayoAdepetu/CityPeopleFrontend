@@ -18,6 +18,7 @@
   * {
     box-sizing: border-box;  
     color:#036;
+    text-decoration: none;
   }
 
   body {
