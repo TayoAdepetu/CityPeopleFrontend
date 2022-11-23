@@ -1,7 +1,6 @@
 <template>
 <div>
-  <div class="posts-container">
-
+    <div class="grid-container">
     <div v-for="post in posts" :key="post.id" id="before-headlines">
       
       <NuxtLink :to="`${post.slug}`">
@@ -18,10 +17,9 @@
               <div id="author"><span>By</span> <span> {{ post.user.name }} In {{ post.category.name }}</span></div>
           </div>  
         </NuxtLink> 
-
+      </div>
   </div>
      
-  </div>
   <div>
       <job-vacancy />
   </div>
@@ -69,13 +67,13 @@ export default {
 
 <style scoped>
 
-
-.posts-container {
-  display: flex;
+.grid-container{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 2.5%;
   max-width: 80%;
   margin-right: auto;
   margin-left: auto;
-  justify-content: space-around;
 }
 
 #before-headlines {
@@ -83,8 +81,6 @@ margin-bottom: 20px;
 border-width: 2px;
 border-style: solid;
 border-color: #c20017;
-max-width: 300px;
-min-width: 300px;
 }
 
 #short-body {
@@ -121,16 +117,31 @@ min-width: 300px;
 
 }
 
-@media screen and (max-width: 700px) {
-  #short-body {
-    display: flex;
-    flex-direction: column;
+@media screen and (max-width: 1000px) {
+  .grid-container{
+    grid-template-columns: auto auto;    
   }
 
-  .posts-container{
-    display: block;
-    width: 80%;
-    
+}
+
+  @media screen and (max-width: 700px) {
+  .grid-container{
+    grid-template-columns: auto;
+    max-width: 60%;   
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .grid-container{
+    grid-template-columns: auto;
+    max-width: 80%;   
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .grid-container{
+    grid-template-columns: auto;
+    max-width: 90%;   
   }
 }
 </style>

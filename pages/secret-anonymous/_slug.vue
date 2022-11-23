@@ -2,10 +2,10 @@
     <div>
         <div>
            
-                    <h3 id="title"> {{ secret.title }} </h3>
-                    <p> {{ secret.description }} </p>           
-                    <div id="author-date">
-                       <div id="author"> <span> Posted: {{getDate(secret.created_at)}} </span></div>
+                    <h3> {{ secret.title }} </h3>
+                    <p class="full-secret-description"> {{ secret.description }} </p>           
+                    <div>
+                       <div class="real-secret-author-date"> <span> Posted: {{getDate(secret.created_at)}} </span></div>
                     </div>
               
                 </div> 
@@ -39,3 +39,13 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.full-secret-description{
+    text-align: left;
+}
+
+.real-secret-author-date{
+    font-weight: bold;
+}
+</style>

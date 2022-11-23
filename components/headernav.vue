@@ -42,7 +42,7 @@
   <section id="Mainheading">
     <h2>Other Trending Categories</h2>
     <hr>
-    <p><NuxtLink to="#">How To Make Money In Nigeria</NuxtLink> | <NuxtLink to="#">Stories: Share Secrets Anonymously</NuxtLink> | <NuxtLink to="#">FundHelp</NuxtLink> | <NuxtLink to="#">LendMe</NuxtLink> | <NuxtLink to="#">African Images</NuxtLink> | <NuxtLink to="#">Nigerian Business Directory</NuxtLink> | <NuxtLink to="#">Artisans Directory</NuxtLink> | <NuxtLink to="#">Job Vacancy Board</NuxtLink></p>
+    <p><NuxtLink to="#">How To Make Money In Nigeria</NuxtLink> | <NuxtLink to="/secret-anonymous">Stories: Share Secrets Anonymously</NuxtLink> | <NuxtLink to="#">FundHelp</NuxtLink> | <NuxtLink to="#">LendMe</NuxtLink> | <NuxtLink to="#">African Images</NuxtLink> | <NuxtLink to="#">Nigerian Business Directory</NuxtLink> | <NuxtLink to="#">Artisans Directory</NuxtLink> | <NuxtLink to="#">Job Vacancy Board</NuxtLink></p>
   </section>
   <section>
   <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/school-education-facebook-advert-template-design-1698c73ba3f3379f8c8bc4ea77a6abd3_screen.jpg?ts=1612251729">

@@ -8,13 +8,13 @@
                     <p><span class="list-contact"> Posted By:</span> {{ job.user.name }}</p>
                     <p><span class="list-contact">Responsilities:</span> {{ job.function }}</p> 
                     <div class="list-detail">
-                       <div id="author"><span class="list-contact">Location: {{ job.location }}</span></div>
-                       <div><span class="list-contact"> Posted: {{getDate(job.created_at)}} </span></div>
-                       <div id="category-tag"><span class="list-contact">Salary: {{job.salary}}</span> </div>
+                       <div id="author"><span class="list-contact">Location:</span> {{ job.location }}</div>
+                       <div><span class="list-contact"> Posted:</span> {{getDate(job.created_at)}} </div>
+                       <div id="category-tag"><span class="list-contact">Salary:</span> {{job.salary}} </div>
                     </div>
                     <div class="list-detail">
-                       <div id="author"><span class="list-contact">Email: {{ job.user.email }}</span></div>
-                       <div id="category-tag"><span class="list-contact">Phone: {{job.user.phone_number}}</span> </div>
+                       <div id="author"><span class="list-contact">Email:</span> {{ job.user.email }}</div>
+                       <div id="category-tag"><span class="list-contact">Phone:</span> {{job.user.phone_number}} </div>
                     </div>
                     <div class="job-description">
                     <p> {{ job.description }} </p>

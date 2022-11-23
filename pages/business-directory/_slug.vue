@@ -2,67 +2,114 @@
     <div>
        
         <div>
-                    <h2 id="title"> {{ directory.user.business_name }} </h2>
+                    <h1 id="title"> {{ directory.user.business_name }} </h1>
                     <img :src="`{{ directory.image }}`">
-                    <div> {{ directory.description }} </div>       
+                    <div class="biz-describe"> {{ directory.description }} </div>     
                     <div id="author-date">
-                       <div id="author"> 
-                        <span> Established: {{directory.established}} </span>
-                        <span> Location: {{directory.location}} </span>
-                        <span> No Of Employees: {{directory.number_of_employees}} </span>
-                        <span> Registered On This Site Since: {{directory.registered_here}} </span>
-                        <span> Verified?: {{directory.verified}} </span>
-                        <span> Email Address: {{directory.email}} </span>
-                        <span> Website: {{directory.website}} </span>
-                        <span> Phone: {{directory.phone}} </span>
+                       <div class="biz-details">
+                        <div><span class="biz-bold"> Established:</span> {{directory.established}} </div>
+                        <div><span class="biz-bold"> Location:</span> {{directory.location}} </div>
+                        <div><span class="biz-bold"> No Of Employees:</span> {{directory.number_of_employees}} </div>
+                        <div><span class="biz-bold"> Registered Here:</span> {{getDate(directory.created_at)}} </div>
+                        <div><span class="biz-bold"> Email Address:</span> {{directory.user.email}} </div>
+                        <div><span class="biz-bold"> Website:</span> {{directory.website}} </div>
+                        <div><span class="biz-bold"> Phone:</span> {{directory.user.phone_number}} </div>
                     </div>
+                    <div><span> Verified?: {{directory.verified}} </span></div>
                     </div>
                   
                 </div> 
 
-<div>
-                    <h2>Our Working Hours</h2>
-           <h3>Monday: {{worktime[0].monday}}</h3> 
-           <h3>Tuesday: {{worktime[0].tuesday}}</h3> 
-           <h3>Wednesday: {{worktime[0].wednesday}}</h3> 
-           <h3>Thursday: {{worktime[0].thursday}}</h3> 
-           <h3>Friday: {{worktime[0].friday}}</h3>
-           <h3>Saturday: {{worktime[0].saturday}}</h3>  
-           <h3>Sunday: {{worktime[0].sunday}}</h3>   
-        </div>
+<div class="work-time faqs">
+    <thead>
+      <tr>
+        <th class="text-center">Our Working Hours</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+            <span class="biz-bold">Monday:</span>
+        </td>
+        <td>
+            {{worktime[0].monday}}
+        </td>
+        </tr>
+        <tr>
+        <td>
+            <span class="biz-bold">Tuesday:</span>
+        </td>
+        <td>
+            {{worktime[0].tuesday}}
+        </td>
+        </tr>
+        <tr>
+        <td>
+            <span class="biz-bold">Wednesday:</span>
+        </td>
+        <td>
+            {{worktime[0].wednesday}}
+        </td>
+        </tr>
+        <tr>
+        <td>
+            <span class="biz-bold">Thursday:</span>
+        </td>
+        <td>
+            {{worktime[0].thursday}}
+        </td>
+        </tr>
+        <tr>
+        <td>
+            <span class="biz-bold">Friday:</span>
+        </td>
+        <td>
+            {{worktime[0].friday}}
+        </td>
+        </tr>
+        <tr>
+        <td>
+            <span class="biz-bold">Saturday:</span>
+        </td>
+        <td>
+            {{worktime[0].saturday}}
+        </td>
+        </tr>
+        <tr>
+        <td>
+            <span class="biz-bold">Sunday:</span>
+        </td>
+        <td>
+            {{worktime[0].sunday}}
+        </td>
+        </tr>
+    </tbody>
 
-        <h3 id="title"> Our Products </h3>
-        <div v-for="product in products" :key="product.id" id="before-headlines">
+</div>
+<div class="faqs">
+        <h3> Our Products </h3>
+        <div class="product-section">
+        <div v-for="product in products" :key="product.id" class="before-product">
             <NuxtLink :to="`/business-directory/directory-product/${product.product_name_slug}`">
-             <div id="headlines">              
-                  <h3>{{product.product_name}}</h3>
-                  <div>                    
-                    <img :src="`{{ product.image }}`" > 
-                    <p>{{product.price}}</p>  
-                    <p>{{product.description}}</p>              
-                </div>             
-              
-             </div>
-
-            </NuxtLink>
+                                         
+                    <img :src="`{{ product.image }}`" >
+                    <h4><span>{{product.product_name}}</span> (<span>₦ {{product.price}}</span>)</h4>  
+                    <p>{{product.description}}</p>
+                </NuxtLink>
             
         </div>
+        </div>
+    </div>
 
-        <h3 id="title"> Frequently Asked Questions </h3>
-        <div v-for="faq in faqs" :key="faq.id" id="before-headlines">
-            <div id="headlines">              
-                  
-                  <div>
-                    
-                    <p> {{ faq.question }} </p> 
+    <div class="faqs">
+        <h3> Frequently Asked Questions </h3>
+        <div v-for="faq in faqs" :key="faq.id" class="before-product">
+  
+                    <p class="biz-bold"> {{ faq.question }} </p> 
                     <p>{{faq.answer}}</p>
-                  
-                </div>             
-              
-            </div>
-            
+    
       </div>
-
+    </div>
 </div>
 
 </template>
@@ -90,6 +137,88 @@ export default {
                 faqs: faqsRes.data,      
             }
         },
+
+    methods:{
+    getDate(datetime) {
+                let date = new Date(datetime).toJSON().slice(0,10).replace(/-/g,'/');
+                return date
+            },
+}
          
 }
 </script>
+
+<style scoped>
+ .biz-describe {
+      border: 2px solid #036;
+      margin-top: 10px;
+      padding: 12px;
+      background-color: #F7F5F4;
+      margin-bottom: 10x !important;
+      text-align: left;
+
+  }
+
+  .biz-details{
+    border: 2px solid #036;
+      margin-top: 10px;
+      padding: 12px;
+      background-color: #F7F5F4;
+      margin-bottom: 10x !important;
+      text-align: left;
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-column-gap: 2.5%;
+  }
+
+  .biz-bold{
+    font-weight: bold;
+  }
+
+  .work-time{
+    border: 2px solid #036;
+      margin-top: 10px;
+      padding: 12px;
+      background-color: #F7F5F4;
+      margin-bottom: 10x !important;
+      text-align: left;
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-column-gap: 2.5%;
+  }
+
+.text-center{
+    text-align: center;
+}
+
+.before-product{
+    display: block;
+    border: 2px solid #036;
+    margin-bottom: 10px;
+}
+
+.product-section{
+      margin-top: 10px;
+      padding: 12px;
+      background-color: #F7F5F4;
+      margin-bottom: 10x !important;
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-gap: 2.5%;
+}
+
+.faqs{
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 700px) {
+  .biz-details{
+    display: block;    
+  }
+
+  .product-section{
+    display: block;
+  }
+
+}
+</style>

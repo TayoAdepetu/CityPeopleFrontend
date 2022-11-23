@@ -1,22 +1,19 @@
 <template>
     <div>
-      <div class="posts-container">
+      <div class="secrets-container">
     
-      <div v-for="secret in secrets" :key="secret.id" id="before-headlines">
-            <div id="headlines">
+      <div v-for="secret in secrets" :key="secret.id" class="before-secret-headline">
               <NuxtLink :to="`/secret-anonymous/${secret.slug}`">
                   
-                  <div>
-                    <h3 id="title"> {{ secret.title }} </h3>
+                  <div class='secrets-container'>
+                    <h3 class="secret-title"> {{ secret.title }} </h3>
                     <p> {{ secret.description }} </p>      
-                    <div id="author-date">
-                       <div id="author"> <span> Posted: {{getDate(secret.created_at)}} </span></div>
+                    <div>
+                       <div> <span class="secret-author-date"> Posted:</span> {{getDate(secret.created_at)}}</div>
                     </div>
                   
                 </div>             
-              </NuxtLink>
-            </div>
-            
+              </NuxtLink>            
       </div>
     
       </div>
@@ -61,3 +58,22 @@
     }
     
     </script>
+
+    <<style scoped>
+    .secrets-container{
+      display: block;
+      text-align: left;
+    }
+
+    .before-secret-headline{
+      margin-bottom: 20px;
+      border-width: 2px;
+      border-style: solid;
+      border-color: #c20017;
+      padding: 10px;
+    }
+
+    .secret-author-date{
+      font-weight: bold;
+    }
+    </style>

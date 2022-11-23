@@ -106,8 +106,13 @@
 
   
 
-  h1, h2 {
-      color:#c20017;
+  h1, h2, h3 {
+      /*color:#c20017;*/
+      color: red;
+  }
+
+  h4{
+    color: #036;
   }
 
   ::placeholder {
