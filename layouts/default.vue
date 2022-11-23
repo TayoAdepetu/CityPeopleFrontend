@@ -17,7 +17,6 @@
 <style>
   * {
     box-sizing: border-box;  
-    font-weight: bold;
     color:#036;
   }
 

@@ -2,13 +2,13 @@
     <div>
         <div>
                     <h2>Our Working Hours</h2>
-           <h3>Monday: {{worktime.monday}}</h3> 
-           <h3>Tuesday: {{worktime.tuesday}}</h3> 
-           <h3>Wednesday: {{worktime.wednesday}}</h3> 
-           <h3>Thursday: {{worktime.thursday}}</h3> 
-           <h3>Friday: {{worktime.friday}}</h3>
-           <h3>Saturday: {{worktime.saturday}}</h3>  
-           <h3>Sunday: {{worktime.sunday}}</h3>   
+           <h3>Monday: {{worktime[0].monday}}</h3> 
+           <h3>Tuesday: {{worktime[0].tuesday}}</h3> 
+           <h3>Wednesday: {{worktime[0].wednesday}}</h3> 
+           <h3>Thursday: {{worktime[0].thursday}}</h3> 
+           <h3>Friday: {{worktime[0].friday}}</h3>
+           <h3>Saturday: {{worktime[0].saturday}}</h3>  
+           <h3>Sunday: {{worktime[0].sunday}}</h3>   
         </div> 
 
 </div>
@@ -19,8 +19,8 @@
 export default {
        
       async asyncData(context) {
-        let response = await context.$axios.get(`/api/auth/all-worktime/${context.params.slug}`)
-        let worktime = response.data
+        const response = await context.$axios.get(`/api/auth/all-worktime/${context.params.slug}`)
+        this.worktime = response.data
         return {
                 worktime        
             }
