@@ -1,23 +1,26 @@
 <template>
     <div class="container">
+      {{categories}}
       <form @submit.prevent="createPost">
 
        <input hidden type="" :value="user_id">
         <div class="form-group">
           <textarea v-model="title" class="form-control" id="title" placeholder="Enter title" required></textarea>
         </div>
-
+<!--
         <div class="form-group">
           <input type="text" hidden v-model="slug" class="form-control" id="slug" placeholder="Enter title slug" >
         </div>
-
+-->
         <div class="form-group">
-          <textarea type="text" v-model="description" class="form-control" id="description" placeholder="Enter short description" required></textarea>
+          <textarea type="text" v-model="description" class="form-control" id="description" placeholder="Enter catchy description" required></textarea>
         </div>
 
         <div>
-          <select v-model="category_id" v-for="category in categories" :key="category.id">
-            <option>{{category.name}}</option>
+
+          <!--v-for="(category, index) in categories"-->
+          <select v-model="category_id">
+            <option v-for="category in categories" :key="category.id" :value="category.name">{{category.name}}</option>
           </select>
         </div>
         
@@ -70,18 +73,10 @@ export default {
     },
 
     async getAllCategories(){
-      try {
         const { data } = await this.$axios.get('/api/auth/category-admin');
-        if(data && data.data){
-          this.categories = data.data
-          // console.log(data.data)
-          return true; 
-        }
-      } catch (error) {
-        this.loading = false;
-       // console.log(error.response)
-        this.$toast.error(error.response.data.error);
-      }
+          this.categories = data;
+          return {categories}; 
+     
     },
   },
 
