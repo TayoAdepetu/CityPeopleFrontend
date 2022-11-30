@@ -4,7 +4,7 @@
         <div>
                     <h1 id="title"> {{ directory.user.business_name }} </h1>
                     <img :src="`{{ directory.image }}`">
-                    <div class="biz-describe"> {{ directory.description }} </div>     
+                    <div class="biz-describe"> {{ directory.description }} </div>    
                     <div id="author-date">
                        <div class="biz-details">
                         <div><span class="biz-bold"> Established:</span> {{directory.established}} </div>

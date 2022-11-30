@@ -1,52 +1,46 @@
 <template>
-  <div>
-    <div class="container">
-      <form @submit.prevent="createPost">
+    <div>
 
-       <input hidden type="" v-model="user_id">
-        <div class="form-group">
-          <textarea v-model="title" class="form-control" id="title" placeholder="Enter title" required></textarea>
-        </div>
 
-        <div class="form-group">
-          <input type="text" hidden v-model="slug" class="form-control" id="slug" placeholder="Enter title slug" >
-        </div>
-
-        <div class="form-group">
-          <textarea type="text" v-model="description" class="form-control" id="description" placeholder="Enter catchy description" required></textarea>
-        </div>
-
-        <div>
-
-          <select v-model="category_id" id="slug">
-            <option v-for="category in categories" :key="category.id" :value="category.name">{{category.name}}</option>
-          </select>
-        </div>
-
-          <div>
-    <h4>Select an image</h4>
-    <input id="slug" type="file" @change="onFileChange">
-    <img :src="image" />
-  </div>
-
-  <!--
+      <div class="container">
+        <form @submit.prevent="createPost" enctype="multipart/form-data">
+  
+        <input hidden type="" v-model="user_id">
+         
+        <textarea v-model="title" class="form-control" id="title" placeholder="Enter title" required></textarea>
+  
+            
+        <input type="text" hidden v-model="slug" class="form-control" id="slug" placeholder="Enter title slug" >
+  
+        <textarea type="text" v-model="description" class="form-control" id="description" placeholder="Enter catchy description" required></textarea>
+  
+       
+        <select v-model="category_id" id="slug">
+              <option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
+        </select>
+          
+        <div v-if="!image">
+    <h2>Select an image</h2>
+    <input type="file" @change="onFileChange">>
   </div>
   <div v-else>
     <img :src="image" />
     <button @click="removeImage">Remove image</button>
   </div>
--->
-
-        <div class="form-group">
-          <textarea class="form-control" v-model="body" id="body" placeholder="Enter a body" rows="8" required></textarea>
-        </div>
+ 
+        <textarea class="form-control" v-model="body" id="body" placeholder="Enter a body" rows="8" required></textarea>
+          
         <button type="submit" class="btn btn-primary block">
-          Publish
+            Publish
         </button>
-      </form>
+
+        </form>
+      </div>
+    
+    
     </div>
-  </div>
-  </template>
+    </template>
+
 
 <script scoped>
 
@@ -60,7 +54,7 @@ export default {
       slug: '',
       description: '',
       category_id:'',
-      image: '',
+      image: null,
       body: '',
       categories:null,
       error: null
@@ -77,7 +71,7 @@ export default {
           body: this.body,
           category_id: this.category_id,
           user_id: this.$auth.user.id,
-          image: this.onFileChange()
+          image: this.image,
         })
 
         //this.$router.push('/admin/articles')
@@ -87,21 +81,27 @@ export default {
     },
 
     onFileChange(e) {
+         /*
+        this.image = e.target.files[0];
+    */
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length)
         return;
       this.createImage(files[0]);
+     
     },
-    createImage(file) {
-      var image = new Image();
-      var reader = new FileReader();
-      var vm = this;
 
+    
+    createImage(file) {
+      let image = new Image();
+      let reader = new FileReader();
+      
       reader.onload = (e) => {
-        vm.image = e.target.result;
+        this.image = e.target.result;
       };
+
       reader.readAsDataURL(file);
-    },
+    },   
 
     removeImage: function (e) {
       this.image = '';
@@ -113,11 +113,14 @@ export default {
           return {categories}; 
      
     },
+    
   },
 
+  
   mounted() {
     this.getAllCategories();
   },
+  
 }
 </script>
 

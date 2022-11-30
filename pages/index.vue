@@ -5,7 +5,7 @@
       
       <NuxtLink :to="`${post.slug}`">
         
-        <img id="short-image" :src="post.image">
+        <img id="short-image" :src="baseURL + 'public/postimage/' + post.image">
           <div id="before-title">
             <h3 id="title"> {{ post.title }} </h3>           
           </div>
@@ -34,6 +34,7 @@ export default {
   data() {
     return {
       posts: [],
+      baseURL: process.env.BASE_URL || 'http://localhost:8000/',
     }
   },
 
