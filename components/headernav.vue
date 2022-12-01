@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="nav-align">
      
       <H1>The Citypeople</H1>
    

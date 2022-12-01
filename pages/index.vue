@@ -5,7 +5,7 @@
       
       <NuxtLink :to="`${post.slug}`">
         
-        <img id="short-image" :src="baseURL + 'public/postimage/' + post.image">
+        <img id="short-image" :src="baseURL + 'postimage/' + post.image">
           <div id="before-title">
             <h3 id="title"> {{ post.title }} </h3>           
           </div>

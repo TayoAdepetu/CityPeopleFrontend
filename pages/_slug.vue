@@ -1,6 +1,7 @@
 <template>
     <div>
 <h1>{{ post[0].title }}</h1>
+<img id="short-image" :src="baseURL + 'postimage/' + post[0].image">
 <p>By <span>{{ post[0].user.name }}</span> in <span>{{ post[0].category.name }}</span></p>
 <p>Last Updated: <span>{{ getDate(post[0].updated_at) }}</span></p>
 <p class="body">{{ post[0].body }}</p>
@@ -15,6 +16,13 @@
 <script scoped>
 export default {
       auth: false,
+      data(){
+        return{
+            baseURL: process.env.BASE_URL || 'http://localhost:8000/',
+
+        }
+      },
+
       async asyncData(context) {
         let response = await context.$axios.get(`/api/auth/blog/${context.params.slug}`)
         let post = response.data
@@ -33,6 +41,10 @@ export default {
 }
 </script>
 <style scoped>
+#short-image{
+    width: 70%;
+    height: 500px;
+}
 .body{
     text-align: left !important;
 }

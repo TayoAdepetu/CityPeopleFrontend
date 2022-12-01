@@ -13,22 +13,23 @@
         <input type="text" hidden v-model="slug" class="form-control" id="slug" placeholder="Enter title slug" >
   
         <textarea type="text" v-model="description" class="form-control" id="description" placeholder="Enter catchy description" required></textarea>
-  
-       
+  <div class="picking">
+        <h2>Pick a Category</h2>
         <select v-model="category_id" id="slug">
               <option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
         </select>
           
         <div v-if="!image">
     <h2>Select an image</h2>
-    <input type="file" @change="onFileChange">>
+    <input type="file" @change="onFileChange">
   </div>
   <div v-else>
     <img :src="image" />
     <button @click="removeImage">Remove image</button>
   </div>
- 
-        <textarea class="form-control" v-model="body" id="body" placeholder="Enter a body" rows="8" required></textarea>
+  <tiptap v-model="body"/>
+
+</div>
           
         <button type="submit" class="btn btn-primary block">
             Publish
@@ -125,6 +126,9 @@ export default {
 </script>
 
 <style scoped>
+.picking{
+  text-align: left;
+}
 form, textarea {
   border: 2px;
   border-style: solid;
@@ -146,11 +150,11 @@ form, textarea {
   max-height: 300px;
 }
 
-#body {
+.body {
   min-height: 700px;
 }
 
-#title, #slug, #description, #body {
+#title, #slug, #description, .body {
   padding: 2px;
 }
 
