@@ -14,20 +14,24 @@
   
         <textarea type="text" v-model="description" class="form-control" id="description" placeholder="Enter catchy description" required></textarea>
   <div class="picking">
-        <h2>Pick a Category</h2>
+    Pick a Category
         <select v-model="category_id" id="slug">
               <option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
         </select>
           
-        <div v-if="!image">
-    <h2>Select an image</h2>
+        <div class="image-section" v-if="!image">
+    Select an image
     <input type="file" @change="onFileChange">
   </div>
-  <div v-else>
+  <div class="image-section" v-else>
     <img :src="image" />
     <button @click="removeImage">Remove image</button>
   </div>
-  <tiptap v-model="body"/>
+  <hr>
+  <!--<tiptap v-model="body"/>-->
+  <tiptap2 v-model="body"/>
+  <!--<tiptap3 v-model="body"/>-->
+  <hr>
 
 </div>
           
@@ -126,6 +130,10 @@ export default {
 </script>
 
 <style scoped>
+.image-section{
+  margin-bottom: 6px;
+  margin-top: 6px;
+}
 .picking{
   text-align: left;
 }
@@ -173,7 +181,6 @@ border: none;
 
         opacity: 0.9;
      }
-
 
 @media screen and (max-width: 700px) {
  
