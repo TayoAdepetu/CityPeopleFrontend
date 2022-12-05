@@ -3,7 +3,8 @@
 <div>
     <nav>
       <div class="list">
-            <p>Hi, {{ user.name }}</p> 
+        <div v-if="(user_picture != null)"><img class="user-avatar" :src="baseURL + 'userimage/' + user_picture"></div>
+            <div>{{ user.name }}</div> 
         <div v-if="this.$auth.user.business_name_slug == ''">
           <p>Register your business and join millions of other businesses in our business directory</p>
           <button><nuxt-link to="/business-directory/create-business-name">Register Business</nuxt-link></button>
@@ -95,23 +96,11 @@
         export default {           
           data () {
             return {
-              
               user: this.$auth.user,
               role: this.$auth.user.scope,
-              
-            /*  roleSeller: this.$auth.user.scope,
-              roleAdmin: this.$auth.user.scope,
-              rolePublisher: this.$auth.user.scope,
-              roleCommenter: this.$auth.user.scope,
-              roleSuperAdmin: this.$auth.user.scope,
-           
-        */   
-           /*   roleSeller: this.$auth.hasScope('seller'),
-              roleAdmin: this.$auth.hasScope('admin'),
-              rolePublisher: this.$auth.hasScope('publisher'),
-              roleCommenter: this.$auth.hasScope('commenter'),
-              roleSuperAdmin: this.$auth.hasScope('superadmin'),
-        */
+              user_picture: this.$auth.user.user_image,
+              baseURL: process.env.BASE_URL || 'http://localhost:8000/',
+
             }
       
           },
@@ -120,6 +109,11 @@
           </script>
       
       <style scoped>
+      .user-avatar{
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+      }
         ul, li {
           list-style: none;
           padding-left: 0px;

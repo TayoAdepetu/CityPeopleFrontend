@@ -1,36 +1,37 @@
 <template>
     <div>
-
-
       <div class="container">
+        
         <form @submit.prevent="createPost" enctype="multipart/form-data">
+          <nuxt-link to="/htmlcodes" target="_blank"><div class="btn">Check Component HTML Codes</div></nuxt-link>
   
         <input hidden type="" v-model="user_id">
          
-        <textarea v-model="title" class="form-control" id="title" placeholder="Enter title" required></textarea>
+        <textarea v-model="title" id="title" placeholder="Enter title" required></textarea>
   
             
-        <input type="text" hidden v-model="slug" class="form-control" id="slug" placeholder="Enter title slug" >
+        <input type="text" hidden v-model="slug" id="slug" placeholder="Enter title slug" >
   
-        <textarea type="text" v-model="description" class="form-control" id="description" placeholder="Enter catchy description" required></textarea>
-  <div class="picking">
-    Pick a Category
+        <textarea type="text" v-model="description" id="description" placeholder="Enter catchy description" required></textarea>
+  
+        <div class="picking">
+    Click The Box 👇 To Pick a Category
         <select v-model="category_id" id="slug">
               <option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
         </select>
           
         <div class="image-section" v-if="!image">
-    Select an image
+    Select a Featured Image
     <input type="file" @change="onFileChange">
   </div>
+
   <div class="image-section" v-else>
     <img :src="image" />
     <button @click="removeImage">Remove image</button>
   </div>
-  <hr>
-  <!--<tiptap v-model="body"/>-->
-  <tiptap2 v-model="body"/>
-  <!--<tiptap3 v-model="body"/>-->
+
+  <hr>  
+  <textarea v-model="body" id="body-text"></textarea>
   <hr>
 
 </div>
@@ -44,7 +45,7 @@
     
     
     </div>
-    </template>
+</template>
 
 
 <script scoped>
@@ -167,7 +168,7 @@ form, textarea {
 }
 
 .btn {
-background-color: #c20017;
+background-color: cornflowerblue;
 padding: 16px;
 color: #036;
 border: none;

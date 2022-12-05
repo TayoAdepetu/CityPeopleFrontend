@@ -4,7 +4,7 @@
 <img id="short-image" :src="baseURL + 'postimage/' + post[0].image">
 <p>By <span>{{ post[0].user.name }}</span> in <span>{{ post[0].category.name }}</span></p>
 <p>Last Updated: <span>{{ getDate(post[0].updated_at) }}</span></p>
-<p class="body">{{ post[0].body }}</p>
+<div class="body" v-html="`${ post[0].body }`"></div>
 
 <div>
     <comments />
@@ -41,11 +41,26 @@ export default {
 }
 </script>
 <style scoped>
+
 #short-image{
     width: 70%;
     height: 500px;
 }
 .body{
     text-align: left !important;
+}
+
+/*css for the description classes*/
+.bold-span{
+    font-weight: bold;
+}
+
+.italic-span{
+    font-style: italic;
+}
+
+.image-dressing{
+    width:100vh;
+    height: 400px;
 }
 </style>
