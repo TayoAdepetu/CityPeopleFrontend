@@ -1,12 +1,29 @@
 <template>
-    <div class="notification is-danger">
+    <div :class="type">
       {{ message }}
     </div>
   </template>
   
   <script>
   export default {
-    name: 'Notification',
-    props: ['message']
+    /*
+    props: {
+      type:{
+        type: string,
+      },
+
+      message:{
+        type:string
+      }
+    }
+    */
   }
   </script>
+  <<style scoped>
+  .successmessage{
+    background-color: lightseagreen;
+  }
+  .failuremessage{
+    background-color: lightcoral;
+  }
+  </style>

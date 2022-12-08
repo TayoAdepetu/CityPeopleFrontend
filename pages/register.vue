@@ -1,12 +1,11 @@
 <template>
     <div>
         <div class="container">
-        <form @submit.prevent="registerUser">
+        <form @submit.prevent="registerUser" v-if="!savingSuccessful">
          
           <h2>CityPeople Nigerian Forum Registration</h2>
           <p>Please Fill This Form To Enjoy The Full Features Of This Forum</p>
           <hr />
-          <Notification :message="error" v-if="error"/>
 
           <input type="text" v-model="name" placeholder="Enter username" name="name"/>
          <!--- <span v-if="errors.name">{{ errors.name[0] }}</span>  -->
@@ -33,9 +32,7 @@
     </div>
 </template>
 
-<script>
-    //import Notification from '~/components/Notification'
-    
+<script scoped>    
     export default {
     auth: 'guest',
       components: {
@@ -47,6 +44,7 @@
           name: '',
           email: '',
           password: '',
+          loading:false,
           password_confirmation: '',
           error: null
         }
@@ -54,14 +52,19 @@
     
       methods: {
         async registerUser() {
+          this.loading = true;
+          this.$toast.show("Registering...");
           try {
-            await this.$axios.post('/api/auth/register', {
+            const Register = await this.$axios.post('/api/auth/register', {
               name: this.name,
               email: this.email,
               password: this.password,
               password_confirmation: this.password_confirmation
             })
-    
+
+            this.$toast.success("Registered successfully. Check your email to verify your email address to enjoy full features.");
+            this.loading = false;
+              /*
             await this.$auth.loginWith('laravelJWT', {
               data: {
               email: this.email,
@@ -70,6 +73,8 @@
             })
     
             this.$router.push('/')
+
+            */
           } catch (e) {
             this.error = e.response
           }

@@ -47,8 +47,23 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
+    /*
+    // https://github.com/Maronato/vue-toastification/tree/main
+    ["vue-toastification/nuxt", {
+      timeout: 1000,
+      draggable: false
+    }]
+    */
+    //https://www.npmjs.com/package/@nuxtjs/toast
+   '@nuxtjs/toast'
   ],
 
+  toast: {
+    position: 'top-center',
+    duration: 2000,
+},
+
+  
 
   axios: {
     baseURL: 'http://localhost:8000',
@@ -141,7 +156,15 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    
+    /*
+    extend(config) {
+      config.module.rules.push({
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
+      })
+    },
+    */
   },
 
 

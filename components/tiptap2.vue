@@ -71,6 +71,8 @@ export default{
       }
     }
   }
+  //read for rendering: https://github.com/codex-team/editor.js/issues/676
+  //
     });
 
   }

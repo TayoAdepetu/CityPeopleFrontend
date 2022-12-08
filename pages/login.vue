@@ -34,6 +34,7 @@ export default {
             email: '',
             password: ''
         },
+        loading:false,
        errors: '',
     }
 
@@ -42,9 +43,13 @@ export default {
     methods: {
         async loginUser(){
             try {
+                this.loading = true;
+                this.$toast.show("Logging in...");
                 await this.$auth.loginWith('laravelJWT', {data:this.form})
 
                 this.$router.push('/')
+                this.$toast.success("You are logged in");
+                this.loading = false;
 
             } catch (error){
                 console.log(error)

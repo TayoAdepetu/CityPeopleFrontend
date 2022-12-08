@@ -10,7 +10,7 @@
             <h3 id="title"> {{ post.title }} </h3>           
           </div>
          <div id="short-body">
-          <p id="short-paragraph" v-html="`${post.description }`"> </p>
+          <p id="short-paragraph">{post.description }</p>
          </div>
                                         
           <div id="author-date">
