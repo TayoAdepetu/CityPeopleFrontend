@@ -15,8 +15,8 @@
         <textarea type="text" v-model="description" id="description" placeholder="Enter catchy description" required></textarea>
   
         <div class="picking">
-    Click The Box 👇 To Pick a Category
         <select v-model="category_id" id="slug">
+              <option :value="undefined">Pick a Category 👇</option>
               <option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
         </select>
           
@@ -59,7 +59,7 @@ export default {
       title: '',
       slug: '',
       description: '',
-      category_id:'',
+      category_id:undefined,
       image: null,
       body: '',
       categories:null,

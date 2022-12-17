@@ -29,12 +29,16 @@
   }
   
   /* Style the search field */
+  .example{
+    display: flex;
+    border: 1px solid red;
+    margin-bottom:5px; 
+
+  }
   form.example input[type=text] {
     padding: 10px;
     font-size: 17px;
-    border: 1px solid #c20017;
-    float: left;
-    width: 80%;
+    width: 60%;
     background: #f1f1f1;
   }
 
@@ -46,13 +50,21 @@
   /* Style the submit button */
   form.example button {
     width: 20%;
-    padding: 10px;
-    background: #d20f26;
-    color: white;
-    font-size: 17px;    
-    border: none;
+    padding: 5px;
+    background: cornflowerblue;
+    color: red;
+    font-size: 20px;    
     cursor: pointer;
-    height: 42px;
+  }
+
+  select{
+    border: 1px solid red;
+    width:20%;
+    padding:10px;
+  }
+
+  .logout{
+    cursor: pointer;
   }
   
   form.example button:hover {
@@ -63,7 +75,6 @@
   form.example::after {
     content: "";
     clear: both;
-    display: table;
   }
 
   #Mainheading {

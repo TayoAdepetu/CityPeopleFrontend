@@ -76,7 +76,8 @@
 
             */
           } catch (e) {
-            this.error = e.response
+            this.loading = false;
+             this.$toast.info("There was a problem registering, check your credentials");
           }
         }
       }

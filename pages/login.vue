@@ -18,7 +18,8 @@
        
 
         </form>
-        <p>If you're not yet a member, <NuxtLink to="/auth/register">Register</NuxtLink></p>
+        <p>If you're not yet a member, <NuxtLink to="/register">Register</NuxtLink></p>
+        <p>Forgot your password? <NuxtLink to="/passchangecode">Reset Password</NuxtLink></p>
 
         </div>
 

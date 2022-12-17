@@ -1,11 +1,11 @@
 <template>
     <div class="nav-align">
      
-      <H1>The Citypeople</H1>
+      <H1>The CityPeople</H1>
    
   <section id="Mainheading">
     
-  <H2>Nigerian and Foreign News</H2>
+  <H2>The Fact-based, Nigerian Wiki</H2>
   <p>{{time}}</p>
   <hr>
     <p><NuxtLink to="#">Politics</NuxtLink> | <NuxtLink to="#">Entertainment</NuxtLink> | <NuxtLink to="#">Sports</NuxtLink> | <NuxtLink to="#">Technology</NuxtLink> | <NuxtLink to="#">Private Sector</NuxtLink> | <NuxtLink to="#">Events</NuxtLink> | <NuxtLink to="#">Others</NuxtLink></p>
@@ -13,23 +13,101 @@
 
     <template v-if="user">
       <span>Welcome, <NuxtLink to="/admin/dashboard">{{ user.name }}</NuxtLink>.</span> | <span><NuxtLink to="/admin/dashboard">Dashboard</NuxtLink></span> |
-      <span><NuxtLink to="#">Check Us On Twitter</NuxtLink></span> | <span @click="logout">Logout</span>
+      <span><NuxtLink to="#">Check Us On Twitter</NuxtLink></span> | <span class="logout" @click="logout">Logout</span>
     </template>
 
     <template v-else>
       <span>Welcome, Guest</span> | <span><NuxtLink to="/login">Login</NuxtLink></span> | <span><NuxtLink to="/register">Signup</NuxtLink></span> | <span><NuxtLink to="#">Check Us On Twitter</NuxtLink></span>
     </template>
+ <!--
+    <div id="form">
+      <form class="example" @submit.prevent="searchBiz">
+        <input
+            type="text"
+            placeholder="Search by name of article, event, institution..."
+            v-model="keyword"
+          />
+         
+          <select v-model="item" required>
+            <option :value="null" disabled hidden>Pick Search Category...</option>
+            <option value="username"><button >Search For A User</button></option>
+            <option value="business"><button>Search For A Business</button></option>
+            <option value="article"><button>Search For An Article</button></option>
+            <option value="product"><button>Search For A Product</button></option>
+          </select>
 
-      <div id="form">
-        <form class="example" action="action_page.php">
+        <button type="submit">Find User</button>
+      </form>
+    </div>
+    <div id="form">
+    <form class="example" @submit.prevent="searchBiz">
+      <div class="picker">
+        <input
+            type="text"
+            placeholder="Search by name of article, event, institution..."
+            readonly
+          />
+          <select v-model="item" required>
+            <option :value="null" disabled hidden>Pick Search Category...</option>
+            <option value="username"><button >Search For A User</button></option>
+            <option value="business"><button>Search For A Business</button></option>
+            <option value="article"><button>Search For An Article</button></option>
+            <option value="product"><button>Search For A Product</button></option>
+          </select>
+        </div>
+
+<div class="input-action" v-if="(item != null)">
+
+          <div v-if="(item == 'username')">
           <input
             type="text"
-            placeholder="Search for a story..."
-            name="search"
+            placeholder="Search by name of a user..."
+            v-model="keyword"
           />
-          <button type="submit"><i class="fa fa-search"></i></button>
+          <button type="submit">Find User</button>
+        </div>
+
+        <div v-if="(item == 'business')">
+          <input
+            type="text"
+            placeholder="Search by name of a business..."
+            v-model="keyword"
+          />
+          <button type="submit">Find Business</button>
+        </div>
+
+        <div v-if="(item == 'business')">
+          <input
+            type="text"
+            placeholder="Search by name of a business..."
+            v-model="keyword"
+          />
+          <button type="submit">Find Business</button>
+        </div>
+
+        <div v-if="(item == 'article')">
+          <input
+            type="text"
+            placeholder="Search by name of article, event, institution..."
+            v-model="keyword"
+          />
+          <button type="submit">Search Topic</button>
+        </div>
+
+        <div v-if="(item == 'product')">
+          <input
+            type="text"
+            placeholder="Search by name of product..."
+            v-model="keyword"
+          />
+          <button type="submit">Find Product</button>
+        </div>
+      </div>
+
+
             </form>
             </div>
+            -->
   </section>
   
   <section id="Mainheading">
@@ -60,7 +138,11 @@
       return {
         time: Date(),
         user: this.$auth.user,
-  
+        //https://stackoverflow.com/questions/40375602/placeholder-for-select-in-vuejs-2-0-0
+        item:null,
+        keyword:"",
+        results:null,
+        search:false,
       }
 
     },
@@ -71,7 +153,22 @@
         console.log('logout')
         await this.$axios.$post('/api/auth/logout')
         this.$router.push('/')
-      }
+      },
+
+      async searchBiz(){
+          this.loading = true;
+          this.$toast.info('Searching...');
+          try {
+            const { data } = await this.$axios.get(`/api/auth/search-web/${this.keyword}`);
+            this.results = data
+            this.toast.success('Results found...');
+            return {results};
+          } catch (error) {
+            this.loading = false;
+            this.$toast.error(error.response.data.error);
+          }
+        },
+
     }
   }
   </script>

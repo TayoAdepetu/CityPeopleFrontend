@@ -16,8 +16,7 @@
 <script scoped>
 
 export default {
-  middleware: 'iscommenter',
-  layout: "admin",
+  auth: false,
   data() {
     return {
       email: '',
@@ -53,19 +52,10 @@ form {
   width: 99%;
 }
 
-#title {
-  border: 2px;
-  border-style: solid;
-  border-radius: 2px;
-  max-height: 60px;
-  width: 99%;
-  margin-bottom: 5px;
-  margin-top: 5px;
-}
-
 
 #slug {
   padding: 2px;
+  width: 100%;
 }
 
 .btn {

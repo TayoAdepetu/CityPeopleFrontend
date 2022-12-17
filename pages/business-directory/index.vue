@@ -3,7 +3,6 @@
       <div class="directory-container">
     
       <div v-for="directory in directories" :key="directory.id" class="before-directory-headlines">
-           
               <NuxtLink :to="`/business-directory/${directory.user.business_name_slug}`">
                 <div class="list-description">
                   <h2 class="biz-header">
@@ -16,9 +15,7 @@
                       <p><span class="list-contact">Website:</span> {{directory.website}}</p>
                 </div>
                 </div>           
-              </NuxtLink>
-        
-            
+              </NuxtLink>          
       </div>
     
       </div>
@@ -33,6 +30,8 @@
       data() {
         return {
           directories: [],
+          firms:null,
+          loading:false,
         }
       },
     
@@ -43,13 +42,13 @@
                 },
     
         async getDirectories(){
+          this.loading = true;
           try {
             const { data } = await this.$axios.get(`/api/auth/all-biz`);
             this.directories = data
             return true; 
           } catch (error) {
             this.loading = false;
-           console.log(error.response)
             this.$toast.error(error.response.data.error);
           }
         },
