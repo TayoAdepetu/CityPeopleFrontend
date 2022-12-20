@@ -3,7 +3,7 @@
       <div class="container">
         <form @submit.prevent="changePassword">
   
-         <input type="number" v-model="code" id="slug" placeholder="Paste verification code">
+         <input type="text" v-model="code" id="slug" placeholder="Paste verification code">
   
          <input type="email" v-model="email" class="form-control" id="slug" placeholder="Enter your email" >
   
@@ -22,8 +22,7 @@
   <script scoped>
   
   export default {
-    middleware: 'iscommenter',
-    layout: "admin",
+    auth: false,
     data() {
       return {
         email: '',

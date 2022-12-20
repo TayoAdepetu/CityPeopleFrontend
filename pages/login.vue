@@ -46,15 +46,17 @@ export default {
             try {
                 this.loading = true;
                 this.$toast.show("Logging in...");
-                await this.$auth.loginWith('laravelJWT', {data:this.form})
+                const logUser = await this.$auth.loginWith('laravelJWT', {data:this.form});
 
-                this.$router.push('/')
-                this.$toast.success("You are logged in");
-                this.loading = false;
+                if(logUser = true){
+                    this.$toast.success("You are logged in");
+                    this.loading = false;
+                    //this.$router.push('/')
+                }                
 
             } catch (error){
-                console.log(error)
-                
+                this.loading = false;
+                this.$toast.info("There was a problem logging in, check your credentials");                
                 /*if (err.response.status = 422) {
                     this.errors = 'Could not sign you in with those credentials.'
                 }

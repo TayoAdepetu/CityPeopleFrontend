@@ -47,6 +47,12 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
+    ['@nuxtjs/laravel-echo',{
+      broadcaster: 'pusher',
+      key: "34e0b11d8bd8a238efa9",
+      cluster: "eu",
+      encrypted: true
+    }],
     /*
     // https://github.com/Maronato/vue-toastification/tree/main
     ["vue-toastification/nuxt", {

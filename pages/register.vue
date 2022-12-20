@@ -62,8 +62,11 @@
               password_confirmation: this.password_confirmation
             })
 
-            this.$toast.success("Registered successfully. Check your email to verify your email address to enjoy full features.");
-            this.loading = false;
+            if(Register = true){
+              this.$toast.success("Registered successfully. Check your email to verify your email address to enjoy full features.");
+              this.loading = false;
+            }
+            
               /*
             await this.$auth.loginWith('laravelJWT', {
               data: {
@@ -77,7 +80,7 @@
             */
           } catch (e) {
             this.loading = false;
-             this.$toast.info("There was a problem registering, check your credentials");
+            this.$toast.info("There was a problem registering, check your credentials");
           }
         }
       }
