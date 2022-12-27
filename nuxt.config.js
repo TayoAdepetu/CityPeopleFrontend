@@ -88,7 +88,7 @@ export default {
 },
 
   axios: {
-    baseURL: 'http://localhost:8000',
+    baseURL: 'https://citypeople-backend.herokuapp.com/',
     //credentials: true,
    // proxy: true
  },
