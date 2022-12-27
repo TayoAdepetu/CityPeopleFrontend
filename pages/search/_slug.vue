@@ -19,7 +19,6 @@ export default {
       auth: false,
       data(){
         return{
-            baseURL: process.env.BASE_URL || 'http://localhost:8000/',
 
         }
       },

@@ -32,6 +32,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '@/plugins/echo', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -47,12 +48,29 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    ['@nuxtjs/laravel-echo',{
+    ['@nuxtjs/laravel-echo', 
+    
+    /*
+    {
       broadcaster: 'pusher',
       key: "34e0b11d8bd8a238efa9",
       cluster: "eu",
-      encrypted: true
-    }],
+      //encrypted: true,
+      forceTLS:false,
+      wsHost: 'http://localhost:3000',
+      wsPort: 6001,
+      authEndpoint: 'http://localhost:8000/broadcasting/auth',
+      //authModule: true,
+      connectOnLogin:true,
+      disconnectOnLogout: true,
+      disableStats: true,
+      auth:{
+        headers: {
+          //Authorization: 'Bearer' + this.$auth.token(),
+          Accept: 'application/json',
+        }
+      }
+    }*/],
     /*
     // https://github.com/Maronato/vue-toastification/tree/main
     ["vue-toastification/nuxt", {
@@ -68,8 +86,6 @@ export default {
     position: 'top-center',
     duration: 2000,
 },
-
-  
 
   axios: {
     baseURL: 'http://localhost:8000',
@@ -88,6 +104,8 @@ export default {
   */
 
   auth: {
+
+    plugins: [ { src: '~/plugins/echo', ssr: false }, '~/plugins/echo.js'],
     
     strategies: {
     'laravelJWT': {
