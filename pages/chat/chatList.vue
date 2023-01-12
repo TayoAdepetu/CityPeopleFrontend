@@ -5,11 +5,11 @@
     <div class="card">
         <div class="card-header">Users</div>
         <div class="card-body">
-            <div class="users" v-for="user in users" :key="user.id">
+            <div class="users" v-for="channel in channels" :key="channel.id">
                 <v-btn class="findBtn mb-4 mt-3 fullWidth"
                     @click="openJobModal(job)"
                     scrollable>
-                    {{ user.name }}
+                    {{ channel.user.name }}
                 </v-btn>
             </div>
             </div>
@@ -28,7 +28,7 @@
         <MessageComponent 
             v-for="message in messages" 
             :key="message.id" 
-            :message="message"/>     
+            :message="body"/>     
     </div>
 
     <div>
@@ -64,9 +64,10 @@
         data() {
             return {
                 updateJobModal: false,
-                messengers: [],
+                channels: [],
                 messages: [],
                 body: '',
+                currentUser: this.$auth.user.id,
                 selectedPost:{
                     receiver_id:null,
                     user_id:null,
@@ -75,57 +76,52 @@
             }
         },
 
-        mounted() {
-            //for messengers present in chat
-            Event.$on('messengers.here', (users) => {
-                this.messengers = messengers;
-            })
-            .$on('users.joined', (user) => {
-                this.messengers.unshift(messenger);
-            })
-            .$on('users.left', (messenger) => {
-                this.messengers = this.messengers.filter(u => {
-                    return u.id != messenger.id
+        created() {
+            this.fetchChats();
+
+            Echo.private('chat')
+            .listen('ChatMessage', (e) => {
+                this.messages.push({
+                message: e.message.message,
+                user: e.user
                 });
-            });
-
-            //for projecting all messages from database
-            axios.get('/message').then((response) => {
-                this.messages = response.data;
-            });
-
-            //for listening to new message events 
-            Event.$on('added_message', (message) => {
-                this.messages.unshift(message);
-                if(message.selfMessage) {
-                    this.$refs.message.scrollTop = 0;
-                }
             });
         },
 
-        methods: {
-            openJobModal(messenger) 
-                {
-                this.selectedPost.receiver_id = messenger.receiver_id
-                this.selectedPost.user_id = messenger.user_id
-                this.selectedPost.id = messenger.id
-
-                this.updateJobModal = true;
-                
+        methods: {            
+            fetchChats() {
+                axios.get(`/channels/${this.currentUser}`).then(response => {
+                    this.channels = response.data;
+                });
             },
+
+            openJobModal(channel){
+                this.selectedPost.receiver_id = channel.receiver_id
+                this.selectedPost.user_id = channel.user_id
+                this.selectedPost.id = channel.id
+
+                this.updateJobModal = true
+                this.fetchMessages();
+            },
+
+            fetchMessages(){
+                    axios.get(`/getmessages/${this.selectedPost.id}`)
+                    .then(response => {
+                    this.messages = response.data;
+            })
+        },
 
             sendMessage() {
                 try{
                     $sendAm = axios.post('/message', {
                         body: this.body.trim(),
-                        body: this.body,
                         selfMessage: true,
                         user_id: this.selectedPost.user_id,
                         receiver_id: this.selectedPost.receiver_id,
                     });
 
                     if(sendAm){
-                        Event.$emit('added_message', messageObj);
+                        this.messages.push(message);
                     }
                     
                 }catch(e){

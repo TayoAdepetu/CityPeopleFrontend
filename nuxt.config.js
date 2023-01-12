@@ -1,4 +1,8 @@
 export default {
+  //DEPLOYING URL
+  /*https://www.fabiofranchino.com/blog/how-to-deploy-webapp-heroku-netlify/
+https://devcenter.heroku.com/articles/getting-started-with-laravel
+  */
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -48,39 +52,16 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    ['@nuxtjs/laravel-echo', 
-    
-    /*
-    {
-      broadcaster: 'pusher',
-      key: "34e0b11d8bd8a238efa9",
-      cluster: "eu",
-      //encrypted: true,
-      forceTLS:false,
-      wsHost: 'http://localhost:3000',
-      wsPort: 6001,
-      authEndpoint: 'http://localhost:8000/broadcasting/auth',
-      //authModule: true,
-      connectOnLogin:true,
-      disconnectOnLogout: true,
-      disableStats: true,
-      auth:{
-        headers: {
-          //Authorization: 'Bearer' + this.$auth.token(),
-          Accept: 'application/json',
-        }
-      }
-    }*/],
-    /*
-    // https://github.com/Maronato/vue-toastification/tree/main
-    ["vue-toastification/nuxt", {
-      timeout: 1000,
-      draggable: false
-    }]
-    */
-    //https://www.npmjs.com/package/@nuxtjs/toast
+    ['@nuxtjs/laravel-echo'],
    '@nuxtjs/toast'
   ],
+
+  echo: {
+    plugins: [ '~/plugins/echo.js' ],
+    authModule: true,
+    connectOnLogin: true,
+    disconnectOnLogout: true
+ },
 
   toast: {
     position: 'top-center',
@@ -88,20 +69,12 @@ export default {
 },
 
   axios: {
-    baseURL: 'https://citypeople-backend.herokuapp.com/',
+    //baseURL: 'https://citypeople-backend.herokuapp.com/',
+    baseURL: 'http://http://localhost:3000/',
     //credentials: true,
    // proxy: true
  },
 
-/*
-  proxy: {
-    '/laravel': {
-      target: 'https://laravel-auth.nuxtjs.app',
-      pathRewrite: { '^/laravel': '/' }
-    }
-  },
-
-  */
 
   auth: {
 
@@ -140,55 +113,13 @@ export default {
         
         },
       
-       tokenRequired: false,
-       tokenType: false,
-       localStorage: false
+       //tokenRequired: false,
+       //tokenType: false,
+       //localStorage: false
       },
   
-  
- /* auth: {
-    strategies: {
-      laravelSanctum: {
-        provider: 'laravel/sanctum',
-        url: 'http://localhost:8000',
-        endpoints: {
-          login: {
-            url: '/login'
-          },
-          logout: {
-            url: '/logout'
-          },
-          user: {
-            url: 'api/user'
-          }
-        },
-        user: {
-          property: false
-      },
-      
-      }
-    },
-    redirect: {
-      login: '/auth/login',
-      home: '/dashboard'
-    }
-  }, 
-  
-
-
-  */
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    /*
-    extend(config) {
-      config.module.rules.push({
-        test: /\.mjs$/,
-        include: /node_modules/,
-        type: 'javascript/auto',
-      })
-    },
-    */
   },
 
 

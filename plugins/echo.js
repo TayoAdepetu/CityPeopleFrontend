@@ -1,5 +1,4 @@
 
-/*
 import Echo from 'laravel-echo'
  
 window.Pusher = require('pusher-js')
@@ -9,7 +8,7 @@ export default (context, inject) => {
     broadcaster: 'pusher',
     key: "34e0b11d8bd8a238efa9",
       cluster: "eu",
-      //encrypted: true,
+      encrypted: true,
       forceTLS:false,
       wsHost: window.location.hostname,
       wsPort: 6001,
@@ -20,7 +19,7 @@ export default (context, inject) => {
       disableStats: true,
       auth:{
         headers: {
-          Authorization: 'Bearer' + context.$auth.token(),
+          Authorization: 'Bearer ' + context.$auth.strategy.token,
           Accept: 'application/json',
         }}
         
@@ -28,4 +27,3 @@ export default (context, inject) => {
  
   inject('echo', echo)
 }
-*/
