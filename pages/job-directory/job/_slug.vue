@@ -15,6 +15,7 @@
                     <div class="list-detail">
                        <div id="author"><span class="list-contact">Email:</span> {{ job.user.email }}</div>
                        <div id="category-tag"><span class="list-contact">Phone:</span> {{job.user.phone_number}} </div>
+                       <div><nuxt-link :to="`/chat/${job.user.id}`">Chat Business</nuxt-link></div>
                     </div>
                     <div class="job-description">
                     <p> {{ job.description }} </p>

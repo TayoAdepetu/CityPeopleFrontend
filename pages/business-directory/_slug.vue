@@ -4,7 +4,8 @@
         <div>
                     <h1 id="title"> {{ directory.user.business_name }} </h1>
                     <img :src="`{{ directory.image }}`">
-                    <div class="biz-describe"> {{ directory.description }} </div>    
+                    <div class="biz-describe"> {{ directory.description }} </div>
+                    <div><nuxt-link :to="`/chat/${directory.user.id}`">Chat Business</nuxt-link></div>
                     <div id="author-date">
                        <div class="biz-details">
                         <div><span class="biz-bold"> Established:</span> {{directory.established}} </div>
@@ -139,10 +140,11 @@ export default {
         },
 
     methods:{
-    getDate(datetime) {
-                let date = new Date(datetime).toJSON().slice(0,10).replace(/-/g,'/');
-                return date
-            },
+        getDate(datetime) {
+                    let date = new Date(datetime).toJSON().slice(0,10).replace(/-/g,'/');
+                    return date
+                },
+
 }
          
 }

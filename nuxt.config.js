@@ -45,7 +45,7 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxtjs/vuetify',
-    
+    '@nuxtjs/dotenv',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -58,7 +58,7 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
 
   echo: {
     plugins: [ '~/plugins/echo.js' ],
-    authModule: true,
+    //authModule: true,
     connectOnLogin: true,
     disconnectOnLogout: true
  },
@@ -70,7 +70,7 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
 
   axios: {
     //baseURL: 'https://citypeople-backend.herokuapp.com/',
-    baseURL: 'http://http://localhost:3000/',
+    baseURL: 'http://localhost:8000/',
     //credentials: true,
    // proxy: true
  },
@@ -113,8 +113,12 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
         
         },
       
-       //tokenRequired: false,
-       //tokenType: false,
+       //tokenRequired: true,
+       //tokenType: true,
+       //tokenType: 'Bearer',
+       //globalToken: true,
+       //autoFetchUser: true
+      
        //localStorage: false
       },
   

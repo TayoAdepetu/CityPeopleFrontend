@@ -1,29 +1,41 @@
-
+/*
 import Echo from 'laravel-echo'
  
 window.Pusher = require('pusher-js')
  
 export default (context, inject) => {
+  //const token = context.$auth.strategy.token.get();
   const echo = new Echo({
     broadcaster: 'pusher',
-    key: "34e0b11d8bd8a238efa9",
+    key: '34e0b11d8bd8a238efa9',
       cluster: "eu",
       encrypted: true,
       forceTLS:false,
-      wsHost: window.location.hostname,
-      wsPort: 6001,
-      authEndpoint: 'http://localhost:8000/broadcasting/auth',
+      wsHost: 6001,
+      wsPort: 443,
+      authEndpoint: `${process.env.API_URL}/broadcasting/auth`,
       authModule: true,
       connectOnLogin:true,
       disconnectOnLogout: true,
       disableStats: true,
       auth:{
         headers: {
-          Authorization: 'Bearer ' + context.$auth.strategy.token,
+          //Authorization: 'Bearer ' + context.$auth.strategy.token.get(),
           Accept: 'application/json',
         }}
         
     })
+/*
+    echo.onRequest((config) => {
+      // Here we check if user is logged in
+      if (context.$auth.loggedIn) {
+        // If the user is logged in we can now get the token, we get something like `Bearer yourTokenJ9F0JFODJ` but we only need the string without the word **Bearer**, So we split the string using the space as a separator and we access the second position of the array **[1]**
+        const token = context.$auth.strategy.token.get().split(' ')[1]
+        echo.setToken(token, 'Bearer') // Here we specify the token and now it works!!
+      }
+    })
+    
  
   inject('echo', echo)
 }
+*/

@@ -39,7 +39,6 @@
             cols="28"
             rows="5"
             class="form-input"
-            @keydown="typing"
             v-model="body">
         </textarea>
         <button type="submit">Send</button> 
@@ -78,7 +77,7 @@
 
         created() {
             this.fetchChats();
-
+/*
             Echo.private('chat')
             .listen('ChatMessage', (e) => {
                 this.messages.push({
@@ -86,6 +85,7 @@
                 user: e.user
                 });
             });
+            */
         },
 
         methods: {            
