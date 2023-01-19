@@ -4,6 +4,8 @@
   
     <Nuxt />
   
+    <footing />
+
     </v-app>
   </template>
   
@@ -112,10 +114,9 @@
 
   img {
       width: 300px;
+      height:120px;
       margin-top: 10px;
   }
-
-  
 
   h1, h2, h3 {
       /*color:#c20017;*/
@@ -129,6 +130,26 @@
   ::placeholder {
     color:#036;
   }
+/*
+  @media screen and (max-width: 1156px) {
+    .img-3{
+      display: none;
+    }
 
+    img {
+      width: 400px;
+  }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .img-3, .img-2{
+      display: none;
+    }
+
+    img {
+      width: 300px;
+  }
+  }
+  */
   
 </style>

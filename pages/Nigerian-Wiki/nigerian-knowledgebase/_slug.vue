@@ -1,14 +1,16 @@
 <template>
     <div>
-<h1>{{ post[0].title }}</h1>
+<h1>{{ post[0].susubject_name }}</h1>
 <img id="short-image" :src="baseURL + 'postimage/' + post[0].image">
-<p>By <span>{{ post[0].user.name }}</span> in <span>{{ post[0].category.name }}</span></p>
+<p>{{ post[0].subject_name }}</p>
 <p>Last Updated: <span>{{ getDate(post[0].updated_at) }}</span></p>
 <div class="body" v-html="`${ post[0].body }`"></div>
 
+<!--
 <div>
     <comments />
 </div>
+-->
 </div>
 
 </template>
@@ -24,10 +26,10 @@ export default {
       },
 
       async asyncData(context) {
-        let response = await context.$axios.get(`/api/auth/blog/${context.params.slug}`)
+        let response = await context.$axios.get(`/api/auth/fetch-subsubject/${context.params.slug}`)
         let post = response.data
         return {
-                post          
+                post  
             }
         },
 

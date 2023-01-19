@@ -7,7 +7,6 @@
         <th class="text-left">Title</th>
         <th class="text-left">Description</th>
         <th class="text-left">Slug</th>
-        <th class="text-left">Image</th>
         <th class="text-left">Author</th>
         <th class="text-left">Date</th>
         <th class="text-left">Actions</th>
@@ -30,9 +29,6 @@
        
         <td>
           {{ post.slug }}
-        </td>
-        <td>
-            {{ post.image }}
         </td>
         <td>            
           {{ post.user.name }}  
@@ -79,13 +75,6 @@
             <textarea class="form-control" v-model="selectedPost.body" id="body" placeholder="Enter a body" rows="8" required></textarea>
           </div>
           
-          <!--
-          <div class="custom-file mb-3">
-            <label class="custom-file-label" >Add images...</label>
-            <input type="file" v-on:change="onFileChange" class="custom-file-input" id="image">
-            
-          </div>
-          -->
           <div class="flex justifyCenter mobileColumn">
               <v-btn type="submit" class="greyBtn mx-3 my-1">
                 Update
@@ -159,7 +148,6 @@
                     title: '',
                      slug: '',
                      description: '',
-                     image: '',
                      author: '',
                       id: '',
                       body:'',
@@ -195,7 +183,6 @@
       this.selectedPost.id = post.id
       this.selectedPost.slug = post.slug
       this.selectedPost.description = post.description
-      this.selectedPost.image = post.image
       this.selectedPost.author = post.author
       this.selectedPost.body = post.body
   
@@ -210,7 +197,6 @@
       this.selectedPost.id = post.id
       this.selectedPost.slug = post.slug
       this.selectedPost.description = post.description
-      this.selectedPost.image = post.image
       this.selectedPost.author = post.author
       this.selectedPost.body = post.body
   
@@ -226,8 +212,6 @@
     {title: this.selectedPost.title,
      slug: this.selectedPost.title.replace(/ +/g, '-'),
      description: this.selectedPost.description,
-     //image: this.selectedPost.image,
-     //author: this.selectedPost.author,
      body: this.selectedPost.body,});
   
      this.loading = false;
@@ -237,14 +221,6 @@
      this.$router.push(`/${this.selectedPost.slug}`);
         
     },
-  
-      /*
-      async asyncData(context) {
-        let response = await context.$axios.post(`/api/auth/delete-post/${context.selectedPost.slug}`);
-        this.getPosts();
-      },
-  
-      */
   
       async deletePost()
       {

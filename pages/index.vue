@@ -1,5 +1,6 @@
 <template>
 <div>
+  <!--
     <div class="grid-container">
     <div v-for="post in posts" :key="post.id" id="before-headlines">
       
@@ -19,7 +20,7 @@
         </NuxtLink> 
       </div>
   </div>
-     
+     -->
   <div>
       <job-vacancy />
   </div>
@@ -43,11 +44,11 @@ export default {
                 let date = new Date(datetime).toJSON().slice(0,10).replace(/-/g,'/');
                 return date
             },
-
-    async getPosts(){
+/*
+    async getPopularNames(){
       try {
-        const { data } = await this.$axios.get(`/api/auth/posts`);
-        this.posts = data
+        const { data } = await this.$axios.get(`/api/auth/popularnames`);
+        this.s = data
         return true; 
       } catch (error) {
         this.loading = false;
@@ -55,12 +56,13 @@ export default {
         this.$toast.error(error.response.data.error);
       }
     },
+    */
   },
-
+/*
   created() {
-    this.getPosts();
+    this.getPopularNames();
   },
-
+*/
  
 }
 

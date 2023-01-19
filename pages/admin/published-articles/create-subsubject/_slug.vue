@@ -7,9 +7,10 @@
         >
 
         <input hidden type="" v-model="user_id" />
+        <input hidden type="text" v-model="subject_name" />
 
         <textarea
-          v-model="title"
+          v-model="subsubject_name"
           id="title"
           placeholder="Enter title"
           required
@@ -31,21 +32,9 @@
           required
         ></textarea>
 
-        <div class="picking">
-        <select v-model="category_id" id="slug">
-          <option :value="undefined">Pick a Category 👇</option>
-          <option
-            v-for="category in categories"
-            :key="category.id"
-            :value="category.id"
-          >
-            {{ category.name }}
-          </option>
-        </select>
-        </div>
-
-        <textarea v-model="body" id="body-text"></textarea>
-        <hr />
+          <hr />
+          <textarea v-model="body" id="body-text"></textarea>
+          <hr />
 
         <button type="submit" class="btn btn-primary block">Publish</button>
       </form>
@@ -60,43 +49,35 @@ export default {
   data() {
     return {
       user_id: null,
-      title: "",
+      subject_name: "",
       slug: "",
       description: "",
-      category_id: undefined,
+      subsubject_name: "",
       body: "",
-      categories: null,
       error: null,
     };
   },
 
   methods: {
-    async createPost() {
+    async createSubsubject(context) {
       try {
-        await this.$axios.post(`/api/auth/create-new-post`, {
-          title: this.title,
-          slug: this.title.replace(/ +/g, "-"),
+        await this.$axios.post(`/api/auth/create-new-subsubject`, {
+          subject_name: context.params.slug,
+          slug: this.slug,
           description: this.description,
           body: this.body,
-          category_id: this.category_id,
+          subsubject_name: this.subsubject_name,
           user_id: this.$auth.user.id,
         });
 
-        this.$router.push(`/nigerian-wiki/${this.title.replace(/ +/g, "-")}`)
+        this.$router.push(
+          `/nigerian-wiki/nigerian-knowledgebase${context.params.slug}`
+        );
       } catch (e) {
         this.error = e.response;
       }
     },
 
-    async getAllCategories() {
-      const { data } = await this.$axios.get("/api/auth/category-admin");
-      this.categories = data;
-      return { categories };
-    },
-  },
-
-  mounted() {
-    this.getAllCategories();
   },
 };
 </script>
