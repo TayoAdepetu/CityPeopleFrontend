@@ -18,7 +18,7 @@
             <li>Adverts</li>
             <li>FundHelp</li>
             <li>LendMe</li>
-            <li>African Images</li>
+            <li><nuxt-link to="/african-images/crud-images">African Images</nuxt-link></li>
             <li>Make Money</li>
             <li>Artisans Directory</li>
             <li><nuxt-link to="/create-post">Publish Article</nuxt-link></li> 
@@ -34,7 +34,7 @@
         <ul v-if="role==='admin'">
             <li hidden>FundHelp</li>
             <li hidden>LendMe</li>
-            <li hidden>African Images</li>
+            <li><nuxt-link to="/african-images/crud-images">African Images</nuxt-link></li>
             <li hidden>Artisans Directory</li>
             <li><nuxt-link to="/create-post">Publish Article</nuxt-link></li> 
             <li><nuxt-link to="/admin/published-articles/articles">Articles</nuxt-link></li>
@@ -48,7 +48,7 @@
         <ul v-if="role==='publisher'">
            <li hidden>FundHelp</li>
             <li hidden>LendMe</li>
-            <li hidden>African Images</li> 
+            <li><nuxt-link :to="`african-images/edit-images/${this.$auth.user.name}`">African Images</nuxt-link></li> 
             <li hidden>Artisans Directory</li>
             <li v-if="this.$auth.user.business_name_slug != ''"><span><nuxt-link :to="`/business-directory/${this.$auth.user.business_name_slug}`">Preview Business Profile</nuxt-link></span></li>
             <li><nuxt-link :to="`/admin/published-articles/${this.$auth.user.name}`">Articles</nuxt-link></li>
@@ -64,7 +64,7 @@
             <li hidden>FundHelp</li>
             <li hidden>LendMe</li>
             <li hidden>Artisans Directory</li>
-            <li hidden>African Images</li>
+            <li><nuxt-link :to="`african-images/edit-images/${this.$auth.user.name}`">African Images</nuxt-link></li>
             <li v-if="this.$auth.user.business_name_slug != ''"><span><nuxt-link :to="`/business-directory/${this.$auth.user.business_name_slug}`">Preview Business Profile</nuxt-link></span></li>
             <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`">MyShop</nuxt-link></li>
             <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/faq-admin/published-faq/${this.$auth.user.business_name_slug}`">MyFaqs</nuxt-link></li>
@@ -76,7 +76,7 @@
             <li hidden>FundHelp</li>
             <li hidden>LendMe</li>
             <li hidden>Artisans Directory</li>
-            <li hidden>African Images</li>
+            <li><nuxt-link :to="`african-images/edit-images/${this.$auth.user.name}`">African Images</nuxt-link></li>
             <li v-if="this.$auth.user.business_name_slug != ''"><span><nuxt-link :to="`/business-directory/${this.$auth.user.business_name_slug}`">Preview Business Profile</nuxt-link></span></li>
             <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`">MyShop</nuxt-link></li>
             <li v-if="this.$auth.user.business_name_slug != ''"><nuxt-link :to="`/admin/faq-admin/published-faq/${this.$auth.user.business_name_slug}`">MyFaqs</nuxt-link></li>

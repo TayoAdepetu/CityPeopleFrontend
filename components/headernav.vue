@@ -5,7 +5,7 @@
    
   <section id="Mainheading">
     
-  <H2>The Fact-based, Nigerian Wiki</H2>
+  <H2>The Fact-based Wiki For Nigerian Peeps, Institutions, and Businesses</H2>
   <p>{{time}}</p>
   <hr>
     <p><NuxtLink to="#">Politics</NuxtLink> | <NuxtLink to="#">Entertainment</NuxtLink> | <NuxtLink to="#">Sports</NuxtLink> | <NuxtLink to="#">Technology</NuxtLink> | <NuxtLink to="#">Private Sector</NuxtLink> | <NuxtLink to="#">Events</NuxtLink> | <NuxtLink to="#">Others</NuxtLink></p>

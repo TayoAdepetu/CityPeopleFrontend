@@ -1,6 +1,13 @@
 <template>
   <div>
     <div>
+        <form>
+        <div>
+        <input v-model="user_id"/>
+        <textarea v-model="image_name" placeholder="Enter image name"></textarea>
+        <textarea v-model="image_description" placeholder="Enter image description"></textarea>
+      </div>
+
       <div class="picking">
         <select v-model="category_id" id="slug">
           <option :value="undefined">Pick a Category 👇</option>
@@ -23,6 +30,8 @@
           <button @click="removeImage">Remove image</button>
         </div>
       </div>
+</form>
+      
     </div>
   </div>
 </template>
@@ -30,10 +39,33 @@
 <script>
 export default {
   data() {
-    return {};
+        return {
+            categories: [],
+            category_id: null,
+            image: null,
+            user_id: this.$auth.user.id,
+            image_name: '',
+            image_description: '',
+            error:null,            
+        
+    };
     },
 
     methods: {
+        async imageUpload() {
+            try {
+                await this.axios.post(`create-images`, {
+                    image_name: this.image_name,
+                    image_description: this.image_description,
+                    user_id: this.user_id,
+                    image: this.image,
+                    category_id:this.category_id,
+                }) 
+            } catch (e) {
+                this.error = e.response;
+            } 
+        },
+
         onFileChange(e) {
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length) return;
@@ -57,7 +89,7 @@ export default {
     },
 
     async getAllCategories() {
-      const { data } = await this.$axios.get("/api/auth/category-admin");
+      const { data } = await this.$axios.get("/api/auth/fetch-categories");
       this.categories = data;
       return { categories };
     },

@@ -24,7 +24,7 @@
   }
 
   body {
-    width: 80%;
+    width: 95%;
     text-align: center;
     margin-right: auto;
     margin-left: auto;
@@ -113,7 +113,7 @@
   }
 
   img {
-      width: 300px;
+      width: 30%;
       height:120px;
       margin-top: 10px;
   }

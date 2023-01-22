@@ -82,7 +82,7 @@ export default {
           user_id: this.$auth.user.id,
         });
 
-        this.$router.push(`/nigerian-wiki/${this.title.replace(/ +/g, "-")}`)
+        this.$router.push(`/nigerian-wiki/${this.title.length()}`)
       } catch (e) {
         this.error = e.response;
       }
