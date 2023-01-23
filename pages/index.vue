@@ -1,19 +1,21 @@
 <template>
   <div>
-    <hr/>
-    <div><h2 class="index-h2">Get Fact-based News On Most Popular Nigerians and Institutions</h2>
-    <div class="grid-container">
-      
-      <div v-for="post in posts" :key="post.id" id="before-headlines">
-        <NuxtLink :to="`/Nigerian-Wiki/${post.slug}`">
-          <img id="short-image" :src="baseURL + 'postimage/' + post.image" />
-          <div id="before-title">
-            <h3 id="title">{{ post.title }}</h3>
-          </div>
-          <div id="short-body">
-            <p id="short-paragraph">{{ post.description }}</p>
-          </div>
-<!--
+    <hr />
+    <div>
+      <h2 class="index-h2">
+        Get Fact-based News On Most Popular Nigerians and Institutions
+      </h2>
+      <div class="grid-container">
+        <div v-for="post in posts" :key="post.id" id="before-headlines">
+          <NuxtLink :to="`/Nigerian-Wiki/${post.slug}`">
+            <img id="short-image" :src="baseURL + 'postimage/' + post.image" />
+            <div id="before-title">
+              <h3 id="title">{{ post.title }}</h3>
+            </div>
+            <div id="short-body">
+              <p id="short-paragraph">{{ post.description }}</p>
+            </div>
+            <!--
           <div id="author-date">
             <div id="author">
               <span>By</span>
@@ -21,35 +23,68 @@
             </div>
           </div>
           -->
-        </NuxtLink>
+          </NuxtLink>
+        </div>
       </div>
     </div>
+    <hr />
+    <div>
+      <h2 class="index-h2">Explore A Large Nigerian Busineses Directory</h2>
+      <div class="grid-container">
+        <div
+          v-for="directory in directories"
+          :key="directory.id"
+          id="before-headlines"
+        >
+          <NuxtLink
+            :to="`/business-directory/${directory.user.business_name_slug}`"
+          >
+            <img id="short-image" :src="baseURL + 'postimage/' + directory.image" />
+            <div id="before-title">
+              <h3 id="title">{{ directory.user.business_name }}</h3>
+            </div>
+            <div id="short-body">
+              <p id="short-paragraph">Location: {{ directory.location }}</p>
+              <p id="short-paragraph">
+                Phone: {{ directory.user.phone_number }}
+              </p>
+              <p id="short-paragraph">Email: {{ directory.user.email }}</p>
+              <p id="short-paragraph">Website: {{ directory.website }}</p>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div>
+      <h2 class="index-h2">Search For Available Job Vacancies In Nigerian States</h2>
+      <div class="grid-container">
+        <div
+          v-for="job in jobs" :key="job.id" id="before-headlines"
+        >
+          <NuxtLink
+            :to="`/job-directory/job/${job.job_slug}`"
+          >
+           <!--<img id="short-image" :src="baseURL + 'postimage/' + directory.image" />--> 
+            <div id="before-title">
+              <h3 id="title">{{ job.title }}</h3>
+            </div>
+            <div id="short-body">
+              <p id="short-paragraph">Posted By: {{ job.user.name }}</p>
+              <p id="short-paragraph">
+                Responsilities: {{ job.function }}
+              </p>
+              <p id="short-paragraph">Location: {{ job.location }}</p>
+              <p id="short-paragraph">
+                Salary: {{job.salary}}
+              </p>
+              <p id="short-paragraph">Posted: {{getDate(job.created_at)}}</p>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
     </div>
     <hr/>
-    <div><h2 class="index-h2">Explore A Large Nigerian Busineses Directory</h2>
-    <div class="directory-container">
-    
-      <div v-for="directory in directories" :key="directory.id" class="before-directory-headlines">
-              <NuxtLink :to="`/business-directory/${directory.user.business_name_slug}`">
-                <div class="list-description">
-                  <h2 class="biz-header">
-                  {{directory.user.business_name}}
-                  </h2>
-                <div class="list-detail">
-                  <p><span class="list-contact">Location:</span> {{directory.location}}</p>
-                  <p><span class="list-contact">Phone:</span> {{directory.user.phone_number}}</p>
-                  <p><span class="list-contact">Email:</span> {{directory.user.email}}</p>
-                      <p><span class="list-contact">Website:</span> {{directory.website}}</p>
-                </div>
-                </div>           
-              </NuxtLink>          
-      </div>
-    
-      </div>
-    </div>
-    <div>
-      <job-vacancy />
-    </div>
   </div>
 </template>
 
@@ -58,22 +93,18 @@ export default {
   auth: false,
   data() {
     return {
+      jobs: [],
       posts: [],
-      next_page: null,
-      last_page: null,
-      first_page: null,
-      count:null,
       baseURL: process.env.BASE_URL || "http://localhost:8000/",
       directories: [],
-      firms:null,
     };
   },
 
-  
-    mounted() {
-      this.getPosts();
-      this.getDirectories();
-    },
+  mounted() {
+    this.getPosts();
+    this.getDirectories();
+    this.getJobs();
+  },
 
   methods: {
     getDate(datetime) {
@@ -85,10 +116,6 @@ export default {
       try {
         const { data } = await this.$axios.get(`/api/auth/posts`);
         this.posts = data.data;
-        this.next_page = data.next_page_url;  
-        this.last_page = data.last_page_url;  
-        this.first_page = data.first_page_url;
-        this.count = this.first_page[5];
         return true;
       } catch (error) {
         this.loading = false;
@@ -97,26 +124,37 @@ export default {
       }
     },
 
-    async getDirectories(){
-          this.loading = true;
+    async getDirectories() {
+      this.loading = true;
+      try {
+        const { data } = await this.$axios.get(`/api/auth/all-biz`);
+        this.directories = data.data;
+        return true;
+      } catch (error) {
+        this.loading = false;
+        this.$toast.error(error.response.data.error);
+      }
+    },
+
+     async getJobs(){
           try {
-            const { data } = await this.$axios.get(`/api/auth/all-biz`);
-            this.directories = data.data
+            const { data } = await this.$axios.get(`/api/auth/jobs`);
+            this.jobs = data.data;
             return true; 
           } catch (error) {
             this.loading = false;
+           console.log(error.response)
             this.$toast.error(error.response.data.error);
           }
         },
-
   },
 };
 </script>
 
 <style scoped>
-.index-h2{
-  text-align:left;
-  margin-top:20px;
+.index-h2 {
+  text-align: left;
+  margin-top: 20px;
 }
 .grid-container {
   display: grid;
