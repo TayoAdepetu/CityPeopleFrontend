@@ -31,6 +31,18 @@
           <textarea type="text" v-model="description" class="form-control" id="description" placeholder="Describe the product" required></textarea>
         </div>
 
+        <di>
+          <div class="image-section" v-if="!image">
+            Select an Image
+            <input type="file" multiple @change="onFileChange" />
+          </div>
+
+          <div class="image-section" v-else>
+            <img :src="image" />
+            <button @click="removeImage">Remove image</button>
+          </div>
+          </di>
+
         <button type="submit" class="btn btn-primary block">
           Publish
         </button>
@@ -52,6 +64,8 @@ export default {
       description: '',
       price:'',
       biz_location: '',
+      images: [],
+      imagepiece: null,
       error: null
     }
   },
@@ -66,7 +80,7 @@ export default {
           price: this.price,
           location: this.biz_location,
           user_id: this.$auth.user.id,
-          //image: this.onFileChange()
+          images: this.images
         })
 
         this.$router.push('/business-directory/create-directory-product')
@@ -76,9 +90,32 @@ export default {
     },
 
   onFileChange(e) {
-  var image = e.target.files || e.dataTransfer.files;
-  return this.image;
-},
+    var files = e.target.files || e.dataTransfer.files;
+    if (!files.length) return;
+    for (let i = 0; i < this.files.length; i++) {
+      //this.upload(i, this.selectedFiles[i]);
+
+      this.createImage(files[i]);
+    }
+    },
+
+    createImage(file) {
+      //let image = new Image();
+      let reader = new FileReader();
+      let imagepiece = reader.readAsDataURL(file);
+      this.images.push(imagepiece);
+
+      //for image preview 
+      reader.onload = (e) => {
+        this.image = e.target.result;
+      };
+
+    },
+
+    removeImage: function (e) {
+      this.images = [];
+    },
+  
   }
 }
 </script>

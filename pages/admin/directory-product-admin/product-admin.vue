@@ -35,7 +35,7 @@
         <td>
           {{ getDate(job.created_at) }}
         </td>   
-       <td class="action">       
+       <td class="action">
         <v-btn class="findBtn mb-4 mt-3 fullWidth"
         @click="openJobModal(job)"
         scrollable>

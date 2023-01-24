@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+    <!--for users to edit their uploaded images-->
     <div>
       <thead>
         <tr>

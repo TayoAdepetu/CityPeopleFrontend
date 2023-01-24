@@ -85,6 +85,33 @@
       </div>
     </div>
     <hr/>
+    <div>
+      <h2 class="index-h2">Buy and Sell On A Booming Nigerian E-commerce Platform</h2>
+      <div class="grid-container">
+        <div
+          v-for="product in products"
+        :key="product.id" id="before-headlines"
+        >
+          <NuxtLink
+            :to="`/job-directory/job/${product.product_name_slug}`"
+          >
+           <img id="short-image" :src="baseURL + 'productimage/' + product.image" />
+            <div id="before-title">
+              <h3 id="title">{{ product.product_name }}</h3>
+            </div>
+            <div id="short-body">
+              <p id="short-paragraph">{{ product.price }}</p>
+              <p id="short-paragraph">
+                {{ product.description }}
+              </p>
+              <p id="short-paragraph">{{ product.location }}</p>
+              
+              <p id="short-paragraph">{{getDate(product.created_at)}}</p>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -93,6 +120,7 @@ export default {
   auth: false,
   data() {
     return {
+      products:[],
       jobs: [],
       posts: [],
       baseURL: process.env.BASE_URL || "http://localhost:8000/",
@@ -104,6 +132,7 @@ export default {
     this.getPosts();
     this.getDirectories();
     this.getJobs();
+    this.getProducts();
   },
 
   methods: {
@@ -111,6 +140,20 @@ export default {
       let date = new Date(datetime).toJSON().slice(0, 10).replace(/-/g, "/");
       return date;
     },
+
+    async getProducts() 
+    {
+        try {
+          const { data } = await this.$axios.get(`/api/auth/all-products`);
+          this.products = data.data;
+          return true; 
+        } catch (error) {
+          this.loading = false;
+         console.log(error.response)
+          this.$toast.error(error.response.data.error)
+        }
+    },
+  
 
     async getPosts() {
       try {
