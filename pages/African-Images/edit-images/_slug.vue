@@ -84,7 +84,7 @@
                     :key="image_category.id"
                     :value="image_category.id"
                   >
-                    {{ category.name }}
+                    {{ image_category.name }}
                   </option>
                 </select>
               </div>
@@ -149,7 +149,6 @@ export default {
   data() {
     return {
       image_categories: [],
-      image_name: "",
       images: [],
       updateStatusModal: false,
       deletePostModal: false,
@@ -158,7 +157,7 @@ export default {
         image_name: "",
         image_description: "",
         photo_id: null,
-        location: "",
+        image_path: "",
         id: null,
         category_id: null,
       },
@@ -202,23 +201,23 @@ export default {
     },
 
     openStatusModal(image) {
-      this.selectedPost.image_name = image.name;
-      this.selectedPost.image_description = image.image_description;
-      this.selectedPost.category_id = image.category_id;
-      this.selectedPost.id = image.id;
-      this.selectedPost.photo_id = image.photo_id;
-      this.selectedPost.location = image.image_path;
+      this.selectedPost.image_name = this.image.name;
+      this.selectedPost.image_description = this.image.image_description;
+      this.selectedPost.category_id = this.image.category_id;
+      this.selectedPost.id = this.image.id;
+      this.selectedPost.photo_id = this.image.photo_id;
+      this.selectedPost.location = this.image.image_path;
 
       this.updateStatusModal = true;
     },
 
     deleteStatusModal(image) {
-      this.selectedPost.image_name = image.name;
-      this.selectedPost.image_description = image.image_description;
-      this.selectedPost.category = image.category_id;
-      this.selectedPost.id = image.id;
-      this.selectedPost.photo_id = image.photo_id;
-      this.selectedPost.location = image.image_path;
+      this.selectedPost.image_name = this.image.name;
+      this.selectedPost.image_description = this.image.image_description;
+      this.selectedPost.category = this.image.category_id;
+      this.selectedPost.id = this.image.id;
+      this.selectedPost.photo_id = this.image.photo_id;
+      this.selectedPost.location = this.image.image_path;
 
       this.deletePostModal = true;
     },
@@ -227,14 +226,12 @@ export default {
       this.loading = true;
 
       const { data } = await this.$axios.put(
-        `/api/auth/update-categories/${this.selectedPost.id}`,
+        `/api/auth/update-categories/${this.selectedPost.location}`,
         {
           image_name: this.selectedPost.image_name,
           image_description: this.selectedPost.image_description,
           category_id: this.selectedPost.category_id,
-          id: this.selectedPost.id,
-          photo_id: this.selectedPost.photo_id,
-          location: this.selectedPost.location,
+          image_path: this.selectedPost.location,
         }
       );
 
@@ -246,10 +243,10 @@ export default {
 
     async deletePost() {
       await this.$axios.post(
-        `/api/auth/delete-categories/${this.selectedPost.id}`
+        `/api/auth/delete-images/${this.selectedPost.location}`
       );
       this.deleteStatusModal = false;
-      this.getPosts();
+      this.getAllImages();
     },
 
    

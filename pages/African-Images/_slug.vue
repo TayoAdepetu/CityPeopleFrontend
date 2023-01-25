@@ -2,7 +2,7 @@
   <div>
     <!--Showing individual images in frontend-->
     <div>
-      <img :src="baseURL + 'productimage/' + image.image_path" />
+      <img :src="baseURL + 'postimage/' + image.image_path" />
       <div>{{ image.image_name }}</div>
       <div>{{ image.image_description }}</div>
     </div>
@@ -40,7 +40,7 @@ export default {
       },
 
       downloadImage() {
-        
+          return this.$axios.get(`/api/auth/download-image/${this.image.image_path}`);
       },
 
     getDate(datetime) {

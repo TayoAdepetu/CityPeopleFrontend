@@ -39,7 +39,10 @@
           <NuxtLink
             :to="`/business-directory/${directory.user.business_name_slug}`"
           >
-            <img id="short-image" :src="baseURL + 'postimage/' + directory.image" />
+            <img
+              id="short-image"
+              :src="baseURL + 'postimage/' + directory.image"
+            />
             <div id="before-title">
               <h3 id="title">{{ directory.user.business_name }}</h3>
             </div>
@@ -57,45 +60,45 @@
     </div>
     <hr />
     <div>
-      <h2 class="index-h2">Search For Available Job Vacancies In Nigerian States</h2>
+      <h2 class="index-h2">
+        Search For Available Job Vacancies In Nigerian States
+      </h2>
       <div class="grid-container">
-        <div
-          v-for="job in jobs" :key="job.id" id="before-headlines"
-        >
-          <NuxtLink
-            :to="`/job-directory/job/${job.job_slug}`"
-          >
-           <!--<img id="short-image" :src="baseURL + 'postimage/' + directory.image" />--> 
+        <div v-for="job in jobs" :key="job.id" id="before-headlines">
+          <NuxtLink :to="`/job-directory/job/${job.job_slug}`">
+            <!--<img id="short-image" :src="baseURL + 'postimage/' + directory.image" />-->
             <div id="before-title">
               <h3 id="title">{{ job.title }}</h3>
             </div>
             <div id="short-body">
               <p id="short-paragraph">Posted By: {{ job.user.name }}</p>
-              <p id="short-paragraph">
-                Responsilities: {{ job.function }}
-              </p>
+              <p id="short-paragraph">Responsilities: {{ job.function }}</p>
               <p id="short-paragraph">Location: {{ job.location }}</p>
-              <p id="short-paragraph">
-                Salary: {{job.salary}}
-              </p>
-              <p id="short-paragraph">Posted: {{getDate(job.created_at)}}</p>
+              <p id="short-paragraph">Salary: {{ job.salary }}</p>
+              <p id="short-paragraph">Posted: {{ getDate(job.created_at) }}</p>
             </div>
           </NuxtLink>
         </div>
       </div>
     </div>
-    <hr/>
+    <hr />
     <div>
-      <h2 class="index-h2">Buy and Sell On A Booming Nigerian E-commerce Platform</h2>
+      <h2 class="index-h2">
+        Buy and Sell On A Booming Nigerian E-commerce Platform
+      </h2>
       <div class="grid-container">
         <div
           v-for="product in products"
-        :key="product.id" id="before-headlines"
+          :key="product.id"
+          id="before-headlines"
         >
           <NuxtLink
-            :to="`/job-directory/job/${product.product_name_slug}`"
+            :to="`/business-directory/directory-product/${product.product_name_slug}`"
           >
-           <img id="short-image" :src="baseURL + 'productimage/' + product.image" />
+            <img
+              id="short-image"
+              :src="baseURL + 'productimage/' + product.image"
+            />
             <div id="before-title">
               <h3 id="title">{{ product.product_name }}</h3>
             </div>
@@ -105,9 +108,23 @@
                 {{ product.description }}
               </p>
               <p id="short-paragraph">{{ product.location }}</p>
-              
-              <p id="short-paragraph">{{getDate(product.created_at)}}</p>
+
+              <p id="short-paragraph">{{ getDate(product.created_at) }}</p>
             </div>
+          </NuxtLink>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div>
+      <h2 class="index-h2">Download The Most Beautiful, Free African Images</h2>
+      <div class="grid-container">
+        <div v-for="image in images" :key="image.id" id="before-headlines">
+          <NuxtLink :to="`/african-images/${image.image_path}`">
+            <img
+              id="short-image"
+              :src="baseURL + 'postimage/' + image.image_path"
+            />
           </NuxtLink>
         </div>
       </div>
@@ -120,9 +137,10 @@ export default {
   auth: false,
   data() {
     return {
-      products:[],
+      products: [],
       jobs: [],
       posts: [],
+      images: [],
       baseURL: process.env.BASE_URL || "http://localhost:8000/",
       directories: [],
     };
@@ -133,6 +151,7 @@ export default {
     this.getDirectories();
     this.getJobs();
     this.getProducts();
+    this.getImages();
   },
 
   methods: {
@@ -141,19 +160,17 @@ export default {
       return date;
     },
 
-    async getProducts() 
-    {
-        try {
-          const { data } = await this.$axios.get(`/api/auth/all-products`);
-          this.products = data.data;
-          return true; 
-        } catch (error) {
-          this.loading = false;
-         console.log(error.response)
-          this.$toast.error(error.response.data.error)
-        }
+    async getProducts() {
+      try {
+        const { data } = await this.$axios.get(`/api/auth/all-products`);
+        this.products = data.data;
+        return true;
+      } catch (error) {
+        this.loading = false;
+        console.log(error.response);
+        this.$toast.error(error.response.data.error);
+      }
     },
-  
 
     async getPosts() {
       try {
@@ -179,17 +196,29 @@ export default {
       }
     },
 
-     async getJobs(){
-          try {
-            const { data } = await this.$axios.get(`/api/auth/jobs`);
-            this.jobs = data.data;
-            return true; 
-          } catch (error) {
-            this.loading = false;
-           console.log(error.response)
-            this.$toast.error(error.response.data.error);
-          }
-        },
+    async getJobs() {
+      try {
+        const { data } = await this.$axios.get(`/api/auth/jobs`);
+        this.jobs = data.data;
+        return true;
+      } catch (error) {
+        this.loading = false;
+        console.log(error.response);
+        this.$toast.error(error.response.data.error);
+      }
+    },
+
+    async getImages() {
+      try {
+        const { data } = await this.$axios.get(`/api/auth/fetch-images`);
+        this.images = data.data;
+        return true;
+      } catch (error) {
+        this.loading = false;
+        console.log(error.response);
+        this.$toast.error(error.response.data.error);
+      }
+    },
   },
 };
 </script>

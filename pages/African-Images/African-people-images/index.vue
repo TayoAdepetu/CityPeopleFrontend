@@ -4,7 +4,7 @@
         <div class="grid-container">
         <div v-for="image in images" :key="image.id" id="before-headlines">
           
-          <NuxtLink :to="`/Nigerian-Wiki/${image.slug}`">
+          <NuxtLink :to="`/african-images/${image.image_path}`">
             
             <img id="short-image" :src="baseURL + 'postimage/' + image.image_path">
               <div id="before-title">
