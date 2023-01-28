@@ -1,0 +1,48 @@
+/* title color: 
+text color: 
+success color: 
+background color: 
+grey: 
+extra grey
+*/
+
+:root{
+    --darkest:#14171A;
+    --darker:#657786;
+    --dark:#AAB8C2;
+    --lightest:#ffffff;
+    --lighter:#F5F8FA;
+    --light:#E1E8ED;
+    --red:red;
+    --yellow:#ffcf00;
+    --teal:cornflowerblue;
+    --dark-blue:#036;
+
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    text-decoration: none;
+    color: var(--dark-blue);
+}
+
+body{
+    min-height: 100vh;
+    background-color: var(--lightest);
+    width: 100%;
+    text-align: center;
+}
+.flex{
+    display: flex;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+.space-around{
+    justify-content: space-around;
+}
+

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <hr />
+    <div class="nav-align">
     <div>
       <h2 class="index-h2">
         Get Fact-based News On Most Popular Nigerians and Institutions
@@ -129,6 +129,7 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 </template>
 
@@ -224,9 +225,14 @@ export default {
 </script>
 
 <style scoped>
+.nav-align{
+  margin:20px;
+  margin-top:50px;
+}
 .index-h2 {
   text-align: left;
   margin-top: 20px;
+  font-size:1.5rem;
 }
 .grid-container {
   display: grid;
@@ -242,23 +248,21 @@ export default {
   border-width: 2px;
   border-style: solid;
   border-color: #c20017;
+  width:250px;
 }
 
-#short-body {
-  margin-top: 1px;
+#short-body, #before-title {
+  margin-top: 4px;
+  margin-right:4px;
+  margin-left:4px;
+}
+
+#short-paragraph{
+  word-wrap: break-word;
 }
 
 #title {
-  margin-bottom: 1px;
   color: #c20017;
-}
-
-#short-paragraph {
-  width: auto;
-  font-size: 14px;
-  text-align: center;
-  margin-left: 4px;
-  margin-right: 4px;
 }
 
 #short-image {
@@ -266,40 +270,73 @@ export default {
   height: 220px;
   margin-top: 0px;
 }
-
-#author-date {
-  display: flex;
-  margin-bottom: 0;
-  justify-content: space-between;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: auto !important;
+@media screen and (max-width: 1270px) {
+  .grid-container {
+    grid-template-columns: auto auto auto auto;
+  }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1100px) {
+  .grid-container {
+    grid-template-columns: auto auto auto;
+  }
+
+  #before-headlines {
+  width:300px;
+}
+}
+
+@media screen and (max-width: 900px) {
   .grid-container {
     grid-template-columns: auto auto;
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 650px) {
   .grid-container {
-    grid-template-columns: auto;
-    max-width: 60%;
+    grid-template-columns: auto auto;
   }
+
+  #before-headlines {
+  width:230px;
+}
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 515px) {
   .grid-container {
-    grid-template-columns: auto;
-    max-width: 80%;
+    grid-template-columns: auto auto;
   }
+
+  #before-headlines {
+  width:220px;
+}
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 498px) {
   .grid-container {
     grid-template-columns: auto;
-    max-width: 90%;
   }
+
+  #before-headlines {
+  width:300px;
+  margin-right:auto;
+  margin-left:auto;
 }
+
+p{
+  font-size:15px;
+}
+
+.index-h2{
+  text-align:center;
+}
+}
+
+
+@media screen and (max-width: 300px) {
+p{
+  font-size:17px;
+}
+}
+
 </style>

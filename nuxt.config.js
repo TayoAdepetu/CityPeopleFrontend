@@ -26,12 +26,10 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ["./assets/styles/responsive.css", "./assets/styles/default.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    { src: "@/plugins/echo", mode: "client" },
-  ],
+  plugins: [{ src: "@/plugins/echo", mode: "client" }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

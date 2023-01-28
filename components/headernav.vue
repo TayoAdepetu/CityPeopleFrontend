@@ -1,174 +1,293 @@
 <template>
-    <div class="nav-align">
-     
-      <H1>The CityPeople</H1>
-   
-  <section id="Mainheading">
-    
-  <H2>The Fact-based Wiki For Nigerian Peeps, Institutions, and Businesses</H2>
-  <p>{{time}}</p>
-  <hr>
-    <p><NuxtLink to="#">Politics</NuxtLink> | <NuxtLink to="#">Entertainment</NuxtLink> | <NuxtLink to="#">Sports</NuxtLink> | <NuxtLink to="#">Technology</NuxtLink> | <NuxtLink to="#">Private Sector</NuxtLink> | <NuxtLink to="#">Events</NuxtLink> | <NuxtLink to="#">Others</NuxtLink></p>
-    <hr>
+  <div class="nav-align">
+    <nav class="flex word-size">
+      <div class="logo"><NuxtLink to="/index">The CityPeople</NuxtLink></div>
 
-    <template v-if="user">
-      <span>Welcome, <NuxtLink to="/admin/dashboard">{{ user.name }}</NuxtLink>.</span> | <span><NuxtLink to="/admin/dashboard">Dashboard</NuxtLink></span> |
-      <span><NuxtLink to="#">Check Us On Twitter</NuxtLink></span> | <span class="logout" @click="logout">Logout</span>
-    </template>
-
-    <template v-else>
-      <span>Welcome, Guest</span> | <span><NuxtLink to="/login">Login</NuxtLink></span> | <span><NuxtLink to="/register">Signup</NuxtLink></span> | <span><NuxtLink to="#">Check Us On Twitter</NuxtLink></span>
-    </template>
- <!--
-    <div id="form">
-      <form class="example" @submit.prevent="searchBiz">
-        <input
-            type="text"
-            placeholder="Search by name of article, event, institution..."
-            v-model="keyword"
-          />
-         
-          <select v-model="item" required>
-            <option :value="null" disabled hidden>Pick Search Category...</option>
-            <option value="username"><button >Search For A User</button></option>
-            <option value="business"><button>Search For A Business</button></option>
-            <option value="article"><button>Search For An Article</button></option>
-            <option value="product"><button>Search For A Product</button></option>
-          </select>
-
-        <button type="submit">Find User</button>
-      </form>
-    </div>
-    <div id="form">
-    <form class="example" @submit.prevent="searchBiz">
-      <div class="picker">
-        <input
-            type="text"
-            placeholder="Search by name of article, event, institution..."
-            readonly
-          />
-          <select v-model="item" required>
-            <option :value="null" disabled hidden>Pick Search Category...</option>
-            <option value="username"><button >Search For A User</button></option>
-            <option value="business"><button>Search For A Business</button></option>
-            <option value="article"><button>Search For An Article</button></option>
-            <option value="product"><button>Search For A Product</button></option>
-          </select>
+      <nav v-if="user" class="flex">
+        <div class="flex pre-name">
+          Welcome
+          <NuxtLink to="/admin/dashboard"
+            ><span class="user-greeting">, {{ user.name }}</span></NuxtLink
+          >
         </div>
-
-<div class="input-action" v-if="(item != null)">
-
-          <div v-if="(item == 'username')">
-          <input
-            type="text"
-            placeholder="Search by name of a user..."
-            v-model="keyword"
-          />
-          <button type="submit">Find User</button>
+        <div class="flex space-between">
+          <NuxtLink to="/admin/dashboard">Dashboard</NuxtLink>
+          <NuxtLink to="#">Check Us On Twitter</NuxtLink>
+          <span class="logout" @click="logout">Logout</span>
         </div>
+      </nav>
 
-        <div v-if="(item == 'business')">
-          <input
-            type="text"
-            placeholder="Search by name of a business..."
-            v-model="keyword"
-          />
-          <button type="submit">Find Business</button>
+      <nav v-else class="flex">
+        <div class="flex pre-name">
+          Welcome<span class="user-greeting">, Guest</span>
         </div>
+        <div class="flex space-between">
+          <nuxt-link to="/login">Login</nuxt-link>
+          <NuxtLink to="/register">Signup</NuxtLink>
+          <NuxtLink to="#">Check Us On Twitter</NuxtLink>
+        </div>
+      </nav>
+    </nav>
 
-        <div v-if="(item == 'business')">
-          <input
-            type="text"
-            placeholder="Search by name of a business..."
-            v-model="keyword"
-          />
-          <button type="submit">Find Business</button>
-        </div>
-
-        <div v-if="(item == 'article')">
-          <input
-            type="text"
-            placeholder="Search by name of article, event, institution..."
-            v-model="keyword"
-          />
-          <button type="submit">Search Topic</button>
-        </div>
-
-        <div v-if="(item == 'product')">
-          <input
-            type="text"
-            placeholder="Search by name of product..."
-            v-model="keyword"
-          />
-          <button type="submit">Find Product</button>
-        </div>
+    <div class="flex hero">
+      <div class="hero-head">
+        <H2 class="head"
+          >The Fact-based Wiki For Nigerian Peeps, Institutions, and Businesses
+        </H2>
+        <p class="sub-head">
+          We give you the fact. You decide what to do with it.
+        </p>
       </div>
-
-
-            </form>
-            </div>
-            -->
-  </section>
-  
-  <section id="Mainheading">
-    <H2>Nigerian State Gists</H2>
-    <hr>
-<NuxtLink to="#">Lagos</NuxtLink> | <NuxtLink to="#">Ogun</NuxtLink> | <NuxtLink to="#">Oyo</NuxtLink> | <NuxtLink to="#">Osun</NuxtLink> | <NuxtLink to="#">Ondo</NuxtLink> | <NuxtLink to="#">Ekiti</NuxtLink> | <NuxtLink to="#">National</NuxtLink> | <NuxtLink to="#">International</NuxtLink>
-  
-  </section>
-  
-  <section id="Mainheading">
-    <h2>Other Trending Categories</h2>
-    <hr>
-    <p><NuxtLink to="#">How To Make Money In Nigeria</NuxtLink> | <NuxtLink to="/secret-anonymous">Stories: Share Secrets Anonymously</NuxtLink> | <NuxtLink to="#">FundHelp</NuxtLink> | <NuxtLink to="#">LendMe</NuxtLink> | <NuxtLink to="#">African Images</NuxtLink> | <NuxtLink to="#">Nigerian Business Directory</NuxtLink> | <NuxtLink to="#">Artisans Directory</NuxtLink> | <NuxtLink to="#">Job Vacancy Board</NuxtLink></p>
-  </section>
-  <section id="up-page-adverts">
-  <img class="img-1" src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/school-education-facebook-advert-template-design-1698c73ba3f3379f8c8bc4ea77a6abd3_screen.jpg?ts=1612251729">
-  <img class="img-2" src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/school-education-facebook-advert-template-design-1698c73ba3f3379f8c8bc4ea77a6abd3_screen.jpg?ts=1612251729">
-  <img class="img-3" src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/school-education-facebook-advert-template-design-1698c73ba3f3379f8c8bc4ea77a6abd3_screen.jpg?ts=1612251729">
-  </section>
+      <div>
+        <img
+          class="map"
+          src="../assets/images/Nigeria-Map.jpg"
+          alt="Nigerian Map"
+        />
+      </div>
     </div>
-  </template>
-  
+
+    <hr class="hero-end-horizontal" />
+  </div>
+</template>
 
 <script>
-  export default {
-    
-    data () {
-      return {
-        time: Date(),
-        user: this.$auth.user,
-        //https://stackoverflow.com/questions/40375602/placeholder-for-select-in-vuejs-2-0-0
-        item:null,
-        keyword:"",
-        results:null,
-        search:false,
-      }
+export default {
+  data() {
+    return {
+      time: Date(),
+      user: this.$auth.user,
+      //https://stackoverflow.com/questions/40375602/placeholder-for-select-in-vuejs-2-0-0
+      item: null,
+      keyword: "",
+      results: null,
+      search: false,
+    };
+  },
 
+  methods: {
+    async logout() {
+      console.log("logout");
+      await this.$axios.$post("/api/auth/logout");
+      this.$router.push("/");
     },
 
-    methods: {   
-      
-      async logout () {
-        console.log('logout')
-        await this.$axios.$post('/api/auth/logout')
-        this.$router.push('/')
-      },
+    async searchBiz() {
+      this.loading = true;
+      this.$toast.info("Searching...");
+      try {
+        const { data } = await this.$axios.get(
+          `/api/auth/search-web/${this.keyword}`
+        );
+        this.results = data;
+        this.toast.success("Results found...");
+        return { results };
+      } catch (error) {
+        this.loading = false;
+        this.$toast.error(error.response.data.error);
+      }
+    },
+  },
+};
+</script>
 
-      async searchBiz(){
-          this.loading = true;
-          this.$toast.info('Searching...');
-          try {
-            const { data } = await this.$axios.get(`/api/auth/search-web/${this.keyword}`);
-            this.results = data
-            this.toast.success('Results found...');
-            return {results};
-          } catch (error) {
-            this.loading = false;
-            this.$toast.error(error.response.data.error);
-          }
-        },
+<style scoped>
+.user-greeting {
+  color: var(--yellow) !important;
+}
 
-    }
+.pre-name {
+  color: var(--lightest) !important;
+}
+
+.v-application a {
+  color: var(--lightest) !important;
+}
+.logo {
+  margin-right: 100px;
+}
+
+.map {
+  width: 600px;
+  height: 50vh;
+}
+
+.word-size {
+  font-size: 20px;
+  background-color: var(--dark-blue);
+  padding: 20px;
+}
+
+.hero {
+  height: 50vh;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 50px;
+}
+
+.hero-head {
+  text-align: left;
+  justify-content: center;
+}
+
+.head {
+  font-size: 40px;
+}
+
+.sub-head {
+  font-size: 20px;
+}
+
+@media screen and (max-width: 1190px) {
+  .head {
+    font-size: 35px;
   }
-  </script>
+}
+
+@media screen and (max-width: 1155px) {
+  .map {
+    width: 550px;
+  }
+}
+
+@media screen and (max-width: 1066px) {
+  .map {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 1004px) {
+  .head {
+    font-size: 30px;
+  }
+
+  .sub-head {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 905px) {
+  .head {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .map {
+    width: 450px;
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .map {
+    width: 400px;
+  }
+
+  .sub-head {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 723px) {
+  .map {
+    width: 350px;
+  }
+
+  .sub-head {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .hero {
+    width: 90%;
+  }
+
+  .map {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .hero {
+    width: 95%;
+    margin-bottom: 0;
+  }
+
+  .map {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 504px) {
+  .head {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 446px) {
+  .map {
+    width: 250px;
+  }
+
+  .sub-head {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 392px) {
+  .hero {
+    height: 40vh;
+  }
+
+  .sub-head {
+    font-size: 12px;
+  }
+
+  .head {
+    font-size: 20px;
+  }
+
+  .map {
+    width: 200px;
+    height: 40vh;
+  }
+}
+
+@media screen and (max-width: 353px) {
+  .map {
+    width: 195px;
+  }
+
+  .head {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 310px) {
+  .map {
+    width: 180px;
+  }
+
+  .head {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 285px) {
+  .map {
+    display: none;
+  }
+
+  .head {
+    text-align: center;
+    font-size: 28px;
+  }
+
+  .sub-head {
+    text-align: center;
+    font-size: 16px;
+  }
+}
+</style>
