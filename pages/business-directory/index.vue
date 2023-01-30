@@ -45,7 +45,7 @@
           this.loading = true;
           try {
             const { data } = await this.$axios.get(`/api/auth/all-biz`);
-            this.directories = data
+            this.directories = data.data;
             return true; 
           } catch (error) {
             this.loading = false;

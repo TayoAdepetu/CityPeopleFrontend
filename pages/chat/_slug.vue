@@ -1,5 +1,6 @@
 <template>
     <div>
+        <!--contains all previous messages and a form-->
         <div class="message-area" ref="message">
         <MessageComponent 
             v-for="message in messages" 
@@ -30,7 +31,7 @@
 
 <script>
 //import Echo from '../../../echo.js';
-    export default {
+export default {
         data() {
             return {
                 messages: [],

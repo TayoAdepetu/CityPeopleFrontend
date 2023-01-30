@@ -106,14 +106,17 @@ export default {
   justify-content: space-between;
   display: flex;
   gap: 2px;
+  margin: 20px;
 }
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto auto;
   grid-column-gap: 2.5%;
-  max-width: 80%;
+  max-width: 100%;
   margin-right: auto;
   margin-left: auto;
+  margin: 20px;
+  margin-top: 60px;
 }
 
 #before-headlines {
@@ -121,23 +124,21 @@ export default {
   border-width: 2px;
   border-style: solid;
   border-color: #c20017;
+  width:250px;
 }
 
-#short-body {
-  margin-top: 1px;
+#short-body, #before-title {
+  margin-top: 4px;
+  margin-right:4px;
+  margin-left:4px;
+}
+
+#short-paragraph{
+  word-wrap: break-word;
 }
 
 #title {
-  margin-bottom: 1px;
   color: #c20017;
-}
-
-#short-paragraph {
-  width: auto;
-  font-size: 14px;
-  text-align: center;
-  margin-left: 4px;
-  margin-right: 4px;
 }
 
 #short-image {
@@ -146,39 +147,79 @@ export default {
   margin-top: 0px;
 }
 
-#author-date {
-  display: flex;
-  margin-bottom: 0;
-  justify-content: space-between;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: auto !important;
+@media screen and (max-width: 1270px) {
+  .grid-container {
+    grid-template-columns: auto auto auto auto;
+  }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1100px) {
+  .grid-container {
+    grid-template-columns: auto auto auto;
+  }
+
+  #before-headlines {
+  width:300px;
+}
+}
+
+@media screen and (max-width: 960px) {
   .grid-container {
     grid-template-columns: auto auto;
   }
+
+  #before-headlines {
+  width:40vw;
+}
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 650px) {
   .grid-container {
-    grid-template-columns: auto;
-    max-width: 60%;
+    grid-template-columns: auto auto;
   }
+
+  #before-headlines {
+  width:230px;
+}
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 515px) {
   .grid-container {
-    grid-template-columns: auto;
-    max-width: 80%;
+    grid-template-columns: auto auto;
   }
+
+  #before-headlines {
+  width:220px;
+}
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 498px) {
   .grid-container {
     grid-template-columns: auto;
-    max-width: 90%;
   }
+
+  #before-headlines {
+  width:70vw;
+  margin-right:auto;
+  margin-left:auto;
 }
+
+p{
+  font-size:15px;
+}
+}
+
+
+@media screen and (max-width: 300px) {
+p{
+  font-size:17px;
+}
+}
+
+@media screen and (max-width: 350px) {
+#before-headlines{
+  width:80vw;
+}
+}
+
 </style>

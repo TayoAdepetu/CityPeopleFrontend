@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  //auth: 'guest',
+  auth: 'guest',
   data() {
     return {
       form: {
@@ -122,7 +122,7 @@ input {
 }
 
 .registerbtn {
-  background-color: #c20017;
+  background-color:var(--red);
   padding: 16px;
   color: #036;
   border: none;

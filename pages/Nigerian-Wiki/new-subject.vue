@@ -31,8 +31,8 @@
           required
         ></textarea>
 
-        <div class="picking">
-        <select v-model="category_id" id="slug">
+        <div>
+        <select v-model="category_id" class="picking">
           <option :value="undefined">Pick a Category 👇</option>
           <option
             v-for="category in categories"
@@ -55,6 +55,7 @@
 
 <script scoped>
 export default {
+  auth: false,
   middleware: "ispublisher",
   layout: "admin",
   data() {
@@ -102,6 +103,10 @@ export default {
 </script>
 
 <style scoped>
+.container{
+  margin: 10vw;
+  width: 80vw;
+}
 .image-section {
   margin-bottom: 6px;
   margin-top: 6px;
@@ -109,16 +114,9 @@ export default {
 .picking {
   text-align: left;
 }
-form,
-textarea {
-  border: 2px;
-  border-style: solid;
-  border-radius: 2px;
-  width: 99%;
-}
 
-#title,
-#slug {
+#title, .picking,
+#slug, textarea {
   border: 2px;
   border-style: solid;
   border-radius: 2px;
@@ -126,21 +124,15 @@ textarea {
   width: 99%;
   margin-bottom: 5px;
   margin-top: 5px;
+  padding: 10px;
 }
 
 #description {
   max-height: 300px;
 }
 
-.body {
+#body-text {
   min-height: 700px;
-}
-
-#title,
-#slug,
-#description,
-.body {
-  padding: 2px;
 }
 
 .btn {

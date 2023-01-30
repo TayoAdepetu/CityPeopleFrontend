@@ -1,14 +1,17 @@
 <template>
     <div>
-        <form @submit.prevent="verifyUserEmail">
+        <div class="container">
+        <form class="form-field" @submit.prevent="verifyUserEmail">
         <input v-model="code" type="number" placeholder="paste verification code here"/>
-        <button>Verify Email</button>
+        <button class="registerbtn">Verify Email</button>
         </form>
+    </div>
     </div>
 </template>
 <script>
 
 export default {
+    auth: false,
     data() {
         return{
             code:null,
@@ -34,3 +37,42 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.container{
+    margin-top:60px;
+    display:block;
+}
+.form-field {
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  display:block;
+}
+
+input {
+  width: 100%;
+  padding: 15px 5px;
+  margin: 5px;
+  border: none;
+  background: whitesmoke;
+  font-size: small;
+  color: #036;
+  display: block;
+}
+
+.registerbtn {
+  background-color:var(--red);
+  padding: 16px;
+  color: #036;
+  border: none;
+  width: 100%;
+  margin: auto;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.registerbtn:hover {
+  opacity: 0.9;
+}
+</style>

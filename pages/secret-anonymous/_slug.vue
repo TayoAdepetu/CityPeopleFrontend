@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>
+        <div class="secret-container">
            
                     <h3> {{ secret.title }} </h3>
                     <p class="full-secret-description"> {{ secret.description }} </p>           
@@ -41,8 +41,13 @@ export default {
 </script>
 
 <style scoped>
+.secret-container{
+    margin: 10vw;
+    word-wrap: break-word;
+}
 .full-secret-description{
     text-align: left;
+    text-align: justify;
 }
 
 .real-secret-author-date{

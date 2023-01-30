@@ -1,27 +1,26 @@
 <template>
     <div>
+      <h2 class="index-h2">Adverrtise Job Vacancies In Your Firm For Free</h2>
       <div class="posts-container">
     
       <div v-for="job in jobs" :key="job.id" id="before-headlines">
-            <div id="headlines">
+            
               <NuxtLink :to="`/job-directory/job/${job.job_slug}`">
                   
-                  <div class="list-description">
+                  
                     <h3 style="color:red;"> {{ job.title }} </h3>
-                    <p><span class="list-contact"> Posted By:</span> {{ job.user.name }}</p>
-                    <p><span class="list-contact">Responsilities:</span> {{ job.function }}</p> 
-                    <div class="list-detail">
-                       <div id="author"><span class="list-contact">Location:</span> {{ job.location }}</div>
-                       <div><span class="list-contact"> Posted:</span> {{getDate(job.created_at)}} </div>
-                       <div id="category-tag"><span class="list-contact">Salary:</span> {{job.salary}} </div>
-                    </div>
+                    <p>{{ job.user.name }}</p>
+                  
+                       <div class="job-description">{{ job.location }}</div>
+                       <div class="job-description">{{getDate(job.created_at)}}</div>
+                       <div class="job-description">{{job.salary}}</div>
+                
                     <div class="job-description">
-                    <p> {{ job.description }} </p>
+                    <p>{{ job.description }} </p>
                   </div>
                   
-                </div>             
               </NuxtLink>
-            </div>
+          
             
       </div>
     
@@ -49,7 +48,7 @@
         async getJobs(){
           try {
             const { data } = await this.$axios.get(`/api/auth/jobs`);
-            this.jobs = data
+            this.jobs = data.data;
             return true; 
           } catch (error) {
             this.loading = false;
@@ -69,45 +68,77 @@
     </script>
 
 <style>
-.list-detail{
-  display:flex;
-  justify-content: space-between;
-}
-  
-.list-description {
-  border: 2px solid #036;
-  margin-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: #F7F5F4;
-  margin-bottom: 3px !important;
-  text-align: left;
+.index-h2{
+  margin-bottom:10px;
+  margin-top: 60px;
 
 }
+.posts-container{
+  margin: 20px;
+  word-wrap: break-word;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 2.5%;
+}
 
-.list-contact{
-font-weight: bold;
-
+#before-headlines {
+  margin-bottom: 20px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #c20017;
+  width:30vw;
+  padding:4px;
 }
 
 .job-description{
-  margin-top: 3px; 
+  margin: 3px; 
   border: 1px solid #036;
   border-radius: 5px;
-  padding-left: 3px;
-  padding-right: 3px;
+  padding:4px;
   background-color: #F7F5F4;
-  margin-bottom: 3px !important;
   text-align: center;
 }
 
-@media screen and (max-width: 600px) {
-  .list-description{
-    display:block;
+
+@media screen and (max-width: 1150px) {
+  .posts-container {
+    grid-template-columns: auto auto;
   }
 
-  .list-detail{
-    display: block;
+  #before-headlines {
+  width:40vw;
+}
+}
+
+@media screen and (max-width: 990px) {
+  .posts-container {
+    grid-template-columns: auto auto;
   }
+
+  #before-headlines {
+  width:45vw;
+}
+}
+
+@media screen and (max-width: 670px) {
+  .posts-container {
+    grid-template-columns: auto;
+  }
+
+  #before-headlines {
+  width:70vw;
+  margin-right: auto;
+  margin-left: auto;
+}
+}
+
+@media screen and (max-width: 550px) {
+  .posts-container {
+    grid-template-columns: auto;
+  }
+
+  #before-headlines {
+  width:90vw;
+}
 }
 </style>

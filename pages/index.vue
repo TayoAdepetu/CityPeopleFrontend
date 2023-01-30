@@ -247,7 +247,7 @@ export default {
   margin-bottom: 20px;
   border-width: 2px;
   border-style: solid;
-  border-color: #c20017;
+  border-color: var(--yellow);
   width:250px;
 }
 
@@ -286,10 +286,14 @@ export default {
 }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 960px) {
   .grid-container {
     grid-template-columns: auto auto;
   }
+
+  #before-headlines {
+  width:40vw;
+}
 }
 
 @media screen and (max-width: 650px) {
@@ -318,7 +322,7 @@ export default {
   }
 
   #before-headlines {
-  width:300px;
+  width:70vw;
   margin-right:auto;
   margin-left:auto;
 }
@@ -336,6 +340,12 @@ p{
 @media screen and (max-width: 300px) {
 p{
   font-size:17px;
+}
+}
+
+@media screen and (max-width: 350px) {
+#before-headlines{
+  width:80vw;
 }
 }
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-
+<!--Lists all chats for each user-->
     <div class="col-md-4">
     <div class="card">
         <div class="card-header">Users</div>
@@ -59,7 +59,7 @@
 
 <script>
 //import Event from '../event.js';
-    export default {
+export default {
         data() {
             return {
                 updateJobModal: false,
