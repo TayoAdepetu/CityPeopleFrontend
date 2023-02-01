@@ -13,6 +13,10 @@
         </NuxtLink>
       </div>
     </div>
+    <div class="pagination">
+      <button class="paginate" @click.prevent="moveBack()">Previous List</button
+      ><button class="paginate" @click.prevent="moveFront()">Next List</button>
+    </div>
   </div>
 </template>
 
@@ -21,6 +25,10 @@ export default {
   data() {
     return {
       secrets: [],
+      previous_page: null,
+      next_page: null,
+      last_page: null,
+      first_page: null,
     };
   },
 
@@ -30,16 +38,41 @@ export default {
       return date;
     },
 
-    async getSecrets() {
+    async getSecrets(page) {
+      page = page || "all-secrets?page=1";
       try {
-        const { data } = await this.$axios.get(`/api/auth/all-secrets`);
-        this.secrets = data;
+        const { data } = await this.$axios.get(`/api/auth/${page}`);
+        this.secrets = data.data;
+        this.first_page = data.first_page_url.split("/")[5];
+        this.last_page = data.last_page_url.split("/")[5];
+
+        if (data.prev_page_url != null) {
+          this.previous_page = data.prev_page_url.split("/")[5];
+        } else {
+          this.previous_page = data.last_page_url.split("/")[5];
+        }
+
+        if (data.next_page_url != null) {
+          this.next_page = data.next_page_url.split("/")[5];
+        } else {
+          this.next_page = data.first_page_url.split("/")[5];
+        }
         return true;
       } catch (error) {
         this.loading = false;
         console.log(error.response);
         this.$toast.error(error.response.data.error);
       }
+    },
+
+    moveFront() {
+      this.page = this.next_page;
+      this.getPosts(this.page);
+    },
+
+    moveBack() {
+      this.page = this.previous_page;
+      this.getPosts(this.page);
     },
   },
 
@@ -51,6 +84,17 @@ export default {
 
 <
 <style scoped>
+.paginate {
+  width: 20%;
+  padding: 3px;
+  background-color: aqua;
+}
+.pagination {
+  justify-content: space-between;
+  display: flex;
+  gap: 2px;
+  margin: 20px;
+}
 .index-h2 {
   margin-top: 60px;
 }

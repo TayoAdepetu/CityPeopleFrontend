@@ -1,32 +1,39 @@
 <template>
   <div>
-    <!--Display all subject articles-->
+    
     <div class="grid-container">
-      <div v-for="post in posts" :key="post.id" id="before-headlines">
-        <NuxtLink :to="`/Nigerian-Wiki/${post.slug}`">
-          <img id="short-image" :src="baseURL + 'postimage/' + post.image" />
-          <div id="before-title">
-            <h3 id="title">{{ post.title }}</h3>
-          </div>
-          <div id="short-body">
-            <p id="short-paragraph">{{ post.description }}</p>
-          </div>
-<!--
-          <div id="author-date">
-            <div id="author">
-              <span>By</span>
-              <span> {{ post.user.name }} In {{ post.category.name }}</span>
+        <div
+          v-for="product in products"
+          :key="product.id"
+          id="before-headlines"
+        >
+          <NuxtLink
+            :to="`/business-directory/directory-product/${product.product_name_slug}`"
+          >
+            <img
+              id="short-image"
+              :src="baseURL + 'productimage/' + product.image"
+            />
+            <div id="before-title">
+              <h3 id="title">{{ product.product_name }}</h3>
             </div>
-          </div>
-          -->
-        </NuxtLink>
+            <div id="short-body">
+              <p id="short-paragraph">{{ product.price }}</p>
+              <p id="short-paragraph">
+                {{ product.description }}
+              </p>
+              <p id="short-paragraph">{{ product.location }}</p>
+
+              <p id="short-paragraph">{{ getDate(product.created_at) }}</p>
+            </div>
+          </NuxtLink>
+        </div>
       </div>
-    </div>
-    <div class="pagination">
+      <div class="pagination">
       <button class="paginate" @click.prevent="moveBack()">Previous List</button
       ><button class="paginate" @click.prevent="moveFront()">Next List</button>
     </div>
-  </div>
+    </div>    
 </template>
 
 <script scoped>
@@ -34,18 +41,13 @@ export default {
   auth: false,
   data() {
     return {
-      posts: [],
-      previous_page: null,
+      products: [],
+       previous_page: null,
       next_page: null,
       last_page: null,
       first_page: null,
-      baseURL: process.env.BASE_URL || "http://localhost:8000/",
-      error: null,
+      loading: false,
     };
-  },
-
-  mounted() {
-    this.getPosts();
   },
 
   methods: {
@@ -54,11 +56,11 @@ export default {
       return date;
     },
 
-    async getPosts(page) {
-      page = page || "more-posts?page=1";
+    async getProducts(page) {
+      page = page || "all-ecommerce-products?page=1";
       try {
         const { data } = await this.$axios.get(`/api/auth/${page}`);
-        this.posts = data.data;
+        this.products = data.data;
         this.first_page = data.first_page_url.split("/")[5];
         this.last_page = data.last_page_url.split("/")[5];
 
@@ -73,7 +75,6 @@ export default {
         } else {
           this.next_page = data.first_page_url.split("/")[5];
         }
-
         return true;
       } catch (error) {
         this.loading = false;
@@ -92,8 +93,13 @@ export default {
       this.getPosts(this.page);
     },
   },
+
+  created() {
+    this.getProducts();
+  },
 };
 </script>
+
 
 <style scoped>
 .paginate {
@@ -102,11 +108,19 @@ export default {
   background-color: aqua;
 }
 .pagination {
-  
   justify-content: space-between;
   display: flex;
   gap: 2px;
   margin: 20px;
+}
+.nav-align{
+  margin:20px;
+  margin-top:50px;
+}
+.index-h2 {
+  text-align: left;
+  margin-top: 20px;
+  font-size:1.5rem;
 }
 .grid-container {
   display: grid;
@@ -115,15 +129,14 @@ export default {
   max-width: 100%;
   margin-right: auto;
   margin-left: auto;
-  margin: 20px;
-  margin-top: 60px;
+  margin-top:100px;
 }
 
 #before-headlines {
   margin-bottom: 20px;
   border-width: 2px;
   border-style: solid;
-  border-color: #c20017;
+  border-color: var(--yellow);
   width:250px;
 }
 
@@ -146,7 +159,6 @@ export default {
   height: 220px;
   margin-top: 0px;
 }
-
 @media screen and (max-width: 1270px) {
   .grid-container {
     grid-template-columns: auto auto auto auto;
@@ -206,6 +218,10 @@ export default {
 
 p{
   font-size:15px;
+}
+
+.index-h2{
+  text-align:center;
 }
 }
 

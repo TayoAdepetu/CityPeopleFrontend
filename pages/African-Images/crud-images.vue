@@ -140,6 +140,10 @@
         </v-dialog>
       </div>
     </div>
+    <div class="pagination">
+      <button class="paginate" @click.prevent="moveBack()">Previous List</button
+      ><button class="paginate" @click.prevent="moveFront()">Next List</button>
+    </div>
   </div>
 </template>
 
@@ -151,6 +155,10 @@ export default {
       image_categories: [],
       image_name: "",
       images: [],
+      previous_page: null,
+      next_page: null,
+      last_page: null,
+      first_page: null,
       updateStatusModal: false,
       deletePostModal: false,
       loading: false,
@@ -181,19 +189,44 @@ export default {
       }
     },
 
-    async getAllImages() {
+    async getAllImages(page) {
+      page = page || "fetch-afri-images?page=1";
       try {
-        const { data } = await this.$axios.get("/api/auth/fetch-images");
+        const { data } = await this.$axios.get(`/api/auth/${page}`);
         if (data && data.data) {
           this.images = data.data;
-          // console.log(data.data)
-          return true;
+        this.first_page = data.first_page_url.split("/")[5];
+        this.last_page = data.last_page_url.split("/")[5];
+
+        if (data.prev_page_url != null) {
+          this.previous_page = data.prev_page_url.split("/")[5];
+        } else {
+          this.previous_page = data.last_page_url.split("/")[5];
+        }
+
+        if (data.next_page_url != null) {
+          this.next_page = data.next_page_url.split("/")[5];
+        } else {
+          this.next_page = data.first_page_url.split("/")[5];
+        }
+
+        return true;
         }
       } catch (error) {
         this.loading = false;
         // console.log(error.response)
         this.$toast.error(error.response.data.error);
       }
+    },
+
+      moveFront() {
+      this.page = this.next_page;
+      this.getPosts(this.page);
+    },
+
+    moveBack() {
+      this.page = this.previous_page;
+      this.getPosts(this.page);
     },
 
     getDate(datetime) {
@@ -256,3 +289,16 @@ export default {
   },
 };
 </script>
+<style scoped>
+.paginate {
+  width: 20%;
+  padding: 3px;
+  background-color: aqua;
+}
+.pagination {
+  justify-content: space-between;
+  display: flex;
+  gap: 2px;
+  margin: 20px;
+}
+</style>

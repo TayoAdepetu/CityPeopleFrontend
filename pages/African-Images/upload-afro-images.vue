@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div>
+    <div class="container">
       <form>
         <div>
-          <input v-model="user_id" />
           <textarea
             v-model="image_name"
             placeholder="Enter image name"
@@ -27,8 +26,7 @@
           </select>
 
           <div class="image-section" v-if="!image">
-            Select an Image
-            <input type="file" @change="onFileChange" />
+            <input placeholder="select an image" type="file" @change="onFileChange" />
           </div>
 
           <div class="image-section" v-else>
@@ -46,9 +44,9 @@ export default {
   data() {
     return {
       categories: [],
-      category_id: null,
+      category_id: undefined,
       image: null,
-      user_id: this.$auth.user.id,
+      user_id:null,
       image_name: "",
       image_description: "",
       error: null,
@@ -56,12 +54,18 @@ export default {
   },
 
   methods: {
+     async getAllCategories() {
+    const { data } = await this.$axios.get("/api/auth/fetch-categories");
+    this.categories = data;
+    return { categories };
+    },
+  
     async imageUpload() {
       try {
         await this.axios.post(`create-images`, {
           image_name: this.image_name,
           image_description: this.image_description,
-          user_id: this.user_id,
+          user_id: this.$auth.user.id,
           image: this.image,
           category_id: this.category_id,
         });
@@ -92,14 +96,31 @@ export default {
     },
   },
 
-  async getAllCategories() {
-    const { data } = await this.$axios.get("/api/auth/fetch-categories");
-    this.categories = data;
-    return { categories };
-  },
+ 
 
   mounted() {
     this.getAllCategories();
   },
 };
 </script>
+<style scoped>
+.container {
+  margin-top: 100px;
+  width: 80vw;
+  margin-bottom: 20px;
+  word-wrap: break-word;
+}
+
+select, textarea,
+input {
+  border: 2px;
+  border-style: solid;
+  border-radius: 2px;
+  width: 99%;
+  min-height: 60px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 10px;
+}
+
+</style>

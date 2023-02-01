@@ -226,7 +226,7 @@ export default {
       this.loading = true;
 
       const { data } = await this.$axios.put(
-        `/api/auth/update-categories/${this.selectedPost.location}`,
+        `/api/auth/update-images/${this.selectedPost.location}`,
         {
           image_name: this.selectedPost.image_name,
           image_description: this.selectedPost.image_description,

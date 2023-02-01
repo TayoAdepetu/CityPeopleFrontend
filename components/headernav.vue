@@ -139,10 +139,11 @@ export default {
   font-size: 20px;
 }
 
-@media screen and (max-width: 1190px) {
+@media screen and (max-width: 1196px) {
   .head {
     font-size: 35px;
   }
+
 }
 
 @media screen and (max-width: 1155px) {

@@ -56,8 +56,8 @@
 <script scoped>
 export default {
   auth: false,
-  middleware: "ispublisher",
-  layout: "admin",
+  //middleware: "ispublisher",
+ // layout: "admin",
   data() {
     return {
       user_id: null,
