@@ -1,5 +1,8 @@
 <template>
   <div>
+    <!--first, admin gets display all main posts, each having buttons for editing and deletion. When you click edit,
+    a list of all subsuject under that post is also shown. If you click on any of the subsubject, you go to
+  the slug page that displays the subsubject using its ID. You can then edit the subsubject also.-->
     <div>
       <thead>
         <tr>
@@ -101,6 +104,7 @@
                   id="title"
                   placeholder="Enter title"
                   required
+                  type="text"
                 ></textarea>
               </div>
 
@@ -123,6 +127,7 @@
                   placeholder="Enter a body"
                   rows="8"
                   required
+                  type="text"
                 ></textarea>
               </div>
 

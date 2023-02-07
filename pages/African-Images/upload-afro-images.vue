@@ -6,10 +6,12 @@
           <textarea
             v-model="image_name"
             placeholder="Enter image name"
+            type="text"
           ></textarea>
           <textarea
             v-model="image_description"
             placeholder="Enter image description"
+            type="text"
           ></textarea>
         </div>
 

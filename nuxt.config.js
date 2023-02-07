@@ -58,8 +58,8 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
   },
 
   axios: {
-    //baseURL: 'https://citypeople-backend.herokuapp.com/',
-    baseURL: "http://localhost:8000/",
+    baseURL: 'https://citypeople-backend.herokuapp.com/',
+    //baseURL: "http://localhost:8000/",
     //credentials: true,
     // proxy: true
   },

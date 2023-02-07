@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!--edit each subsubject here-->
     <div>
       <form
         @submit.prevent="editPost()"
@@ -13,6 +14,7 @@
               id="title"
               placeholder="Enter title"
               required
+              type="text"
             ></textarea>
           </div>
 
@@ -24,6 +26,7 @@
               placeholder="Enter a body"
               rows="8"
               required
+              type="text"
             ></textarea>
           </div>
 
@@ -45,6 +48,7 @@
               placeholder="Enter a body"
               rows="8"
               required
+              type="text"
             ></textarea>
           </div>
 

@@ -1,11 +1,16 @@
 <template>
   <div>
-    <!--Dynamic page for individual subject articles fetched by slug-->
+    <!--Dynamic page for individual subject articles fetched by ID. 
+      Also, its subsubject is also displayed at the top-->
+    <div v-for="subsubject in subsubjects" :key="subsubject.id">
+      <span>{{ subsubject }}</span>
+    </div>
     <div class="container">
-      <h1>{{ post[0].title }}</h1>
-      <div v-for="subsubject in subsubjects" :key="subsubject.id">
-        <div>{{ subsubject.name }}</div>
+      <div>
+        <h1>{{ subject[0].title }}</h1>
+        <div class="body" v-html="`${subject[0].body}`"></div>
       </div>
+      <!--
       <img id="short-image" :src="baseURL + 'postimage/' + post[0].image" />
       <p>
         By <span>{{ post[0].user.name }}</span> in
@@ -15,6 +20,7 @@
         Last Updated: <span>{{ getDate(post[0].updated_at) }}</span>
       </p>
       <div class="body" v-html="`${post[0].body}`"></div>
+      -->
 
       <!--
     <div>
@@ -47,6 +53,76 @@
         </ul>
 
         <div class="greet-last">Thanks, The CityPeople Team</div>
+        <v-btn @click="openStatusModal(subsubject)" scrollable
+          >Tell Us What You Think About The Content On This Page</v-btn
+        >
+      </div>
+
+      <div class="dialog-box">
+        <v-dialog
+          v-model="updateStatusModal"
+          persistent
+          transition="dialog-top-transition"
+        >
+          <form
+            @submit.prevent="submitComment()"
+            class="selectBank normalInput2 fullWidth form-control mt-2"
+          >
+            <div>
+              <div class="form-group">
+                <textarea
+                  type="text"
+                  v-model="selectedPost.subject_name"
+                  class="form-control"
+                  id="title"
+                  placeholder="Enter title"
+                  hidden
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <input
+                  type="text"
+                  v-model="selectedPost.id"
+                  class="form-control"
+                  id="description"
+                  placeholder="Enter title"
+                  hidden
+                />
+              </div>
+
+              <div class="form-group">
+                <textarea
+                  type="text"
+                  class="form-control"
+                  v-model="comment"
+                  id="body"
+                  placeholder="Enter your comments on this content here"
+                  rows="8"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="flex justifyCenter mobileColumn">
+                <v-btn type="submit" class="greyBtn mx-3 my-1">
+                  Submit Comment
+                </v-btn>
+              </div>
+            </div>
+          </form>
+          <div class="flex justifyCenter mobileColumn">
+            <v-btn
+              text
+              @click="
+                () => {
+                  this.updateStatusModal = false;
+                }
+              "
+            >
+              Cancel
+            </v-btn>
+          </div>
+        </v-dialog>
       </div>
     </div>
   </div>
@@ -58,7 +134,18 @@ export default {
   data() {
     return {
       baseURL: process.env.BASE_URL || "http://localhost:8000/",
+      subject: null,
       subsubjects: [],
+      updateStatusModal: false,
+      content: "",
+      selectedPost: {
+        body: "",
+        description: "",
+        slug: "",
+        id: null,
+        subject_name: "",
+        error: null,
+      },
     };
   },
 
@@ -66,7 +153,7 @@ export default {
     let response = await context.$axios.get(
       `/api/auth/blog/${context.params.slug}`
     );
-    let post = response.data;
+    this.subsubject = response.data;
     return {
       post,
     };
@@ -88,27 +175,59 @@ export default {
       subsubjects,
     };
   },
+
+  openStatusModal(subsubject) {
+    //this.selectedPost.subsubject_name = this.subsubject_name;
+    this.selectedPost.subject_name = this.subject.title;
+    // this.selectedPost.id = this.subsubject.id;
+    this.selectedPost.id = this.subject.id;
+    // this.selectedPost.slug = this.subsubject.slug;
+    this.selectedPost.slug = this.subject.slug;
+    // this.selectedPost.description = this.subsubject.description;
+    this.selectedPost.description = this.subject.description;
+    //this.selectedPost.body = this.subsubject.body;
+    this.selectedPost.body = this.subject.body;
+
+    this.updateStatusModal = true;
+  },
+
+  async submitComment() {
+    try {
+      await this.$axios.post(`/api/auth/send-report-subject`, {
+        content_comment: this.comment,
+        content_id: this.selectedPost.id,
+        subject_name: this.selectedPost.subject_name,
+        email: "tayowrites93@gmail.com",
+        //subsubject_name: this.selectedPost.subsubject_name,
+      });
+
+      this.$router.push(`/nigerian-wiki/${this.selectedPost.id}`);
+    } catch (e) {
+      this.error = e.response;
+    }
+  },
 };
 </script>
 <style scoped>
-.content-help-notice{
-    text-align: left;
-    text-align: justify;
-    margin-top: 100px;
-    border-style: solid;
-    border-color: var(--yellow);
-    border-radius: 5px;
-    padding: 10px;
+.content-help-notice {
+  text-align: left;
+  text-align: justify;
+  margin-top: 100px;
+  border-style: solid;
+  border-color: var(--yellow);
+  border-radius: 5px;
+  padding: 10px;
 }
 
-.greet-last, .first-h4{
-    margin-top: 30px;
+.greet-last,
+.first-h4 {
+  margin-top: 30px;
 }
-.container{
-    word-wrap: break-word;
-    margin: 20px;
-    margin-top: 60px;
-    width: 90vw;
+.container {
+  word-wrap: break-word;
+  margin: 20px;
+  margin-top: 60px;
+  width: 90vw;
 }
 
 #short-image {

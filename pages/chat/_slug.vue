@@ -12,11 +12,13 @@
         <form @submit.prevent="sendMessage" class="selectBank normalInput2 fullWidth form-control mt-2 form">        
             <textarea
                 required
+                type="text"
                 id="body"
                 cols="28"
                 rows="5"
                 class="form-input"
                 v-model="body">
+                
             </textarea>
             <button type="submit">Send</button> 
             <v-btn text 

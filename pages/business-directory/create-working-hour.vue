@@ -11,6 +11,7 @@
           class="form-control"
           id="title"
           placeholder="Enter business_name"
+          type="text"
         >
       </div>
 
@@ -31,6 +32,7 @@
           id="title"
           placeholder="Enter opening and closing time for Monday. e.g. 8am - 6pm or Closed"
           required
+          type="text"
         >
       </div>
 
@@ -41,6 +43,7 @@
           id="title"
           placeholder="Enter opening and closing time for tuesday. e.g. 8am - 6pm or Closed"
           required
+          type="text"
         >
       </div>
 
@@ -51,6 +54,7 @@
           id="title"
           placeholder="Enter opening and closing time for wednesday. e.g. 8am - 6pm or Closed"
           required
+          type="text"
         >
       </div>
 
@@ -61,6 +65,7 @@
           id="title"
           placeholder="Enter opening and closing time for thursday. e.g. 8am - 6pm or Closed"
           required
+          type="text"
         >
       </div>
 
@@ -71,11 +76,13 @@
           id="title"
           placeholder="Enter opening and closing time for friday. e.g. 8am - 6pm or Closed"
           required
+          type="text"
         >
       </div>
 
       <div class="form-group">
         <input
+        type="text"
           v-model="saturday"
           class="form-control"
           id="title"
@@ -91,6 +98,7 @@
           id="title"
           placeholder="Enter opening and closing time for sunday. e.g. 8am - 6pm or Closed"
           required
+          type="text"
         >
       </div>
 

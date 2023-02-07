@@ -4,7 +4,7 @@
         <p>Step 1 of 5</p>
       <form @submit.prevent="createBiz">
         <div class="form-group">
-          <textarea v-model="business_name" class="form-control" id="title" placeholder="Enter business_name"></textarea>
+          <textarea type="text" v-model="business_name" class="form-control" id="title" placeholder="Enter business_name"></textarea>
         </div>
 
         <div class="form-group">

@@ -93,7 +93,7 @@
         </div>
 
         <div class="form-group">
-            <input type="text" v-model="number_of_employees" placeholder="Add the number of employees in your firm">
+            <input type="number" v-model="number_of_employees" placeholder="Add the number of employees in your firm">
         </div>
         
         <div class="form-group">

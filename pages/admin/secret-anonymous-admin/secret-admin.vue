@@ -60,6 +60,7 @@
                   class="form-control"
                   id="title"
                   required
+                  type="text"
                 ></textarea>
               </div>
 

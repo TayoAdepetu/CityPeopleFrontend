@@ -1,32 +1,28 @@
 <template>
   <div class="nav-align">
     <nav class="flex word-size">
-      <div class="logo"><NuxtLink to="/index">The CityPeople</NuxtLink></div>
+      <div class="logo"><NuxtLink to="/">The CityPeople</NuxtLink></div>
 
-      <nav v-if="user" class="flex">
-        <div class="flex pre-name">
+      <ul v-if="user" class="flex menu-list space-between">
+        <li class="pre-name">
           Welcome
-          <NuxtLink to="/admin/dashboard"
-            ><span class="user-greeting">, {{ user.name }}</span></NuxtLink
+          <NuxtLink class="user-greeting" to="/admin/dashboard"
+            >, {{ user.name }}</NuxtLink
           >
-        </div>
-        <div class="flex space-between">
-          <NuxtLink to="/admin/dashboard">Dashboard</NuxtLink>
-          <NuxtLink to="#">Check Us On Twitter</NuxtLink>
-          <span class="logout" @click="logout">Logout</span>
-        </div>
-      </nav>
+        </li>
+        <li><NuxtLink to="/admin/dashboard">Dashboard</NuxtLink></li>
+        <li><NuxtLink to="#">Check Us On Twitter</NuxtLink></li>
+        <li><span class="logout" @click="logout">Logout</span></li>
+      </ul>
 
-      <nav v-else class="flex">
-        <div class="flex pre-name">
+      <ul v-else class="flex menu-list space-between">
+        <li class="pre-name">
           Welcome<span class="user-greeting">, Guest</span>
-        </div>
-        <div class="flex space-between">
-          <nuxt-link to="/login">Login</nuxt-link>
-          <NuxtLink to="/register">Signup</NuxtLink>
-          <NuxtLink to="#">Check Us On Twitter</NuxtLink>
-        </div>
-      </nav>
+        </li>
+        <li><nuxt-link to="/login">Login</nuxt-link></li>
+        <li><NuxtLink to="/register">Signup</NuxtLink></li>
+        <li><NuxtLink to="#">Check Us On Twitter</NuxtLink></li>
+      </ul>
     </nav>
 
     <div class="flex hero">
@@ -92,6 +88,10 @@ export default {
 </script>
 
 <style scoped>
+.menu-list {
+  list-style: none;
+}
+
 .user-greeting {
   color: var(--yellow) !important;
 }
@@ -105,6 +105,7 @@ export default {
 }
 .logo {
   margin-right: 100px;
+  font-size: 1.2rem;
 }
 
 .map {
@@ -143,7 +144,6 @@ export default {
   .head {
     font-size: 35px;
   }
-
 }
 
 @media screen and (max-width: 1155px) {
@@ -200,6 +200,14 @@ export default {
   }
 }
 
+@media screen and (max-width: 780px) {
+  .menu-list {
+    display: block;
+    text-align: right;
+    font-size: 1.2rem;
+  }
+}
+
 @media screen and (max-width: 660px) {
   .hero {
     width: 90%;
@@ -225,6 +233,17 @@ export default {
   .head {
     font-size: 22px;
   }
+
+  .menu-list {
+    font-size: 1rem;
+  }
+
+  .logo {
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 465px) {
 }
 
 @media screen and (max-width: 446px) {

@@ -1,5 +1,6 @@
 <template>
     <div>
+      <!--each user can see a list of main posts here. But no list of subsubject here yet-->
         <div>
     <thead>
       <tr>
@@ -64,7 +65,7 @@
   
       <div>
           <div class="form-group">
-            <textarea v-model="selectedPost.title" class="form-control" id="title" placeholder="Enter title" required></textarea>
+            <textarea type="text" v-model="selectedPost.title" class="form-control" id="title" placeholder="Enter title" required></textarea>
           </div>
   
           <div class="form-group">
@@ -72,7 +73,7 @@
           </div>
           
           <div class="form-group">
-            <textarea class="form-control" v-model="selectedPost.body" id="body" placeholder="Enter a body" rows="8" required></textarea>
+            <textarea type="text" class="form-control" v-model="selectedPost.body" id="body" placeholder="Enter a body" rows="8" required></textarea>
           </div>
           
           <div class="flex justifyCenter mobileColumn">

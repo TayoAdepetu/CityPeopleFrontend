@@ -6,7 +6,7 @@
           ><div class="btn">Check Component HTML Codes</div></nuxt-link
         >
 
-        <input hidden type="" v-model="user_id" />
+        <input hidden type="number" v-model="user_id" />
         <input hidden type="text" v-model="subject_name" />
 
         <textarea
@@ -14,15 +14,8 @@
           id="title"
           placeholder="Enter title"
           required
-        ></textarea>
-
-        <input
           type="text"
-          hidden
-          v-model="slug"
-          id="slug"
-          placeholder="Enter title slug"
-        />
+        ></textarea>
 
         <textarea
           type="text"
@@ -63,7 +56,7 @@ export default {
       try {
         await this.$axios.post(`/api/auth/create-new-subsubject`, {
           subject_name: context.params.slug,
-          slug: this.slug,
+          slug: this.subsubject_name.replace(/ +/g, "-"),
           description: this.description,
           body: this.body,
           subsubject_name: this.subsubject_name,
