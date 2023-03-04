@@ -33,6 +33,7 @@ body{
     background-color: var(--lightest);
     width: 100%;
     text-align: center;
+    overflow: hidden;
 }
 .flex{
     display: flex;

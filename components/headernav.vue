@@ -1,29 +1,45 @@
 <template>
   <div class="nav-align">
-    <nav class="flex word-size space-between">
+    <div class="word-size">
       <div class="logo"><NuxtLink to="/">The CityPeople</NuxtLink></div>
 
-      <ul v-if="user" class="flex menu-list">
-        <li class="pre-name">
-          Welcome
-          <NuxtLink class="user-greeting" to="/admin/dashboard"
-            >, {{ user.name }}</NuxtLink
-          >
-        </li>
-        <li><NuxtLink to="/admin/dashboard">Dashboard</NuxtLink></li>
-        <li><NuxtLink to="#">Check Us On Twitter</NuxtLink></li>
-        <li><span class="logout" @click="logout">Logout</span></li>
-      </ul>
+      <div class="left-roll">
+        <div
+          @click="toggleMenu()"
+          aria-controls="main-menu"
+          aria-expanded="false"
+          class="mobile-nav-toggle"
+        >
+          <!--<span class="sr-only">Menu</span>-->
+        </div>
 
-      <ul v-else class="flex menu-list space-between">
-        <li class="pre-name">
-          Welcome<span class="user-greeting">, Guest</span>
-        </li>
-        <li><nuxt-link to="/login">Login</nuxt-link></li>
-        <li><NuxtLink to="/register">Signup</NuxtLink></li>
-        <li><NuxtLink to="#">Check Us On Twitter</NuxtLink></li>
-      </ul>
-    </nav>
+        <ul
+          id="main-menu"
+          v-if="user"
+          class="flex menu-list"
+          data-visible="false"
+        >
+          <li class="pre-name">
+            Welcome
+            <NuxtLink class="user-greeting" to="/admin/dashboard"
+              >, {{ user.name }}</NuxtLink
+            >
+          </li>
+          <li><NuxtLink to="/admin/dashboard">Dashboard</NuxtLink></li>
+          <li><NuxtLink to="#">Check Us On Twitter</NuxtLink></li>
+          <li><span class="logout" @click="logout">Logout</span></li>
+        </ul>
+
+        <ul id="main-menu" v-else class="flex menu-list">
+          <li class="pre-name">
+            Welcome<span class="user-greeting">, Guest</span>
+          </li>
+          <li><nuxt-link to="/login">Login</nuxt-link></li>
+          <li><NuxtLink to="/register">Signup</NuxtLink></li>
+          <li><NuxtLink to="#">Check Us On Twitter</NuxtLink></li>
+        </ul>
+      </div>
+    </div>
 
     <div class="flex hero">
       <div class="hero-head">
@@ -58,6 +74,7 @@ export default {
       keyword: "",
       results: null,
       search: false,
+      openMenu: false,
     };
   },
 
@@ -83,6 +100,21 @@ export default {
         this.$toast.error(error.response.data.error);
       }
     },
+
+    async toggleMenu() {
+      //this.openMenu.getAttribute()this.
+      const menu_list = this.$el.querySelector(".menu-list");
+      const navToggle = this.$el.querySelector(".mobile-nav-toggle");
+      const visibility = menu_list.getAttribute("data-visible");
+      if (visibility === "false") {
+        menu_list.setAttribute("data-visible", "true");
+        navToggle.setAttribute("aria-expanded", true);
+        return;
+      }
+
+      menu_list.setAttribute("data-visible", "false");
+      navToggle.setAttribute("aria-expanded", false);
+    },
   },
 };
 </script>
@@ -90,6 +122,11 @@ export default {
 <style scoped>
 .menu-list {
   list-style: none;
+  gap: 2rem;
+}
+
+.mobile-nav-toggle {
+  display: none;
 }
 
 .user-greeting {
@@ -113,6 +150,9 @@ export default {
 }
 
 .word-size {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
   font-size: 20px;
   background-color: var(--dark-blue);
   padding: 20px;
@@ -137,6 +177,44 @@ export default {
 
 .sub-head {
   font-size: 20px;
+}
+
+@media screen and (max-width: 781px) {
+  .menu-list {
+    text-align: right;
+    font-size: 1.2rem;
+    position: fixed;
+    inset: 0 0 0 50%;
+    /*background:hsl(0 0% 100% / 0.1);
+    backdrop-filter: blur(1rem);
+    */
+    background: var(--dark-blue);
+    opacity: 0.9;
+    flex-direction: column;
+    padding: min(30vh, 10rem) 2em;
+    gap: 1em;
+    z-index: 1000;
+    transform: translateX(100%);
+    transition:transform 350ms ease-in;
+  }
+
+  .menu-list[data-visible="true"] {
+    transform: translateX(0%);
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    position: absolute;
+    background: url("../assets/images/menuuuu-icon.png");
+    background-repeat: no-repeat;
+    border: 0;
+    width: 3.2rem;
+    aspect-ratio: 1;
+    top: 0.6rem;
+    right: 2rem;
+    z-index: 9999;
+    background-color: var(--lightest);
+  }
 }
 
 @media screen and (max-width: 1196px) {
@@ -199,14 +277,6 @@ export default {
   }
 }
 
-@media screen and (max-width: 780px) {
-  .menu-list {
-    display: block;
-    text-align: right;
-    font-size: 1.2rem;
-  }
-}
-
 @media screen and (max-width: 660px) {
   .hero {
     width: 90%;
@@ -231,10 +301,6 @@ export default {
 @media screen and (max-width: 504px) {
   .head {
     font-size: 22px;
-  }
-
-  .menu-list {
-    font-size: 1rem;
   }
 
   .logo {
