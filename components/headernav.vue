@@ -1,9 +1,9 @@
 <template>
   <div class="nav-align">
-    <nav class="flex word-size">
+    <nav class="flex word-size space-between">
       <div class="logo"><NuxtLink to="/">The CityPeople</NuxtLink></div>
 
-      <ul v-if="user" class="flex menu-list space-between">
+      <ul v-if="user" class="flex menu-list">
         <li class="pre-name">
           Welcome
           <NuxtLink class="user-greeting" to="/admin/dashboard"
@@ -104,7 +104,6 @@ export default {
   color: var(--lightest) !important;
 }
 .logo {
-  margin-right: 100px;
   font-size: 1.2rem;
 }
 

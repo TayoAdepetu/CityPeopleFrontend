@@ -3,7 +3,7 @@
     <div>
       <form @submit="addCategory()">
         <input type="text" v-model="category_name" />
-        <button>Add Category</button>
+        <button class="btn">Add Category</button>
       </form>
     </div>
     <div>
@@ -208,3 +208,39 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+form {
+  margin-top: 200px;
+  width: 60vw;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+}
+
+input {
+  border: 2px;
+  border-style: solid;
+  border-radius: 2px;
+  max-height: 60px;
+  width: 90%;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 10px;
+}
+
+.btn {
+  background-color: cornflowerblue;
+  padding: 16px;
+  color: #036;
+  border: none;
+  width: 90%;
+  margin: auto;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+</style>

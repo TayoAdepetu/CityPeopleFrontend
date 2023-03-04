@@ -144,8 +144,8 @@ export default {
         slug: "",
         id: null,
         subject_name: "",
-        error: null,
       },
+      error: null,
     };
   },
 

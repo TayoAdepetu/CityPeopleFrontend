@@ -11,14 +11,6 @@
           <div id="short-body">
             <p id="short-paragraph">{{ post.description }}</p>
           </div>
-<!--
-          <div id="author-date">
-            <div id="author">
-              <span>By</span>
-              <span> {{ post.user.name }} In {{ post.category.name }}</span>
-            </div>
-          </div>
-          -->
         </NuxtLink>
       </div>
     </div>
@@ -102,7 +94,6 @@ export default {
   background-color: aqua;
 }
 .pagination {
-  
   justify-content: space-between;
   display: flex;
   gap: 2px;
@@ -124,16 +115,17 @@ export default {
   border-width: 2px;
   border-style: solid;
   border-color: #c20017;
-  width:250px;
+  width: 250px;
 }
 
-#short-body, #before-title {
+#short-body,
+#before-title {
   margin-top: 4px;
-  margin-right:4px;
-  margin-left:4px;
+  margin-right: 4px;
+  margin-left: 4px;
 }
 
-#short-paragraph{
+#short-paragraph {
   word-wrap: break-word;
 }
 
@@ -159,8 +151,8 @@ export default {
   }
 
   #before-headlines {
-  width:300px;
-}
+    width: 300px;
+  }
 }
 
 @media screen and (max-width: 960px) {
@@ -169,8 +161,8 @@ export default {
   }
 
   #before-headlines {
-  width:40vw;
-}
+    width: 40vw;
+  }
 }
 
 @media screen and (max-width: 650px) {
@@ -179,8 +171,8 @@ export default {
   }
 
   #before-headlines {
-  width:230px;
-}
+    width: 230px;
+  }
 }
 
 @media screen and (max-width: 515px) {
@@ -189,8 +181,8 @@ export default {
   }
 
   #before-headlines {
-  width:220px;
-}
+    width: 220px;
+  }
 }
 
 @media screen and (max-width: 498px) {
@@ -199,27 +191,25 @@ export default {
   }
 
   #before-headlines {
-  width:70vw;
-  margin-right:auto;
-  margin-left:auto;
-}
+    width: 70vw;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
-p{
-  font-size:15px;
+  p {
+    font-size: 15px;
+  }
 }
-}
-
 
 @media screen and (max-width: 300px) {
-p{
-  font-size:17px;
-}
+  p {
+    font-size: 17px;
+  }
 }
 
 @media screen and (max-width: 350px) {
-#before-headlines{
-  width:80vw;
+  #before-headlines {
+    width: 80vw;
+  }
 }
-}
-
 </style>
