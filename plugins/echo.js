@@ -1,30 +1,32 @@
-/*
-import Echo from 'laravel-echo'
- 
-window.Pusher = require('pusher-js')
- 
-export default (context, inject) => {
-  //const token = context.$auth.strategy.token.get();
+/*import Echo from "laravel-echo";
+window.Pusher = require("pusher-js");
+export default (inject) => {
   const echo = new Echo({
-    broadcaster: 'pusher',
-    key: '34e0b11d8bd8a238efa9',
-      cluster: "eu",
-      encrypted: true,
-      forceTLS:false,
-      wsHost: 6001,
-      wsPort: 443,
-      authEndpoint: `${process.env.API_URL}/broadcasting/auth`,
-      authModule: true,
-      connectOnLogin:true,
-      disconnectOnLogout: true,
-      disableStats: true,
-      auth:{
-        headers: {
-          //Authorization: 'Bearer ' + context.$auth.strategy.token.get(),
-          Accept: 'application/json',
-        }}
-        
-    })
+    broadcaster: "pusher",
+    key: "34e0b11d8bd8a238efa9",
+    cluster: "eu",
+    encrypted: true,
+    forceTLS: false,
+    wsHost: 6001,
+    wsPort: 443,
+    authEndpoint: `${process.env.API_URL}/broadcasting/auth`,
+    authModule: true,
+    connectOnLogin: true,
+    disconnectOnLogout: true,
+    disableStats: true,
+    auth: {
+      headers: {
+        //Authorization: "Bearer " + this.$auth.strategy.token.get(),
+        Accept: "application/json",
+      },
+    },
+  });
+
+  inject("echo", echo);
+};
+
+//const token = context.$auth.strategy.token.get();
+
 /*
     echo.onRequest((config) => {
       // Here we check if user is logged in
@@ -35,7 +37,4 @@ export default (context, inject) => {
       }
     })
     
- 
-  inject('echo', echo)
-}
-*/
+ */

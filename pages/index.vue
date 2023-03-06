@@ -1,21 +1,24 @@
 <template>
   <div>
     <div class="nav-align">
-    <div>
-      <h2 class="index-h2">
-        Get Fact-based News On Most Popular Nigerians and Institutions
-      </h2>
-      <div class="grid-container">
-        <div v-for="post in posts" :key="post.id" id="before-headlines">
-          <NuxtLink :to="`/Nigerian-Wiki/${post.slug}`">
-            <img id="short-image" :src="baseURL + 'postimage/' + post.image" />
-            <div id="before-title">
-              <h3 id="title">{{ post.title }}</h3>
-            </div>
-            <div id="short-body">
-              <p id="short-paragraph">{{ post.description }}</p>
-            </div>
-            <!--
+      <div>
+        <h2 class="index-h2">
+          Get Fact-based News On Most Popular Nigerians and Institutions
+        </h2>
+        <div class="grid-container">
+          <div v-for="post in posts" :key="post.id" id="before-headlines">
+            <NuxtLink :to="`/Nigerian-Wiki/${post.slug}`">
+              <img
+                id="short-image"
+                :src="baseURL + 'postimage/' + post.image"
+              />
+              <div id="before-title">
+                <h3 id="title">{{ post.title }}</h3>
+              </div>
+              <div id="short-body">
+                <p id="short-paragraph">{{ post.description }}</p>
+              </div>
+              <!--
           <div id="author-date">
             <div id="author">
               <span>By</span>
@@ -23,112 +26,117 @@
             </div>
           </div>
           -->
-          </NuxtLink>
+            </NuxtLink>
+          </div>
         </div>
       </div>
-    </div>
-    <hr />
-    <div>
-      <h2 class="index-h2">Explore A Large Nigerian Busineses Directory</h2>
-      <div class="grid-container">
-        <div
-          v-for="directory in directories"
-          :key="directory.id"
-          id="before-headlines"
-        >
-          <NuxtLink
-            :to="`/business-directory/${directory.user.business_name_slug}`"
+      <hr />
+      <div>
+        <h2 class="index-h2">Explore A Large Nigerian Busineses Directory</h2>
+        <div class="grid-container">
+          <div
+            v-for="directory in directories"
+            :key="directory.id"
+            id="before-headlines"
           >
-            <img
-              id="short-image"
-              :src="baseURL + 'postimage/' + directory.image"
-            />
-            <div id="before-title">
-              <h3 id="title">{{ directory.user.business_name }}</h3>
-            </div>
-            <div id="short-body">
-              <p id="short-paragraph">Location: {{ directory.location }}</p>
-              <p id="short-paragraph">
-                Phone: {{ directory.user.phone_number }}
-              </p>
-              <p id="short-paragraph">Email: {{ directory.user.email }}</p>
-              <p id="short-paragraph">Website: {{ directory.website }}</p>
-            </div>
-          </NuxtLink>
+            <NuxtLink
+              :to="`/business-directory/${directory.user.business_name_slug}`"
+            >
+              <img
+                id="short-image"
+                :src="baseURL + 'postimage/' + directory.image"
+              />
+              <div id="before-title">
+                <h3 id="title">{{ directory.user.business_name }}</h3>
+              </div>
+              <div id="short-body">
+                <p id="short-paragraph">Location: {{ directory.location }}</p>
+                <p id="short-paragraph">
+                  Phone: {{ directory.user.phone_number }}
+                </p>
+                <p id="short-paragraph">Email: {{ directory.user.email }}</p>
+                <p id="short-paragraph">Website: {{ directory.website }}</p>
+              </div>
+            </NuxtLink>
+          </div>
         </div>
       </div>
-    </div>
-    <hr />
-    <div>
-      <h2 class="index-h2">
-        Search For Available Job Vacancies In Nigerian States
-      </h2>
-      <div class="grid-container">
-        <div v-for="job in jobs" :key="job.id" id="before-headlines">
-          <NuxtLink :to="`/job-directory/job/${job.job_slug}`">
-            <!--<img id="short-image" :src="baseURL + 'postimage/' + directory.image" />-->
-            <div id="before-title">
-              <h3 id="title">{{ job.title }}</h3>
-            </div>
-            <div id="short-body">
-              <p id="short-paragraph">Posted By: {{ job.user.name }}</p>
-              <p id="short-paragraph">Responsilities: {{ job.function }}</p>
-              <p id="short-paragraph">Location: {{ job.location }}</p>
-              <p id="short-paragraph">Salary: {{ job.salary }}</p>
-              <p id="short-paragraph">Posted: {{ getDate(job.created_at) }}</p>
-            </div>
-          </NuxtLink>
+      <hr />
+      <div>
+        <h2 class="index-h2">
+          Search For Available Job Vacancies In Nigerian States
+        </h2>
+        <div class="grid-container">
+          <div v-for="job in jobs" :key="job.id" id="before-headlines">
+            <NuxtLink :to="`/job-directory/job/${job.job_slug}`">
+              <!--<img id="short-image" :src="baseURL + 'postimage/' + directory.image" />-->
+              <div id="before-title">
+                <h3 id="title">{{ job.title }}</h3>
+              </div>
+              <div id="short-body">
+                <p id="short-paragraph">Posted By: {{ job.user.name }}</p>
+                <p id="short-paragraph">Responsilities: {{ job.function }}</p>
+                <p id="short-paragraph">Location: {{ job.location }}</p>
+                <p id="short-paragraph">Salary: {{ job.salary }}</p>
+                <p id="short-paragraph">
+                  Posted: {{ getDate(job.created_at) }}
+                </p>
+              </div>
+            </NuxtLink>
+          </div>
         </div>
       </div>
-    </div>
-    <hr />
-    <div>
-      <h2 class="index-h2">
-        Buy and Sell On A Booming Nigerian E-commerce Platform
-      </h2>
-      <div class="grid-container">
-        <div
-          v-for="product in products"
-          :key="product.id"
-          id="before-headlines"
-        >
-          <NuxtLink
-            :to="`/business-directory/directory-product/${product.product_name_slug}`"
+      <hr />
+      <div>
+        <h2 class="index-h2">
+          Buy and Sell On A Booming Nigerian E-commerce Platform
+        </h2>
+        <div class="grid-container">
+          <div
+            v-for="product in products"
+            :key="product.id"
+            id="before-headlines"
           >
-            <img
-              id="short-image"
-              :src="baseURL + 'productimage/' + product.image"
-            />
-            <div id="before-title">
-              <h3 id="title">{{ product.product_name }}</h3>
-            </div>
-            <div id="short-body">
-              <p id="short-paragraph">{{ product.price }}</p>
-              <p id="short-paragraph">
-                {{ product.description }}
-              </p>
-              <p id="short-paragraph">{{ product.location }}</p>
+            <NuxtLink
+              :to="`/business-directory/directory-product/${product.product_name_slug}`"
+            >
+              <img
+                id="short-image"
+                :src="baseURL + 'productimage/' + product.image"
+              />
+              <div id="before-title">
+                <h3 id="title">{{ product.product_name }}</h3>
+              </div>
+              <div id="short-body">
+                <p id="short-paragraph">{{ product.price }}</p>
+                <p id="short-paragraph">
+                  {{ product.description }}
+                </p>
+                <p id="short-paragraph">{{ product.location }}</p>
 
-              <p id="short-paragraph">{{ getDate(product.created_at) }}</p>
-            </div>
-          </NuxtLink>
+                <p id="short-paragraph">{{ getDate(product.created_at) }}</p>
+              </div>
+            </NuxtLink>
+          </div>
         </div>
       </div>
-    </div>
-    <hr />
-    <div>
-      <h2 class="index-h2">Download The Most Beautiful, Free African Images</h2>
-      <div class="grid-container">
-        <div v-for="image in images" :key="image.id" id="before-headlines">
-          <NuxtLink :to="`/african-images/${image.image_path}`">
-            <img
-              id="short-image"
-              :src="baseURL + 'postimage/' + image.image_path"
-            />
-          </NuxtLink>
+      <hr />
+      <div>
+        <h2 class="index-h2">
+          Download The Most Beautiful, Free African Images
+        </h2>
+        <div class="grid-container">
+          <div v-for="image in images" :key="image.id" id="before-headlines">
+            <NuxtLink :to="`/african-images/${image.image_path}`">
+              <img
+                id="short-image"
+                :src="baseURL + 'postimage/' + image.image_path"
+              />
+            </NuxtLink>
+          </div>
         </div>
+        {{ console.log($auth) }}
       </div>
-    </div>
     </div>
   </div>
 </template>
@@ -225,14 +233,14 @@ export default {
 </script>
 
 <style scoped>
-.nav-align{
-  margin:20px;
-  margin-top:50px;
+.nav-align {
+  margin: 20px;
+  margin-top: 50px;
 }
 .index-h2 {
   text-align: left;
   margin-top: 20px;
-  font-size:1.5rem;
+  font-size: 1.5rem;
 }
 .grid-container {
   display: grid;
@@ -248,16 +256,17 @@ export default {
   border-width: 2px;
   border-style: solid;
   border-color: var(--yellow);
-  width:250px;
+  width: 250px;
 }
 
-#short-body, #before-title {
+#short-body,
+#before-title {
   margin-top: 4px;
-  margin-right:4px;
-  margin-left:4px;
+  margin-right: 4px;
+  margin-left: 4px;
 }
 
-#short-paragraph{
+#short-paragraph {
   word-wrap: break-word;
 }
 
@@ -282,8 +291,8 @@ export default {
   }
 
   #before-headlines {
-  width:300px;
-}
+    width: 300px;
+  }
 }
 
 @media screen and (max-width: 960px) {
@@ -292,8 +301,8 @@ export default {
   }
 
   #before-headlines {
-  width:40vw;
-}
+    width: 40vw;
+  }
 }
 
 @media screen and (max-width: 650px) {
@@ -302,8 +311,8 @@ export default {
   }
 
   #before-headlines {
-  width:230px;
-}
+    width: 230px;
+  }
 }
 
 @media screen and (max-width: 515px) {
@@ -312,8 +321,8 @@ export default {
   }
 
   #before-headlines {
-  width:220px;
-}
+    width: 220px;
+  }
 }
 
 @media screen and (max-width: 498px) {
@@ -322,31 +331,29 @@ export default {
   }
 
   #before-headlines {
-  width:70vw;
-  margin-right:auto;
-  margin-left:auto;
-}
+    width: 70vw;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
-p{
-  font-size:15px;
-}
+  p {
+    font-size: 15px;
+  }
 
-.index-h2{
-  text-align:center;
+  .index-h2 {
+    text-align: center;
+  }
 }
-}
-
 
 @media screen and (max-width: 300px) {
-p{
-  font-size:17px;
-}
+  p {
+    font-size: 17px;
+  }
 }
 
 @media screen and (max-width: 350px) {
-#before-headlines{
-  width:80vw;
+  #before-headlines {
+    width: 80vw;
+  }
 }
-}
-
 </style>
