@@ -79,7 +79,7 @@ export default {
           password_confirmation: this.password_confirmation,
         });
 
-        if ((Register = true)) {
+        if (Register) {
           this.$toast.success(
             "Registered successfully. Check your email to verify your email address to enjoy full features."
           );
@@ -113,10 +113,10 @@ export default {
   padding: 15px;
   background-color: white;
   border: 2px solid #036;
-  margin-top:60px;
+  margin-top: 60px;
   margin-right: auto;
   margin-left: auto;
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
 .form-field {
@@ -164,6 +164,4 @@ input {
 .registerbtn:hover {
   opacity: 0.9;
 }
-
-
 </style>

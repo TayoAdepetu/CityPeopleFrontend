@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  auth: 'guest',
+  auth: "guest",
   data() {
     return {
       form: {
@@ -60,7 +60,7 @@ export default {
         });
 
         if ((logUser = true)) {
-          this.$toast.success("You are logged in");
+          this.$toast.success("You are logged-in.");
           this.loading = false;
           //this.$router.push('/')
         }
@@ -84,8 +84,8 @@ export default {
   padding: 15px;
   background-color: white;
   border: 2px solid #036;
-  margin-top:60px;
-  margin-bottom:20px;
+  margin-top: 60px;
+  margin-bottom: 20px;
 }
 
 .form-field {
@@ -122,7 +122,7 @@ input {
 }
 
 .registerbtn {
-  background-color:var(--red);
+  background-color: var(--red);
   padding: 16px;
   color: #036;
   border: none;
@@ -135,5 +135,4 @@ input {
 .registerbtn:hover {
   opacity: 0.9;
 }
-
 </style>

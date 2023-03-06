@@ -1,53 +1,55 @@
 <template>
-    <div>
-        <div class="container">
-        <form class="form-field" @submit.prevent="verifyUserEmail">
-        <input v-model="code" type="number" placeholder="paste verification code here"/>
+  <div>
+    <div class="container">
+      <form class="form-field" @submit.prevent="verifyUserEmail">
+        <input
+          v-model="code"
+          type="text"
+          placeholder="paste verification code here"
+        />
         <button class="registerbtn">Verify Email</button>
-        </form>
+      </form>
     </div>
-    </div>
+  </div>
 </template>
 <script>
-
 export default {
-    auth: false,
-    data() {
-        return{
-            code:null,
-            //baseURL: process.env.BASE_URL || 'http://localhost:8000/',
-        }    
-    },
+  auth: false,
+  data() {
+    return {
+      code: null,
+      //baseURL: process.env.BASE_URL || 'http://localhost:8000/',
+    };
+  },
 
-    methods:{
-        async verifyUserEmail(){
-            const code = this.code;
-            try {
+  methods: {
+    async verifyUserEmail() {
+      const code = this.code;
+      try {
         await this.$axios.post(`/api/auth/user/verify/${this.code}`, {
-            code: this.code,
-            email: this.$auth.user.email,
-        })
+          code: this.code,
+          email: this.$auth.user.email,
+        });
 
         //this.$router.push('/admin/articles')
       } catch (e) {
-        this.error = e.response
+        this.error = e.response;
       }
-        }
-
-    }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
-.container{
-    margin-top:60px;
-    display:block;
+.container {
+  margin-top: 60px;
+  display: block;
 }
 .form-field {
   width: 50%;
   margin-right: auto;
   margin-left: auto;
-  display:block;
+  display: block;
 }
 
 input {
@@ -62,7 +64,7 @@ input {
 }
 
 .registerbtn {
-  background-color:var(--red);
+  background-color: var(--red);
   padding: 16px;
   color: #036;
   border: none;

@@ -60,8 +60,8 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
   axios: {
     baseURL: "https://citypeople-backend.herokuapp.com",
     //baseURL: "http://localhost:8000",
-    //credentials: true,
-    // proxy: true
+    credentials: true,
+    //proxy: true
   },
 
   auth: {
@@ -96,11 +96,11 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
       user: { url: "/api/auth/user", method: "get" },
     },
 
-    //tokenRequired: true,
+    tokenRequired: true,
     //tokenType: true,
-    //tokenType: 'Bearer',
-    //globalToken: true,
-    //autoFetchUser: true
+    tokenType: "Bearer",
+    globalToken: true,
+    autoFetchUser: true,
 
     //localStorage: false
   },
