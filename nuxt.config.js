@@ -58,7 +58,7 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
   },
 
   axios: {
-    baseURL: "https://citypeople-backend.herokuapp.com/",
+    baseURL: "c",
     //baseURL: "http://localhost:8000/",
     //credentials: true,
     // proxy: true
@@ -70,7 +70,7 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
     strategies: {
       laravelJWT: {
         provider: "laravel/jwt",
-        url: "http://localhost:8000",
+        url: "https://citypeople-backend.herokuapp.com/",
 
         endpoints: {},
 
