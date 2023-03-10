@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-  auth: false,
+  //auth: false,
   data() {
     return {
       code: null,
