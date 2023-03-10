@@ -62,7 +62,7 @@ export default {
         if (logUser) {
           this.$toast.success("You are logged-in.");
           this.loading = false;
-          //this.$router.push('/')
+          this.$router.push("/");
         }
       } catch (error) {
         this.loading = false;

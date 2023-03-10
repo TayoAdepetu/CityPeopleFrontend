@@ -135,7 +135,6 @@
             </NuxtLink>
           </div>
         </div>
-        {{ console.log($auth) }}
       </div>
     </div>
   </div>
@@ -160,10 +159,16 @@ export default {
     this.getDirectories();
     this.getJobs();
     this.getProducts();
-    this.getImages();
+   // this.getImages();
+    this.getUser();
   },
 
   methods: {
+    getUser() {
+      console.log(this.$auth);
+
+    },
+
     getDate(datetime) {
       let date = new Date(datetime).toJSON().slice(0, 10).replace(/-/g, "/");
       return date;
