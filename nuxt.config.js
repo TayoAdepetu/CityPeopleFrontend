@@ -72,35 +72,36 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
         provider: "laravel/jwt",
         url: "https://citypeople-backend.herokuapp.com",
 
-        endpoints: {},
-
-        token: {
-          property: "access_token",
-          maxAge: 60 * 60,
+        endpoints: {
+          login: {
+            url: "/api/auth/login",
+            method: "post",
+            propertyName: "data.access_token",
+          },
+          logout: { url: "/api/auth/logout", method: "post" },
+          user: { url: "/api/auth/user", method: "get", propertyName: "data" },
         },
 
+        user: {
+          property: "user",
+          autoFetch: true,
+        },
+
+        token: {
+          property: "data.access_token",
+          //maxAge: 60 * 60,
+          required: true,
+          type: "Bearer",
+          globalToken: true,
+        },
+
+        /*
         refreshToken: {
           maxAge: 20160 * 60,
         },
+        */
       },
     },
-
-    user: {
-      property: true,
-      autoFetch: true,
-    },
-
-    endpoints: {
-      login: { url: "/api/auth/login", method: "post" },
-      logout: { url: "/api/auth/logout", method: "post" },
-      user: { url: "/api/auth/user", method: "get" },
-    },
-
-    tokenRequired: true,
-    //tokenType: true,
-    tokenType: "Bearer",
-    globalToken: true,
-    autoFetchUser: true,
 
     //localStorage: false
   },

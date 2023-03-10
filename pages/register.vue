@@ -79,7 +79,13 @@ export default {
           password_confirmation: this.password_confirmation,
         });
 
+        await this.$auth.loginWith("laravelJWT", {
+          email: this.email,
+          password: this.password,
+        });
+
         if (Register) {
+          //this.$router.push("/confirm-email");
           this.$toast.success(
             "Registered successfully. Check your email to verify your email address to enjoy full features."
           );

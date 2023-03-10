@@ -59,7 +59,7 @@ export default {
           data: this.form,
         });
 
-        if ((logUser = true)) {
+        if (logUser) {
           this.$toast.success("You are logged-in.");
           this.loading = false;
           //this.$router.push('/')
