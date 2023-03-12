@@ -68,7 +68,7 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
     plugins: [{ src: "~/plugins/echo", ssr: false }, "~/plugins/echo.js"],
 
     strategies: {
-      laravelJWTs: {
+      laravelJWT: {
         provider: "laravel/jwt",
         url: "https://citypeople-backend.herokuapp.com",
 
