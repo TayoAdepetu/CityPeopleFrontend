@@ -76,10 +76,11 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
           login: {
             url: "/api/auth/login",
             method: "post",
-            propertyName: "data.access_token",
+            propertyName: "access_token",
           },
           logout: { url: "/api/auth/logout", method: "post" },
-          user: { url: "/api/auth/user", method: "get", propertyName: "data" },
+          user: { url: "/api/auth/user", method: "get" },
+          refresh: { url: "/api/auth/refresh", method: "post" },
         },
 
         user: {
@@ -88,18 +89,16 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
         },
 
         token: {
-          property: "data.access_token",
-          //maxAge: 60 * 60,
+          property: "access_token",
+          maxAge: 60 * 60,
           required: true,
           type: "Bearer",
           globalToken: true,
         },
 
-        /*
         refreshToken: {
           maxAge: 20160 * 60,
         },
-        */
       },
     },
 

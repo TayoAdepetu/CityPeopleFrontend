@@ -80,8 +80,10 @@ export default {
         });
 
         await this.$auth.loginWith("laravelJWT", {
-          email: this.email,
-          password: this.password,
+          data: {
+            email: this.email,
+            password: this.password,
+          },
         });
 
         if (Register) {
