@@ -1,4 +1,4 @@
-/*import Echo from "laravel-echo";
+import Echo from "laravel-echo";
 window.Pusher = require("pusher-js");
 export default (inject) => {
   const echo = new Echo({
@@ -16,7 +16,7 @@ export default (inject) => {
     disableStats: true,
     auth: {
       headers: {
-        //Authorization: "Bearer " + this.$auth.strategy.token.get(),
+        Authorization: "Bearer " + this.$auth.strategies.laravelJWT.token.get(),
         Accept: "application/json",
       },
     },
