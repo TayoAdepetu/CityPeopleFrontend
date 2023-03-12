@@ -1,6 +1,6 @@
 import Echo from "laravel-echo";
 window.Pusher = require("pusher-js");
-export default (inject) => {
+export default (context, inject) => {
   const echo = new Echo({
     broadcaster: "pusher",
     key: "34e0b11d8bd8a238efa9",
