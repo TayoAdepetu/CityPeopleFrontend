@@ -21,8 +21,10 @@
         >
           <li class="pre-name">
             Welcome
-            <NuxtLink class="user-greeting" to="/admin/dashboard"
-              >, {{ user.name }}</NuxtLink
+            <span class="user-greeting"
+              ><NuxtLink class="user-greeting" to="/admin/dashboard"
+                >, {{ user.name }}</NuxtLink
+              ></span
             >
           </li>
           <li><NuxtLink to="/admin/dashboard">Dashboard</NuxtLink></li>
