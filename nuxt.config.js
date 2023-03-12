@@ -68,11 +68,9 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
     plugins: [{ src: "~/plugins/echo", ssr: false }, "~/plugins/echo.js"],
 
     strategies: {
-      local: {
-        token: {
-          property: "access_token",
-          global: true,
-        },
+      laravelJWTs: {
+        provider: "laravel/jwt",
+        url: "https://citypeople-backend.herokuapp.com",
 
         endpoints: {
           login: {
@@ -89,7 +87,7 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
           property: "user",
           autoFetch: true,
         },
-        /*
+
         token: {
           property: "access_token",
           maxAge: 60 * 60,
@@ -101,7 +99,6 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
         refreshToken: {
           maxAge: 20160 * 60,
         },
-        */
       },
     },
 
