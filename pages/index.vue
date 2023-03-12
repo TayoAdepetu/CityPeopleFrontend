@@ -166,7 +166,6 @@ export default {
   methods: {
     getUser() {
       console.log(this.$auth);
-      console.log(this.$auth.$storage._state["_token.laravelJWT"].get());
     },
 
     getDate(datetime) {

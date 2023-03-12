@@ -16,10 +16,7 @@ export default (context, inject) => {
     disableStats: true,
     auth: {
       headers: {
-        Authorization:
-          context.strategies.laravelJWT.$auth.$storage._state[
-            "_token.laravelJWT"
-          ].get(),
+        Authorization: context.$storage._state["_token.laravelJWT"].get(),
         Accept: "application/json",
       },
     },
