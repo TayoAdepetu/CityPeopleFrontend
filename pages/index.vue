@@ -159,14 +159,14 @@ export default {
     this.getDirectories();
     this.getJobs();
     this.getProducts();
-   // this.getImages();
+    // this.getImages();
     this.getUser();
   },
 
   methods: {
     getUser() {
       console.log(this.$auth);
-
+      console.log(this.$auth.$storage._state["_token.laravelJWT"].get());
     },
 
     getDate(datetime) {

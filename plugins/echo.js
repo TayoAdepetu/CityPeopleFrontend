@@ -17,7 +17,6 @@ export default (context, inject) => {
     auth: {
       headers: {
         Authorization:
-          "Bearer " +
           context.strategies.laravelJWT.$auth.$storage._state[
             "_token.laravelJWT"
           ].get(),
