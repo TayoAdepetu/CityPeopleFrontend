@@ -20,12 +20,8 @@
           data-visible="false"
         >
           <li class="pre-name">
-            Welcome
-            <span class="user-greeting"
-              ><NuxtLink class="user-greeting" to="/admin/dashboard"
-                >, {{ user.name }}</NuxtLink
-              ></span
-            >
+            Welcome,
+            <span class="user-greeting"> {{ user.name }}</span>
           </li>
           <li><NuxtLink to="/admin/dashboard">Dashboard</NuxtLink></li>
           <li><NuxtLink to="#">Check Us On Twitter</NuxtLink></li>
