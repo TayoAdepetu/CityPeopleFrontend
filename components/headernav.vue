@@ -2,7 +2,7 @@
   <div class="nav-align">
     <div class="word-size">
       <div class="logo"><NuxtLink to="/">The CityPeople</NuxtLink></div>
-      {{ user.name }}
+      {{ user }}
 
       <div class="left-roll">
         <div
