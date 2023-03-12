@@ -16,7 +16,7 @@ export default (context, inject) => {
     disableStats: true,
     auth: {
       headers: {
-        Authorization: $auth.strategy.token.get(),
+        Authorization: context.$auth.strategy.token.get(),
         Accept: "application/json",
       },
     },
