@@ -79,6 +79,22 @@ export default {
           password_confirmation: this.password_confirmation,
         });
 
+        /*
+        await this.$auth.loginWith("laravelJWT", {
+          data: {
+            email: this.email,
+            password: this.password,
+          },
+        });
+        */
+
+        if (Register) {
+          this.$toast.success(
+            "Registered successfully. Check your email to verify your email address to enjoy full features."
+          );
+          this.loading = false;
+        }
+
         await this.$auth.loginWith("laravelJWT", {
           data: {
             email: this.email,
@@ -86,25 +102,7 @@ export default {
           },
         });
 
-        if (Register) {
-          //this.$router.push("/confirm-email");
-          this.$toast.success(
-            "Registered successfully. Check your email to verify your email address to enjoy full features."
-          );
-          this.loading = false;
-        }
-
-        /*
-            await this.$auth.loginWith('laravelJWT', {
-              data: {
-              email: this.email,
-              password: this.password,              
-              },
-            })
-    
-            this.$router.push('/')
-
-            */
+        //this.$router.push("/confirm-email");
       } catch (e) {
         this.loading = false;
         this.$toast.info(
