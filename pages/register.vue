@@ -102,6 +102,11 @@ export default {
           },
         });
 
+        await this.$auth.setUser({
+          email: this.email,
+          password: this.password,
+        });
+
         //this.$router.push("/confirm-email");
       } catch (e) {
         this.loading = false;

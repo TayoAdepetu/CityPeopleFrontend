@@ -62,6 +62,10 @@ export default {
         if (logUser) {
           this.$toast.success("You are logged-in.");
           this.loading = false;
+          await this.$auth.setUser({
+            email: this.email,
+            password: this.password,
+          });
           this.$router.push("/");
         }
       } catch (error) {
