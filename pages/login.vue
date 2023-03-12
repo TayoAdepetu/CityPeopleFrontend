@@ -55,7 +55,7 @@ export default {
       try {
         this.loading = true;
         this.$toast.show("Logging in...");
-        const logUser = await this.$auth.loginWith("laravelJWT", {
+        const logUser = await this.$auth.loginWith("local", {
           data: this.form,
         });
 
