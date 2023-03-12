@@ -69,6 +69,7 @@ export default {
         this.$toast.info(
           "There was a problem logging in, check your credentials"
         );
+        console.log(error);
         /*if (err.response.status = 422) {
                     this.errors = 'Could not sign you in with those credentials.'
                 }

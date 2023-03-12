@@ -108,6 +108,7 @@ export default {
         this.$toast.info(
           "There was a problem registering, check your credentials"
         );
+        console.log(e);
       }
     },
   },
