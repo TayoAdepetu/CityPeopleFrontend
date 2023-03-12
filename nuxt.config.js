@@ -84,15 +84,15 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
         },
 
         user: {
-          property: "user",
+          //property: "user",
           autoFetch: true,
         },
 
         token: {
           property: "access_token",
           //maxAge: 60 * 60,
-          //required: true,
-          //type: "Bearer",
+          required: true,
+          type: "Bearer",
           global: true,
         },
         /*
