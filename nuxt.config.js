@@ -60,7 +60,7 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
   axios: {
     baseURL: "https://citypeople-backend.herokuapp.com",
     //baseURL: "http://localhost:8000",
-    credentials: true,
+    //credentials: true,
     //proxy: true
   },
 
@@ -68,9 +68,11 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
     plugins: [{ src: "~/plugins/echo", ssr: false }, "~/plugins/echo.js"],
 
     strategies: {
-      laravelJWT: {
-        provider: "laravel/jwt",
-        url: "https://citypeople-backend.herokuapp.com",
+      local: {
+        token: {
+          property: "access_token",
+          global: true,
+        },
 
         endpoints: {
           login: {
@@ -87,7 +89,7 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
           property: "user",
           autoFetch: true,
         },
-
+        /*
         token: {
           property: "access_token",
           maxAge: 60 * 60,
@@ -99,6 +101,7 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
         refreshToken: {
           maxAge: 20160 * 60,
         },
+        */
       },
     },
 
@@ -110,5 +113,10 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
 
   router: {
     middleware: "auth",
+  },
+
+  // for netlify giving 404 page
+  generate: {
+    fallback: true,
   },
 };
