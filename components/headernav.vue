@@ -2,6 +2,7 @@
   <div class="nav-align">
     <div class="word-size">
       <div class="logo"><NuxtLink to="/">The CityPeople</NuxtLink></div>
+      {{ user.name }}
 
       <div class="left-roll">
         <div
@@ -195,7 +196,7 @@ export default {
     gap: 1em;
     z-index: 1000;
     transform: translateX(100%);
-    transition:transform 350ms ease-in;
+    transition: transform 350ms ease-in;
   }
 
   .menu-list[data-visible="true"] {
