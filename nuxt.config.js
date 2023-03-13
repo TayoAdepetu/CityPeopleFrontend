@@ -46,8 +46,8 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
   ],
 
   echo: {
-    plugins: ["~/plugins/echo.js"],
-    //authModule: true,
+    plugins: ["~/plugins/echo.client.js"],
+    authModule: true,
     connectOnLogin: true,
     disconnectOnLogout: true,
   },
@@ -65,7 +65,10 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
   },
 
   auth: {
-    plugins: [{ src: "~/plugins/echo", ssr: false }, "~/plugins/echo.js"],
+    plugins: [
+      { src: "~/plugins/echo", ssr: false },
+      "~/plugins/echo.client.js",
+    ],
 
     strategies: {
       laravelJWT: {
