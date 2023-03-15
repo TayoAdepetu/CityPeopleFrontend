@@ -26,9 +26,9 @@ export default (context, inject) => {
   inject("echo", echo);
 };
 
-const token = context.$auth.strategy.token.get();
+//const token = context.$auth.strategy.token.get();
 
-
+/*
     echo.onRequest((config) => {
       // Here we check if user is logged in
       if (context.$auth.loggedIn) {

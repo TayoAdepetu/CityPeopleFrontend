@@ -67,7 +67,7 @@
 
 <script>
 //import Event from '../event.js';
-import Pusher from "pusher.js";
+import Pusher from "pusher-js";
 export default {
   data() {
     return {
