@@ -46,7 +46,7 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
   ],
 
   //echo: {
-  plugins: ["~/plugins/echo.client.js"],
+  plugins: ["~/plugins/echo.js"],
   //authModule: true,
   //connectOnLogin: true,
   //disconnectOnLogout: true,
