@@ -1,4 +1,4 @@
-/*//https://stackoverflow.com/questions/68308060/how-to-use-nuxt-auth-inside-an-axios-plugin-how-to-add-token-to-all-axios-requ
+/*https://stackoverflow.com/questions/68308060/how-to-use-nuxt-auth-inside-an-axios-plugin-how-to-add-token-to-all-axios-requ
 import Echo from "laravel-echo";
 window.Pusher = require("pusher-js");
 export default (context, inject) => {
@@ -26,9 +26,9 @@ export default (context, inject) => {
   inject("echo", echo);
 };
 
-//const token = context.$auth.strategy.token.get();
+const token = context.$auth.strategy.token.get();
 
-/*
+
     echo.onRequest((config) => {
       // Here we check if user is logged in
       if (context.$auth.loggedIn) {
