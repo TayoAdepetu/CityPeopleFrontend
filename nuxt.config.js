@@ -45,12 +45,12 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
     "@nuxtjs/toast",
   ],
 
-  echo: {
-    plugins: ["~/plugins/echo.client.js"],
-    authModule: true,
-    connectOnLogin: true,
-    disconnectOnLogout: true,
-  },
+  //echo: {
+  plugins: ["~/plugins/echo.client.js"],
+  //authModule: true,
+  //connectOnLogin: true,
+  //disconnectOnLogout: true,
+  // },
 
   toast: {
     position: "top-center",

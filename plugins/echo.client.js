@@ -1,4 +1,4 @@
-//https://stackoverflow.com/questions/68308060/how-to-use-nuxt-auth-inside-an-axios-plugin-how-to-add-token-to-all-axios-requ
+/*//https://stackoverflow.com/questions/68308060/how-to-use-nuxt-auth-inside-an-axios-plugin-how-to-add-token-to-all-axios-requ
 import Echo from "laravel-echo";
 window.Pusher = require("pusher-js");
 export default (context, inject) => {
