@@ -66,8 +66,9 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
 
   auth: {
     plugins: [
-      { src: "~/plugins/echo", ssr: false },
+      /*{ src: "~/plugins/echo", ssr: false },
       "~/plugins/echo.client.js",
+      */
     ],
 
     strategies: {
