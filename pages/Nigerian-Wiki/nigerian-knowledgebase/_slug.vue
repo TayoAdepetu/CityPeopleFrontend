@@ -3,10 +3,11 @@
     <!--Dynamic page for displaying subsubject articles.-->
     <div class="container">
       <h1>{{ post[0].susubject_name }}</h1>
+      <img id="short-image" :src="post[0].image_path" />
       <div class="body" v-html="`${subsubject[0].body}`"></div>
 
       <!--
-      <img id="short-image" :src="baseURL + 'postimage/' + post[0].image" />
+      
       <p>{{ post[0].subject_name }}</p>
       <p>
         Last Updated: <span>{{ getDate(post[0].updated_at) }}</span>

@@ -1,36 +1,35 @@
 <template>
   <div>
-    <!--Display all subject articles-->
+    <!--Display all blog images like WordPress-->
     <div class="grid-container">
       <div v-for="image in images" :key="image.id" id="before-headlines">
-        <NuxtLink :to="`/african-images/${image.image_path}`">
-          <!-- <img
-            id="short-image"
-            :src="baseURL + 'postimage/' + image.image_path"
-          />-->
-          <img
-            id="short-image"
-            :src="image.image_path"
-            :alt="image.image_name"
-          />
-          <div id="before-title">
-            <h3 id="title">{{ image.image_name }}</h3>
-          </div>
-          <div id="short-body">
-            <p id="short-paragraph">{{ image.description }}</p>
-          </div>
-          <!--                         
-              <div id="author-date">
-                  <div id="author"><span>By</span> <span> {{ post.user.name }} In {{ post.category.name }}</span></div>
-              </div> 
-              -->
-        </NuxtLink>
+        <!--<button @click="openStatusModal(image)">-->
+        <img id="short-image" :src="image.image_path" :alt="image.image_name" />
+        <!-- <div id="before-title">
+          <h3 id="title">{{ image.image_name }}</h3>
+        </div>
+      -->
+        <div id="short-body">
+          <p id="short-paragraph">{{ image.image_name }}</p>
+          <p id="short-paragraph">{{ selectedImage.image_description }}</p>
+          <p id="short-paragraph">{{ selectedImage.image_path }}</p>
+        </div>
+        <!-- </button>-->
       </div>
     </div>
     <div class="pagination">
       <button class="paginate" @click.prevent="moveBack()">Previous List</button
       ><button class="paginate" @click.prevent="moveFront()">Next List</button>
     </div>
+    <!--
+    <div>
+      <img :src="selectedImage.image_path" />
+      <p>{{ selectedImage.image_name }}</p>
+      <p>{{ selectedImage.image_description }}</p>
+      <p>{{ selectedImage.image_path }}</p>
+    </div>
+  -->
+    <button @click="closeImagesStatusModal()">Check Image Sources</button>
   </div>
 </template>
 
@@ -45,6 +44,16 @@ export default {
       last_page: null,
       first_page: null,
       baseURL: process.env.BASE_URL || "http://localhost:8000/",
+      /*updateStatusModal: false,
+      selectedImage: {
+        image_name: "",
+        image_description: "",
+        photo_id: null,
+        image_path: "",
+        id: null,
+        category_id: null,
+      },
+      */
     };
   },
 
@@ -55,7 +64,7 @@ export default {
     },
 
     async getImages(page) {
-      page = page || "fetch-afri-images?page=1";
+      page = page || "fetch-blog-images?page=1";
       try {
         const { data } = await this.$axios.get(`/api/auth/${page}`);
         this.images = data.data;
@@ -90,6 +99,24 @@ export default {
     moveBack() {
       this.page = this.previous_page;
       this.getPosts(this.page);
+    },
+
+    /*
+    openStatusModal(image) {
+      this.selectedImage.image_name = this.image.name;
+      this.selectedImage.image_description = this.image.image_description;
+      //this.selectedImage.category_id = this.image.category_id;
+      this.selectedImage.id = this.image.id;
+      this.selectedImage.public_id = this.image.public_id;
+      this.selectedImage.image_path = this.image.image_path;
+
+      this.updateStatusModal = true;
+    },
+    */
+
+    closeImagesStatusModal() {
+      openImageModal = false;
+      return;
     },
   },
 

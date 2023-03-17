@@ -2,16 +2,21 @@
   <div>
     <!--Dynamic page for individual subject articles fetched by ID. 
       Also, its subsubject is also displayed at the top-->
-    <div v-for="subsubject in subsubjects" :key="subsubject.id">
+    <div
+      class="subsuject-spacing"
+      v-for="subsubject in subsubjects"
+      :key="subsubject.id"
+    >
       <span>{{ subsubject }}</span>
     </div>
     <div class="container">
       <div>
         <h1>{{ subject[0].title }}</h1>
+        <img id="short-image" :src="post[0].image_path" />
         <div class="body" v-html="`${subject[0].body}`"></div>
       </div>
       <!--
-      <img id="short-image" :src="baseURL + 'postimage/' + post[0].image" />
+      
       <p>
         By <span>{{ post[0].user.name }}</span> in
         <span>{{ post[0].category.name }}</span>
@@ -209,6 +214,9 @@ export default {
 };
 </script>
 <style scoped>
+.subsuject-spacing {
+  justify-content: space-around;
+}
 .content-help-notice {
   text-align: left;
   text-align: justify;

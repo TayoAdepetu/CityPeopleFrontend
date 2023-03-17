@@ -1,11 +1,10 @@
 <template>
   <div>
-    <!--for users to edit their uploaded images-->
     <div>
       <thead>
         <tr>
           <th class="text-left">S/N</th>
-          <th class="text-left">Category</th>
+          <!--<th class="text-left">Category</th>-->
           <th class="text-left">Name</th>
           <th class="text-left">Description</th>
           <th class="text-left">Date</th>
@@ -17,9 +16,11 @@
           <td>
             {{ index + 1 }}
           </td>
+          <!--
           <td>
             {{ image.category_id }}
           </td>
+        -->
           <td>
             {{ image.name }}
           </td>
@@ -77,6 +78,7 @@
               </div>
 
               <div class="form-group">
+                <!--
                 <select v-model="category_id" id="slug">
                   <option :value="undefined">Pick a Category 👇</option>
                   <option
@@ -84,10 +86,10 @@
                     :key="image_category.id"
                     :value="image_category.id"
                   >
-                    {{ image_category.name }}
+                    {{ category.name }}
                   </option>
                 </select>
-              </div>
+              --></div>
 
               <div class="flex justifyCenter mobileColumn">
                 <v-btn type="submit" class="greyBtn mx-3 my-1"> Update </v-btn>
@@ -140,6 +142,10 @@
         </v-dialog>
       </div>
     </div>
+    <div class="pagination">
+      <button class="paginate" @click.prevent="moveBack()">Previous List</button
+      ><button class="paginate" @click.prevent="moveFront()">Next List</button>
+    </div>
   </div>
 </template>
 
@@ -148,8 +154,13 @@ export default {
   middleware: "isadmin",
   data() {
     return {
-      image_categories: [],
+      //image_categories: [],
+      image_name: "",
       images: [],
+      previous_page: null,
+      next_page: null,
+      last_page: null,
+      first_page: null,
       updateStatusModal: false,
       deletePostModal: false,
       loading: false,
@@ -159,12 +170,13 @@ export default {
         public_id: null,
         image_path: "",
         id: null,
-        category_id: null,
+        //category_id: null,
       },
     };
   },
 
   methods: {
+    /*
     async getAllCategories() {
       try {
         const { data } = await this.$axios.get("/api/auth/fetch-categories");
@@ -179,15 +191,29 @@ export default {
         this.$toast.error(error.response.data.error);
       }
     },
+    */
 
-    async getAllImages(context) {
+    async getAllImages(page) {
+      page = page || "fetch-afri-images?page=1";
       try {
-        const { data } = await this.$axios.get(
-          `/api/auth/fetch-images/${context.params.slug}`
-        );
+        const { data } = await this.$axios.get(`/api/auth/${page}`);
         if (data && data.data) {
           this.images = data.data;
-          // console.log(data.data)
+          this.first_page = data.first_page_url.split("/")[5];
+          this.last_page = data.last_page_url.split("/")[5];
+
+          if (data.prev_page_url != null) {
+            this.previous_page = data.prev_page_url.split("/")[5];
+          } else {
+            this.previous_page = data.last_page_url.split("/")[5];
+          }
+
+          if (data.next_page_url != null) {
+            this.next_page = data.next_page_url.split("/")[5];
+          } else {
+            this.next_page = data.first_page_url.split("/")[5];
+          }
+
           return true;
         }
       } catch (error) {
@@ -197,29 +223,39 @@ export default {
       }
     },
 
+    moveFront() {
+      this.page = this.next_page;
+      this.getPosts(this.page);
+    },
+
+    moveBack() {
+      this.page = this.previous_page;
+      this.getPosts(this.page);
+    },
+
     getDate(datetime) {
       let date = new Date(datetime).toJSON().slice(0, 10).replace(/-/g, "/");
       return date;
     },
 
     openStatusModal(image) {
-      this.selectedPost.image_name = this.image.name;
-      this.selectedPost.image_description = this.image.image_description;
-      this.selectedPost.category_id = this.image.category_id;
-      this.selectedPost.id = this.image.id;
-      this.selectedPost.public_id = this.image.public_id;
-      this.selectedPost.image_path = this.image.image_path;
+      this.selectedPost.image_name = image.name;
+      this.selectedPost.image_description = image.image_description;
+      this.selectedPost.category_id = image.category_id;
+      this.selectedPost.id = image.id;
+      this.selectedPost.public_id = image.public_id;
+      this.selectedPost.image_path = image.image_path;
 
       this.updateStatusModal = true;
     },
 
     deleteStatusModal(image) {
-      this.selectedPost.image_name = this.image.name;
-      this.selectedPost.image_description = this.image.image_description;
-      this.selectedPost.category = this.image.category_id;
-      this.selectedPost.id = this.image.id;
-      this.selectedPost.public_id = this.image.public_id;
-      this.selectedPost.image_path = this.image.image_path;
+      this.selectedPost.image_name = image.name;
+      this.selectedPost.image_description = image.image_description;
+      this.selectedPost.category = image.category_id;
+      this.selectedPost.id = image.id;
+      this.selectedPost.public_id = image.public_id;
+      this.selectedPost.image_path = image.image_path;
 
       this.deletePostModal = true;
     },
@@ -228,11 +264,13 @@ export default {
       this.loading = true;
 
       const { data } = await this.$axios.put(
-        `/api/auth/update-images/${this.selectedPost.image_path}`,
+        `/api/auth/update-categories/${this.selectedPost.id}`,
         {
           image_name: this.selectedPost.image_name,
           image_description: this.selectedPost.image_description,
           category_id: this.selectedPost.category_id,
+          id: this.selectedPost.id,
+          //public_id: this.selectedPost.public_id,
           image_path: this.selectedPost.image_path,
         }
       );
@@ -245,11 +283,24 @@ export default {
 
     async deletePost() {
       await this.$axios.post(
-        `/api/auth/delete-images/${this.selectedPost.image_path}`
+        `/api/auth/delete-categories/${this.selectedPost.id}`
       );
       this.deleteStatusModal = false;
-      this.getAllImages();
+      this.getPosts();
     },
   },
 };
 </script>
+<style scoped>
+.paginate {
+  width: 20%;
+  padding: 3px;
+  background-color: aqua;
+}
+.pagination {
+  justify-content: space-between;
+  display: flex;
+  gap: 2px;
+  margin: 20px;
+}
+</style>

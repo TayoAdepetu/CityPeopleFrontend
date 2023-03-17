@@ -25,9 +25,10 @@
           required
         ></textarea>
 
-          <hr />
-          <textarea v-model="body" id="body-text"></textarea>
-          <hr />
+        <hr />
+        <textarea v-model="body" id="body-text"></textarea>
+        <hr />
+        <input type="text" v-model="status" />
 
         <button type="submit" class="btn btn-primary block">Publish</button>
       </form>
@@ -47,6 +48,7 @@ export default {
       description: "",
       subsubject_name: "",
       body: "",
+      status: "",
       error: null,
     };
   },
@@ -61,6 +63,7 @@ export default {
           body: this.body,
           subsubject_name: this.subsubject_name,
           user_id: this.$auth.user.id,
+          status: this.status,
         });
 
         this.$router.push(
@@ -70,7 +73,6 @@ export default {
         this.error = e.response;
       }
     },
-
   },
 };
 </script>

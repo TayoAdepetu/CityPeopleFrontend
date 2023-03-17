@@ -16,6 +16,7 @@
         </div>
 
         <div class="picking">
+          <!--
           <select v-model="category_id" id="slug">
             <option :value="undefined">Pick a Category 👇</option>
             <option
@@ -26,6 +27,7 @@
               {{ category.name }}
             </option>
           </select>
+        -->
 
           <div class="image-section" v-if="!image">
             <input
@@ -49,8 +51,8 @@
 export default {
   data() {
     return {
-      categories: [],
-      category_id: undefined,
+      //categories: [],
+      //category_id: undefined,
       image: null,
       user_id: null,
       image_name: "",
@@ -60,12 +62,14 @@ export default {
   },
 
   methods: {
+    /*
     async getAllCategories() {
       const { data } = await this.$axios.get("/api/auth/fetch-categories");
       this.categories = data;
       return { categories };
     },
 
+    */
     async imageUpload() {
       try {
         await this.axios.post(`create-images`, {
@@ -73,7 +77,7 @@ export default {
           image_description: this.image_description,
           user_id: this.$auth.user.id,
           image: this.image,
-          category_id: this.category_id,
+          //category_id: this.category_id,
         });
       } catch (e) {
         this.error = e.response;

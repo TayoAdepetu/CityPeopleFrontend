@@ -5,7 +5,7 @@
       <thead>
         <tr>
           <th class="text-left">S/N</th>
-          <th class="text-left">Category</th>
+          <!--<th class="text-left">Category</th>-->
           <th class="text-left">Name</th>
           <th class="text-left">Description</th>
           <th class="text-left">Date</th>
@@ -17,9 +17,11 @@
           <td>
             {{ index + 1 }}
           </td>
+          <!--
           <td>
             {{ image.category_id }}
           </td>
+        -->
           <td>
             {{ image.name }}
           </td>
@@ -77,6 +79,7 @@
               </div>
 
               <div class="form-group">
+                <!--
                 <select v-model="category_id" id="slug">
                   <option :value="undefined">Pick a Category 👇</option>
                   <option
@@ -87,7 +90,7 @@
                     {{ image_category.name }}
                   </option>
                 </select>
-              </div>
+              --></div>
 
               <div class="flex justifyCenter mobileColumn">
                 <v-btn type="submit" class="greyBtn mx-3 my-1"> Update </v-btn>
@@ -148,7 +151,7 @@ export default {
   middleware: "isadmin",
   data() {
     return {
-      image_categories: [],
+      //image_categories: [],
       images: [],
       updateStatusModal: false,
       deletePostModal: false,
@@ -156,15 +159,16 @@ export default {
       selectedPost: {
         image_name: "",
         image_description: "",
-        public_id: null,
+        photo_id: null,
         image_path: "",
         id: null,
-        category_id: null,
+        //category_id: null,
       },
     };
   },
 
   methods: {
+    /*
     async getAllCategories() {
       try {
         const { data } = await this.$axios.get("/api/auth/fetch-categories");
@@ -179,6 +183,7 @@ export default {
         this.$toast.error(error.response.data.error);
       }
     },
+    */
 
     async getAllImages(context) {
       try {
@@ -232,7 +237,7 @@ export default {
         {
           image_name: this.selectedPost.image_name,
           image_description: this.selectedPost.image_description,
-          category_id: this.selectedPost.category_id,
+          //category_id: this.selectedPost.category_id,
           image_path: this.selectedPost.image_path,
         }
       );
