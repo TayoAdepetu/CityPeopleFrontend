@@ -194,7 +194,7 @@ export default {
     */
 
     async getAllImages(page) {
-      page = page || "fetch-afri-images?page=1";
+      page = page || "fetch-blog-images?page=1";
       try {
         const { data } = await this.$axios.get(`/api/auth/${page}`);
         if (data && data.data) {
@@ -264,12 +264,12 @@ export default {
       this.loading = true;
 
       const { data } = await this.$axios.put(
-        `/api/auth/update-categories/${this.selectedPost.id}`,
+        `/api/auth/update-blog-images/${this.selectedPost.id}`,
         {
           image_name: this.selectedPost.image_name,
           image_description: this.selectedPost.image_description,
-          category_id: this.selectedPost.category_id,
-          id: this.selectedPost.id,
+          //category_id: this.selectedPost.category_id,
+          //id: this.selectedPost.id,
           //public_id: this.selectedPost.public_id,
           image_path: this.selectedPost.image_path,
         }
@@ -278,12 +278,13 @@ export default {
       this.loading = false;
       this.updateStatusModal = false;
       // reset form
-      this.$router.push(`/admin/published-articles/categories`);
+      //this.$router.push(`/blogimages`);
+      this.getPosts();
     },
 
     async deletePost() {
       await this.$axios.post(
-        `/api/auth/delete-categories/${this.selectedPost.id}`
+        `/api/auth/delete-blog-images/${this.selectedPost.id}`
       );
       this.deleteStatusModal = false;
       this.getPosts();

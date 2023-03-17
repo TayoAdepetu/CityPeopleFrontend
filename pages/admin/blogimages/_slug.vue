@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!--Showing individual images in frontend-->
+    <!--Showing individual images in fronten and download buttond-->
     <div>
       <!--<img :src="baseURL + 'postimage/' + image.image_path" />-->
       <img :src="image.image_path" :alt="image.image_name" />

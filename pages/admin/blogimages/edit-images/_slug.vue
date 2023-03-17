@@ -188,7 +188,7 @@ export default {
     async getAllImages(context) {
       try {
         const { data } = await this.$axios.get(
-          `/api/auth/fetch-images/${context.params.slug}`
+          `/api/auth/fetch-blog-images/${context.params.slug}`
         );
         if (data && data.data) {
           this.images = data.data;
@@ -233,7 +233,7 @@ export default {
       this.loading = true;
 
       const { data } = await this.$axios.put(
-        `/api/auth/update-images/${this.selectedPost.image_path}`,
+        `/api/auth/update-blog-images/${this.selectedPost.image_path}`,
         {
           image_name: this.selectedPost.image_name,
           image_description: this.selectedPost.image_description,
@@ -245,12 +245,13 @@ export default {
       this.loading = false;
       this.updateStatusModal = false;
       // reset form
-      this.$router.push(`/admin/published-articles/categories`);
+      //this.$router.push(`/blogimages`);
+      this.getAllImages();
     },
 
     async deletePost() {
       await this.$axios.post(
-        `/api/auth/delete-images/${this.selectedPost.image_path}`
+        `/api/auth/delete-blog-images/${this.selectedPost.image_path}`
       );
       this.deleteStatusModal = false;
       this.getAllImages();

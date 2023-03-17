@@ -11,6 +11,7 @@
           <th class="text-left">Description</th>
           <th class="text-left">Slug</th>
           <th class="text-left">Author</th>
+          <th class="text-left">Image</th>
           <th class="text-left">Date</th>
           <th class="text-left">Actions</th>
         </tr>
@@ -32,6 +33,9 @@
           </td>
           <td>
             {{ post.user.name }}
+          </td>
+          <td>
+            {{ post.image_path }}
           </td>
           <td>
             {{ getDate(post.created_at) }}
@@ -83,7 +87,9 @@
                 {{ subsubject.subject_name }}
               </td>
               <td class="action">
-                <nuxt-link :to="`/admin/published-articles/articles/${subsubject.id}`">
+                <nuxt-link
+                  :to="`/admin/published-articles/articles/${subsubject.id}`"
+                >
                   Actions
                 </nuxt-link>
               </td>
@@ -102,7 +108,6 @@
                   v-model="selectedPost.title"
                   class="form-control"
                   id="title"
-                  placeholder="Enter title"
                   required
                   type="text"
                 ></textarea>
@@ -114,7 +119,16 @@
                   v-model="selectedPost.description"
                   class="form-control"
                   id="description"
-                  placeholder="Enter title"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <textarea
+                  type="text"
+                  v-model="selectedPost.image_path"
+                  class="form-control"
+                  id="description"
                   required
                 ></textarea>
               </div>
@@ -124,7 +138,6 @@
                   class="form-control"
                   v-model="selectedPost.body"
                   id="body"
-                  placeholder="Enter a body"
                   rows="8"
                   required
                   type="text"
@@ -182,7 +195,7 @@
         </div>
       </v-dialog>
     </div>
-     <div class="pagination">
+    <div class="pagination">
       <button class="paginate" @click.prevent="moveBack()">Previous List</button
       ><button class="paginate" @click.prevent="moveFront()">Next List</button>
     </div>
@@ -213,6 +226,7 @@ export default {
         author: "",
         id: "",
         body: "",
+        image_path: "",
       },
       error: "",
     };
@@ -262,25 +276,26 @@ export default {
     },
 
     openStatusModal(post) {
-      this.selectedPost.title = post.title;
-      this.selectedPost.id = post.id;
-      this.selectedPost.slug = post.slug;
-      this.selectedPost.description = post.description;
-      this.selectedPost.author = post.author;
-      this.selectedPost.body = post.body;
+      this.selectedPost.title = this.post.title;
+      this.selectedPost.id = this.post.id;
+      this.selectedPost.slug = this.post.slug;
+      this.selectedPost.description = this.post.description;
+      this.selectedPost.author = this.post.author;
+      this.selectedPost.body = this.post.body;
+      this.selectedPost.image_path = this.post.image_path;
 
-        this.updateStatusModal = true;
-        this.fetchSubsubjectPosts();
-
+      this.updateStatusModal = true;
+      this.fetchSubsubjectPosts();
     },
 
     deleteStatusModal(post) {
-      this.selectedPost.title = post.title;
-      this.selectedPost.id = post.id;
-      this.selectedPost.slug = post.slug;
-      this.selectedPost.description = post.description;
-      this.selectedPost.author = post.author;
-      this.selectedPost.body = post.body;
+      this.selectedPost.title = this.post.title;
+      this.selectedPost.id = this.post.id;
+      this.selectedPost.slug = this.post.slug;
+      this.selectedPost.description = this.post.description;
+      this.selectedPost.author = this.post.author;
+      this.selectedPost.body = this.post.body;
+      this.selectedPost.image_path = this.post.image_path;
 
       this.deletePostModal = true;
     },
@@ -295,6 +310,7 @@ export default {
           slug: this.selectedPost.title.replace(/ +/g, "-"),
           description: this.selectedPost.description,
           body: this.selectedPost.body,
+          image_path: this.selectedPost.image_path,
         }
       );
 
@@ -336,7 +352,6 @@ export default {
   background-color: aqua;
 }
 .pagination {
-  
   justify-content: space-between;
   display: flex;
   gap: 2px;
