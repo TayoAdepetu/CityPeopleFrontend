@@ -5,7 +5,7 @@
         <nuxt-link to="/htmlcodes" target="_blank"
           ><div class="btn">Check Component HTML Codes</div></nuxt-link
         >
-        <button @click="openStatusModal(image)">Check Image Sources</button>
+       <!-- <button @click="openStatusModal(image)">Check Image Sources</button>-->
         <button @click="openImagesStatusModal()">Check Image Sources</button>
 
         <input hidden type="" v-model="user_id" />
