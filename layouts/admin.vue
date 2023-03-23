@@ -264,29 +264,27 @@
             </ul>
           </div>
         </nav>
-
-        <div class="biz-class">
-          <div v-if="this.$auth.user.business_name_slug != null">
-            <p>
-              {{ this.$auth.user.business_name_slug }}
-            </p>
-          </div>
-
-          <div v-else>
-            <p>
-              Register your business and join millions of other businesses in
-              our business directory.
-            </p>
-            <button>
-              <nuxt-link to="/business-directory/create-business-name"
-                >Register Business</nuxt-link
-              >
-            </button>
-          </div>
+      </div>
+      <div class="biz-class">
+        <div v-if="this.$auth.user.business_name_slug != null">
+          <p>
+            {{ this.$auth.user.business_name_slug }}
+          </p>
         </div>
 
-        <Nuxt />
+        <div v-else>
+          <p>
+            Register your business and join millions of other businesses in our
+            business directory.
+          </p>
+          <button>
+            <nuxt-link to="/business-directory/create-business-name"
+              >Register Business</nuxt-link
+            >
+          </button>
+        </div>
       </div>
+      <Nuxt />
     </div>
   </v-app>
 </template>
