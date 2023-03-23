@@ -20,6 +20,7 @@
             <div class="dropdown">
               <button class="dropbtn">Check Your Menu</button>
               <ul class="dropdown-content" v-if="role === 'superadmin'">
+                <li><nuxt-link to="/">Home</nuxt-link></li>
                 <li>Moderators</li>
                 <li>Register Users</li>
                 <li>Categories</li>
@@ -70,6 +71,7 @@
                 </li>
               </ul>
               <ul class="dropdown-content" v-if="role === 'admin'">
+                <li><nuxt-link to="/">Home</nuxt-link></li>
                 <li hidden>FundHelp</li>
                 <li hidden>LendMe</li>
                 <li>
@@ -114,6 +116,7 @@
                 </li>
               </ul>
               <ul class="dropdown-content" v-if="role === 'publisher'">
+                <li><nuxt-link to="/">Home</nuxt-link></li>
                 <li hidden>FundHelp</li>
                 <li hidden>LendMe</li>
                 <li>
@@ -172,6 +175,7 @@
                 </li>
               </ul>
               <ul class="dropdown-content" v-if="role === 'seller'">
+                <li><nuxt-link to="/">Home</nuxt-link></li>
                 <li hidden>FundHelp</li>
                 <li hidden>LendMe</li>
                 <li hidden>Artisans Directory</li>
@@ -221,6 +225,7 @@
                 </li>
               </ul>
               <ul class="dropdown-content" v-if="role === 'commenter'">
+                <li><nuxt-link to="/">Home</nuxt-link></li>
                 <li hidden>FundHelp</li>
                 <li hidden>LendMe</li>
                 <li hidden>Artisans Directory</li>
@@ -275,7 +280,7 @@
         <div class="biz-class">
           <div v-if="this.$auth.user.business_name_slug != null">
             <p>
-              {{ this.$auth.user.business_name_slug }}
+              {{ this.$auth.user.business_name }}
             </p>
           </div>
 
@@ -342,7 +347,7 @@ export default {
 .dropbtn {
   background-color: var(--teal);
   color: white;
-  padding: 8px;
+  padding: 16px;
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -362,15 +367,16 @@ export default {
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  text-align: left;
 }
 
 /* Links inside the dropdown */
 .dropdown-content li {
   color: black;
-  padding: 12px 16px;
+  padding-top: 6px;
+  padding-top: 3px;
   text-decoration: none;
   display: block;
+  text-align: left;
 }
 
 /* Change color of dropdown links on hover */
@@ -385,6 +391,6 @@ export default {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  background-color: var(--yellow);
 }
 </style>

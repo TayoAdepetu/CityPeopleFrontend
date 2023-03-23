@@ -54,7 +54,7 @@
 //import Notification from '~/components/Notification'
 
 export default {
-  middleware:'iscommenter',
+  middleware: "iscommenter",
   layout: "admin",
   data() {
     return {
@@ -100,13 +100,16 @@ export default {
 </script>
 
 <style scoped>
-.container{
-  margin-top:100px;
-  width:80vw;
-  margin-bottom:20px;
+.container {
+  margin-top: 100px;
+  width: 80vw;
+  margin-bottom: 20px;
+  margin-right: auto;
+  margin-left: auto;
 }
 form,
-textarea, input {
+textarea,
+input {
   border: 2px;
   border-style: solid;
   border-radius: 2px;
