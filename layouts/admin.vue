@@ -311,7 +311,8 @@ export default {
 
 <style scoped>
 .container {
-  max-width: 80%;
+  max-width: 100vw;
+  padding: 10px;
 }
 .nav-container {
   display: flex;
@@ -319,7 +320,7 @@ export default {
   background-color: var(--dark-blue);
   margin-right: auto;
   margin-left: auto;
-  align-content: center;
+  align-items: center;
   margin-top: 10px;
 }
 .user-avatar {
