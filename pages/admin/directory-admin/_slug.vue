@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="container">
     <div>
       <div class="dropdown">
         <div class="dropbtn">
           Click here if you forgot to complete any of the five steps of the
-          Business Directory process before:
+          Business Directory process before
         </div>
         <ul class="dropdown-content">
           <li>
@@ -37,7 +37,7 @@
       <div class="dropdown">
         <div class="dropbtn">
           Click here if you only want to edit a particular information that you
-          have provided before in any of the five steps:
+          have provided before in any of the five steps
         </div>
         <ul class="dropdown-content">
           <li>
@@ -359,8 +359,10 @@ export default {
 };
 </script>
 
-<
 <style scoped>
+tr {
+  justify-content: space-between;
+}
 form,
 .fordeleteback {
   background-color: lightgreen;
