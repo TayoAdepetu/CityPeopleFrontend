@@ -108,7 +108,7 @@ export default {
         });
         */
 
-        //this.$router.push("/confirm-email");
+        this.$router.push("/confirm-email");
       } catch (e) {
         this.loading = false;
         this.$toast.info(

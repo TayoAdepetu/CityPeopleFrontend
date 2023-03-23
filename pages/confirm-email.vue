@@ -30,10 +30,14 @@ export default {
           code: this.code,
           email: this.$auth.user.email,
         });
+        this.$toast.success("Email verified successfully.");
 
-        //this.$router.push('/admin/articles')
+        this.$router.push("/");
       } catch (e) {
-        this.error = e.response;
+        console.log(e.response);
+        this.$toast.info(
+          "There was a problem verifying email address. Please, check the verification code again."
+        );
       }
     },
   },
