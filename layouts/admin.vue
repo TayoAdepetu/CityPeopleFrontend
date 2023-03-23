@@ -300,6 +300,7 @@ li {
 
 .list {
   text-align: left;
+  margin-left: 20px;
 }
 
 body {
