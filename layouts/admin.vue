@@ -11,7 +11,7 @@
           <div v-if="(this.$auth.user.business_name_slug = null)">
             <p>
               Register your business and join millions of other businesses in
-              our business directory
+              our business directory.
             </p>
             <button>
               <nuxt-link to="/business-directory/create-business-name"
