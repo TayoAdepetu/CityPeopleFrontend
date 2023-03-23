@@ -314,18 +314,11 @@ export default {
 ul,
 li {
   list-style: none;
-  padding-left: 0px;
-  margin-top: 10px;
-}
-
-.list {
-  text-align: left;
 }
 
 body {
   max-width: 80%;
 }
-
 .user-greeting {
   color: var(--yellow) !important;
 }
