@@ -1,11 +1,10 @@
 <template>
   <div>
     <div>
-      >
       <div class="dropdown">
         <div class="dropbtn">
-          If you forgot to complete any of the five steps of the Business
-          Directory process before:
+          Click here if you forgot to complete any of the five steps of the
+          Business Directory process before:
         </div>
         <ul class="dropdown-content">
           <li>
@@ -37,8 +36,8 @@
       </div>
       <div class="dropdown">
         <div class="dropbtn">
-          If you only want to edit a particular information that you have
-          provided before in any of the five steps:
+          Click here if you only want to edit a particular information that you
+          have provided before in any of the five steps:
         </div>
         <ul class="dropdown-content">
           <li>
@@ -442,6 +441,7 @@ textarea {
 .dropdown {
   position: relative;
   display: inline-block;
+  margin-top: 30px;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -449,7 +449,7 @@ textarea {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  min-width: 100%;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
