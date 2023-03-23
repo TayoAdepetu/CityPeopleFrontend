@@ -312,7 +312,6 @@ export default {
 <style scoped>
 .container {
   max-width: 100vw;
-  padding: 10px;
 }
 .nav-container {
   display: flex;
@@ -321,7 +320,7 @@ export default {
   margin-right: auto;
   margin-left: auto;
   align-items: center;
-  margin-top: 10px;
+  padding: 10px;
 }
 .user-avatar {
   border-radius: 50%;
@@ -341,7 +340,7 @@ export default {
 }
 
 .dropbtn {
-  background-color: #4caf50;
+  background-color: var(--teal);
   color: white;
   padding: 8px;
   font-size: 16px;
