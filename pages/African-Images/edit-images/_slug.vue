@@ -2,6 +2,14 @@
   <div>
     <!--for users to edit their uploaded images-->
     <div>
+      <div v-if="(this.images = null)">
+        <p>
+          You have not published any image on our African Stock Image Website.
+        </p>
+        <nuxt-link to="/african-images/upload afro-images"
+          >Publish New Image</nuxt-link
+        >
+      </div>
       <thead>
         <tr>
           <th class="text-left">S/N</th>
@@ -145,7 +153,7 @@
 
 <script>
 export default {
-  middleware: "isadmin",
+  middleware: "iscommenter",
   data() {
     return {
       image_categories: [],

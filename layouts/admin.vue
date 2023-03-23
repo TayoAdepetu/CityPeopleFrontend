@@ -8,7 +8,7 @@
             <img class="user-avatar" :src="user_picture" />
           </div>
           <div>{{ user.name }}</div>
-          <div v-if="this.$auth.user.business_name_slug == ''">
+          <div v-if="(this.$auth.user.business_name_slug = null)">
             <p>
               Register your business and join millions of other businesses in
               our business directory
@@ -121,7 +121,7 @@
               >
             </li>
             <li hidden>Artisans Directory</li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <span
                 ><nuxt-link
                   :to="`/business-directory/${this.$auth.user.business_name_slug}`"
@@ -136,31 +136,31 @@
               >
             </li>
             <li><nuxt-link to="/create-post">Publish Article</nuxt-link></li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`"
                 >MyShop</nuxt-link
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/faq-admin/published-faq/${this.$auth.user.business_name_slug}`"
                 >MyFaqs</nuxt-link
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/workinghours-admin/${this.$auth.user.business_name_slug}`"
                 >MyWorkingHours</nuxt-link
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`"
                 >Job Vacancy Board</nuxt-link
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/directory-admin/${this.$auth.user.business_name_slug}`"
                 >Business Directory</nuxt-link
@@ -177,7 +177,7 @@
                 >African Images</nuxt-link
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <span
                 ><nuxt-link
                   :to="`/business-directory/${this.$auth.user.business_name_slug}`"
@@ -185,31 +185,31 @@
                 ></span
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`"
                 >MyShop</nuxt-link
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/faq-admin/published-faq/${this.$auth.user.business_name_slug}`"
                 >MyFaqs</nuxt-link
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/workinghours-admin/${this.$auth.user.business_name_slug}`"
                 >MyWorkingHours</nuxt-link
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`"
                 >Job Vacancy Board</nuxt-link
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/directory-admin/${this.$auth.user.business_name_slug}`"
                 >Business Directory</nuxt-link
@@ -226,7 +226,7 @@
                 >African Images</nuxt-link
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <span
                 ><nuxt-link
                   :to="`/business-directory/${this.$auth.user.business_name_slug}`"
@@ -234,31 +234,31 @@
                 ></span
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`"
                 >MyShop</nuxt-link
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/faq-admin/published-faq/${this.$auth.user.business_name_slug}`"
                 >MyFaqs</nuxt-link
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/workinghours-admin/${this.$auth.user.business_name_slug}`"
                 >MyWorkingHours</nuxt-link
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`"
                 >Job Vacancy Board</nuxt-link
               >
             </li>
-            <li v-if="this.$auth.user.business_name_slug != ''">
+            <li v-if="this.$auth.user.business_name_slug != null">
               <nuxt-link
                 :to="`/admin/directory-admin/${this.$auth.user.business_name_slug}`"
                 >Business Directory</nuxt-link
