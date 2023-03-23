@@ -316,6 +316,11 @@ export default {
 .nav-container {
   display: flex;
   justify-content: space-between;
+  background-color: var(--dark-blue);
+  margin-right: auto;
+  margin-left: auto;
+  align-content: center;
+  margin-top: 10px;
 }
 .user-avatar {
   border-radius: 50%;
@@ -330,10 +335,14 @@ export default {
   color: var(--lightest) !important;
 }
 
+.biz-class {
+  margin-top: 12px;
+}
+
 .dropbtn {
   background-color: #4caf50;
   color: white;
-  padding: 16px;
+  padding: 8px;
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -353,6 +362,7 @@ export default {
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  text-align: left;
 }
 
 /* Links inside the dropdown */
