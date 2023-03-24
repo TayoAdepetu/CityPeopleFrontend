@@ -3,6 +3,14 @@
     <div class="container">
       <h3>Add A Frequestly Asked Question About Your Business</h3>
       <p>Step 4 of 5</p>
+      <h3>
+        No More Questions? Go To The Next Step To
+        <span
+          ><nuxt-link to="/business-directory/create-directory-product"
+            >Upload Your Products or Services</nuxt-link
+          ></span
+        >
+      </h3>
       <form @submit.prevent="createFaqQuestions">
         <input hidden type="" :value="user_id" />
 
@@ -28,14 +36,6 @@
 
         <button type="submit" class="btn">Publish</button>
       </form>
-      <h3>
-        No More Questions? Go To The Next Step To
-        <span
-          ><nuxt-link to="/business-directory/create-directory-product"
-            >Upload Your Products or Services</nuxt-link
-          ></span
-        >
-      </h3>
     </div>
   </div>
 </template>
@@ -48,7 +48,7 @@ export default {
   layout: "admin",
   data() {
     return {
-      user_id: "",
+      user_id: null,
       question: "",
       answer: "",
       error: null,
