@@ -3,7 +3,7 @@
     <div class="container">
       <h3>Add A Frequestly Asked Question About Your Business</h3>
       <p>Step 4 of 5</p>
-      <form @submit.prevent="createFaq">
+      <form @submit.prevent="createFaqQuestions">
         <input hidden type="" :value="user_id" />
 
         <div class="form-group">
@@ -56,7 +56,7 @@ export default {
   },
 
   methods: {
-    async createFaq() {
+    async createFaqQuestions() {
       try {
         await this.$axios.post(`/api/auth/create-new-faq`, {
           question: this.question,
