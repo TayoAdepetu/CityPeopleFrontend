@@ -171,9 +171,12 @@
         </v-dialog>
       </div>
       <div class="pagination">
-      <button class="paginate" @click.prevent="moveBack()">Previous List</button
-      ><button class="paginate" @click.prevent="moveFront()">Next List</button>
-    </div>
+        <button class="paginate" @click.prevent="moveBack()">
+          Previous List</button
+        ><button class="paginate" @click.prevent="moveFront()">
+          Next List
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -181,6 +184,7 @@
 <script>
 export default {
   middleware: "isadmin",
+  layout: "admin",
   data() {
     return {
       jobs: [],

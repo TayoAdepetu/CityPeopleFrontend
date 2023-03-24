@@ -12,7 +12,8 @@
 <script scoped>
 
 export default {
-    middleware:'isadmin',
+  middleware: 'isadmin',
+    layout: "admin",
     data() {
         return{
             name:'',

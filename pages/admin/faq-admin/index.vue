@@ -130,6 +130,7 @@
 <script>
 export default {
   middleware: "isadmin",
+  layout: "admin",
   data() {
     return {
       jobs: [],

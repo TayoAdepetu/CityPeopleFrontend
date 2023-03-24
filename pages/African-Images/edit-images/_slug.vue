@@ -154,6 +154,7 @@
 <script>
 export default {
   middleware: "iscommenter",
+  layout: "admin",
   data() {
     return {
       image_categories: [],

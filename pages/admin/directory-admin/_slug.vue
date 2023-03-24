@@ -4,31 +4,26 @@
       <div class="dropdown">
         <div class="dropbtn">
           Click here if you forgot to complete any of the five steps of the
-          Business Directory process before
+          Business Directory Creation process
         </div>
         <ul class="dropdown-content">
           <li>
-            <nuxt-link to="business-directory/create-business-name"
-              >Step 1: Business Name Creation</nuxt-link
-            >
-          </li>
-          <li>
-            <nuxt-link to="business-directory/create-directory"
+            <nuxt-link to="/business-directory/create-directory"
               >Step 2: Basic Business Directory Details</nuxt-link
             >
           </li>
           <li>
-            <nuxt-link to="business-directory/create-working-hours"
+            <nuxt-link to="/business-directory/create-working-hours"
               >Step 3: Business Opening Hours</nuxt-link
             >
           </li>
           <li>
-            <nuxt-link to="business-directory/create-faq"
+            <nuxt-link to="/business-directory/create-faq"
               >Step 4: Business FAQs Creation</nuxt-link
             >
           </li>
           <li>
-            <nuxt-link to="business-directory/create-directory-products"
+            <nuxt-link to="/business-directory/create-directory-products"
               >Step 5: Upload Your Products/Services</nuxt-link
             >
           </li>
@@ -41,27 +36,26 @@
         </div>
         <ul class="dropdown-content">
           <li>
-            <nuxt-link
-              :to="`business-directory/admin/directory-admin/${this.$auth.user.business_name_slug}`"
-              >Step 2: Basic Business Directory Details</nuxt-link
+            <nuxt-link :to="`/admin/directory-admin/edit-business-name`"
+              >Step 1: Edit Business Name</nuxt-link
             >
           </li>
           <li>
             <nuxt-link
-              :to="`business-directory/admin/workinghours-admin/${this.$auth.user.business_name_slug}`"
-              >Step 3: Business Opening Hours</nuxt-link
+              :to="`/admin/workinghours-admin/${this.$auth.user.business_name_slug}`"
+              >Step 3: Edit Business Opening Hours</nuxt-link
             >
           </li>
           <li>
             <nuxt-link
-              :to="`business-directory/admin/published-faq/${this.$auth.user.business_name_slug}`"
-              >Step 4: Business FAQs Creation</nuxt-link
+              :to="`/admin/published-faq/${this.$auth.user.business_name_slug}`"
+              >Step 4: Edit Business FAQs</nuxt-link
             >
           </li>
           <li>
             <nuxt-link
-              :to="`business-directory/admin/directory-product-admin/${this.$auth.user.business_name_slug}`"
-              >Step 5: Upload Your Products/Services</nuxt-link
+              :to="`/admin/directory-product-admin/${this.$auth.user.business_name_slug}`"
+              >Step 5: Edit Uploaded Products/Services</nuxt-link
             >
           </li>
         </ul>
@@ -245,6 +239,7 @@
 <script>
 export default {
   middleware: "iscommenter",
+  layout: "admin",
   data() {
     return {
       jobs: [],

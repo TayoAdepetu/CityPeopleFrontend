@@ -342,6 +342,7 @@ export default {
 
 .biz-class {
   margin-top: 12px;
+  margin-top: 20px;
 }
 
 .dropbtn {
@@ -364,7 +365,7 @@ export default {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  min-width: 100%;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }

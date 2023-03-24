@@ -107,6 +107,7 @@
 <script>
 export default {
   middleware: "ispublisher",
+  layout: "admin",
   data() {
     return {
       deleteSubsubjectModal: false,

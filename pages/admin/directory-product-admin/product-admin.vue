@@ -164,6 +164,7 @@
 <script>
 export default {
   middleware: "isadmin",
+  layout: "admin",
   data() {
     return {
       jobs: [],
@@ -195,9 +196,7 @@ export default {
     async getJobs(page) {
       page = page || "all-ecommerce-products?page=1";
       try {
-        const { data } = await this.$axios.get(
-          `/api/auth/${page}`
-        );
+        const { data } = await this.$axios.get(`/api/auth/${page}`);
         this.jobs = data.data;
         this.first_page = data.first_page_url.split("/")[5];
         this.last_page = data.last_page_url.split("/")[5];
