@@ -3,7 +3,7 @@
     <div class="container">
       <h3>Add A Frequestly Asked Question About Your Business</h3>
       <p>Step 4 of 5</p>
-      <form @submit.prevent="createFaq()">
+      <form @submit.prevent="createFaq">
         <input hidden type="" :value="user_id" />
 
         <div class="form-group">
@@ -26,7 +26,7 @@
           ></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary block">Publish</button>
+        <button type="submit" class="btn">Publish</button>
       </form>
       <h3>
         No More Questions? Go To The Next Step To
