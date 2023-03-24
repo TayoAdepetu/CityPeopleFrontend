@@ -11,7 +11,7 @@
           ></span
         >
       </h3>
-      <form @submit.prevent="createFaqQuestions">
+      <form @submit="createFaqQuestions()">
         <input hidden type="" :value="user_id" />
 
         <div class="form-group">

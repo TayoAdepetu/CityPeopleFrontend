@@ -90,7 +90,7 @@ export default {
   layout: "admin",
   data() {
     return {
-      user_id: "",
+      user_id: null,
       product_name: "",
       //product_name_slug: '',
       description: "",

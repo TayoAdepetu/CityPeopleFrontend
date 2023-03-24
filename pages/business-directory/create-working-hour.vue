@@ -115,7 +115,7 @@ export default {
   layout: "admin",
   data() {
     return {
-      user_id: "",
+      user_id: null,
       business_name: "",
       business_name_slug: "",
       monday: "",

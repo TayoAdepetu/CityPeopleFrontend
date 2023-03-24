@@ -63,7 +63,7 @@ export default {
       website: "",
       established: "",
       location: "",
-      user_id: "",
+      user_id: null,
       number_of_employees: "",
       error: null,
     };
