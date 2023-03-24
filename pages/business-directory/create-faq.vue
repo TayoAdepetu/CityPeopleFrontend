@@ -40,7 +40,7 @@
   </div>
 </template>
 
-<script scoped>
+<script>
 //import Notification from '~/components/Notification'
 
 export default {
