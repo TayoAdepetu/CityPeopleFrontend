@@ -2,7 +2,7 @@
   <div class="container">
     <h3>Tell Us Your Opening and Closing Time (This step is compulsory)</h3>
     <p>Step 3 of 5</p>
-    <form @submit.prevent="createDirectory">
+    <form @submit.prevent="createWorkingHours">
       <input hidden type="" :value="user_id" />
       <div class="form-group">
         <input
@@ -12,7 +12,7 @@
           id="title"
           placeholder="Enter business_name"
           type="text"
-        >
+        />
       </div>
 
       <div class="form-group">
@@ -33,7 +33,7 @@
           placeholder="Enter opening and closing time for Monday. e.g. 8am - 6pm or Closed"
           required
           type="text"
-        >
+        />
       </div>
 
       <div class="form-group">
@@ -44,7 +44,7 @@
           placeholder="Enter opening and closing time for tuesday. e.g. 8am - 6pm or Closed"
           required
           type="text"
-        >
+        />
       </div>
 
       <div class="form-group">
@@ -55,7 +55,7 @@
           placeholder="Enter opening and closing time for wednesday. e.g. 8am - 6pm or Closed"
           required
           type="text"
-        >
+        />
       </div>
 
       <div class="form-group">
@@ -66,7 +66,7 @@
           placeholder="Enter opening and closing time for thursday. e.g. 8am - 6pm or Closed"
           required
           type="text"
-        >
+        />
       </div>
 
       <div class="form-group">
@@ -77,18 +77,18 @@
           placeholder="Enter opening and closing time for friday. e.g. 8am - 6pm or Closed"
           required
           type="text"
-        >
+        />
       </div>
 
       <div class="form-group">
         <input
-        type="text"
+          type="text"
           v-model="saturday"
           class="form-control"
           id="title"
           placeholder="Enter opening and closing time for saturday. e.g. 8am - 6pm or Closed"
           required
-        >
+        />
       </div>
 
       <div class="form-group">
@@ -99,7 +99,7 @@
           placeholder="Enter opening and closing time for sunday. e.g. 8am - 6pm or Closed"
           required
           type="text"
-        >
+        />
       </div>
 
       <button type="submit" class="btn btn-primary block">Publish</button>
@@ -111,7 +111,7 @@
 //import Notification from '~/components/Notification'
 
 export default {
-  middleware: 'iscommenter',
+  middleware: "iscommenter",
   layout: "admin",
   data() {
     return {
@@ -159,6 +159,9 @@ export default {
   margin-top: 100px;
   width: 80vw;
   margin-bottom: 20px;
+  margin-top: 100px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 form,
