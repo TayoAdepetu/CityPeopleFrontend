@@ -1,32 +1,42 @@
 <template>
-  <div class="container">
-    <h3>Add A Frequestly Asked Question About Your Business</h3>
-    <form @submit.prevent="createFaq">
-      <input hidden type="" :value="user_id" />
+  <div class="first-container">
+    <div class="container">
+      <h3>Add A Frequestly Asked Question About Your Business</h3>
+      <p>Step 4 of 5</p>
+      <form @submit.prevent="createFaq">
+        <input hidden type="" :value="user_id" />
 
-      <div class="form-group">
-        <textarea
-          v-model="question"
-          class="form-control"
-          id="title"
-          placeholder="Enter a question"
-          required
-        ></textarea>
-      </div>
+        <div class="form-group">
+          <textarea
+            v-model="question"
+            class="form-control"
+            id="title"
+            placeholder="Enter a question"
+            required
+          ></textarea>
+        </div>
 
-      <div class="form-group">
-        <textarea
-          v-model="answer"
-          class="form-control"
-          id="title"
-          placeholder="Enter answer to the question"
-          required
-        ></textarea>
-      </div>
+        <div class="form-group">
+          <textarea
+            v-model="answer"
+            class="form-control"
+            id="title"
+            placeholder="Enter answer to the question"
+            required
+          ></textarea>
+        </div>
 
-      <button type="submit" class="btn btn-primary block">Publish</button>
-      <h3>No More Questions? Go To The Next Step To <span><nuxt-link to="/business-directory/create-directory-product">Upload Your Products or Services</nuxt-link></span> </h3>
-    </form>
+        <button type="submit" class="btn btn-primary block">Publish</button>
+        <h3>
+          No More Questions? Go To The Next Step To
+          <span
+            ><nuxt-link to="/business-directory/create-directory-product"
+              >Upload Your Products or Services</nuxt-link
+            ></span
+          >
+        </h3>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -34,6 +44,7 @@
 //import Notification from '~/components/Notification'
 
 export default {
+  middleware: "iscommenter",
   layout: "admin",
   data() {
     return {
@@ -63,10 +74,10 @@ export default {
 </script>
 
 <style scoped>
-.container{
-  margin-top:50px;
-  width:80vw;
-  margin-bottom:20px;
+.container {
+  margin-top: 50px;
+  width: 80vw;
+  margin-bottom: 20px;
 }
 form,
 textarea {
