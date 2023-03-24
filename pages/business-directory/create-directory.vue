@@ -79,6 +79,7 @@ export default {
           location: this.location,
           established: this.established,
           number_of_employees: this.number_of_employees,
+          business_name_slug: this.$auth.user.business_name_slug,
           //image: this.onFileChange()
         });
 
