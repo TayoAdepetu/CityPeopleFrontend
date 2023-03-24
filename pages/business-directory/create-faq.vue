@@ -27,15 +27,15 @@
         </div>
 
         <button type="submit" class="btn btn-primary block">Publish</button>
-        <h3>
-          No More Questions? Go To The Next Step To
-          <span
-            ><nuxt-link to="/business-directory/create-directory-product"
-              >Upload Your Products or Services</nuxt-link
-            ></span
-          >
-        </h3>
       </form>
+      <h3>
+        No More Questions? Go To The Next Step To
+        <span
+          ><nuxt-link to="/business-directory/create-directory-product"
+            >Upload Your Products or Services</nuxt-link
+          ></span
+        >
+      </h3>
     </div>
   </div>
 </template>
