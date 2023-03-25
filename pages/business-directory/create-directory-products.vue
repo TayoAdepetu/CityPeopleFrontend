@@ -170,7 +170,7 @@ export default {
 
     removeImage: function (e) {
       //this.images = [];
-      let index = this.image.indexOf(image);
+      let index = this.image;
       this.images.splice(index);
     },
   },
