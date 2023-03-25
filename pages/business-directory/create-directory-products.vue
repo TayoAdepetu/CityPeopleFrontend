@@ -72,8 +72,8 @@
 
         <div
           class="image-section"
-          v-for="image in images"
-          :key="image.indexOf(image)"
+          v-for="(image, index) in images"
+          :key="index"
         >
           <img :src="image" />
           <button @click="removeImage">Remove image</button>
