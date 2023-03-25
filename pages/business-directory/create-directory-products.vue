@@ -66,15 +66,18 @@
 
       <di>
         <div class="image-section">
-          Select an Image
+          Add Relevant Product/Services Images
           <input type="file" multiple @change="onFileChange" />
         </div>
-        <!--
-          <div class="image-section" v-for="image in images" :key="image.id">
-            <img :src="image" />
-            <button @click="removeImage">Remove image</button>
-          </div>
-          -->
+
+        <div
+          class="image-section"
+          v-for="image in images"
+          :key="this.image.indexOf(image)"
+        >
+          <img :src="image" />
+          <button @click="removeImage">Remove image</button>
+        </div>
       </di>
 
       <button type="submit" class="btn btn-primary block">Publish</button>
@@ -135,27 +138,36 @@ export default {
     },
 
     createImage(selectedFiles) {
+      return this.images.push(selectedFiles);
+    },
+
+    /*
+    onFileChange(e) {
+      let selectedFiles = e.target.files;
+      if (!selectedFiles.length) {
+        return false;
+      }
+
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        this.createImage(selectedFiles[i]);
+      }
+    },
+
+    createImage(selectedFiles) {
       //let image = new Image();
+
+      
       let reader = new FileReader();
       let imagepiece = reader.readAsDataURL(selectedFiles);
-      this.images.push(imagepiece);
-
-      /*for the foreach to display images
-      this.image.id = 
-
-      for image preview 
-      reader.onload = (e) => {
-        this.image = e.target.result;
-      };
-
-      this.image.id = this.image.indexOf(image);
-      */
+      this.images.push(imagepiece);    
+  
     },
+    */
 
     removeImage: function (e) {
       //this.images = [];
       let index = this.image.indexOf(image);
-      this.images.splice(index, 1);
+      this.images.splice(index);
     },
   },
 };

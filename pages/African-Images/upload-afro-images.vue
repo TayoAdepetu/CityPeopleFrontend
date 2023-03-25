@@ -85,6 +85,10 @@ export default {
       this.image = e.target.files;
     },
 
+    removeImage: function (e) {
+      this.image = null;
+    },
+
     /*
 
     onFileChange(e) {
