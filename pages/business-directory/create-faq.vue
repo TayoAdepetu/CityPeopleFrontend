@@ -61,7 +61,7 @@ export default {
         await this.$axios.post(`/api/auth/create-new-faq`, {
           question: this.question,
           answer: this.answer,
-          user_id: this.$auth.user.user.id,
+          user_id: this.$auth.user.id,
         });
 
         this.$router.push("/business-directory/create-faq");
