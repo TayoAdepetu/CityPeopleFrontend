@@ -59,17 +59,15 @@ export default {
           data: this.form,
         });
 
-        if (logUser) {
-          this.$toast.success("You are logged-in.");
-          this.loading = false;
-          /*
+        this.$toast.success("You are logged-in.");
+        this.loading = false;
+        /*
           await this.$auth.setUser({
             email: this.email,
             password: this.password,
           });
           */
-          this.$router.push("/");
-        }
+        this.$router.push("/");
       } catch (error) {
         this.loading = false;
         this.$toast.info(
