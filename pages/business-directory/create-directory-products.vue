@@ -66,13 +66,13 @@
 
       <di>
         <div class="image-section">
-          Add Relevant Product/Services Images
+          Add Relevant Product/Service Images
           <input type="file" multiple @change="onFileChange" />
         </div>
 
         <div
           class="image-section"
-          v-for="({ image }, index) in images"
+          v-for="(image, index) in images"
           :key="index"
         >
           <img :src="image" />
@@ -109,7 +109,7 @@ export default {
       try {
         await this.$axios.post(`/api/auth/create-directory-product`, {
           product_name: this.product_name,
-          //product_name_slug: this.product_name.replace(/ +/g, '-'),
+          //product_name_slug: this.product_name.replace(/ +/g, "-"),
           description: this.description,
           price: this.price,
           location: this.biz_location,
