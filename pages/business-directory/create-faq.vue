@@ -6,7 +6,7 @@
       <h3>
         No More Questions? Go To The Next Step To
         <span
-          ><nuxt-link to="/business-directory/create-directory-product"
+          ><nuxt-link to="/business-directory/create-directory-products"
             >Upload Your Products or Services</nuxt-link
           ></span
         >
@@ -67,6 +67,7 @@ export default {
         this.$router.push("/business-directory/create-faq");
       } catch (e) {
         this.error = e.response;
+        console.log(e);
       }
     },
   },
