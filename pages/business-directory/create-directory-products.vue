@@ -72,7 +72,7 @@
 
         <div
           class="image-section"
-          v-for="(image, index) in images"
+          v-for="({ image }, index) in images"
           :key="index"
         >
           <img :src="image" />
@@ -97,12 +97,9 @@ export default {
       product_name: "",
       //product_name_slug: '',
       description: "",
-      image: null,
       price: "",
       biz_location: "",
       images: [],
-      imagepiece: null,
-      selectedFiles: null,
       error: null,
     };
   },
