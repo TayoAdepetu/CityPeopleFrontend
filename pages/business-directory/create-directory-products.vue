@@ -73,7 +73,7 @@
         <div
           class="image-section"
           v-for="image in images"
-          :key="this.image.indexOf(image)"
+          :key="image.indexOf(image)"
         >
           <img :src="image" />
           <button @click="removeImage">Remove image</button>
@@ -128,6 +128,8 @@ export default {
 
     onFileChange(e) {
       let selectedFiles = e.target.files;
+
+      /*
       if (!selectedFiles.length) {
         return false;
       }
@@ -135,11 +137,16 @@ export default {
       for (let i = 0; i < this.selectedFiles.length; i++) {
         this.createImage(selectedFiles[i]);
       }
+      */
+      return this.images.push(selectedFiles);
     },
+
+    /*
 
     createImage(selectedFiles) {
       return this.images.push(selectedFiles);
     },
+    */
 
     /*
     onFileChange(e) {
