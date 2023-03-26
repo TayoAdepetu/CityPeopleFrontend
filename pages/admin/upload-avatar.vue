@@ -7,7 +7,7 @@
       </div>
 
       <div class="image-section" v-if="user_image != null">
-        <img :src="user_image" />
+        <img :src="imagepiece" />
         <!--<button @click="removeImage">Remove image</button>-->
       </div>
 
@@ -35,17 +35,15 @@ export default {
       let user_image = e.target.files[0];
       console.log(user_image);
 
-      /*
       let reader = new FileReader();
 
       if (user_image && user_image.type.match("image.*")) {
-        reader.readAsDataURL(this.user_image);
+        reader.readAsDataURL(user_image);
       }
 
       reader.onload = (e) => {
         this.imagepiece = reader.result;
       };
-       */
     },
 
     removeImage: function (e) {
