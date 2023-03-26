@@ -7,8 +7,8 @@
       </div>
 
       <div class="image-section" v-else>
-        <img :src="this.user_image" />
-        <button @click="removeImage">Remove image</button>
+        <img :src="imagepiece" />
+        <!--<button @click="removeImage">Remove image</button>-->
       </div>
 
       <button type="submit" class="btn btn-primary block">Publish</button>
@@ -25,6 +25,7 @@ export default {
   data() {
     return {
       user_image: null,
+      imagepiece: null,
       error: null,
     };
   },
@@ -33,6 +34,9 @@ export default {
     onFileChange(e) {
       this.user_image = e.target.files[0];
       console.log(this.user_image);
+      let reader = new FileReader();
+
+      this.imagepiece = reader.readAsDataURL(user_image);
     },
 
     removeImage: function (e) {
