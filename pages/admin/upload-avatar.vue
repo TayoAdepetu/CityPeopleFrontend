@@ -32,20 +32,20 @@ export default {
 
   methods: {
     onFileChange(e) {
-      let image = e.target.files[0];
-      console.log(image);
+      let user_image = e.target.files[0];
+      console.log(user_image);
 
       let reader = new FileReader();
 
-      if (image && image.type.match("image.*")) {
-        reader.readAsDataURL(image);
+      if (user_image && user_image.type.match("image.*")) {
+        reader.readAsDataURL(user_image);
 
         reader.onloadend = (event) => {
           this.imagepiece = reader.result;
         };
       }
 
-      this.user_image = e.target.files[0];
+      //this.user_image = e.target.files[0];
     },
 
     removeImage: function (e) {
