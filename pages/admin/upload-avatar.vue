@@ -32,15 +32,15 @@ export default {
 
   methods: {
     onFileChange(e) {
-      let user_image = e.target.files[0];
-      console.log(user_image);
+      let image = e.target.files[0];
+      console.log(image);
 
       let reader = new FileReader();
 
-      if (user_image && user_image.type.match("image.*")) {
-        reader.readAsDataURL(user_image);
+      if (image && image.type.match("image.*")) {
+        reader.readAsDataURL(image);
 
-        reader.onloadend = (e) => {
+        reader.onloadend = function () {
           this.imagepiece = reader.result;
         };
       }
