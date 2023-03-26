@@ -85,7 +85,7 @@ export default {
           }
         );
 
-        this.$router.push("/admin/dashboard");
+        //this.$router.push("/admin/dashboard");
       } catch (e) {
         this.error = e.response;
       }
