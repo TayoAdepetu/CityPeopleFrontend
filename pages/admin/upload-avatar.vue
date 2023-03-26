@@ -42,6 +42,7 @@ export default {
 
         reader.onloadend = (e) => {
           this.imagepiece = reader.result;
+          this.user_image = e.target.files[0];
         };
       }
     },
