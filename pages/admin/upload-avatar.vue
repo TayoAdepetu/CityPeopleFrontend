@@ -31,7 +31,7 @@ export default {
 
   methods: {
     onFileChange(e) {
-      this.user_image = e.target.files;
+      this.user_image = e.target.files[0];
       console.log(user_image);
     },
 
@@ -84,6 +84,9 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  max-width: 60vw;
+}
 form {
   border: 2px;
   border-style: solid;
