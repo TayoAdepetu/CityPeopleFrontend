@@ -40,7 +40,7 @@ export default {
       if (image && image.type.match("image.*")) {
         reader.readAsDataURL(image);
 
-        reader.onloadend = function () {
+        reader.onloadend = (event) => {
           this.imagepiece = reader.result;
         };
       }
