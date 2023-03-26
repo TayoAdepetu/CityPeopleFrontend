@@ -25,15 +25,19 @@ export default {
   data() {
     return {
       imagepiece: null,
+      user_image: null,
       error: null,
     };
   },
 
   methods: {
     onFileChange(e) {
-      let user_image = e.target.files[0];
+      this.user_image = e.target.files[0];
       console.log(user_image);
+      this.createImage(user_image);
+    },
 
+    createImage(user_image) {
       let reader = new FileReader();
 
       if (user_image && user_image.type.match("image.*")) {
