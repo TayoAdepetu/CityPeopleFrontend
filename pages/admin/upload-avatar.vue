@@ -36,7 +36,11 @@ export default {
       console.log(this.user_image);
       let reader = new FileReader();
 
-      reader.onloadend = (e) => {
+      if (user_image && user_image.type.match("image.*")) {
+        reader.readAsDataURL(user_image);
+      }
+
+      reader.onload = (e) => {
         this.imagepiece = reader.result;
       };
 
