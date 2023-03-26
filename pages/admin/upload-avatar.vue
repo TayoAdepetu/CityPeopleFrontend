@@ -31,7 +31,7 @@ export default {
 
   methods: {
     onFileChange(e) {
-      this.user_image = e.target.result;
+      this.user_image = e.target.files[0];
       console.log(this.user_image);
     },
 
@@ -110,9 +110,9 @@ form {
 .btn:hover {
   opacity: 0.9;
 }
-.form-group{
+.form-group {
   margin-bottom: 5px;
-  margin-top:5px;
+  margin-top: 5px;
 }
 
 @media screen and (max-width: 700px) {
