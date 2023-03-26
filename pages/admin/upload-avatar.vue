@@ -7,7 +7,7 @@
       </div>
 
       <div class="image-section" v-else>
-        <img :src="user_image" />
+        <img :src="this.user_image" />
         <button @click="removeImage">Remove image</button>
       </div>
 
