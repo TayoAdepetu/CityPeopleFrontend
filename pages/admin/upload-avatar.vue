@@ -42,7 +42,7 @@ export default {
 
         reader.onloadend = (e) => {
           this.imagepiece = reader.result;
-          this.user_image = e.target.files;
+          //this.user_image = e.target.files;
         };
       }
     },
@@ -82,7 +82,7 @@ export default {
         await this.$axios.post(
           `/api/auth/update-user-image/${this.$auth.user.email}`,
           {
-            user_image: this.user_image,
+            user_image: this.imagepiece,
           }
         );
 
