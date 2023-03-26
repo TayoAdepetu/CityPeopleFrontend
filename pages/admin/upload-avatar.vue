@@ -6,7 +6,7 @@
         <input type="file" @change="onFileChange" />
       </div>
 
-      <div class="image-section" v-if="user_image != null">
+      <div class="image-section" v-if="imagepiece != null">
         <img :src="imagepiece" />
         <!--<button @click="removeImage">Remove image</button>-->
       </div>
@@ -39,11 +39,11 @@ export default {
 
       if (user_image && user_image.type.match("image.*")) {
         reader.readAsDataURL(user_image);
-      }
 
-      reader.onload = (e) => {
-        this.imagepiece = reader.result;
-      };
+        reader.onloadend = (e) => {
+          this.imagepiece = reader.result;
+        };
+      }
     },
 
     removeImage: function (e) {
