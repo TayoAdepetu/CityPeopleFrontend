@@ -2,11 +2,11 @@
   <div class="container">
     <h2>Add Your User Avatar</h2>
     <form @submit.prevent="createBiz">
-      <div v-if="!user_image" class="form-group">
+      <div class="form-group">
         <input type="file" @change="onFileChange" />
       </div>
 
-      <div class="image-section" v-else>
+      <div class="image-section">
         <img :src="imagepiece" />
         <!--<button @click="removeImage">Remove image</button>-->
       </div>
@@ -32,11 +32,11 @@ export default {
 
   methods: {
     onFileChange(e) {
-      this.user_image = e.target.files[0];
+      this.user_image = e.target.files;
       console.log(this.user_image);
       let reader = new FileReader();
 
-      this.imagepiece = reader.readAsDataURL(user_image);
+      this.imagepiece = reader.readAsDataURL(this.user_image);
     },
 
     removeImage: function (e) {
