@@ -37,7 +37,7 @@ export default {
       let reader = new FileReader();
 
       if (user_image && user_image.type.match("image.*")) {
-        reader.readAsDataURL(user_image);
+        reader.readAsDataURL(this.user_image);
       }
 
       reader.onload = (e) => {
