@@ -110,6 +110,10 @@ form {
 .btn:hover {
   opacity: 0.9;
 }
+.form-group{
+  margin-bottom: 5px;
+  margin-top:5px;
+}
 
 @media screen and (max-width: 700px) {
 }
