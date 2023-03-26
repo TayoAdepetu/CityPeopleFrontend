@@ -32,6 +32,11 @@ export default {
   methods: {
     onFileChange(e) {
       this.user_image = e.target.files;
+      console.log(user_image);
+    },
+
+    removeImage: function (e) {
+      this.user_image = null;
     },
 
     /*

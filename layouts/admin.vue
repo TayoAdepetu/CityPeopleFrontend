@@ -72,14 +72,14 @@
               </ul>
               <ul class="dropdown-content" v-if="role === 'admin'">
                 <li><nuxt-link to="/">Home</nuxt-link></li>
-                <li hidden>FundHelp</li>
-                <li hidden>LendMe</li>
+                <li class="hidden">FundHelp</li>
+                <li class="hidden">LendMe</li>
                 <li>
                   <nuxt-link to="/african-images/crud-images"
                     >African Images</nuxt-link
                   >
                 </li>
-                <li hidden>Artisans Directory</li>
+                <li class="hidden">Artisans Directory</li>
                 <li>
                   <nuxt-link to="/create-post">Publish Article</nuxt-link>
                 </li>
@@ -117,15 +117,15 @@
               </ul>
               <ul class="dropdown-content" v-if="role === 'publisher'">
                 <li><nuxt-link to="/">Home</nuxt-link></li>
-                <li hidden>FundHelp</li>
-                <li hidden>LendMe</li>
+                <li class="hidden">FundHelp</li>
+                <li class="hidden">LendMe</li>
                 <li>
                   <nuxt-link
                     :to="`african-images/edit-images/${this.$auth.user.name}`"
                     >African Images</nuxt-link
                   >
                 </li>
-                <li hidden>Artisans Directory</li>
+                <li class="hidden">Artisans Directory</li>
                 <li v-if="this.$auth.user.business_name_slug != null">
                   <span
                     ><nuxt-link
@@ -176,9 +176,9 @@
               </ul>
               <ul class="dropdown-content" v-if="role === 'seller'">
                 <li><nuxt-link to="/">Home</nuxt-link></li>
-                <li hidden>FundHelp</li>
-                <li hidden>LendMe</li>
-                <li hidden>Artisans Directory</li>
+                <li class="hidden">FundHelp</li>
+                <li class="hidden">LendMe</li>
+                <li class="hidden">Artisans Directory</li>
                 <li>
                   <nuxt-link
                     :to="`african-images/edit-images/${this.$auth.user.name}`"
@@ -226,9 +226,9 @@
               </ul>
               <ul class="dropdown-content" v-if="role === 'commenter'">
                 <li><nuxt-link to="/">Home</nuxt-link></li>
-                <li hidden>FundHelp</li>
-                <li hidden>LendMe</li>
-                <li hidden>Artisans Directory</li>
+                <li class="hidden">FundHelp</li>
+                <li class="hidden">LendMe</li>
+                <li class="hidden">Artisans Directory</li>
                 <li>
                   <nuxt-link
                     :to="`african-images/edit-images/${this.$auth.user.name}`"
@@ -315,6 +315,9 @@ export default {
 </script>
 
 <style scoped>
+.hidden {
+  display: none;
+}
 .container {
   max-width: 100vw;
 }
