@@ -6,8 +6,8 @@
         <input type="file" @change="onFileChange" />
       </div>
 
-      <div class="image-section" v-if="imagepiece != null">
-        <img :src="imagepiece" />
+      <div class="image-section" v-if="user_image != null">
+        <img :src="user_image" />
         <!--<button @click="removeImage">Remove image</button>-->
       </div>
 
@@ -32,8 +32,10 @@ export default {
 
   methods: {
     onFileChange(e) {
-      this.user_image = e.target.files[0];
-      console.log(this.user_image);
+      let user_image = e.target.files[0];
+      console.log(user_image);
+
+      /*
       let reader = new FileReader();
 
       if (user_image && user_image.type.match("image.*")) {
@@ -43,8 +45,7 @@ export default {
       reader.onload = (e) => {
         this.imagepiece = reader.result;
       };
-
-      //reader.readAsDataURL(this.user_image);
+       */
     },
 
     removeImage: function (e) {
@@ -57,20 +58,20 @@ export default {
       if (!files.length)
         return;
       this.createImage(files[0]);
-     
+
     },
 
-    
+
     createImage(file) {
       let user_image = new Image();
       let reader = new FileReader();
-      
+
       reader.onload = (e) => {
         this.user_image = e.target.result;
       };
 
       reader.readAsDataURL(file);
-    },   
+    },
 
     removeImage: function (e) {
       this.user_image = '';
