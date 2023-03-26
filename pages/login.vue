@@ -70,7 +70,7 @@ export default {
             password: this.password,
           });
           */
-        this.$router.push("/");
+        //this.$router.push("/");
       } catch (error) {
         this.loading = false;
         this.$toast.info(
