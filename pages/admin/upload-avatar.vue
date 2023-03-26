@@ -24,7 +24,6 @@ export default {
   layout: "admin",
   data() {
     return {
-      user_image: null,
       imagepiece: null,
       error: null,
     };
