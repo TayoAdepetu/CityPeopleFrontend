@@ -6,7 +6,7 @@
         <input type="file" @change="onFileChange" />
       </div>
 
-      <div class="image-section">
+      <div class="image-section" v-if="imagepiece != null">
         <img :src="imagepiece" />
         <!--<button @click="removeImage">Remove image</button>-->
       </div>
@@ -32,7 +32,7 @@ export default {
 
   methods: {
     onFileChange(e) {
-      this.user_image = e.target.files;
+      this.user_image = e.target.files[0];
       console.log(this.user_image);
       let reader = new FileReader();
 
