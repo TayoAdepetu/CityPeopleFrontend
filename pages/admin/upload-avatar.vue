@@ -32,11 +32,12 @@ export default {
 
   methods: {
     onChange(e) {
-      this.user_image = e.target.files[0].value;
+      this.user_image = e.target.files[0];
 
-      this.createImage(e);
+      //this.createImage(e);
     },
 
+    /*
     createImage(e) {
       let image = e.target.files[0];
 
@@ -57,6 +58,7 @@ export default {
       this.user_image = null;
       this.imagepiece = null;
     },
+    */
 
     /*
     onFileChange(e) {
