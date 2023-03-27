@@ -115,14 +115,14 @@ export default {
         }
         let reader = new FileReader();
 
-        if (picture && picture.type.match("image.*")) {
-          reader.readAsDataURL(picture);
+        //if (picture && picture.type.match("image.*")) {
+        reader.readAsDataURL(picture);
 
-          reader.onloadend = (e) => {
-            let imagepiece = reader.result;
-            this.images.push(imagepiece);
-          };
-        }
+        reader.onloadend = (e) => {
+          let imagepiece = reader.result;
+          this.images.push(imagepiece);
+          //};
+        };
       });
     },
 
