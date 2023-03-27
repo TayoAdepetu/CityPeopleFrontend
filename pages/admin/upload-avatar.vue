@@ -32,8 +32,13 @@ export default {
 
   methods: {
     onFileChange(e) {
+      this.user_image = e.target.files[0];
+      console.log(this.user_image);
+      this.createImage(e);
+    },
+
+    createImage(e) {
       let image = e.target.files[0];
-      console.log(image);
 
       let reader = new FileReader();
 
@@ -44,12 +49,6 @@ export default {
           this.imagepiece = reader.result;
         };
       }
-
-      this.createImage(e);
-    },
-
-    createImage(e) {
-      this.user_image = e.target.files[0];
     },
 
     removeImage: function (e) {
