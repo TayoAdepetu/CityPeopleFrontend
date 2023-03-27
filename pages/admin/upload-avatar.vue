@@ -25,7 +25,6 @@ export default {
   data() {
     return {
       imagepiece: null,
-      user_image: null,
       error: null,
     };
   },
@@ -46,35 +45,8 @@ export default {
     },
 
     removeImage: function (e) {
-      this.user_image = null;
       this.imagepiece = null;
     },
-
-    /*
-    onFileChange(e) {
-      var files = e.target.files || e.dataTransfer.files;
-      if (!files.length)
-        return;
-      this.createImage(files[0]);
-
-    },
-
-
-    createImage(file) {
-      let user_image = new Image();
-      let reader = new FileReader();
-
-      reader.onload = (e) => {
-        this.user_image = e.target.result;
-      };
-
-      reader.readAsDataURL(file);
-    },
-
-    removeImage: function (e) {
-      this.user_image = '';
-    },
-    */
 
     async createBiz() {
       try {

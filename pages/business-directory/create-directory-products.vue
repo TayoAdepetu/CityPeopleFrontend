@@ -67,7 +67,7 @@
       <di>
         <div class="image-section">
           Add Relevant Product/Service Images
-          <input type="file" multiple @change="onFileChange" />
+          <input type="file" multiple @change="onChange" />
         </div>
 
         <div
@@ -76,7 +76,6 @@
           :key="index"
         >
           <img :src="image" />
-          <button @click="removeImage">Remove image</button>
         </div>
       </di>
 
@@ -105,6 +104,28 @@ export default {
   },
 
   methods: {
+    onChange(e) {
+      let image = e.target.files;
+
+      image.forEach((picture, index) => {
+        //console.log(value);
+        //console.log(index);
+        if (index > 5) {
+          return this.$toast.info("Image should not be more than five.");
+        }
+        let reader = new FileReader();
+
+        if (picture && picture.type.match("image.*")) {
+          reader.readAsDataURL(picture);
+
+          reader.onloadend = (e) => {
+            let imagepiece = reader.result;
+            this.images.push(imagepiece);
+          };
+        }
+      });
+    },
+
     async createDirectoryProduct() {
       try {
         await this.$axios.post(`/api/auth/create-directory-product`, {
@@ -117,61 +138,13 @@ export default {
           images: this.images,
         });
 
+        this.$toast.success("Product/service published successfully.");
+
         this.$router.push("/business-directory/create-directory-product");
       } catch (e) {
         this.error = e.response;
+        this.$toast.info("Not Published.");
       }
-    },
-
-    onFileChange(e) {
-      let selectedFiles = e.target.files;
-
-      /*
-      if (!selectedFiles.length) {
-        return false;
-      }
-
-      for (let i = 0; i < this.selectedFiles.length; i++) {
-        this.createImage(selectedFiles[i]);
-      }
-      */
-      return this.images.push(selectedFiles);
-    },
-
-    /*
-
-    createImage(selectedFiles) {
-      return this.images.push(selectedFiles);
-    },
-    */
-
-    /*
-    onFileChange(e) {
-      let selectedFiles = e.target.files;
-      if (!selectedFiles.length) {
-        return false;
-      }
-
-      for (let i = 0; i < this.selectedFiles.length; i++) {
-        this.createImage(selectedFiles[i]);
-      }
-    },
-
-    createImage(selectedFiles) {
-      //let image = new Image();
-
-      
-      let reader = new FileReader();
-      let imagepiece = reader.readAsDataURL(selectedFiles);
-      this.images.push(imagepiece);    
-  
-    },
-    */
-
-    removeImage: function (e) {
-      //this.images = [];
-      let index = this.image;
-      this.images.splice(index);
     },
   },
 };
