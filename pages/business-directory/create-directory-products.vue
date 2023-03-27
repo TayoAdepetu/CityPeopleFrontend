@@ -108,8 +108,8 @@ export default {
       let image = e.target.files;
 
       Object.keys(image).forEach((picture, index) => {
-        //console.log(value);
-        //console.log(index);
+        console.log(picture);
+        console.log(index);
         if (index > 5) {
           return this.$toast.info("Image should not be more than five.");
         }
@@ -151,6 +151,14 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  margin-top: 100px;
+  width: 80vw;
+  margin-bottom: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 form,
 textarea {
   border: 2px;
