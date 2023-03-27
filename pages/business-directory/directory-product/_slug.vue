@@ -3,6 +3,7 @@
     <div class="container">
       <div id="new-headlines">
         <div>
+          <!--Slider: https://www.digitalocean.com/community/tutorials/vuejs-create-image-slider-->
           <!--
           <img
             class="short-image"

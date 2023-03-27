@@ -107,7 +107,7 @@ export default {
     onChange(e) {
       let image = e.target.files;
 
-      image.forEach((picture, index) => {
+      Object.keys(image).forEach((picture, index) => {
         //console.log(value);
         //console.log(index);
         if (index > 5) {
