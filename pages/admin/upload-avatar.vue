@@ -3,7 +3,7 @@
     <h2>Add Your User Avatar</h2>
     <form @submit.prevent="createBiz">
       <div class="form-group">
-        <input type="file" @change="onFileChange" />
+        <input type="file" @change="onChange" />
       </div>
 
       <div class="image-section" v-if="imagepiece != null">
@@ -31,7 +31,7 @@ export default {
   },
 
   methods: {
-    onFileChange(e) {
+    onChange(e) {
       this.user_image = e.target.files[0];
       console.log(this.user_image);
       this.createImage(e);
