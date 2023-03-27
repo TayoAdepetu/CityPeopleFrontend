@@ -33,7 +33,7 @@ export default {
   methods: {
     onChange(e) {
       this.user_image = e.target.files[0];
-      console.log(this.user_image);
+
       this.createImage(e);
     },
 
@@ -49,6 +49,8 @@ export default {
           this.imagepiece = reader.result;
         };
       }
+
+      console.log(this.user_image);
     },
 
     removeImage: function (e) {
