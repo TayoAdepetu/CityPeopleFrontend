@@ -108,7 +108,7 @@ export default {
       let image = e.target.files;
       console.log(image);
 
-      for (let i = 0; i < picture.lenght; i++) {
+      for (let i = 0; i < image.lenght; i++) {
         if (i < 5) {
           this.eachFile(image[i]);
         } else {
