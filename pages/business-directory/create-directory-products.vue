@@ -106,6 +106,7 @@ export default {
   methods: {
     onChange(e) {
       let image = e.target.files;
+      console.log(image);
 
       for (i = 0; i < image.lenght; i++) {
         if (i < 5) {
