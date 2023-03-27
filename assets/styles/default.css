@@ -6,44 +6,44 @@ grey:
 extra grey
 */
 
-:root{
-    --darkest:#14171A;
-    --darker:#657786;
-    --dark:#AAB8C2;
-    --lightest:#ffffff;
-    --lighter:#F5F8FA;
-    --light:#E1E8ED;
-    --red:red;
-    --yellow:#ffcf00;
-    --teal:cornflowerblue;
-    --dark-blue:#036;
-
+:root {
+  --darkest: #14171a;
+  --darker: #657786;
+  --dark: #aab8c2;
+  --lightest: #ffffff;
+  --lighter: #f5f8fa;
+  --light: #e1e8ed;
+  --red: #ff5050;
+  --yellow: #ffcf00;
+  --teal: cornflowerblue;
+  --dark-blue: #036;
+  --fox: #003288;
+  --cloudinary: #3448c5;
 }
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    font-family: "Roboto", sans-serif;
-    text-decoration: none;
-    color: var(--dark-blue);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: var(--dark-blue);
 }
 
-body{
-    min-height: 100vh;
-    background-color: var(--lightest);
-    width: 100%;
-    text-align: center;
-    overflow: hidden;
+body {
+  min-height: 100vh;
+  background-color: var(--lightest);
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
 }
-.flex{
-    display: flex;
-}
-
-.space-between{
-    justify-content: space-between;
+.flex {
+  display: flex;
 }
 
-.space-around{
-    justify-content: space-around;
+.space-between {
+  justify-content: space-between;
 }
 
+.space-around {
+  justify-content: space-around;
+}
