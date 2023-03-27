@@ -3,7 +3,7 @@
     <h2>Add Your User Avatar</h2>
     <form @submit.prevent="createBiz">
       <div class="form-group">
-        <input type="file" @change="onChange" />
+        <input type="file" accept="image/*" @change="onChange" />
       </div>
 
       <div class="image-section" v-if="imagepiece != null">
@@ -32,13 +32,6 @@ export default {
 
   methods: {
     onChange(e) {
-      this.user_image = e.target.files[0];
-
-      //this.createImage(e);
-    },
-
-    /*
-    createImage(e) {
       let image = e.target.files[0];
 
       let reader = new FileReader();
@@ -50,15 +43,12 @@ export default {
           this.imagepiece = reader.result;
         };
       }
-
-      console.log(this.user_image);
     },
 
     removeImage: function (e) {
       this.user_image = null;
       this.imagepiece = null;
     },
-    */
 
     /*
     onFileChange(e) {
@@ -91,7 +81,7 @@ export default {
         await this.$axios.post(
           `/api/auth/update-user-image/${this.$auth.user.email}`,
           {
-            user_image: this.user_image,
+            user_image: this.imagepiece,
           }
         );
 
