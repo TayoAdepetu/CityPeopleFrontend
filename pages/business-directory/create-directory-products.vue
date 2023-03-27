@@ -66,7 +66,7 @@
 
       <di>
         <div class="image-section">
-          Add Relevant Product/Service Images
+          Add Relevant Product/Service Images (Maximum of 5 images)
           <input type="file" multiple @change="onChange" />
         </div>
 
@@ -107,24 +107,46 @@ export default {
     onChange(e) {
       let image = e.target.files;
 
-      Object.keys(image).forEach((picture, index) => {
-        console.log(picture);
-        console.log(index);
-        if (index > 5) {
+      for (i = 0; i < image.lenght; i++) {
+        if (i < 5) {
+          this.eachFile(image[i]);
+        } else {
           return this.$toast.info("Image should not be more than five.");
         }
-        let reader = new FileReader();
+      }
+    },
 
-        //if (picture && picture.type.match("image.*")) {
+    eachFile(image) {
+      if (image.type.match("image.*")) {
+        let reader = new FileReader();
         reader.readAsDataURL(picture);
 
         reader.onloadend = (e) => {
           let imagepiece = reader.result;
           this.images.push(imagepiece);
-          //};
         };
-      });
+      }
     },
+
+    /*
+      Object.keys(image).forEach((picture, index) => {
+        console.log(picture);
+        console.log(index);
+        if (index < 5) {
+          return this.$toast.info("Image should not be more than five.");
+        }
+        let reader = new FileReader();
+
+        if (picture && picture.type.match("image.*")) {
+        reader.readAsDataURL(picture);
+
+        reader.onloadend = (e) => {
+          let imagepiece = reader.result;
+          this.images.push(imagepiece);
+          };
+        };
+      }
+      */
 
     async createDirectoryProduct() {
       try {
