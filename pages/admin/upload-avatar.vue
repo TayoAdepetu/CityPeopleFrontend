@@ -43,9 +43,9 @@ export default {
         reader.onloadend = (e) => {
           this.imagepiece = reader.result;
         };
-
-        this.createImage(e);
       }
+
+      this.createImage(e);
     },
 
     createImage(e) {
