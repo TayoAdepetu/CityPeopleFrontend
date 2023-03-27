@@ -32,7 +32,7 @@ export default {
 
   methods: {
     onChange(e) {
-      this.user_image = e.target.files[0];
+      this.user_image = e.target.files[0].value;
 
       this.createImage(e);
     },
