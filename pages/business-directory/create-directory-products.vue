@@ -120,7 +120,7 @@ export default {
     eachFile(image) {
       if (image.type.match("image.*")) {
         let reader = new FileReader();
-        reader.readAsDataURL(picture);
+        reader.readAsDataURL(image);
 
         reader.onloadend = (e) => {
           let imagepiece = reader.result;
