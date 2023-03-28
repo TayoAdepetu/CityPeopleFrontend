@@ -110,26 +110,28 @@ export default {
 
       for (let i = 0; i < image.lenght; i++) {
         if (i < 5) {
-          this.eachFile(image[i]);
+          if (image.type.match("image.*")) {
+            let reader = new FileReader();
+            reader.readAsDataURL(image);
+
+            reader.onloadend = (e) => {
+              let imagepiece = reader.result;
+              console.log(imagepiece);
+              this.images.push(imagepiece);
+              console.log(this.images);
+            };
+          }
         } else {
           return this.$toast.info("Image should not be more than five.");
         }
       }
     },
 
+    /*
     eachFile(image) {
-      if (image.type.match("image.*")) {
-        let reader = new FileReader();
-        reader.readAsDataURL(image);
-
-        reader.onloadend = (e) => {
-          let imagepiece = reader.result;
-          console.log(imagepiece);
-          this.images.push(imagepiece);
-          console.log(this.images);
-        };
-      }
+      
     },
+    */
 
     /*
       Object.keys(image).forEach((picture, index) => {
