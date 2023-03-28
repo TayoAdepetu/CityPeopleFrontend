@@ -110,9 +110,9 @@ export default {
 
       for (let i = 0; i < image.lenght; i++) {
         if (i < 5) {
-          if (image.type.match("image.*")) {
+          if (image[i].type.match("image.*")) {
             let reader = new FileReader();
-            reader.readAsDataURL(image);
+            reader.readAsDataURL(image[i]);
 
             reader.onloadend = (e) => {
               let imagepiece = reader.result;
