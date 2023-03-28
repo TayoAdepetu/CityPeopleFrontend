@@ -124,6 +124,7 @@ export default {
 
         reader.onloadend = (e) => {
           let imagepiece = reader.result;
+          console.log(imagepiece);
           this.images.push(imagepiece);
           console.log(this.images);
         };
