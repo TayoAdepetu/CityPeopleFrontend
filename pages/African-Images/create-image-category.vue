@@ -23,9 +23,11 @@ export default {
   methods: {
     async addCategory() {
       try {
-        await this.$axios.post(`/api/auth/create-category`, {
+        await this.$axios.post(`/api/auth/create-categories`, {
           name: this.name,
         });
+
+        this.$toast.success("Image category created.");
 
         //this.$router.push('/admin/published-articles/categories')
       } catch (e) {
@@ -42,6 +44,8 @@ export default {
   width: 80vw;
   margin-bottom: 20px;
   word-wrap: break-word;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 input {
