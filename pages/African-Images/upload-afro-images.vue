@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <form @submit="imageUpload()">
+      <form @submit.prevent="imageUpload()">
         <div>
           <textarea
             v-model="image_name"
@@ -27,7 +27,7 @@
             </option>
           </select>
 
-          <div class="image-section" v-if="!image">
+          <div class="image-section">
             <input
               placeholder="select an image"
               type="file"
@@ -35,7 +35,7 @@
             />
           </div>
 
-          <div class="image-section" v-else>
+          <div class="image-section">
             <img :src="imagepiece" />
           </div>
         </div>
@@ -78,8 +78,10 @@ export default {
           image: this.imagepiece,
           category_id: this.category_id,
         });
+        this.$toast.success("Image uploaded successfully.");
       } catch (e) {
         this.error = e.response;
+        this.$toast.info("Image not uploaded.");
       }
     },
 
