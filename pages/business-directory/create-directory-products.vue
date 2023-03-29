@@ -114,7 +114,14 @@ export default {
           file: selectedFiles[i],
         };
         */
-        this.images.push(selectedFiles[i]);
+        let reader = new FileReader();
+        reader.readAsDataURL(selectedFiles[i]);
+        reader.onloadend = (e) => {
+          this.imagepiece = reader.result;
+          console.log(this.imagepiece);
+          this.images.push(this.imagepiece);
+        };
+        //this.images.push(selectedFiles[i]);
         console.log(this.images);
         this.pictures.push(URL.createObjectURL(selectedFiles[i]));
       }
