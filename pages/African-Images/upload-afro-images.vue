@@ -36,7 +36,7 @@
           </div>
 
           <div class="image-section" v-else>
-            <img :src="this.image" />
+            <img :src="imagepiece" />
           </div>
         </div>
         <button type="submit" class="btn btn-primary block">
@@ -54,7 +54,7 @@ export default {
     return {
       categories: [],
       category_id: undefined,
-      image: null,
+      imagepiece: null,
       user_id: null,
       image_name: "",
       image_description: "",
@@ -75,7 +75,7 @@ export default {
           image_name: this.image_name,
           image_description: this.image_description,
           user_id: this.$auth.user.id,
-          image: this.image,
+          image: this.imagepiece,
           category_id: this.category_id,
         });
       } catch (e) {
@@ -84,7 +84,17 @@ export default {
     },
 
     onFileChange(e) {
-      this.image = e.target.files[0];
+      let image = e.target.files[0];
+
+      let reader = new FileReader();
+
+      if (image && image.type.match("image.*")) {
+        reader.readAsDataURL(image);
+
+        reader.onloadend = (e) => {
+          this.imagepiece = reader.result;
+        };
+      }
     },
 
     removeImage: function (e) {
