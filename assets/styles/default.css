@@ -16,9 +16,9 @@ extra grey
   --red: #ff5050;
   --yellow: #ffcf00;
   --teal: cornflowerblue;
-  --dark-blue: #036;
-  --fox: #003288;
-  --cloudinary: #3448c5;
+  --darkest-blue: #036;
+  --darker-blue: #003288;
+  --dark-blue: #3448c5;
 }
 
 * {

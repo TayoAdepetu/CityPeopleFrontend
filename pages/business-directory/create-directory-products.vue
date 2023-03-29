@@ -72,10 +72,10 @@
 
         <div
           class="image-section"
-          v-for="(image, index) in images"
+          v-for="(picture, index) in pictures"
           :key="index"
         >
-          <img :src="image" />
+          <img :src="picture" />
         </div>
       </di>
 
@@ -99,23 +99,27 @@ export default {
       price: "",
       biz_location: "",
       images: [],
+      pictures: [],
       error: null,
     };
   },
 
   methods: {
     onChange(e) {
-      /*
       var selectedFiles = e.target.files;
       for (let i = 0; i < selectedFiles.length; i++) {
+        /*
         let img = {
           src: URL.createObjectURL(selectedFiles[i]),
           file: selectedFiles[i],
         };
-        this.images.push(img.file);
+        */
+        this.images.push(selectedFiles[i]);
+        console.log(this.images);
+        this.pictures.push(URL.createObjectURL(selectedFiles[i]));
       }
-      */
 
+      /*
       let image = e.target.files;
       console.log(image);
 
@@ -137,13 +141,8 @@ export default {
           return this.$toast.info("Image should not be more than five.");
         }
       }
+      */
     },
-
-    /*
-    eachFile(image) {
-      
-    },
-    */
 
     /*
       Object.keys(image).forEach((picture, index) => {
