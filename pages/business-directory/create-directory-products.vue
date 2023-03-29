@@ -109,21 +109,23 @@ export default {
       console.log(image);
 
       for (let i = 0; i < image.lenght; i++) {
-        if (i < 5) {
-          if (image[i].type.match("image.*")) {
-            let reader = new FileReader();
-            reader.readAsDataURL(image[i]);
+        // if (i < 5) {
+        //if (image[i].type.match("image.*")) {
+        let reader = new FileReader();
+        reader.readAsDataURL(image[i]);
 
-            reader.onloadend = (e) => {
-              let imagepiece = reader.result;
-              console.log(imagepiece);
-              this.images.push(imagepiece);
-              console.log(this.images);
-            };
-          }
+        reader.onloadend = (e) => {
+          let imagepiece = reader.result;
+          console.log(imagepiece);
+          this.images.push(imagepiece);
+          console.log(this.images);
+        };
+        // }
+        /*
         } else {
           return this.$toast.info("Image should not be more than five.");
         }
+        */
       }
     },
 
