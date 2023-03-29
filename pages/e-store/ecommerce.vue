@@ -1,39 +1,31 @@
 <template>
   <div>
-    
     <div class="grid-container">
-        <div
-          v-for="product in products"
-          :key="product.id"
-          id="before-headlines"
+      <div v-for="product in products" :key="product.id" id="before-headlines">
+        <NuxtLink
+          :to="`/business-directory/directory-product/${product.product_name_slug}`"
         >
-          <NuxtLink
-            :to="`/business-directory/directory-product/${product.product_name_slug}`"
-          >
-            <img
-              id="short-image"
-              :src="baseURL + 'productimage/' + product.image"
-            />
-            <div id="before-title">
-              <h3 id="title">{{ product.product_name }}</h3>
-            </div>
-            <div id="short-body">
-              <p id="short-paragraph">{{ product.price }}</p>
-              <p id="short-paragraph">
-                {{ product.description }}
-              </p>
-              <p id="short-paragraph">{{ product.location }}</p>
+          <img id="short-image" :src="`${product.image[0]}`" />
+          <div id="before-title">
+            <h3 id="title">{{ product.product_name }}</h3>
+          </div>
+          <div id="short-body">
+            <p id="short-paragraph">{{ product.price }}</p>
+            <p id="short-paragraph">
+              {{ product.description }}
+            </p>
+            <p id="short-paragraph">{{ product.location }}</p>
 
-              <p id="short-paragraph">{{ getDate(product.created_at) }}</p>
-            </div>
-          </NuxtLink>
-        </div>
+            <p id="short-paragraph">{{ getDate(product.created_at) }}</p>
+          </div>
+        </NuxtLink>
       </div>
-      <div class="pagination">
+    </div>
+    <div class="pagination">
       <button class="paginate" @click.prevent="moveBack()">Previous List</button
       ><button class="paginate" @click.prevent="moveFront()">Next List</button>
     </div>
-    </div>    
+  </div>
 </template>
 
 <script scoped>
@@ -42,7 +34,7 @@ export default {
   data() {
     return {
       products: [],
-       previous_page: null,
+      previous_page: null,
       next_page: null,
       last_page: null,
       first_page: null,
@@ -100,7 +92,6 @@ export default {
 };
 </script>
 
-
 <style scoped>
 .paginate {
   width: 20%;
@@ -113,14 +104,14 @@ export default {
   gap: 2px;
   margin: 20px;
 }
-.nav-align{
-  margin:20px;
-  margin-top:50px;
+.nav-align {
+  margin: 20px;
+  margin-top: 50px;
 }
 .index-h2 {
   text-align: left;
   margin-top: 20px;
-  font-size:1.5rem;
+  font-size: 1.5rem;
 }
 .grid-container {
   display: grid;
@@ -129,7 +120,7 @@ export default {
   max-width: 100%;
   margin-right: auto;
   margin-left: auto;
-  margin-top:100px;
+  margin-top: 100px;
 }
 
 #before-headlines {
@@ -137,16 +128,17 @@ export default {
   border-width: 2px;
   border-style: solid;
   border-color: var(--yellow);
-  width:250px;
+  width: 250px;
 }
 
-#short-body, #before-title {
+#short-body,
+#before-title {
   margin-top: 4px;
-  margin-right:4px;
-  margin-left:4px;
+  margin-right: 4px;
+  margin-left: 4px;
 }
 
-#short-paragraph{
+#short-paragraph {
   word-wrap: break-word;
 }
 
@@ -171,8 +163,8 @@ export default {
   }
 
   #before-headlines {
-  width:300px;
-}
+    width: 300px;
+  }
 }
 
 @media screen and (max-width: 960px) {
@@ -181,8 +173,8 @@ export default {
   }
 
   #before-headlines {
-  width:40vw;
-}
+    width: 40vw;
+  }
 }
 
 @media screen and (max-width: 650px) {
@@ -191,8 +183,8 @@ export default {
   }
 
   #before-headlines {
-  width:230px;
-}
+    width: 230px;
+  }
 }
 
 @media screen and (max-width: 515px) {
@@ -201,8 +193,8 @@ export default {
   }
 
   #before-headlines {
-  width:220px;
-}
+    width: 220px;
+  }
 }
 
 @media screen and (max-width: 498px) {
@@ -211,31 +203,29 @@ export default {
   }
 
   #before-headlines {
-  width:70vw;
-  margin-right:auto;
-  margin-left:auto;
-}
+    width: 70vw;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
-p{
-  font-size:15px;
-}
+  p {
+    font-size: 15px;
+  }
 
-.index-h2{
-  text-align:center;
+  .index-h2 {
+    text-align: center;
+  }
 }
-}
-
 
 @media screen and (max-width: 300px) {
-p{
-  font-size:17px;
-}
+  p {
+    font-size: 17px;
+  }
 }
 
 @media screen and (max-width: 350px) {
-#before-headlines{
-  width:80vw;
+  #before-headlines {
+    width: 80vw;
+  }
 }
-}
-
 </style>

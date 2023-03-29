@@ -114,16 +114,20 @@ export default {
           file: selectedFiles[i],
         };
         */
-        let reader = new FileReader();
-        reader.readAsDataURL(selectedFiles[i]);
-        reader.onloadend = (e) => {
-          this.imagepiece = reader.result;
-          console.log(this.imagepiece);
-          this.images.push(this.imagepiece);
-        };
-        //this.images.push(selectedFiles[i]);
-        console.log(this.images);
-        this.pictures.push(URL.createObjectURL(selectedFiles[i]));
+        if (i < 5) {
+          let reader = new FileReader();
+          reader.readAsDataURL(selectedFiles[i]);
+          reader.onloadend = (e) => {
+            this.imagepiece = reader.result;
+            console.log(this.imagepiece);
+            this.images.push(this.imagepiece);
+          };
+          //this.images.push(selectedFiles[i]);
+          console.log(this.images);
+          this.pictures.push(URL.createObjectURL(selectedFiles[i]));
+        } else {
+          return this.$toast.info("Image should not be more than five.");
+        }
       }
 
       /*
@@ -175,7 +179,7 @@ export default {
       try {
         await this.$axios.post(`/api/auth/create-directory-product`, {
           product_name: this.product_name,
-          //product_name_slug: this.product_name.replace(/ +/g, "-"),
+          product_name_slug: this.product_name.replace(/ +/g, "-"),
           description: this.description,
           price: this.price,
           location: this.biz_location,

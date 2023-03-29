@@ -82,7 +82,7 @@ export default {
     },
 
     onFileChange(e) {
-      this.image = e.target.files;
+      this.image = e.target.files[i];
     },
 
     removeImage: function (e) {
