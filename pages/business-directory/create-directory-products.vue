@@ -98,7 +98,6 @@ export default {
       description: "",
       price: "",
       biz_location: "",
-      images: [],
       error: null,
     };
   },
