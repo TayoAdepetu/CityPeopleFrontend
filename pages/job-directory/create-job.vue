@@ -96,12 +96,13 @@ export default {
           business_name: this.$auth.user.business_name,
           business_name_slug: this.$auth.user.business_name_slug,
           title: this.title,
+          job_slug: this.title.replace(/ +/g, "-"),
           salary: this.salary,
           phone: this.phone,
           location: this.location,
           function: this.role_function,
           description: this.description,
-          user_id: this.$auth.user.user_id,
+          user_id: this.$auth.user.id,
           //image: this.onFileChange()
         });
 
@@ -116,8 +117,11 @@ export default {
 
 <style scoped>
 .container {
-  margin: 10vw;
+  margin-top: 100px;
   width: 80vw;
+  margin-bottom: 20px;
+  margin-right: auto;
+  margin-left: auto;
 }
 .image-section {
   margin-bottom: 6px;

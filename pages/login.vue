@@ -89,11 +89,14 @@ export default {
 
 <style scoped>
 .container {
+  margin-top: 100px;
+  width: 60vw;
+  margin-bottom: 20px;
+  margin-right: auto;
+  margin-left: auto;
   padding: 15px;
   background-color: white;
   border: 2px solid #036;
-  margin-top: 60px;
-  margin-bottom: 20px;
 }
 
 .form-field {

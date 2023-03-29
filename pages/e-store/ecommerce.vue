@@ -1,29 +1,38 @@
 <template>
   <div>
-    <div class="grid-container">
-      <div v-for="product in products" :key="product.id" id="before-headlines">
-        <NuxtLink
-          :to="`/business-directory/directory-product/${product.product_name_slug}`"
+    <div class="container">
+      <div class="grid-container">
+        <div
+          v-for="product in products"
+          :key="product.id"
+          id="before-headlines"
         >
-          <img id="short-image" :src="`${product.image[0]}`" />
-          <div id="before-title">
-            <h3 id="title">{{ product.product_name }}</h3>
-          </div>
-          <div id="short-body">
-            <p id="short-paragraph">{{ product.price }}</p>
-            <p id="short-paragraph">
-              {{ product.description }}
-            </p>
-            <p id="short-paragraph">{{ product.location }}</p>
+          <NuxtLink
+            :to="`/business-directory/directory-product/${product.product_name_slug}`"
+          >
+            <img id="short-image" :src="`${product.image[0]}`" />
+            <div id="before-title">
+              <h3 id="title">{{ product.product_name }}</h3>
+            </div>
+            <div id="short-body">
+              <p id="short-paragraph">₦ {{ product.price }}</p>
+              <p id="short-paragraph">
+                {{ product.description }}
+              </p>
+              <p id="short-paragraph">{{ product.location }}</p>
 
-            <p id="short-paragraph">{{ getDate(product.created_at) }}</p>
-          </div>
-        </NuxtLink>
+              <p id="short-paragraph">{{ getDate(product.created_at) }}</p>
+            </div>
+          </NuxtLink>
+        </div>
       </div>
-    </div>
-    <div class="pagination">
-      <button class="paginate" @click.prevent="moveBack()">Previous List</button
-      ><button class="paginate" @click.prevent="moveFront()">Next List</button>
+      <div class="pagination">
+        <button class="paginate" @click.prevent="moveBack()">
+          Previous List</button
+        ><button class="paginate" @click.prevent="moveFront()">
+          Next List
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -112,6 +121,14 @@ export default {
   text-align: left;
   margin-top: 20px;
   font-size: 1.5rem;
+}
+
+.container {
+  margin-top: 100px;
+  width: 80vw;
+  margin-bottom: 20px;
+  margin-right: auto;
+  margin-left: auto;
 }
 .grid-container {
   display: grid;
