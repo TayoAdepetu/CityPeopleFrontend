@@ -36,7 +36,7 @@
           </div>
 
           <div class="image-section" v-else>
-            <img :src="image" />
+            <img :src="this.image" />
           </div>
         </div>
         <button type="submit" class="btn btn-primary block">
