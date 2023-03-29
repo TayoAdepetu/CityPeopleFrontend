@@ -105,6 +105,7 @@ export default {
 
   methods: {
     onChange(e) {
+      /*
       var selectedFiles = e.target.files;
       for (let i = 0; i < selectedFiles.length; i++) {
         let img = {
@@ -113,8 +114,8 @@ export default {
         };
         this.images.push(img.file);
       }
+      */
 
-      /*
       let image = e.target.files;
       console.log(image);
 
@@ -127,15 +128,15 @@ export default {
             reader.onloadend = (e) => {
               let imagepiece = reader.result;
               console.log(imagepiece);
-              let number = this.images.push(imagepiece);
-              console.log(number);
+              this.images.push(imagepiece);
             };
+          } else {
+            return this.$toast.info("File reader not created.");
           }
         } else {
           return this.$toast.info("Image should not be more than five.");
         }
       }
-      */
     },
 
     /*
