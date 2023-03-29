@@ -47,3 +47,14 @@ body {
 .space-around {
   justify-content: space-around;
 }
+
+.btn {
+  background-color: var(--dark-blue);
+  padding: 16px;
+  color: var(--lightest);
+  border: none;
+  width: 100%;
+  margin: auto;
+  font-weight: bolder;
+  font-size: 20px;
+}

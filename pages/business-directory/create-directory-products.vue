@@ -242,17 +242,6 @@ textarea {
   padding: 2px;
 }
 
-.btn {
-  background-color: var(--red);
-  padding: 16px;
-  color: #036;
-  border: none;
-  width: 100%;
-  margin: auto;
-  font-weight: bolder;
-  font-size: 20px;
-}
-
 .btn:hover {
   opacity: 0.9;
 }

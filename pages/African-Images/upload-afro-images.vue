@@ -37,9 +37,11 @@
 
           <div class="image-section" v-else>
             <img :src="image" />
-            <button @click="removeImage">Remove image</button>
           </div>
         </div>
+        <button type="submit" class="btn btn-primary block">
+          Publish Image
+        </button>
       </form>
     </div>
   </div>
@@ -82,7 +84,7 @@ export default {
     },
 
     onFileChange(e) {
-      this.image = e.target.files[i];
+      this.image = e.target.files[0];
     },
 
     removeImage: function (e) {

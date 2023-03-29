@@ -3,7 +3,9 @@
     <div class="container">
       <form @submit.prevent="addCategory()">
         <input type="text" v-model="name" />
-        <button type="submit">Add Category</button>
+        <button type="submit" class="btn btn-primary block">
+          Add Category
+        </button>
       </form>
     </div>
   </div>
