@@ -23,7 +23,7 @@
           required
         />
 
-        <button class="registerbtn" type="submit">Login</button>
+        <button class="btn" type="submit">Login</button>
       </form>
       <p>
         If you're not yet a member, <NuxtLink to="/register">Register</NuxtLink>
@@ -130,20 +130,5 @@ input {
 
 #div_id_password2 {
   margin-top: 20px;
-}
-
-.registerbtn {
-  background-color: var(--red);
-  padding: 16px;
-  color: #036;
-  border: none;
-  width: 100%;
-  margin: auto;
-  font-weight: bolder;
-  font-size: 20px;
-}
-
-.registerbtn:hover {
-  opacity: 0.9;
 }
 </style>
