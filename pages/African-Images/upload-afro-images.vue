@@ -126,6 +126,8 @@ export default {
   width: 80vw;
   margin-bottom: 20px;
   word-wrap: break-word;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 select,

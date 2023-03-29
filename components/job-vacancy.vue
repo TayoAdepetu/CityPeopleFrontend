@@ -3,7 +3,7 @@
     <h2 class="index-h2">Adverrtise Job Vacancies In Your Firm For Free</h2>
     <div class="posts-container">
       <div v-for="job in jobs" :key="job.id" id="before-headlines">
-        <NuxtLink :to="`/job-directory/job/${job.job_slug}`">
+        <NuxtLink :to="`/job-directory/${job.job_slug}`">
           <h3 style="color: red">{{ job.title }}</h3>
           <p>{{ job.user.name }}</p>
 

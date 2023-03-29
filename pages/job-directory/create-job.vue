@@ -106,7 +106,7 @@ export default {
           //image: this.onFileChange()
         });
 
-        this.$router.push("/business-directory");
+        this.$router.push("/job-vacancies");
       } catch (e) {
         this.error = e.response;
       }

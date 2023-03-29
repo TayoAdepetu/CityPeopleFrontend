@@ -1,43 +1,39 @@
 <template>
-    <div>
-        <div class="container">
+  <div>
+    <div class="container">
       <form @submit.prevent="addCategory()">
-        <input type="text" v-model="name">
+        <input type="text" v-model="name" />
         <button type="submit">Add Category</button>
       </form>
     </div>
-    </div>
-    </template>
+  </div>
+</template>
 
 <script scoped>
-
 export default {
-  middleware: 'isadmin',
-    layout: "admin",
-    data() {
-        return{
-            name:'',
-            error:'',
-        }
-        
-    },
+  middleware: "iscommenter",
+  layout: "admin",
+  data() {
+    return {
+      name: "",
+      error: "",
+    };
+  },
 
-    methods:{
+  methods: {
     async addCategory() {
       try {
         await this.$axios.post(`/api/auth/create-category`, {
           name: this.name,
-        })
+        });
 
         //this.$router.push('/admin/published-articles/categories')
       } catch (e) {
-        this.error = e.response
+        this.error = e.response;
       }
     },
-
-}
-
-    }
+  },
+};
 </script>
 
 <style scoped>
@@ -58,5 +54,4 @@ input {
   margin-top: 5px;
   padding: 10px;
 }
-
 </style>
