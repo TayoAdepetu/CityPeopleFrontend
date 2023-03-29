@@ -98,34 +98,44 @@ export default {
       description: "",
       price: "",
       biz_location: "",
+      images: [],
       error: null,
     };
   },
 
   methods: {
     onChange(e) {
+      var selectedFiles = e.target.files;
+      for (let i = 0; i < selectedFiles.length; i++) {
+        let img = {
+          src: URL.createObjectURL(selectedFiles[i]),
+          file: selectedFiles[i],
+        };
+        this.images.push(img.file);
+      }
+
+      /*
       let image = e.target.files;
       console.log(image);
 
       for (let i = 0; i < image.lenght; i++) {
-        // if (i < 5) {
-        //if (image[i].type.match("image.*")) {
-        let reader = new FileReader();
-        reader.readAsDataURL(image[i]);
+        if (i < 5) {
+          if (image[i].type.match("image.*")) {
+            let reader = new FileReader();
+            reader.readAsDataURL(image[i]);
 
-        reader.onloadend = (e) => {
-          let imagepiece = reader.result;
-          console.log(imagepiece);
-          let number = this.images.push(imagepiece);
-          console.log(number);
-        };
-        // }
-        /*
+            reader.onloadend = (e) => {
+              let imagepiece = reader.result;
+              console.log(imagepiece);
+              let number = this.images.push(imagepiece);
+              console.log(number);
+            };
+          }
         } else {
           return this.$toast.info("Image should not be more than five.");
         }
-        */
       }
+      */
     },
 
     /*
