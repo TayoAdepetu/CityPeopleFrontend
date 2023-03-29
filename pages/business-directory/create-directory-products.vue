@@ -126,9 +126,9 @@ export default {
             reader.readAsDataURL(image[i]);
 
             reader.onloadend = (e) => {
-              let imagepiece = reader.result;
-              console.log(imagepiece);
-              this.images.push(imagepiece);
+              this.imagepiece = reader.result;
+              console.log(this.imagepiece);
+              this.images.push(this.imagepiece);
             };
           } else {
             return this.$toast.info("File reader not created.");
