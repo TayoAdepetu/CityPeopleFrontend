@@ -79,20 +79,6 @@ form {
   width: 99%;
 }
 
-.btn {
-  background-color: cornflowerblue;
-  padding: 16px;
-  color: #036;
-  border: none;
-  width: 100%;
-  margin: auto;
-  font-weight: bolder;
-  font-size: 20px;
-}
-
-.btn:hover {
-  opacity: 0.9;
-}
 .form-group {
   margin-bottom: 5px;
   margin-top: 5px;

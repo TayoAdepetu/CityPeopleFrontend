@@ -55,19 +55,4 @@ input {
   margin-top: 5px;
   padding: 10px;
 }
-
-.btn {
-  background-color: cornflowerblue;
-  padding: 16px;
-  color: #036;
-  border: none;
-  width: 90%;
-  margin: auto;
-  font-weight: bolder;
-  font-size: 20px;
-}
-
-.btn:hover {
-  opacity: 0.9;
-}
 </style>

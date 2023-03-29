@@ -225,21 +225,6 @@ textarea {
   padding: 2px;
 }
 
-.btn {
-  background-color: cornflowerblue;
-  padding: 16px;
-  color: #036;
-  border: none;
-  width: 100%;
-  margin: auto;
-  font-weight: bolder;
-  font-size: 20px;
-}
-
-.btn:hover {
-  opacity: 0.9;
-}
-
 @media screen and (max-width: 700px) {
 }
 </style>

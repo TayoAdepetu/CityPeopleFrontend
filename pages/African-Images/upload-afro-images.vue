@@ -71,7 +71,7 @@ export default {
 
     async imageUpload() {
       try {
-        await this.axios.post(`create-images`, {
+        await this.axios.post(`/api/auth/create-images`, {
           image_name: this.image_name,
           image_description: this.image_description,
           user_id: this.$auth.user.id,

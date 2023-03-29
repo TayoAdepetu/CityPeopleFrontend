@@ -7,7 +7,7 @@
           type="text"
           placeholder="paste verification code here"
         />
-        <button class="registerbtn">Verify Email</button>
+        <button class="btn">Verify Email</button>
       </form>
     </div>
   </div>
@@ -65,20 +65,5 @@ input {
   font-size: small;
   color: #036;
   display: block;
-}
-
-.registerbtn {
-  background-color: var(--red);
-  padding: 16px;
-  color: #036;
-  border: none;
-  width: 100%;
-  margin: auto;
-  font-weight: bolder;
-  font-size: 20px;
-}
-
-.registerbtn:hover {
-  opacity: 0.9;
 }
 </style>

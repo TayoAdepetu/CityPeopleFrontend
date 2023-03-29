@@ -97,10 +97,6 @@ textarea {
   padding: 2px;
 }
 
-.btn:hover {
-  opacity: 0.9;
-}
-
 @media screen and (max-width: 700px) {
 }
 </style>

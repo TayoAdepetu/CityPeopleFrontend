@@ -5,7 +5,7 @@
         <nuxt-link to="/htmlcodes" target="_blank"
           ><div class="btn">Check Component HTML Codes</div></nuxt-link
         >
-       <!-- <button @click="openStatusModal(image)">Check Image Sources</button>-->
+        <!-- <button @click="openStatusModal(image)">Check Image Sources</button>-->
         <button @click="openImagesStatusModal()">Check Image Sources</button>
 
         <input hidden type="" v-model="user_id" />
@@ -165,21 +165,6 @@ textarea {
 
 #body-text {
   min-height: 700px;
-}
-
-.btn {
-  background-color: cornflowerblue;
-  padding: 16px;
-  color: #036;
-  border: none;
-  width: 100%;
-  margin: auto;
-  font-weight: bolder;
-  font-size: 20px;
-}
-
-.btn:hover {
-  opacity: 0.9;
 }
 
 @media screen and (max-width: 700px) {
