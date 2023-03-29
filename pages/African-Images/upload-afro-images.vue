@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <form>
+      <form @submit="imageUpload()">
         <div>
           <textarea
             v-model="image_name"
