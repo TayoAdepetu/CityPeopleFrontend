@@ -173,6 +173,11 @@ export default {
     };
   },
 
+  mounted() {
+    this.getAllCategories();
+    this.getAllImages();
+  },
+
   methods: {
     async getAllCategories() {
       try {

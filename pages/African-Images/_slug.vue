@@ -22,7 +22,7 @@ export default {
     };
   },
 
-  async getImage(context) {
+  async asyncData(context) {
     try {
       const { data } = await this.$axios.get(
         `/api/auth/retrieve-image/${context.params.slug}`
