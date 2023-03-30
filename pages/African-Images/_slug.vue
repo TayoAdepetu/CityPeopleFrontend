@@ -16,7 +16,6 @@ export default {
   auth: false,
   data() {
     return {
-      image: null,
       error: null,
       baseURL: process.env.BASE_URL || "http://localhost:8000/",
     };
@@ -24,11 +23,10 @@ export default {
 
   async asyncData(context) {
     try {
-      let data = await context.$axios.get(
+      const image = await context.$axios.get(
         `/api/auth/retrieve-image/${context.params.slug}`
       );
 
-      this.image = data;
       // console.log(data.data)
       return { image };
     } catch (error) {
