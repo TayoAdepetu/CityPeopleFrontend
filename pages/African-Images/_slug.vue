@@ -3,7 +3,7 @@
     <!--Showing individual images in frontend-->
     <div>
       <!--<img :src="baseURL + 'postimage/' + image.image_path" />-->
-      <img :src="`${image.image_path}`" :alt="`${image.image_name}`" />
+      <img :src="image.image_path" :alt="image.image_name" />
       <div>{{ image.image_name }}</div>
       <div>{{ image.image_description }}</div>
     </div>
