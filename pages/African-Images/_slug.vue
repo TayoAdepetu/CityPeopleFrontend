@@ -6,7 +6,7 @@
       <img :src="image.image_path" :alt="image.image_name" />
       <div>{{ image.image_name }}</div>
       <div>{{ image.image_description }}</div>
-      {{ image }}
+      {{ image.data.image_path }}
     </div>
     <div><button @click="downloadImage">Download Image</button></div>
   </div>
@@ -24,11 +24,9 @@ export default {
 
   async asyncData(context) {
     try {
-      const data = await context.$axios.get(
+      const image = await context.$axios.get(
         `/api/auth/retrieve-image/${context.params.slug}`
       );
-
-      this.image = data.data;
 
       // console.log(data.data)
       return { image };
