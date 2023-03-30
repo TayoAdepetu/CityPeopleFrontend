@@ -22,23 +22,24 @@ export default {
     };
   },
 
-  methods: {
-    async getImage(context) {
-      try {
-        const { data } = await this.$axios.get(
-          `/api/auth/retrieve-image/${context.params.slug}`
-        );
-        if (data) {
-          this.image = data;
-          // console.log(data.data)
-          return true;
-        }
-      } catch (error) {
-        this.loading = false;
-        console.log(error.response);
-        this.$toast.error(error.response.data.error);
+  async getImage(context) {
+    try {
+      const { data } = await this.$axios.get(
+        `/api/auth/retrieve-image/${context.params.slug}`
+      );
+      if (data) {
+        this.image = data;
+        // console.log(data.data)
+        return true;
       }
-    },
+    } catch (error) {
+      this.loading = false;
+      console.log(error.response);
+      this.$toast.error(error.response.data.error);
+    }
+  },
+
+  methods: {
     downloadImage() {
       return this.$axios.get(
         `/api/auth/download-image/${this.image.image_path}`
@@ -52,7 +53,7 @@ export default {
   },
 
   mounted() {
-    this.getImage();
+    //this.getImage();
   },
 };
 </script>

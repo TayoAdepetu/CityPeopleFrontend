@@ -158,9 +158,9 @@ export default {
     let response = await context.$axios.get(
       `/api/auth/blog/${context.params.slug}`
     );
-    this.subsubject = response.data;
+    this.subject = response.data;
     return {
-      post,
+      subject,
     };
   },
 
