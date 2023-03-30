@@ -3,7 +3,7 @@
     <!--Display all subject articles-->
     <div class="grid-container">
       <div v-for="image in images" :key="image.id" id="before-headlines">
-        <NuxtLink :to="`/african-images/${image.image_path}`">
+        <NuxtLink :to="`/african-images/${image.public_id}`">
           <!-- <img
             id="short-image"
             :src="baseURL + 'postimage/' + image.image_path"
