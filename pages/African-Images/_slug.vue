@@ -33,7 +33,6 @@ export default {
         return true;
       }
     } catch (error) {
-      this.loading = false;
       console.log(error.response);
       this.$toast.error(error.response.data.error);
     }
