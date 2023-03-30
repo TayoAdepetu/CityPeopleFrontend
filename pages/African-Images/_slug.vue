@@ -33,7 +33,7 @@ export default {
         return true;
       }
     } catch (error) {
-      console.log(error.response);
+      console.log(error);
       //this.$toast.error(error.response.data.error);
     }
   },
