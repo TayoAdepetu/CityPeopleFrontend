@@ -6,6 +6,7 @@
       <img :src="image.image_path" :alt="image.image_name" />
       <div>{{ image.image_name }}</div>
       <div>{{ image.image_description }}</div>
+      {{ image }}
     </div>
     <div><button @click="downloadImage">Download Image</button></div>
   </div>
