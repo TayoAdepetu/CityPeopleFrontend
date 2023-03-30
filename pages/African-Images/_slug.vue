@@ -35,7 +35,7 @@ export default {
         }
       } catch (error) {
         this.loading = false;
-        // console.log(error.response)
+        console.log(error.response);
         this.$toast.error(error.response.data.error);
       }
     },
