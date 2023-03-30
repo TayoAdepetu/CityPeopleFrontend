@@ -51,5 +51,9 @@ export default {
       return date;
     },
   },
+
+  mounted() {
+    this.getAllImages();
+  },
 };
 </script>
