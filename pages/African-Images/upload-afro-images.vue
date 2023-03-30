@@ -35,7 +35,7 @@
             />
           </div>
 
-          <div class="image-section">
+          <div class="image-section" v-if="imagepiece">
             <img :src="imagepiece" />
           </div>
         </div>
@@ -80,7 +80,7 @@ export default {
         });
         this.$toast.success("Image uploaded successfully.");
       } catch (e) {
-        this.error = e.response;
+        console.log(e.response);
         this.$toast.info("Image not uploaded.");
       }
     },
