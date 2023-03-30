@@ -24,9 +24,11 @@ export default {
 
   async asyncData(context) {
     try {
-      const image = await context.$axios.get(
+      const data = await context.$axios.get(
         `/api/auth/retrieve-image/${context.params.slug}`
       );
+
+      this.image = data.data;
 
       // console.log(data.data)
       return { image };
