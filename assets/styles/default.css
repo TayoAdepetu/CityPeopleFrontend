@@ -63,3 +63,12 @@ body {
   opacity: 0.9;
   background-color: var(--dark-blue);
 }
+
+.container {
+  margin-top: 100px;
+  width: 80vw;
+  margin-bottom: 20px;
+  word-wrap: break-word;
+  margin-right: auto;
+  margin-left: auto;
+}

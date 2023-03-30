@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  middleware: "isadmin",
+  auth: false,
   data() {
     return {
       image: null,

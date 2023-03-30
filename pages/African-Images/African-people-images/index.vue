@@ -1,35 +1,40 @@
 <template>
   <div>
     <!--Display all subject articles-->
-    <div class="grid-container">
-      <div v-for="image in images" :key="image.id" id="before-headlines">
-        <NuxtLink :to="`/african-images/${image.public_id}`">
-          <!-- <img
+    <div class="container">
+      <div class="grid-container">
+        <div v-for="image in images" :key="image.id" id="before-headlines">
+          <NuxtLink :to="`/african-images/${image.public_id}`">
+            <!-- <img
             id="short-image"
             :src="baseURL + 'postimage/' + image.image_path"
           />-->
-          <img
-            id="short-image"
-            :src="image.image_path"
-            :alt="image.image_name"
-          />
-          <div id="before-title">
-            <h3 id="title">{{ image.image_name }}</h3>
-          </div>
-          <div id="short-body">
-            <p id="short-paragraph">{{ image.description }}</p>
-          </div>
-          <!--                         
+            <img
+              id="short-image"
+              :src="image.image_path"
+              :alt="image.image_name"
+            />
+            <div id="before-title">
+              <h3 id="title">{{ image.image_name }}</h3>
+            </div>
+            <div id="short-body">
+              <p id="short-paragraph">{{ image.description }}</p>
+            </div>
+            <!--                         
               <div id="author-date">
                   <div id="author"><span>By</span> <span> {{ post.user.name }} In {{ post.category.name }}</span></div>
               </div> 
               -->
-        </NuxtLink>
+          </NuxtLink>
+        </div>
       </div>
-    </div>
-    <div class="pagination">
-      <button class="paginate" @click.prevent="moveBack()">Previous List</button
-      ><button class="paginate" @click.prevent="moveFront()">Next List</button>
+      <div class="pagination">
+        <button class="paginate" @click.prevent="moveBack()">
+          Previous List</button
+        ><button class="paginate" @click.prevent="moveFront()">
+          Next List
+        </button>
+      </div>
     </div>
   </div>
 </template>
