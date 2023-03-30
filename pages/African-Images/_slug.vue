@@ -27,11 +27,10 @@ export default {
       const { data } = await context.$axios.get(
         `/api/auth/retrieve-image/${context.params.slug}`
       );
-      if (data) {
-        this.image = data;
-        // console.log(data.data)
-        return true;
-      }
+
+      this.image = data;
+      // console.log(data.data)
+      return { image };
     } catch (error) {
       console.log(error);
       //this.$toast.error(error.response.data.error);
