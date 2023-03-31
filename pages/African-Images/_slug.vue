@@ -8,7 +8,7 @@
       <div>{{ image.data.image_description }}</div>
     </div>
     <div>
-      <button @click="downloadImage(image.data.id)" class="btn">
+      <button @click="downloadImage(image.data.image_path)" class="btn">
         Download Image
       </button>
     </div>
