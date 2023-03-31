@@ -56,7 +56,7 @@ export default {
           .get(image_path, { reponseType: "blob" })
           .then((response) => {
             const blob = new Blob([response.data], {
-              type: "application/jpeg",
+              type: "application/pdf",
             });
             const link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);
