@@ -13,7 +13,9 @@
 -->
         <a
           :href="image.data.image_path"
-          @click.prevent="downloadImage(image.data.image_path)"
+          @click.prevent="
+            downloadImage(image.data.image_path, image.data.image_name)
+          "
           class="btn"
           >Download Image</a
         >
@@ -47,15 +49,16 @@ export default {
   },
 
   methods: {
-    async downloadImage(image_path) {
+    async downloadImage(image_path, image_name) {
       try {
         //return this.$axios.get(`/api/auth/download-image/${image_path}`);
         await this.$axios
           .get(image_path, { reponseType: "blob" })
           .then((response) => {
-            const blob = new Blob([response.data], { type: "application.*" });
+            const blob = new Blob([response.data]);
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
+            link.download = image_name;
             link.click();
             URL.revokeObjectURL(link.href);
           });
