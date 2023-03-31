@@ -64,13 +64,11 @@ export default {
             URL.revokeObjectURL(link.href);
           });
           */
-        axios({
-          method: "get",
-          url: image_path,
-          responseType: "arraybuffer",
-        }).then((response) => {
-          this.forceFileDownload(response);
-        });
+        await this.$axios
+          .get(image_path, { reponseType: "arraybuffer" })
+          .then((response) => {
+            this.forceFileDownload(response);
+          });
       } catch (e) {
         console.log(e);
       }
