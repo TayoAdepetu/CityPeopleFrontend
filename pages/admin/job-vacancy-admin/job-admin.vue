@@ -345,19 +345,7 @@ export default {
 };
 </script>
 
-<
 <style scoped>
-.paginate {
-  width: 20%;
-  padding: 3px;
-  background-color: aqua;
-}
-.pagination {
-  justify-content: space-between;
-  display: flex;
-  gap: 2px;
-  margin: 20px;
-}
 form,
 .fordeleteback {
   background-color: lightgreen;

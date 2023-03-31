@@ -1,32 +1,34 @@
 <template>
   <div>
-    <!--contains all previous messages and a form-->
-    <div class="message-area" ref="message">
-      <MessageComponent
-        v-for="message in messages"
-        :key="message.id"
-        :message="message"
-      />
-    </div>
+    <div class="container">
+      <!--contains all previous messages and a form-->
+      <div class="message-area" ref="message">
+        <MessageComponent
+          v-for="message in messages"
+          :key="message.id"
+          :message="message"
+        />
+      </div>
 
-    <div>
-      <form
-        @submit.prevent="sendMessage"
-        class="selectBank normalInput2 fullWidth form-control mt-2 form"
-      >
-        <textarea
-          required
-          type="text"
-          id="body"
-          cols="28"
-          rows="5"
-          class="form-input"
-          v-model="message"
+      <div>
+        <form
+          @submit.prevent="sendMessage"
+          class="selectBank normalInput2 fullWidth form-control mt-2 form"
         >
-        </textarea>
-        <button type="submit">Send</button>
-        <v-btn text @click="Chats"> Close </v-btn>
-      </form>
+          <textarea
+            required
+            type="text"
+            id="body"
+            cols="28"
+            rows="5"
+            class="form-input"
+            v-model="message"
+          >
+          </textarea>
+          <button type="submit">Send</button>
+          <v-btn text @click="Chats"> Close </v-btn>
+        </form>
+      </div>
     </div>
   </div>
 </template>

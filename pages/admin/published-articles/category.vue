@@ -1,10 +1,12 @@
 <template>
   <div>
-    <div>
-      <form @submit.prevent="addCategory()">
-        <input type="text" v-model="category_name" />
-        <button class="btn" type="submit">Add Category</button>
-      </form>
+    <div class="container">
+      <div>
+        <form @submit.prevent="addCategory()">
+          <input type="text" v-model="category_name" />
+          <button class="btn" type="submit">Add Category</button>
+        </form>
+      </div>
     </div>
   </div>
 </template>

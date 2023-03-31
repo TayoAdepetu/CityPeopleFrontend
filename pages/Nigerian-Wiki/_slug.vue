@@ -1,21 +1,22 @@
 <template>
   <div>
-    <!--Dynamic page for individual subject articles fetched by ID. 
-      Also, its subsubject is also displayed at the top-->
-    <div
-      class="subsuject-spacing"
-      v-for="subsubject in subsubjects"
-      :key="subsubject.id"
-    >
-      <span>{{ subsubject }}</span>
-    </div>
     <div class="container">
-      <div>
-        <h1>{{ subject[0].title }}</h1>
-        <img id="short-image" :src="post[0].image_path" />
-        <div class="body" v-html="`${subject[0].body}`"></div>
+      <!--Dynamic page for individual subject articles fetched by ID. 
+      Also, its subsubject is also displayed at the top-->
+      <div
+        class="subsuject-spacing"
+        v-for="subsubject in subsubjects"
+        :key="subsubject.id"
+      >
+        <span>{{ subsubject }}</span>
       </div>
-      <!--
+      <div class="container">
+        <div>
+          <h1>{{ subject[0].title }}</h1>
+          <img id="short-image" :src="post[0].image_path" />
+          <div class="body" v-html="`${subject[0].body}`"></div>
+        </div>
+        <!--
       
       <p>
         By <span>{{ post[0].user.name }}</span> in
@@ -27,107 +28,108 @@
       <div class="body" v-html="`${post[0].body}`"></div>
       -->
 
-      <!--
+        <!--
     <div>
         <comments />
     </div>
     -->
-      <div class="content-help-notice">
-        <h3>
-          Please, help us in expanding and maintaining the integrity of this
-          Nigerian-People-and-Institutions Knowledge Base.
-        </h3>
+        <div class="content-help-notice">
+          <h3>
+            Please, help us in expanding and maintaining the integrity of this
+            Nigerian-People-and-Institutions Knowledge Base.
+          </h3>
 
-        <h4 class="first-h4">Here are ways you can help us:</h4>
-        <p>
-          Tell us the people or institutions you would want us to create web
-          pages for on this website.
-        </p>
-        <p>
-          Tell us about any wrong information about a person or insttitution
-          that we might have mistakenly published on this website.
-        </p>
+          <h4 class="first-h4">Here are ways you can help us:</h4>
+          <p>
+            Tell us the people or institutions you would want us to create web
+            pages for on this website.
+          </p>
+          <p>
+            Tell us about any wrong information about a person or insttitution
+            that we might have mistakenly published on this website.
+          </p>
 
-        <h4>The Rules:</h4>
-        <ul>
-          <li>
-            Please, if you're refuting any statement made about a person or
-            institution, kindly share with us sources containing facts about the
-            subject matter.
-          </li>
-        </ul>
+          <h4>The Rules:</h4>
+          <ul>
+            <li>
+              Please, if you're refuting any statement made about a person or
+              institution, kindly share with us sources containing facts about
+              the subject matter.
+            </li>
+          </ul>
 
-        <div class="greet-last">Thanks, The CityPeople Team</div>
-        <v-btn @click="openStatusModal(subsubject)" scrollable
-          >Tell Us What You Think About The Content On This Page</v-btn
-        >
-      </div>
-
-      <div class="dialog-box">
-        <v-dialog
-          v-model="updateStatusModal"
-          persistent
-          transition="dialog-top-transition"
-        >
-          <form
-            @submit.prevent="submitComment()"
-            class="selectBank normalInput2 fullWidth form-control mt-2"
+          <div class="greet-last">Thanks, The CityPeople Team</div>
+          <v-btn @click="openStatusModal(subsubject)" scrollable
+            >Tell Us What You Think About The Content On This Page</v-btn
           >
-            <div>
-              <div class="form-group">
-                <textarea
-                  type="text"
-                  v-model="selectedPost.subject_name"
-                  class="form-control"
-                  id="title"
-                  placeholder="Enter title"
-                  hidden
-                ></textarea>
-              </div>
+        </div>
 
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="selectedPost.id"
-                  class="form-control"
-                  id="description"
-                  placeholder="Enter title"
-                  hidden
-                />
-              </div>
-
-              <div class="form-group">
-                <textarea
-                  type="text"
-                  class="form-control"
-                  v-model="comment"
-                  id="body"
-                  placeholder="Enter your comments on this content here"
-                  rows="8"
-                  required
-                ></textarea>
-              </div>
-
-              <div class="flex justifyCenter mobileColumn">
-                <v-btn type="submit" class="greyBtn mx-3 my-1">
-                  Submit Comment
-                </v-btn>
-              </div>
-            </div>
-          </form>
-          <div class="flex justifyCenter mobileColumn">
-            <v-btn
-              text
-              @click="
-                () => {
-                  this.updateStatusModal = false;
-                }
-              "
+        <div class="dialog-box">
+          <v-dialog
+            v-model="updateStatusModal"
+            persistent
+            transition="dialog-top-transition"
+          >
+            <form
+              @submit.prevent="submitComment()"
+              class="selectBank normalInput2 fullWidth form-control mt-2"
             >
-              Cancel
-            </v-btn>
-          </div>
-        </v-dialog>
+              <div>
+                <div class="form-group">
+                  <textarea
+                    type="text"
+                    v-model="selectedPost.subject_name"
+                    class="form-control"
+                    id="title"
+                    placeholder="Enter title"
+                    hidden
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="selectedPost.id"
+                    class="form-control"
+                    id="description"
+                    placeholder="Enter title"
+                    hidden
+                  />
+                </div>
+
+                <div class="form-group">
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    v-model="comment"
+                    id="body"
+                    placeholder="Enter your comments on this content here"
+                    rows="8"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="flex justifyCenter mobileColumn">
+                  <v-btn type="submit" class="greyBtn mx-3 my-1">
+                    Submit Comment
+                  </v-btn>
+                </div>
+              </div>
+            </form>
+            <div class="flex justifyCenter mobileColumn">
+              <v-btn
+                text
+                @click="
+                  () => {
+                    this.updateStatusModal = false;
+                  }
+                "
+              >
+                Cancel
+              </v-btn>
+            </div>
+          </v-dialog>
+        </div>
       </div>
     </div>
   </div>
@@ -230,12 +232,6 @@ export default {
 .greet-last,
 .first-h4 {
   margin-top: 30px;
-}
-.container {
-  word-wrap: break-word;
-  margin: 20px;
-  margin-top: 60px;
-  width: 90vw;
 }
 
 #short-image {

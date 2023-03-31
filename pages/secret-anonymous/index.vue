@@ -1,13 +1,14 @@
 <template>
-    <div>
-        <div>
-            <secret/>
-        </div>
+  <div>
+    <div class="container">
+      <div>
+        <secret />
+      </div>
     </div>
+  </div>
 </template>
 <script scoped>
-
 export default {
-   auth: false,
-}
+  auth: false,
+};
 </script>

@@ -2,12 +2,19 @@
   <!--view a specific job-->
 
   <div>
-    <div>
+    <div class="container">
       <div class="list-description">
         <h3>{{ job.title }}</h3>
-        <p style="color:var(--yellow)"><span style="color:var(--yellow)" class="list-contact"> Posted By:</span> {{ job.user.name }}</p>
+        <p style="color: var(--yellow)">
+          <span style="color: var(--yellow)" class="list-contact">
+            Posted By:</span
+          >
+          {{ job.user.name }}
+        </p>
         <div>
-          <nuxt-link class="chat-button" :to="`/chat/${job.user.id}`">Click To Chat Business</nuxt-link>
+          <nuxt-link class="chat-button" :to="`/chat/${job.user.id}`"
+            >Click To Chat Business</nuxt-link
+          >
         </div>
         <div class="job-explain">
           <p>
@@ -38,9 +45,7 @@
         <div class="the-job-description">
           <p>{{ job.description }}</p>
         </div>
-        <div class="chat-button">
-          Report Job
-        </div>
+        <div class="chat-button">Report Job</div>
       </div>
     </div>
   </div>
@@ -67,19 +72,18 @@ export default {
 </script>
 
 <style scoped>
-.the-job-description{
-  margin: 3px; 
+.the-job-description {
+  margin: 3px;
   border: 1px solid #036;
   border-radius: 5px;
-  padding:4px;
-  background-color: #F7F5F4;
+  padding: 4px;
+  background-color: #f7f5f4;
   text-align: center;
   margin-bottom: 10px;
 }
-.chat-button{
-    background-color: var(--yellow);
-    padding: 10px;
-    
+.chat-button {
+  background-color: var(--yellow);
+  padding: 10px;
 }
 .list-description {
   margin: 20px;
@@ -99,7 +103,7 @@ export default {
   margin-bottom: 20px;
 }
 
-.list-contact{
-    font-weight: 700;
+.list-contact {
+  font-weight: 700;
 }
 </style>

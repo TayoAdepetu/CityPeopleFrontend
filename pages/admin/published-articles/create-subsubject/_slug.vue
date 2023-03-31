@@ -1,37 +1,39 @@
 <template>
   <div>
     <div class="container">
-      <form @submit.prevent="createPost" enctype="multipart/form-data">
-        <nuxt-link to="/htmlcodes" target="_blank"
-          ><div class="btn">Check Component HTML Codes</div></nuxt-link
-        >
+      <div>
+        <form @submit.prevent="createPost" enctype="multipart/form-data">
+          <nuxt-link to="/htmlcodes" target="_blank"
+            ><div class="btn">Check Component HTML Codes</div></nuxt-link
+          >
 
-        <input hidden type="number" v-model="user_id" />
-        <input hidden type="text" v-model="subject_name" />
+          <input hidden type="number" v-model="user_id" />
+          <input hidden type="text" v-model="subject_name" />
 
-        <textarea
-          v-model="subsubject_name"
-          id="title"
-          placeholder="Enter title"
-          required
-          type="text"
-        ></textarea>
+          <textarea
+            v-model="subsubject_name"
+            id="title"
+            placeholder="Enter title"
+            required
+            type="text"
+          ></textarea>
 
-        <textarea
-          type="text"
-          v-model="description"
-          id="description"
-          placeholder="Enter catchy description"
-          required
-        ></textarea>
+          <textarea
+            type="text"
+            v-model="description"
+            id="description"
+            placeholder="Enter catchy description"
+            required
+          ></textarea>
 
-        <hr />
-        <textarea v-model="body" id="body-text"></textarea>
-        <hr />
-        <input type="text" v-model="status" />
+          <hr />
+          <textarea v-model="body" id="body-text"></textarea>
+          <hr />
+          <input type="text" v-model="status" />
 
-        <button type="submit" class="btn btn-primary block">Publish</button>
-      </form>
+          <button type="submit" class="btn btn-primary block">Publish</button>
+        </form>
+      </div>
     </div>
   </div>
 </template>

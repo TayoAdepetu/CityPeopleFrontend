@@ -1,197 +1,201 @@
 <template>
   <div>
-    <div>
-      <thead>
-        <tr>
-          <th class="text-left">S/N</th>
-          <th class="text-left">Business Name</th>
-          <th class="text-left">Monday</th>
-          <th class="text-left">Tuesday</th>
-          <th class="text-left">Wednesday</th>
-          <th class="text-left">Thursday</th>
-          <th class="text-left">Friday</th>
-          <th class="text-left">Saturday</th>
-          <th class="text-left">Sunday</th>
-          <th class="text-left">Date</th>
-          <th class="text-left">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="detailRow" v-for="(job, index) in jobs" :key="job.id">
-          <td>
-            {{ index + 1 }}
-          </td>
-          <td>
-            {{ job.user.business_name }}
-          </td>
-          <td>
-            {{ job.monday }}
-          </td>
-          <td>
-            {{ job.tuesday }}
-          </td>
-          <td>
-            {{ job.wednesday }}
-          </td>
-          <td>
-            {{ job.thursday }}
-          </td>
-          <td>
-            {{ job.friday }}
-          </td>
-          <td>
-            {{ job.saturday }}
-          </td>
-          <td>
-            {{ job.sunday }}
-          </td>
-          <td>
-            {{ getDate(job.created_at) }}
-          </td>
-          <td class="action">
-            <v-btn
-              class="findBtn mb-4 mt-3 fullWidth"
-              @click="openJobModal(job)"
-              scrollable
-            >
-              Edit
-            </v-btn>
-            <v-btn class="greyBtn mx-3 my-1" @click="deleteJobModal(job)">
-              Delete
-            </v-btn>
-          </td>
-        </tr>
-      </tbody>
-      <div class="dialog-box">
-        <v-dialog
-          v-model="updateJobModal"
-          persistent
-          transition="dialog-top-transition"
-        >
-          <form
-            @submit.prevent="editPost()"
-            class="selectBank normalInput2 fullWidth form-control mt-2"
+    <div class="container">
+      <div>
+        <thead>
+          <tr>
+            <th class="text-left">S/N</th>
+            <th class="text-left">Business Name</th>
+            <th class="text-left">Monday</th>
+            <th class="text-left">Tuesday</th>
+            <th class="text-left">Wednesday</th>
+            <th class="text-left">Thursday</th>
+            <th class="text-left">Friday</th>
+            <th class="text-left">Saturday</th>
+            <th class="text-left">Sunday</th>
+            <th class="text-left">Date</th>
+            <th class="text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="detailRow" v-for="(job, index) in jobs" :key="job.id">
+            <td>
+              {{ index + 1 }}
+            </td>
+            <td>
+              {{ job.user.business_name }}
+            </td>
+            <td>
+              {{ job.monday }}
+            </td>
+            <td>
+              {{ job.tuesday }}
+            </td>
+            <td>
+              {{ job.wednesday }}
+            </td>
+            <td>
+              {{ job.thursday }}
+            </td>
+            <td>
+              {{ job.friday }}
+            </td>
+            <td>
+              {{ job.saturday }}
+            </td>
+            <td>
+              {{ job.sunday }}
+            </td>
+            <td>
+              {{ getDate(job.created_at) }}
+            </td>
+            <td class="action">
+              <v-btn
+                class="findBtn mb-4 mt-3 fullWidth"
+                @click="openJobModal(job)"
+                scrollable
+              >
+                Edit
+              </v-btn>
+              <v-btn class="greyBtn mx-3 my-1" @click="deleteJobModal(job)">
+                Delete
+              </v-btn>
+            </td>
+          </tr>
+        </tbody>
+        <div class="dialog-box">
+          <v-dialog
+            v-model="updateJobModal"
+            persistent
+            transition="dialog-top-transition"
           >
-            <div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="selectedPost.monday"
-                  class="form-control"
-                  id="slug"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="selectedPost.tuesday"
-                  class="form-control"
-                  id="slug"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="selectedPost.wednesday"
-                  class="form-control"
-                  id="slug"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="selectedPost.thursday"
-                  class="form-control"
-                  id="slug"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="selectedPost.friday"
-                  class="form-control"
-                  id="slug"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="selectedPost.saturday"
-                  class="form-control"
-                  id="slug"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="selectedPost.sunday"
-                  class="form-control"
-                  id="slug"
-                  required
-                />
-              </div>
-
-              <div class="flex justifyCenter mobileColumn">
-                <v-btn type="submit" class="greyBtn mx-3 my-1"> Update </v-btn>
-              </div>
-            </div>
-          </form>
-          <div class="flex justifyCenter mobileColumn">
-            <v-btn
-              text
-              @click="
-                () => {
-                  this.updateJobModal = false;
-                }
-              "
+            <form
+              @submit.prevent="editPost()"
+              class="selectBank normalInput2 fullWidth form-control mt-2"
             >
-              Cancel
-            </v-btn>
-          </div>
-        </v-dialog>
-      </div>
+              <div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="selectedPost.monday"
+                    class="form-control"
+                    id="slug"
+                    required
+                  />
+                </div>
 
-      <div class="dialog-box">
-        <v-dialog
-          v-model="deleteJobModal"
-          persistent
-          transition="dialog-top-transition"
-        >
-          <div class="fordeleteback">
-            <h3 class="darkGreyColor textCenter">
-              Delete
-              <span class="deletepost">{{ selectedPost.business_name }}</span>
-            </h3>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="selectedPost.tuesday"
+                    class="form-control"
+                    id="slug"
+                    required
+                  />
+                </div>
 
-            <div class="flex justifyCenter mobileColumn">
-              <v-btn text @click="deleteJob()"> Delete </v-btn>
-            </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="selectedPost.wednesday"
+                    class="form-control"
+                    id="slug"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="selectedPost.thursday"
+                    class="form-control"
+                    id="slug"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="selectedPost.friday"
+                    class="form-control"
+                    id="slug"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="selectedPost.saturday"
+                    class="form-control"
+                    id="slug"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="selectedPost.sunday"
+                    class="form-control"
+                    id="slug"
+                    required
+                  />
+                </div>
+
+                <div class="flex justifyCenter mobileColumn">
+                  <v-btn type="submit" class="greyBtn mx-3 my-1">
+                    Update
+                  </v-btn>
+                </div>
+              </div>
+            </form>
             <div class="flex justifyCenter mobileColumn">
               <v-btn
                 text
                 @click="
                   () => {
-                    this.deleteJobModal = false;
+                    this.updateJobModal = false;
                   }
                 "
               >
                 Cancel
               </v-btn>
             </div>
-          </div>
-        </v-dialog>
+          </v-dialog>
+        </div>
+
+        <div class="dialog-box">
+          <v-dialog
+            v-model="deleteJobModal"
+            persistent
+            transition="dialog-top-transition"
+          >
+            <div class="fordeleteback">
+              <h3 class="darkGreyColor textCenter">
+                Delete
+                <span class="deletepost">{{ selectedPost.business_name }}</span>
+              </h3>
+
+              <div class="flex justifyCenter mobileColumn">
+                <v-btn text @click="deleteJob()"> Delete </v-btn>
+              </div>
+              <div class="flex justifyCenter mobileColumn">
+                <v-btn
+                  text
+                  @click="
+                    () => {
+                      this.deleteJobModal = false;
+                    }
+                  "
+                >
+                  Cancel
+                </v-btn>
+              </div>
+            </div>
+          </v-dialog>
+        </div>
       </div>
     </div>
   </div>
@@ -319,7 +323,6 @@ export default {
 };
 </script>
 
-<
 <style scoped>
 form,
 .fordeleteback {

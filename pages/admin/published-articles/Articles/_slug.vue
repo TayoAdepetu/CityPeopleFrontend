@@ -1,105 +1,107 @@
 <template>
   <div>
     <!--edit each subsubject here-->
-    <div>
-      <form
-        @submit.prevent="editPost()"
-        class="selectBank normalInput2 fullWidth form-control mt-2"
-      >
-        <div>
-          <div class="form-group">
-            <textarea
-              v-model="subsubject.subject_name"
-              class="form-control"
-              id="title"
-              placeholder="Enter title"
-              required
-              type="text"
-            ></textarea>
-          </div>
+    <div class="container">
+      <div>
+        <form
+          @submit.prevent="editPost()"
+          class="selectBank normalInput2 fullWidth form-control mt-2"
+        >
+          <div>
+            <div class="form-group">
+              <textarea
+                v-model="subsubject.subject_name"
+                class="form-control"
+                id="title"
+                placeholder="Enter title"
+                required
+                type="text"
+              ></textarea>
+            </div>
 
-          <div class="form-group">
-            <textarea
-              class="form-control"
-              v-model="subsubject.slug"
-              id="body"
-              placeholder="Enter a body"
-              rows="8"
-              required
-              type="text"
-            ></textarea>
-          </div>
+            <div class="form-group">
+              <textarea
+                class="form-control"
+                v-model="subsubject.slug"
+                id="body"
+                placeholder="Enter a body"
+                rows="8"
+                required
+                type="text"
+              ></textarea>
+            </div>
 
-          <div class="form-group">
-            <textarea
-              type="text"
-              v-model="subsubject.description"
-              class="form-control"
-              id="description"
-              placeholder="Enter title"
-              required
-            ></textarea>
-          </div>
-          <div class="form-group">
-            <textarea
-              class="form-control"
-              v-model="subsubject.body"
-              id="body"
-              placeholder="Enter a body"
-              rows="8"
-              required
-              type="text"
-            ></textarea>
-          </div>
+            <div class="form-group">
+              <textarea
+                type="text"
+                v-model="subsubject.description"
+                class="form-control"
+                id="description"
+                placeholder="Enter title"
+                required
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <textarea
+                class="form-control"
+                v-model="subsubject.body"
+                id="body"
+                placeholder="Enter a body"
+                rows="8"
+                required
+                type="text"
+              ></textarea>
+            </div>
 
+            <div class="flex justifyCenter mobileColumn">
+              <v-btn type="submit" class="greyBtn mx-3 my-1"> Update </v-btn>
+            </div>
+          </div>
+        </form>
+        <div class="exclusive">
           <div class="flex justifyCenter mobileColumn">
-            <v-btn type="submit" class="greyBtn mx-3 my-1"> Update </v-btn>
+            <v-btn @click="this.deleteSubsubjectModal = true"> Cancel </v-btn>
           </div>
-        </div>
-      </form>
-      <div class="exclusive">
-        <div class="flex justifyCenter mobileColumn">
-          <v-btn @click="this.deleteSubsubjectModal = true"> Cancel </v-btn>
-        </div>
-        <div class="flex justifyCenter mobileColumn">
-          <nuxt-link
-            :to="`/admin/published-articles/create-subsubject/${subject.subject_name}`"
-          >
-            Create New Subsubject</nuxt-link
-          >
+          <div class="flex justifyCenter mobileColumn">
+            <nuxt-link
+              :to="`/admin/published-articles/create-subsubject/${subject.subject_name}`"
+            >
+              Create New Subsubject</nuxt-link
+            >
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="dialog-box">
-      <v-dialog
-        v-model="deleteSubsubjectModal"
-        persistent
-        transition="dialog-top-transition"
-      >
-        <div class="fordeleteback">
-          <h3 class="darkGreyColor textCenter">
-            Delete
-            <span class="deletepost">{{ selectedSubsubject.name }}?</span>
-          </h3>
+      <div class="dialog-box">
+        <v-dialog
+          v-model="deleteSubsubjectModal"
+          persistent
+          transition="dialog-top-transition"
+        >
+          <div class="fordeleteback">
+            <h3 class="darkGreyColor textCenter">
+              Delete
+              <span class="deletepost">{{ selectedSubsubject.name }}?</span>
+            </h3>
 
-          <div class="flex justifyCenter mobileColumn">
-            <v-btn text @click="deleteSubsubject()"> Delete </v-btn>
+            <div class="flex justifyCenter mobileColumn">
+              <v-btn text @click="deleteSubsubject()"> Delete </v-btn>
+            </div>
+            <div class="flex justifyCenter mobileColumn">
+              <v-btn
+                text
+                @click="
+                  () => {
+                    this.deleteSubsubjectModal = false;
+                  }
+                "
+              >
+                Cancel
+              </v-btn>
+            </div>
           </div>
-          <div class="flex justifyCenter mobileColumn">
-            <v-btn
-              text
-              @click="
-                () => {
-                  this.deleteSubsubjectModal = false;
-                }
-              "
-            >
-              Cancel
-            </v-btn>
-          </div>
-        </div>
-      </v-dialog>
+        </v-dialog>
+      </div>
     </div>
   </div>
 </template>

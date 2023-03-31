@@ -49,29 +49,8 @@ export default {
 
   methods: {
     downloadImage(image_path) {
+      //https://eligrey.com/demos/FileSaver.js/
       saveAs(image_path, "image.jpg");
-      //return this.$axios.get(`/api/auth/download-image/${image_path}`);
-      /*
-        await this.$axios
-          .get(image_path, { reponseType: "blob" })
-          .then((response) => {
-            const blob = new Blob([response.data], {
-              type: "application/pdf",
-            });
-            const link = document.createElement("a");
-            link.href = window.URL.createObjectURL(blob);
-            link.download = image_name;
-            link.click();
-            URL.revokeObjectURL(link.href);
-          });
-          */
-      /*
-        await this.$axios
-          .get(image_path, { reponseType: "arraybuffer" })
-          .then((response) => {
-            this.forceFileDownload(response);
-          });
-          */
     },
 
     forceFileDownload(response) {

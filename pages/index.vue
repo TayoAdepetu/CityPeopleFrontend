@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="nav-align">
+    <div class="container">
       <div>
         <h2 class="index-h2">
           Get Fact-based News On Most Popular Nigerians and Institutions
@@ -237,10 +237,6 @@ export default {
 </script>
 
 <style scoped>
-.nav-align {
-  margin: 20px;
-  margin-top: 50px;
-}
 .index-h2 {
   text-align: left;
   margin-top: 20px;

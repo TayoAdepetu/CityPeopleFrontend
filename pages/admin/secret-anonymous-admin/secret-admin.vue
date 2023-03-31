@@ -1,132 +1,139 @@
 <template>
   <div>
-    <div>
-      <thead>
-        <tr>
-          <th class="text-left">S/N</th>
-          <th class="text-left">Title</th>
-          <th class="text-left">Description</th>
-          <th class="text-left">Slug</th>
-          <th class="text-left">Date</th>
-          <th class="text-left">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="detailRow" v-for="(job, index) in jobs" :key="job.id">
-          <td>
-            {{ index + 1 }}
-          </td>
-          <td>
-            {{ job.title }}
-          </td>
-          <td>
-            {{ job.description }}
-          </td>
+    <div class="container">
+      <div>
+        <thead>
+          <tr>
+            <th class="text-left">S/N</th>
+            <th class="text-left">Title</th>
+            <th class="text-left">Description</th>
+            <th class="text-left">Slug</th>
+            <th class="text-left">Date</th>
+            <th class="text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="detailRow" v-for="(job, index) in jobs" :key="job.id">
+            <td>
+              {{ index + 1 }}
+            </td>
+            <td>
+              {{ job.title }}
+            </td>
+            <td>
+              {{ job.description }}
+            </td>
 
-          <td>
-            {{ job.slug }}
-          </td>
-          <td>
-            {{ getDate(job.created_at) }}
-          </td>
-          <td class="action">
-            <v-btn
-              class="findBtn mb-4 mt-3 fullWidth"
-              @click="openJobModal(job)"
-              scrollable
-            >
-              Edit
-            </v-btn>
-            <v-btn class="greyBtn mx-3 my-1" @click="deleteJobModal(job)">
-              Delete
-            </v-btn>
-          </td>
-        </tr>
-      </tbody>
-      <div class="dialog-box">
-        <v-dialog
-          v-model="updateJobModal"
-          persistent
-          transition="dialog-top-transition"
-        >
-          <form
-            @submit.prevent="editPost()"
-            class="selectBank normalInput2 fullWidth form-control mt-2"
+            <td>
+              {{ job.slug }}
+            </td>
+            <td>
+              {{ getDate(job.created_at) }}
+            </td>
+            <td class="action">
+              <v-btn
+                class="findBtn mb-4 mt-3 fullWidth"
+                @click="openJobModal(job)"
+                scrollable
+              >
+                Edit
+              </v-btn>
+              <v-btn class="greyBtn mx-3 my-1" @click="deleteJobModal(job)">
+                Delete
+              </v-btn>
+            </td>
+          </tr>
+        </tbody>
+        <div class="dialog-box">
+          <v-dialog
+            v-model="updateJobModal"
+            persistent
+            transition="dialog-top-transition"
           >
-            <div>
-              <div class="form-group">
-                <textarea
-                  v-model="selectedPost.title"
-                  class="form-control"
-                  id="title"
-                  required
-                  type="text"
-                ></textarea>
-              </div>
-
-              <div class="form-group">
-                <textarea
-                  type="text"
-                  v-model="selectedPost.description"
-                  class="form-control"
-                  id="description"
-                  required
-                ></textarea>
-              </div>
-
-              <div class="flex justifyCenter mobileColumn">
-                <v-btn type="submit" class="greyBtn mx-3 my-1"> Update </v-btn>
-              </div>
-            </div>
-          </form>
-          <div class="flex justifyCenter mobileColumn">
-            <v-btn
-              text
-              @click="
-                () => {
-                  this.updateJobModal = false;
-                }
-              "
+            <form
+              @submit.prevent="editPost()"
+              class="selectBank normalInput2 fullWidth form-control mt-2"
             >
-              Cancel
-            </v-btn>
-          </div>
-        </v-dialog>
-      </div>
+              <div>
+                <div class="form-group">
+                  <textarea
+                    v-model="selectedPost.title"
+                    class="form-control"
+                    id="title"
+                    required
+                    type="text"
+                  ></textarea>
+                </div>
 
-      <div class="dialog-box">
-        <v-dialog
-          v-model="deleteJobModal"
-          persistent
-          transition="dialog-top-transition"
-        >
-          <div class="fordeleteback">
-            <h3 class="darkGreyColor textCenter">
-              Delete <span class="deletepost">{{ selectedPost.title }}</span>
-            </h3>
+                <div class="form-group">
+                  <textarea
+                    type="text"
+                    v-model="selectedPost.description"
+                    class="form-control"
+                    id="description"
+                    required
+                  ></textarea>
+                </div>
 
-            <div class="flex justifyCenter mobileColumn">
-              <v-btn text @click="deleteJob()"> Delete </v-btn>
-            </div>
+                <div class="flex justifyCenter mobileColumn">
+                  <v-btn type="submit" class="greyBtn mx-3 my-1">
+                    Update
+                  </v-btn>
+                </div>
+              </div>
+            </form>
             <div class="flex justifyCenter mobileColumn">
               <v-btn
                 text
                 @click="
                   () => {
-                    this.deleteJobModal = false;
+                    this.updateJobModal = false;
                   }
                 "
               >
                 Cancel
               </v-btn>
             </div>
-          </div>
-        </v-dialog>
+          </v-dialog>
+        </div>
+
+        <div class="dialog-box">
+          <v-dialog
+            v-model="deleteJobModal"
+            persistent
+            transition="dialog-top-transition"
+          >
+            <div class="fordeleteback">
+              <h3 class="darkGreyColor textCenter">
+                Delete <span class="deletepost">{{ selectedPost.title }}</span>
+              </h3>
+
+              <div class="flex justifyCenter mobileColumn">
+                <v-btn text @click="deleteJob()"> Delete </v-btn>
+              </div>
+              <div class="flex justifyCenter mobileColumn">
+                <v-btn
+                  text
+                  @click="
+                    () => {
+                      this.deleteJobModal = false;
+                    }
+                  "
+                >
+                  Cancel
+                </v-btn>
+              </div>
+            </div>
+          </v-dialog>
+        </div>
       </div>
-    </div>
-    <div class="pagination">
-      <button class="paginate" @click.prevent="moveBack()">Previous List</button
-      ><button class="paginate" @click.prevent="moveFront()">Next List</button>
+      <div class="pagination">
+        <button class="paginate" @click.prevent="moveBack()">
+          Previous List</button
+        ><button class="paginate" @click.prevent="moveFront()">
+          Next List
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -248,20 +255,7 @@ export default {
 };
 </script>
 
-<
 <style scoped>
-.paginate {
-  width: 20%;
-  padding: 3px;
-  background-color: aqua;
-}
-.pagination {
-  justify-content: space-between;
-  display: flex;
-  gap: 2px;
-  margin: 20px;
-}
-
 form,
 .fordeleteback {
   background-color: lightgreen;

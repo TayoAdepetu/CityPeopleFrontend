@@ -1,22 +1,27 @@
 <template>
   <div>
-    <!--Display all subject articles-->
-    <div class="grid-container">
-      <div v-for="post in posts" :key="post.id" id="before-headlines">
-        <NuxtLink :to="`/Nigerian-Wiki/${post.slug}`">
-          <img id="short-image" :src="post.image_path" />
-          <div id="before-title">
-            <h3 id="title">{{ post.title }}</h3>
-          </div>
-          <div id="short-body">
-            <p id="short-paragraph">{{ post.description }}</p>
-          </div>
-        </NuxtLink>
+    <div class="container">
+      <!--Display all subject articles-->
+      <div class="grid-container">
+        <div v-for="post in posts" :key="post.id" id="before-headlines">
+          <NuxtLink :to="`/Nigerian-Wiki/${post.slug}`">
+            <img id="short-image" :src="post.image_path" />
+            <div id="before-title">
+              <h3 id="title">{{ post.title }}</h3>
+            </div>
+            <div id="short-body">
+              <p id="short-paragraph">{{ post.description }}</p>
+            </div>
+          </NuxtLink>
+        </div>
       </div>
-    </div>
-    <div class="pagination">
-      <button class="paginate" @click.prevent="moveBack()">Previous List</button
-      ><button class="paginate" @click.prevent="moveFront()">Next List</button>
+      <div class="pagination">
+        <button class="paginate" @click.prevent="moveBack()">
+          Previous List</button
+        ><button class="paginate" @click.prevent="moveFront()">
+          Next List
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -88,17 +93,6 @@ export default {
 </script>
 
 <style scoped>
-.paginate {
-  width: 20%;
-  padding: 3px;
-  background-color: aqua;
-}
-.pagination {
-  justify-content: space-between;
-  display: flex;
-  gap: 2px;
-  margin: 20px;
-}
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto auto;

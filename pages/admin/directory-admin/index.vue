@@ -1,181 +1,185 @@
 <template>
   <div>
-    <div>
-      <thead>
-        <tr>
-          <th class="text-left">S/N</th>
-          <th class="text-left">Business Name</th>
-          <th class="text-left">Phone</th>
-          <th class="text-left">Email</th>
-          <th class="text-left">Location</th>
-          <th class="text-left">Website</th>
-          <th class="text-left">Employees</th>
-          <th class="text-left">Description</th>
-          <th class="text-left">Date</th>
-          <th class="text-left">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="detailRow" v-for="(job, index) in jobs" :key="job.id">
-          <td>
-            {{ index + 1 }}
-          </td>
-          <td>
-            {{ job.business_name }}
-          </td>
-          <td>
-            {{ job.phone }}
-          </td>
-          <td>
-            {{ job.email }}
-          </td>
-          <td>
-            {{ job.location }}
-          </td>
-          <td>
-            {{ job.website }}
-          </td>
-          <td>
-            {{ job.number_of_employees }}
-          </td>
-          <td>
-            {{ job.description }}
-          </td>
-          <td>
-            {{ getDate(job.created_at) }}
-          </td>
-          <td class="action">
-            <v-btn
-              class="findBtn mb-4 mt-3 fullWidth"
-              @click="openJobModal(job)"
-              scrollable
-            >
-              Edit
-            </v-btn>
-            <v-btn class="greyBtn mx-3 my-1" @click="deleteJobModal(job)">
-              Delete
-            </v-btn>
-          </td>
-        </tr>
-      </tbody>
-      <div class="dialog-box">
-        <v-dialog
-          v-model="updateJobModal"
-          persistent
-          transition="dialog-top-transition"
-        >
-          <form
-            @submit.prevent="editPost()"
-            class="selectBank normalInput2 fullWidth form-control mt-2"
+    <div class="container">
+      <div>
+        <thead>
+          <tr>
+            <th class="text-left">S/N</th>
+            <th class="text-left">Business Name</th>
+            <th class="text-left">Phone</th>
+            <th class="text-left">Email</th>
+            <th class="text-left">Location</th>
+            <th class="text-left">Website</th>
+            <th class="text-left">Employees</th>
+            <th class="text-left">Description</th>
+            <th class="text-left">Date</th>
+            <th class="text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="detailRow" v-for="(job, index) in jobs" :key="job.id">
+            <td>
+              {{ index + 1 }}
+            </td>
+            <td>
+              {{ job.business_name }}
+            </td>
+            <td>
+              {{ job.phone }}
+            </td>
+            <td>
+              {{ job.email }}
+            </td>
+            <td>
+              {{ job.location }}
+            </td>
+            <td>
+              {{ job.website }}
+            </td>
+            <td>
+              {{ job.number_of_employees }}
+            </td>
+            <td>
+              {{ job.description }}
+            </td>
+            <td>
+              {{ getDate(job.created_at) }}
+            </td>
+            <td class="action">
+              <v-btn
+                class="findBtn mb-4 mt-3 fullWidth"
+                @click="openJobModal(job)"
+                scrollable
+              >
+                Edit
+              </v-btn>
+              <v-btn class="greyBtn mx-3 my-1" @click="deleteJobModal(job)">
+                Delete
+              </v-btn>
+            </td>
+          </tr>
+        </tbody>
+        <div class="dialog-box">
+          <v-dialog
+            v-model="updateJobModal"
+            persistent
+            transition="dialog-top-transition"
           >
-            <div>
-              <div class="form-group">
-                <input
-                  type="tel"
-                  v-model="selectedPost.phone"
-                  placeholder="Add the phone number for buyers to contact"
-                />
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="selectedPost.location"
-                  placeholder="Add your business location"
-                />
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="selectedPost.email"
-                  placeholder="State responsibilities of the role"
-                />
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="selectedPost.website"
-                  placeholder="State potential salary"
-                />
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="number_of_employees"
-                  placeholder="Add the number of employees in your firm"
-                />
-              </div>
-
-              <div class="form-group">
-                <textarea
-                  type="text"
-                  v-model="selectedPost.description"
-                  class="form-control"
-                  id="description"
-                  placeholder="Describe your business"
-                  required
-                ></textarea>
-              </div>
-
-              <div class="flex justifyCenter mobileColumn">
-                <v-btn type="submit" class="greyBtn mx-3 my-1"> Update </v-btn>
-              </div>
-            </div>
-          </form>
-          <div class="flex justifyCenter mobileColumn">
-            <v-btn
-              text
-              @click="
-                () => {
-                  this.updateJobModal = false;
-                }
-              "
+            <form
+              @submit.prevent="editPost()"
+              class="selectBank normalInput2 fullWidth form-control mt-2"
             >
-              Cancel
-            </v-btn>
-          </div>
-        </v-dialog>
-      </div>
+              <div>
+                <div class="form-group">
+                  <input
+                    type="tel"
+                    v-model="selectedPost.phone"
+                    placeholder="Add the phone number for buyers to contact"
+                  />
+                </div>
 
-      <div class="dialog-box">
-        <v-dialog
-          v-model="deleteJobModal"
-          persistent
-          transition="dialog-top-transition"
-        >
-          <div class="fordeleteback">
-            <h3 class="darkGreyColor textCenter">
-              Delete
-              <span class="deletepost">{{ selectedPost.business_name }}</span>
-            </h3>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="selectedPost.location"
+                    placeholder="Add your business location"
+                  />
+                </div>
 
-            <div class="flex justifyCenter mobileColumn">
-              <v-btn text @click="deleteJob()"> Delete </v-btn>
-            </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="selectedPost.email"
+                    placeholder="State responsibilities of the role"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="selectedPost.website"
+                    placeholder="State potential salary"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="number_of_employees"
+                    placeholder="Add the number of employees in your firm"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <textarea
+                    type="text"
+                    v-model="selectedPost.description"
+                    class="form-control"
+                    id="description"
+                    placeholder="Describe your business"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="flex justifyCenter mobileColumn">
+                  <v-btn type="submit" class="greyBtn mx-3 my-1">
+                    Update
+                  </v-btn>
+                </div>
+              </div>
+            </form>
             <div class="flex justifyCenter mobileColumn">
               <v-btn
                 text
                 @click="
                   () => {
-                    this.deleteJobModal = false;
+                    this.updateJobModal = false;
                   }
                 "
               >
                 Cancel
               </v-btn>
             </div>
-          </div>
-        </v-dialog>
-      </div>
-      <div class="pagination">
-        <button class="paginate" @click.prevent="moveBack()">
-          Previous List</button
-        ><button class="paginate" @click.prevent="moveFront()">
-          Next List
-        </button>
+          </v-dialog>
+        </div>
+
+        <div class="dialog-box">
+          <v-dialog
+            v-model="deleteJobModal"
+            persistent
+            transition="dialog-top-transition"
+          >
+            <div class="fordeleteback">
+              <h3 class="darkGreyColor textCenter">
+                Delete
+                <span class="deletepost">{{ selectedPost.business_name }}</span>
+              </h3>
+
+              <div class="flex justifyCenter mobileColumn">
+                <v-btn text @click="deleteJob()"> Delete </v-btn>
+              </div>
+              <div class="flex justifyCenter mobileColumn">
+                <v-btn
+                  text
+                  @click="
+                    () => {
+                      this.deleteJobModal = false;
+                    }
+                  "
+                >
+                  Cancel
+                </v-btn>
+              </div>
+            </div>
+          </v-dialog>
+        </div>
+        <div class="pagination">
+          <button class="paginate" @click.prevent="moveBack()">
+            Previous List</button
+          ><button class="paginate" @click.prevent="moveFront()">
+            Next List
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -329,18 +333,6 @@ export default {
 
 <
 <style scoped>
-.paginate {
-  width: 20%;
-  padding: 3px;
-  background-color: aqua;
-}
-.pagination {
-  justify-content: space-between;
-  display: flex;
-  gap: 2px;
-  margin: 20px;
-}
-
 form,
 .fordeleteback {
   background-color: lightgreen;

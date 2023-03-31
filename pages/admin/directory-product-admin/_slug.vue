@@ -1,162 +1,166 @@
 <template>
   <div>
-    <div>
-      <nuxt-link to="/business-directory/create-directory-product"
-        >Add More Products</nuxt-link
-      >
-    </div>
-    <div>
-      <thead>
-        <tr>
-          <th class="text-left">S/N</th>
-          <th class="text-left">Product Name</th>
-          <th class="text-left">Description</th>
-          <th class="text-left">Price</th>
-          <th class="text-left">Location</th>
-          <th class="text-left">Date</th>
-          <th class="text-left">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="detailRow" v-for="(job, index) in jobs" :key="job.id">
-          <td>
-            {{ index + 1 }}
-          </td>
-          <td>
-            {{ job.product_name }}
-          </td>
-          <td>
-            {{ job.description }}
-          </td>
-          <td>
-            {{ job.price }}
-          </td>
-          <td>
-            {{ job.location }}
-          </td>
-          <td>
-            {{ getDate(job.created_at) }}
-          </td>
-          <td class="action">
-            <v-btn
-              class="findBtn mb-4 mt-3 fullWidth"
-              @click="openJobModal(job)"
-              scrollable
-            >
-              Edit
-            </v-btn>
-            <v-btn class="greyBtn mx-3 my-1" @click="deleteJobModal(job)">
-              Delete
-            </v-btn>
-          </td>
-        </tr>
-      </tbody>
-      <div class="dialog-box">
-        <v-dialog
-          v-model="updateJobModal"
-          persistent
-          transition="dialog-top-transition"
+    <div class="container">
+      <div>
+        <nuxt-link to="/business-directory/create-directory-product"
+          >Add More Products</nuxt-link
         >
-          <form
-            @submit.prevent="editPost()"
-            class="selectBank normalInput2 fullWidth form-control mt-2"
+      </div>
+      <div>
+        <thead>
+          <tr>
+            <th class="text-left">S/N</th>
+            <th class="text-left">Product Name</th>
+            <th class="text-left">Description</th>
+            <th class="text-left">Price</th>
+            <th class="text-left">Location</th>
+            <th class="text-left">Date</th>
+            <th class="text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="detailRow" v-for="(job, index) in jobs" :key="job.id">
+            <td>
+              {{ index + 1 }}
+            </td>
+            <td>
+              {{ job.product_name }}
+            </td>
+            <td>
+              {{ job.description }}
+            </td>
+            <td>
+              {{ job.price }}
+            </td>
+            <td>
+              {{ job.location }}
+            </td>
+            <td>
+              {{ getDate(job.created_at) }}
+            </td>
+            <td class="action">
+              <v-btn
+                class="findBtn mb-4 mt-3 fullWidth"
+                @click="openJobModal(job)"
+                scrollable
+              >
+                Edit
+              </v-btn>
+              <v-btn class="greyBtn mx-3 my-1" @click="deleteJobModal(job)">
+                Delete
+              </v-btn>
+            </td>
+          </tr>
+        </tbody>
+        <div class="dialog-box">
+          <v-dialog
+            v-model="updateJobModal"
+            persistent
+            transition="dialog-top-transition"
           >
-            <div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="selectedPost.product_name"
-                  class="form-control"
-                  id="slug"
-                />
-              </div>
+            <form
+              @submit.prevent="editPost()"
+              class="selectBank normalInput2 fullWidth form-control mt-2"
+            >
+              <div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="selectedPost.product_name"
+                    class="form-control"
+                    id="slug"
+                  />
+                </div>
 
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="selectedPost.price"
-                  class="form-control"
-                  id="slug"
-                  required
-                />
-              </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="selectedPost.price"
+                    class="form-control"
+                    id="slug"
+                    required
+                  />
+                </div>
 
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="selectedPost.biz_location"
-                  class="form-control"
-                  id="slug"
-                  required
-                />
-              </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    v-model="selectedPost.biz_location"
+                    class="form-control"
+                    id="slug"
+                    required
+                  />
+                </div>
 
-              <div class="form-group">
-                <textarea
-                  type="text"
-                  v-model="selectedPost.description"
-                  class="form-control"
-                  id="description"
-                  required
-                ></textarea>
-              </div>
+                <div class="form-group">
+                  <textarea
+                    type="text"
+                    v-model="selectedPost.description"
+                    class="form-control"
+                    id="description"
+                    required
+                  ></textarea>
+                </div>
 
-              <!--
+                <!--
           <div class="custom-file mb-3">
             <label class="custom-file-label" >Add images...</label>
             <input type="file" v-on:change="onFileChange" class="custom-file-input" id="image">
             
           </div>
           -->
-              <div class="flex justifyCenter mobileColumn">
-                <v-btn type="submit" class="greyBtn mx-3 my-1"> Update </v-btn>
+                <div class="flex justifyCenter mobileColumn">
+                  <v-btn type="submit" class="greyBtn mx-3 my-1">
+                    Update
+                  </v-btn>
+                </div>
               </div>
-            </div>
-          </form>
-          <div class="flex justifyCenter mobileColumn">
-            <v-btn
-              text
-              @click="
-                () => {
-                  this.updateJobModal = false;
-                }
-              "
-            >
-              Cancel
-            </v-btn>
-          </div>
-        </v-dialog>
-      </div>
-
-      <div class="dialog-box">
-        <v-dialog
-          v-model="deleteJobModal"
-          persistent
-          transition="dialog-top-transition"
-        >
-          <div class="fordeleteback">
-            <h3 class="darkGreyColor textCenter">
-              Delete
-              <span class="deletepost">{{ selectedPost.product_name }}</span>
-            </h3>
-
-            <div class="flex justifyCenter mobileColumn">
-              <v-btn text @click="deleteJob()"> Delete </v-btn>
-            </div>
+            </form>
             <div class="flex justifyCenter mobileColumn">
               <v-btn
                 text
                 @click="
                   () => {
-                    this.deleteJobModal = false;
+                    this.updateJobModal = false;
                   }
                 "
               >
                 Cancel
               </v-btn>
             </div>
-          </div>
-        </v-dialog>
+          </v-dialog>
+        </div>
+
+        <div class="dialog-box">
+          <v-dialog
+            v-model="deleteJobModal"
+            persistent
+            transition="dialog-top-transition"
+          >
+            <div class="fordeleteback">
+              <h3 class="darkGreyColor textCenter">
+                Delete
+                <span class="deletepost">{{ selectedPost.product_name }}</span>
+              </h3>
+
+              <div class="flex justifyCenter mobileColumn">
+                <v-btn text @click="deleteJob()"> Delete </v-btn>
+              </div>
+              <div class="flex justifyCenter mobileColumn">
+                <v-btn
+                  text
+                  @click="
+                    () => {
+                      this.deleteJobModal = false;
+                    }
+                  "
+                >
+                  Cancel
+                </v-btn>
+              </div>
+            </div>
+          </v-dialog>
+        </div>
       </div>
     </div>
   </div>

@@ -1,17 +1,15 @@
 <template>
-    <div>
-        <div>
-            <job-vacancy/>
-
-        </div>
+  <div>
+    <div class="container">
+      <div>
+        <job-vacancy />
+      </div>
     </div>
+  </div>
 </template>
 
 <script scoped>
-
 export default {
-    auth: false,
-  
-}
+  auth: false,
+};
 </script>
-

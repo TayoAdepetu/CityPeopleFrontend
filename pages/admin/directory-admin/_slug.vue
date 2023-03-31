@@ -355,10 +355,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  margin-right: auto;
-  margin-left: auto;
-}
 tr {
   justify-content: space-between;
 }

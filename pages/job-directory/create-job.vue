@@ -116,13 +116,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  margin-top: 100px;
-  width: 80vw;
-  margin-bottom: 20px;
-  margin-right: auto;
-  margin-left: auto;
-}
 .image-section {
   margin-bottom: 6px;
   margin-top: 6px;

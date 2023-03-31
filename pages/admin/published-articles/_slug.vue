@@ -1,146 +1,150 @@
 <template>
   <div>
-    <!--each user can see a list of main posts here. But no list of subsubject here yet-->
-    <div>
-      <thead>
-        <tr>
-          <th class="text-left">S/N</th>
-          <th class="text-left">Title</th>
-          <th class="text-left">Description</th>
-          <th class="text-left">Slug</th>
-          <th class="text-left">Author</th>
-          <th class="text-left">Date</th>
-          <th class="text-left">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="detailRow" v-for="(post, index) in posts" :key="post.id">
-          <td>
-            {{ index + 1 }}
-          </td>
-          <td>
-            {{ post.title }}
-          </td>
-          <td>
-            {{ post.description }}
-          </td>
+    <div class="container">
+      <!--each user can see a list of main posts here. But no list of subsubject here yet-->
+      <div>
+        <thead>
+          <tr>
+            <th class="text-left">S/N</th>
+            <th class="text-left">Title</th>
+            <th class="text-left">Description</th>
+            <th class="text-left">Slug</th>
+            <th class="text-left">Author</th>
+            <th class="text-left">Date</th>
+            <th class="text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="detailRow" v-for="(post, index) in posts" :key="post.id">
+            <td>
+              {{ index + 1 }}
+            </td>
+            <td>
+              {{ post.title }}
+            </td>
+            <td>
+              {{ post.description }}
+            </td>
 
-          <td>
-            {{ post.slug }}
-          </td>
-          <td>
-            {{ post.user.name }}
-          </td>
-          <td>
-            {{ getDate(post.created_at) }}
-          </td>
-          <td class="action">
-            <v-btn
-              class="findBtn mb-4 mt-3 fullWidth"
-              @click="openStatusModal(post)"
-              scrollable
-            >
-              Edit
-            </v-btn>
-            <v-btn class="greyBtn mx-3 my-1" @click="deleteStatusModal(post)">
-              Delete
-            </v-btn>
-          </td>
-        </tr>
-      </tbody>
-      <div class="dialog-box">
-        <v-dialog
-          v-model="updateStatusModal"
-          persistent
-          transition="dialog-top-transition"
-        >
-          <form
-            @submit.prevent="editPost()"
-            class="selectBank normalInput2 fullWidth form-control mt-2"
+            <td>
+              {{ post.slug }}
+            </td>
+            <td>
+              {{ post.user.name }}
+            </td>
+            <td>
+              {{ getDate(post.created_at) }}
+            </td>
+            <td class="action">
+              <v-btn
+                class="findBtn mb-4 mt-3 fullWidth"
+                @click="openStatusModal(post)"
+                scrollable
+              >
+                Edit
+              </v-btn>
+              <v-btn class="greyBtn mx-3 my-1" @click="deleteStatusModal(post)">
+                Delete
+              </v-btn>
+            </td>
+          </tr>
+        </tbody>
+        <div class="dialog-box">
+          <v-dialog
+            v-model="updateStatusModal"
+            persistent
+            transition="dialog-top-transition"
           >
-            <div>
-              <div class="form-group">
-                <textarea
-                  type="text"
-                  v-model="selectedPost.title"
-                  class="form-control"
-                  id="title"
-                  placeholder="Enter title"
-                  required
-                ></textarea>
-              </div>
-
-              <div class="form-group">
-                <textarea
-                  type="text"
-                  v-model="selectedPost.description"
-                  class="form-control"
-                  id="description"
-                  placeholder="Enter title"
-                  required
-                ></textarea>
-              </div>
-
-              <div class="form-group">
-                <textarea
-                  type="text"
-                  class="form-control"
-                  v-model="selectedPost.body"
-                  id="body"
-                  placeholder="Enter a body"
-                  rows="8"
-                  required
-                ></textarea>
-              </div>
-
-              <div class="flex justifyCenter mobileColumn">
-                <v-btn type="submit" class="greyBtn mx-3 my-1"> Update </v-btn>
-              </div>
-            </div>
-          </form>
-          <div class="flex justifyCenter mobileColumn">
-            <v-btn
-              text
-              @click="
-                () => {
-                  this.updateStatusModal = false;
-                }
-              "
+            <form
+              @submit.prevent="editPost()"
+              class="selectBank normalInput2 fullWidth form-control mt-2"
             >
-              Cancel
-            </v-btn>
-          </div>
-        </v-dialog>
-      </div>
+              <div>
+                <div class="form-group">
+                  <textarea
+                    type="text"
+                    v-model="selectedPost.title"
+                    class="form-control"
+                    id="title"
+                    placeholder="Enter title"
+                    required
+                  ></textarea>
+                </div>
 
-      <div class="dialog-box">
-        <v-dialog
-          v-model="deletePostModal"
-          persistent
-          transition="dialog-top-transition"
-        >
-          <div class="fordeleteback">
-            <h3 class="darkGreyColor textCenter">
-              Delete <span class="deletepost">{{ selectedPost.title }}</span>
-            </h3>
+                <div class="form-group">
+                  <textarea
+                    type="text"
+                    v-model="selectedPost.description"
+                    class="form-control"
+                    id="description"
+                    placeholder="Enter title"
+                    required
+                  ></textarea>
+                </div>
 
-            <div class="flex justifyCenter mobileColumn">
-              <v-btn text @click="deletePost()"> Delete </v-btn>
-            </div>
+                <div class="form-group">
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    v-model="selectedPost.body"
+                    id="body"
+                    placeholder="Enter a body"
+                    rows="8"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="flex justifyCenter mobileColumn">
+                  <v-btn type="submit" class="greyBtn mx-3 my-1">
+                    Update
+                  </v-btn>
+                </div>
+              </div>
+            </form>
             <div class="flex justifyCenter mobileColumn">
               <v-btn
                 text
                 @click="
                   () => {
-                    this.deletePostModal = false;
+                    this.updateStatusModal = false;
                   }
                 "
               >
                 Cancel
               </v-btn>
             </div>
-          </div>
-        </v-dialog>
+          </v-dialog>
+        </div>
+
+        <div class="dialog-box">
+          <v-dialog
+            v-model="deletePostModal"
+            persistent
+            transition="dialog-top-transition"
+          >
+            <div class="fordeleteback">
+              <h3 class="darkGreyColor textCenter">
+                Delete <span class="deletepost">{{ selectedPost.title }}</span>
+              </h3>
+
+              <div class="flex justifyCenter mobileColumn">
+                <v-btn text @click="deletePost()"> Delete </v-btn>
+              </div>
+              <div class="flex justifyCenter mobileColumn">
+                <v-btn
+                  text
+                  @click="
+                    () => {
+                      this.deletePostModal = false;
+                    }
+                  "
+                >
+                  Cancel
+                </v-btn>
+              </div>
+            </div>
+          </v-dialog>
+        </div>
       </div>
     </div>
   </div>
@@ -243,7 +247,6 @@ export default {
 };
 </script>
 
-<
 <style scoped>
 form,
 .fordeleteback {

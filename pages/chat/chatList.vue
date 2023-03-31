@@ -1,66 +1,68 @@
 <template>
   <div>
-    <!--Lists all chats for each user-->
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-header">Users</div>
-        <div class="card-body">
-          <div class="users" v-for="channel in channels" :key="channel.id">
-            <v-btn
-              class="findBtn mb-4 mt-3 fullWidth"
-              @click="openJobModal(job)"
-              scrollable
-            >
-              {{ channel.user.name }}
-            </v-btn>
+    <div class="container">
+      <!--Lists all chats for each user-->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">Users</div>
+          <div class="card-body">
+            <div class="users" v-for="channel in channels" :key="channel.id">
+              <v-btn
+                class="findBtn mb-4 mt-3 fullWidth"
+                @click="openJobModal(job)"
+                scrollable
+              >
+                {{ channel.user.name }}
+              </v-btn>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="dialog-box">
-      <v-dialog
-        v-model="updateJobModal"
-        persistent
-        transition="dialog-top-transition"
-      >
-        <div class="message-area" ref="message">
-          <MessageComponent
-            v-for="message in messages"
-            :key="message.id"
-            :message="message"
-          />
-        </div>
+      <div class="dialog-box">
+        <v-dialog
+          v-model="updateJobModal"
+          persistent
+          transition="dialog-top-transition"
+        >
+          <div class="message-area" ref="message">
+            <MessageComponent
+              v-for="message in messages"
+              :key="message.id"
+              :message="message"
+            />
+          </div>
 
-        <div>
-          <form
-            @submit.prevent="sendMessage"
-            class="selectBank normalInput2 fullWidth form-control mt-2 form"
-          >
-            <textarea
-              required
-              type="text"
-              id="body"
-              cols="28"
-              rows="5"
-              class="form-input"
-              v-model="message"
+          <div>
+            <form
+              @submit.prevent="sendMessage"
+              class="selectBank normalInput2 fullWidth form-control mt-2 form"
             >
-            </textarea>
-            <button type="submit">Send</button>
-            <v-btn
-              text
-              @click="
-                () => {
-                  this.updateJobModal = false;
-                }
-              "
-            >
-              Close
-            </v-btn>
-          </form>
-        </div>
-      </v-dialog>
+              <textarea
+                required
+                type="text"
+                id="body"
+                cols="28"
+                rows="5"
+                class="form-input"
+                v-model="message"
+              >
+              </textarea>
+              <button type="submit">Send</button>
+              <v-btn
+                text
+                @click="
+                  () => {
+                    this.updateJobModal = false;
+                  }
+                "
+              >
+                Close
+              </v-btn>
+            </form>
+          </div>
+        </v-dialog>
+      </div>
     </div>
   </div>
 </template>
