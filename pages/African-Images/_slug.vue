@@ -59,7 +59,7 @@ export default {
               type: "application/jpeg",
             });
             const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
+            link.href = window.URL.createObjectURL(blob);
             link.download = image_name;
             link.click();
             URL.revokeObjectURL(link.href);
