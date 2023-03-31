@@ -21,7 +21,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="detailRow" v-for="(image, index) in images" :key="image.id">
+        <tr
+          class="detailRow"
+          v-for="(image, index) in images.data"
+          :key="image.id"
+        >
           <td>
             {{ index + 1 }}
           </td>
@@ -173,6 +177,23 @@ export default {
     };
   },
 
+  async asyncData(context) {
+    context.loading = true;
+    try {
+      const images = await context.$axios.get(
+        `/api/auth/fetch-images/${context.params.slug}`
+      );
+      context.loading = falsee;
+
+      // console.log(image.data)
+      return { images };
+    } catch (error) {
+      context.loading = falsee;
+      // console.log(error.response)
+      context.$toast.error(error.response.data.error);
+    }
+  },
+
   mounted() {
     this.getAllCategories();
     this.getAllImages();
@@ -184,23 +205,6 @@ export default {
         const { data } = await this.$axios.get("/api/auth/fetch-categories");
         if (data && data.data) {
           this.image_categories = data.data;
-          // console.log(data.data)
-          return true;
-        }
-      } catch (error) {
-        this.loading = false;
-        // console.log(error.response)
-        this.$toast.error(error.response.data.error);
-      }
-    },
-
-    async getAllImages(context) {
-      try {
-        const { data } = await this.$axios.get(
-          `/api/auth/fetch-images/${context.params.slug}`
-        );
-        if (data && data.data) {
-          this.images = data.data;
           // console.log(data.data)
           return true;
         }

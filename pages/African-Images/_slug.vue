@@ -7,7 +7,11 @@
       <div>{{ image.data.image_name }}</div>
       <div>{{ image.data.image_description }}</div>
     </div>
-    <div><button @click="downloadImage">Download Image</button></div>
+    <div>
+      <button @click="downloadImage(image.data.image_path)" class="btn">
+        Download Image
+      </button>
+    </div>
   </div>
 </template>
 
@@ -36,10 +40,8 @@ export default {
   },
 
   methods: {
-    downloadImage() {
-      return this.$axios.get(
-        `/api/auth/download-image/${this.image.image_path}`
-      );
+    downloadImage(image_path) {
+      return this.$axios.get(`/api/auth/download-image/${image_path}`);
     },
 
     getDate(datetime) {
