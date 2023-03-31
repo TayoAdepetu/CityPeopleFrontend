@@ -161,7 +161,7 @@ export default {
     this.getDirectories();
     this.getJobs();
     this.getProducts();
-    // this.getImages();
+    this.getImages();
     this.getUser();
   },
 
