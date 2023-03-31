@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { saveAs } from "file-saver";
 export default {
   auth: false,
   data() {
@@ -49,6 +50,7 @@ export default {
   methods: {
     async downloadImage(image_path) {
       try {
+        FileSaver.saveAs(image_path, "image.jpg");
         //return this.$axios.get(`/api/auth/download-image/${image_path}`);
         /*
         await this.$axios
@@ -64,11 +66,13 @@ export default {
             URL.revokeObjectURL(link.href);
           });
           */
+        /*
         await this.$axios
           .get(image_path, { reponseType: "arraybuffer" })
           .then((response) => {
             this.forceFileDownload(response);
           });
+          */
       } catch (e) {
         console.log(e);
       }
