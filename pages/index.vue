@@ -128,10 +128,12 @@
         <div class="grid-container">
           <div v-for="image in images" :key="image.id" id="before-headlines">
             <NuxtLink :to="`/african-images/${image.image_path}`">
-              <img
+              <!-- <img
                 id="short-image"
                 :src="baseURL + 'postimage/' + image.image_path"
               />
+             -->
+              <img id="short-image" :src="image.image_path" />
             </NuxtLink>
           </div>
         </div>
