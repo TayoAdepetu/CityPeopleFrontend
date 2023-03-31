@@ -49,7 +49,7 @@ export default {
 
   methods: {
     downloadImage(image_path) {
-      FileSaver.saveAs(image_path, "image.jpg");
+      saveAs(image_path, "image.jpg");
       //return this.$axios.get(`/api/auth/download-image/${image_path}`);
       /*
         await this.$axios
