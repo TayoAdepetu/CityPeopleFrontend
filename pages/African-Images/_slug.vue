@@ -11,8 +11,12 @@
       <div>
         <!--<button @click="downloadImage(image.data.id)" class="btn">      </button>
 -->
-        <a download="file" :href="image.data.image_path" class="btn"></a>
-        Download Image
+        <a
+          :href="image.data.image_path"
+          @click.prevent="downloadImage(image.data.image_path)"
+          class="btn"
+          >Download Image</a
+        >
       </div>
     </div>
   </div>
@@ -43,8 +47,21 @@ export default {
   },
 
   methods: {
-    downloadImage(image_path) {
-      return this.$axios.get(`/api/auth/download-image/${image_path}`);
+    async downloadImage(image_path) {
+      try {
+        //return this.$axios.get(`/api/auth/download-image/${image_path}`);
+        await this.$axios
+          .get(image_path, { reponseType: "blob" })
+          .then((response) => {
+            const blob = new Blob([response.data], { type: "application.*" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.click();
+            URL.revokeObjectURL(link.href);
+          });
+      } catch (e) {
+        console.log(e);
+      }
     },
 
     getDate(datetime) {
