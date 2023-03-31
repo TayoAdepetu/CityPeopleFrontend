@@ -16,7 +16,7 @@
           @click.prevent="
             downloadImage(image.data.image_path, image.data.image_name)
           "
-          class="btn"
+          class="btn href"
           >Download Image</a
         >
       </div>
@@ -55,7 +55,9 @@ export default {
         await this.$axios
           .get(image_path, { reponseType: "blob" })
           .then((response) => {
-            const blob = new Blob([response.data]);
+            const blob = new Blob([response.data], {
+              type: "application/jpeg",
+            });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
             link.download = image_name;
@@ -78,3 +80,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.href {
+  display: block;
+}
+</style>
