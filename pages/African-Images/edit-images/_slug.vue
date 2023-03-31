@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--for users to edit their uploaded images-->
-    <div>
+    <div class="container">
       <div v-if="(images = [])">
         <p>
           You have not published any image on our African Stock Image Website.

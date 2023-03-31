@@ -1,27 +1,35 @@
 <template>
   <div>
-    <!--Display all blog images like WordPress-->
-    <div class="grid-container">
-      <div v-for="image in images" :key="image.id" id="before-headlines">
-        <!--<button @click="openStatusModal(image)">-->
-        <img id="short-image" :src="image.image_path" :alt="image.image_name" />
-        <!-- <div id="before-title">
+    <div class="container">
+      <!--Display all blog images like WordPress-->
+      <div class="grid-container">
+        <div v-for="image in images" :key="image.id" id="before-headlines">
+          <!--<button @click="openStatusModal(image)">-->
+          <img
+            id="short-image"
+            :src="image.image_path"
+            :alt="image.image_name"
+          />
+          <!-- <div id="before-title">
           <h3 id="title">{{ image.image_name }}</h3>
         </div>
       -->
-        <div id="short-body">
-          <p id="short-paragraph">{{ image.image_name }}</p>
-          <p id="short-paragraph">{{ selectedImage.image_description }}</p>
-          <p id="short-paragraph">{{ selectedImage.image_path }}</p>
+          <div id="short-body">
+            <p id="short-paragraph">{{ image.image_name }}</p>
+            <p id="short-paragraph">{{ selectedImage.image_description }}</p>
+            <p id="short-paragraph">{{ selectedImage.image_path }}</p>
+          </div>
+          <!-- </button>-->
         </div>
-        <!-- </button>-->
       </div>
-    </div>
-    <div class="pagination">
-      <button class="paginate" @click.prevent="moveBack()">Previous List</button
-      ><button class="paginate" @click.prevent="moveFront()">Next List</button>
-    </div>
-    <!--
+      <div class="pagination">
+        <button class="paginate" @click.prevent="moveBack()">
+          Previous List</button
+        ><button class="paginate" @click.prevent="moveFront()">
+          Next List
+        </button>
+      </div>
+      <!--
     <div>
       <img :src="selectedImage.image_path" />
       <p>{{ selectedImage.image_name }}</p>
@@ -29,7 +37,8 @@
       <p>{{ selectedImage.image_path }}</p>
     </div>
   -->
-    <button @click="closeImagesStatusModal()">Check Image Sources</button>
+      <button @click="closeImagesStatusModal()">Check Image Sources</button>
+    </div>
   </div>
 </template>
 

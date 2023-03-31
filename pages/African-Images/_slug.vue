@@ -1,16 +1,19 @@
 <template>
   <div>
-    <!--Showing individual images in frontend-->
-    <div>
-      <!--<img :src="baseURL + 'postimage/' + image.image_path" />-->
-      <img :src="image.data.image_path" :alt="image.data.image_name" />
-      <div>{{ image.data.image_name }}</div>
-      <div>{{ image.data.image_description }}</div>
-    </div>
-    <div>
-      <button @click="downloadImage(image.data.id)" class="btn">
+    <div class="container">
+      <!--Showing individual images in frontend-->
+      <div>
+        <!--<img :src="baseURL + 'postimage/' + image.image_path" />-->
+        <img :src="image.data.image_path" :alt="image.data.image_name" />
+        <div>{{ image.data.image_name }}</div>
+        <div>{{ image.data.image_description }}</div>
+      </div>
+      <div>
+        <!--<button @click="downloadImage(image.data.id)" class="btn">      </button>
+-->
+        <a download="file" :href="image.data.image_path" class="btn"></a>
         Download Image
-      </button>
+      </div>
     </div>
   </div>
 </template>

@@ -41,15 +41,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  margin-top: 100px;
-  width: 80vw;
-  margin-bottom: 20px;
-  word-wrap: break-word;
-  margin-right: auto;
-  margin-left: auto;
-}
-
 input {
   border: 2px;
   border-style: solid;
