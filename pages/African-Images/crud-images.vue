@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <div>
       <thead>
         <tr>
@@ -181,7 +180,7 @@ export default {
         if (data && data.data) {
           this.image_categories = data.data;
           // console.log(data.data)
-          return true;
+          return image_categories;
         }
       } catch (error) {
         this.loading = false;
@@ -196,22 +195,22 @@ export default {
         const { data } = await this.$axios.get(`/api/auth/${page}`);
         if (data && data.data) {
           this.images = data.data;
-        this.first_page = data.first_page_url.split("/")[5];
-        this.last_page = data.last_page_url.split("/")[5];
+          this.first_page = data.first_page_url.split("/")[5];
+          this.last_page = data.last_page_url.split("/")[5];
 
-        if (data.prev_page_url != null) {
-          this.previous_page = data.prev_page_url.split("/")[5];
-        } else {
-          this.previous_page = data.last_page_url.split("/")[5];
-        }
+          if (data.prev_page_url != null) {
+            this.previous_page = data.prev_page_url.split("/")[5];
+          } else {
+            this.previous_page = data.last_page_url.split("/")[5];
+          }
 
-        if (data.next_page_url != null) {
-          this.next_page = data.next_page_url.split("/")[5];
-        } else {
-          this.next_page = data.first_page_url.split("/")[5];
-        }
+          if (data.next_page_url != null) {
+            this.next_page = data.next_page_url.split("/")[5];
+          } else {
+            this.next_page = data.first_page_url.split("/")[5];
+          }
 
-        return true;
+          return true;
         }
       } catch (error) {
         this.loading = false;
@@ -220,7 +219,7 @@ export default {
       }
     },
 
-      moveFront() {
+    moveFront() {
       this.page = this.next_page;
       this.getPosts(this.page);
     },
@@ -285,8 +284,11 @@ export default {
       this.deleteStatusModal = false;
       this.getPosts();
     },
+  },
 
-   
+  mounted() {
+    this.getAllCategories();
+    this.getAllImages();
   },
 };
 </script>

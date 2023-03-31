@@ -139,6 +139,10 @@ export default {
     };
   },
 
+  mounted() {
+    this.getAllCategories();
+  },
+
   methods: {
     async getAllCategories() {
       try {
@@ -146,7 +150,7 @@ export default {
         if (data && data.data) {
           this.categories = data.data;
           // console.log(data.data)
-          return true;
+          return { categories };
         }
       } catch (error) {
         this.loading = false;
