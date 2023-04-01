@@ -8,24 +8,13 @@
         <div class="grid-container">
           <div v-for="post in posts" :key="post.id" id="before-headlines">
             <NuxtLink :to="`/Nigerian-Wiki/${post.slug}`">
-              <img
-                id="short-image"
-                :src="baseURL + 'postimage/' + post.image"
-              />
+              <img id="short-image" :src="post.image" />
               <div id="before-title">
                 <h3 id="title">{{ post.title }}</h3>
               </div>
               <div id="short-body">
                 <p id="short-paragraph">{{ post.description }}</p>
               </div>
-              <!--
-          <div id="author-date">
-            <div id="author">
-              <span>By</span>
-              <span> {{ post.user.name }} In {{ post.category.name }}</span>
-            </div>
-          </div>
-          -->
             </NuxtLink>
           </div>
         </div>
@@ -42,10 +31,7 @@
             <NuxtLink
               :to="`/business-directory/${directory.user.business_name_slug}`"
             >
-              <img
-                id="short-image"
-                :src="baseURL + 'postimage/' + directory.image"
-              />
+              <img id="short-image" :src="directory.image" />
               <div id="before-title">
                 <h3 id="title">{{ directory.user.business_name }}</h3>
               </div>
@@ -62,13 +48,14 @@
         </div>
       </div>
       <hr />
+
       <div>
         <h2 class="index-h2">
           Search For Available Job Vacancies In Nigerian States
         </h2>
         <div class="grid-container">
           <div v-for="job in jobs" :key="job.id" id="before-headlines">
-            <NuxtLink :to="`/job-directory/job/${job.job_slug}`">
+            <NuxtLink :to="`/job-directory/${job.job_slug}`">
               <!--<img id="short-image" :src="baseURL + 'postimage/' + directory.image" />-->
               <div id="before-title">
                 <h3 id="title">{{ job.title }}</h3>
@@ -86,7 +73,9 @@
           </div>
         </div>
       </div>
+
       <hr />
+
       <div>
         <h2 class="index-h2">
           Buy and Sell On A Booming Nigerian E-commerce Platform
@@ -102,7 +91,7 @@
             >
               <img
                 id="short-image"
-                :src="baseURL + 'productimage/' + product.image"
+                :src="product.productimages[0].product_image_path"
               />
               <div id="before-title">
                 <h3 id="title">{{ product.product_name }}</h3>
@@ -123,17 +112,14 @@
       <hr />
       <div>
         <h2 class="index-h2">
-          Download The Most Beautiful, Free African Images
+          View and Download Pictures From The Most Beautiful Places and Events
+          in Nigeria
         </h2>
         <div class="grid-container">
           <div v-for="image in images" :key="image.id" id="before-headlines">
-            <NuxtLink :to="`/african-images/${image.image_path}`">
-              <!-- <img
-                id="short-image"
-                :src="baseURL + 'postimage/' + image.image_path"
-              />
-             -->
+            <NuxtLink :to="`/african-images/${image.id}`">
               <img id="short-image" :src="image.image_path" />
+              <p id="short-paragraph">{{ image.image_name }}</p>
             </NuxtLink>
           </div>
         </div>

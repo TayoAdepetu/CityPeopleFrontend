@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div>
-      <div class="container">
+      <div>
         <div class="nav-container">
           <div class="user-pix">
             <div v-if="user_picture != null">
@@ -316,7 +316,7 @@ export default {
 
 <style scoped>
 .hidden {
-  display: none;
+  display: none !important;
 }
 .container {
   max-width: 100vw;

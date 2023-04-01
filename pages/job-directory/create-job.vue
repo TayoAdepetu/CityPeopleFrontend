@@ -1,6 +1,10 @@
 <template>
   <div class="container">
     <form @submit.prevent="createDirectory">
+      <div>
+        You must have registered your business on this platform before posting a
+        job.
+      </div>
       <input hidden type="" :value="user_id" />
 
       <input
@@ -92,6 +96,10 @@ export default {
   methods: {
     async createDirectory() {
       try {
+        if (this.$auth.user.scope != "seller") {
+          return this.$toast.info("Please, register your business first.");
+        }
+
         await this.$axios.post(`/api/auth/create-new-job`, {
           business_name: this.$auth.user.business_name,
           business_name_slug: this.$auth.user.business_name_slug,
