@@ -1,4 +1,4 @@
-   <!--
+<!--
     <div id="form">
       <form class="example" @submit.prevent="searchBiz">
         <input
@@ -108,7 +108,7 @@
         >
         | <NuxtLink to="#">FundHelp</NuxtLink> |
         <NuxtLink to="#">LendMe</NuxtLink> |
-        <NuxtLink to="#">African Images</NuxtLink> |
+        <NuxtLink to="#">Nigerian Images</NuxtLink> |
         <NuxtLink to="#">Nigerian Business Directory</NuxtLink> |
         <NuxtLink to="#">Artisans Directory</NuxtLink> |
         <NuxtLink to="#">Job Vacancy Board</NuxtLink>

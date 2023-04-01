@@ -1,4 +1,3 @@
-
 header.innerHTML = `<section id="Mainheading">
 <H2>Nigerian and Foreign News | <span id="current_date"></span></H2>
 <hr>
@@ -15,14 +14,12 @@ header.innerHTML = `<section id="Mainheading">
 <section id="Mainheading">
   <h2>Other Trending Categories</h2>
   <hr>
-  <p><a>How To Make Money In Nigeria</a> | <a>Stories: Share Secrets Anonymously</a> | <a>FundHelp</a> | <a>LendMe</a> | <a>African Images</a> | <a>Nigerian Business Directory</a> | <a>Artisans Directory</a> | <a>Job Vacancy Board</a></p>
+  <p><a>How To Make Money In Nigeria</a> | <a>Stories: Share Secrets Anonymously</a> | <a>FundHelp</a> | <a>LendMe</a> | <a>Nigerian Images</a> | <a>Nigerian Business Directory</a> | <a>Artisans Directory</a> | <a>Job Vacancy Board</a></p>
 </section>
 <section>
 <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/school-education-facebook-advert-template-design-1698c73ba3f3379f8c8bc4ea77a6abd3_screen.jpg?ts=1612251729">
 <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/school-education-facebook-advert-template-design-1698c73ba3f3379f8c8bc4ea77a6abd3_screen.jpg?ts=1612251729">
 <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/school-education-facebook-advert-template-design-1698c73ba3f3379f8c8bc4ea77a6abd3_screen.jpg?ts=1612251729">
-</section>`
-
+</section>`;
 
 document.getElementById("current_date").innerHTML = Date();
-

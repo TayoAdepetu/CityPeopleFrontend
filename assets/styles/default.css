@@ -54,9 +54,11 @@ body {
   color: var(--lightest) !important;
   border: none;
   width: 100%;
-  margin: 10px;
+  margin-top: 10px;
   font-weight: bolder;
   font-size: 20px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .btn:hover {
@@ -83,4 +85,20 @@ body {
   display: flex;
   gap: 2px;
   margin: 20px;
+}
+
+.explore-more {
+  margin-right: 10px;
+  background-color: var(--teal);
+  padding: 16px;
+  color: var(--lightest) !important;
+  border: none;
+  margin-top: 10px;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.explore-more:hover {
+  opacity: 0.9;
+  background-color: var(--dark-blue);
 }

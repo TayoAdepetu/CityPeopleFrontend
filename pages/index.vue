@@ -18,6 +18,9 @@
             </NuxtLink>
           </div>
         </div>
+        <nuxt-link to="/nigerian-wiki" class="explore-more"
+          >Explore More</nuxt-link
+        >
       </div>
       <hr />
       <div>
@@ -46,6 +49,9 @@
             </NuxtLink>
           </div>
         </div>
+        <nuxt-link to="/business-directory" class="explore-more"
+          >Explore More</nuxt-link
+        >
       </div>
       <hr />
 
@@ -72,8 +78,10 @@
             </NuxtLink>
           </div>
         </div>
+        <nuxt-link to="/job-vacancies" class="explore-more"
+          >Explore More</nuxt-link
+        >
       </div>
-
       <hr />
 
       <div>
@@ -108,6 +116,9 @@
             </NuxtLink>
           </div>
         </div>
+        <nuxt-link to="/e-store/ecommerce" class="explore-more"
+          >Explore More</nuxt-link
+        >
       </div>
       <hr />
       <div>
@@ -117,12 +128,17 @@
         </h2>
         <div class="grid-container">
           <div v-for="image in images" :key="image.id" id="before-headlines">
-            <NuxtLink :to="`/african-images/${image.id}`">
+            <NuxtLink :to="`/nigerian-images/${image.id}`">
               <img id="short-image" :src="image.image_path" />
               <p id="short-paragraph">{{ image.image_name }}</p>
             </NuxtLink>
           </div>
         </div>
+        <nuxt-link
+          to="/nigerian-images/beautiful-nigerian-images"
+          class="explore-more"
+          >Explore More</nuxt-link
+        >
       </div>
     </div>
   </div>

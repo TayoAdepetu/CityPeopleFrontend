@@ -23,7 +23,19 @@
         />
       </div>
 
-      <button type="submit" class="btn btn-primary block">Publish</button>
+      <div class="image-section">
+        <input
+          placeholder="select an image"
+          type="file"
+          @change="onFileChange"
+        />
+      </div>
+
+      <div class="image-section" v-if="imagepiece">
+        <img :src="imagepiece" />
+      </div>
+
+      <button type="submit" class="btn">Publish</button>
     </form>
   </div>
 </template>
@@ -38,11 +50,26 @@ export default {
     return {
       business_name: "",
       slug: "",
+      imagepiece: null,
       error: null,
     };
   },
 
   methods: {
+    onFileChange(e) {
+      let image = e.target.files[0];
+
+      let reader = new FileReader();
+
+      if (image && image.type.match("image.*")) {
+        reader.readAsDataURL(image);
+
+        reader.onloadend = (e) => {
+          this.imagepiece = reader.result;
+        };
+      }
+    },
+
     async createBiz() {
       try {
         await this.$axios.post(
@@ -50,6 +77,7 @@ export default {
           {
             business_name: this.business_name,
             business_name_slug: this.business_name.replace(/ +/g, "-"),
+            biz_logo: this.imagepiece,
           }
         );
 

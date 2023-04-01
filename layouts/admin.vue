@@ -28,8 +28,8 @@
                 <li>FundHelp</li>
                 <li>LendMe</li>
                 <li>
-                  <nuxt-link to="/african-images/crud-images"
-                    >African Images</nuxt-link
+                  <nuxt-link to="/nigerian-images/crud-images"
+                    >Nigerian Images</nuxt-link
                   >
                 </li>
                 <li>Make Money</li>
@@ -75,8 +75,8 @@
                 <li class="hidden">FundHelp</li>
                 <li class="hidden">LendMe</li>
                 <li>
-                  <nuxt-link to="/african-images/crud-images"
-                    >African Images</nuxt-link
+                  <nuxt-link to="/nigerian-images/crud-images"
+                    >Nigerian Images</nuxt-link
                   >
                 </li>
                 <li class="hidden">Artisans Directory</li>
@@ -121,8 +121,8 @@
                 <li class="hidden">LendMe</li>
                 <li>
                   <nuxt-link
-                    :to="`african-images/edit-images/${this.$auth.user.name}`"
-                    >African Images</nuxt-link
+                    :to="`nigerian-images/edit-images/${this.$auth.user.name}`"
+                    >Nigerian Images</nuxt-link
                   >
                 </li>
                 <li class="hidden">Artisans Directory</li>
@@ -181,8 +181,8 @@
                 <li class="hidden">Artisans Directory</li>
                 <li>
                   <nuxt-link
-                    :to="`african-images/edit-images/${this.$auth.user.name}`"
-                    >African Images</nuxt-link
+                    :to="`nigerian-images/edit-images/${this.$auth.user.name}`"
+                    >Nigerian Images</nuxt-link
                   >
                 </li>
                 <li v-if="this.$auth.user.business_name_slug != null">
@@ -231,8 +231,8 @@
                 <li class="hidden">Artisans Directory</li>
                 <li>
                   <nuxt-link
-                    :to="`african-images/edit-images/${this.$auth.user.name}`"
-                    >African Images</nuxt-link
+                    :to="`nigerian-images/edit-images/${this.$auth.user.name}`"
+                    >Nigerian Images</nuxt-link
                   >
                 </li>
                 <li v-if="this.$auth.user.business_name_slug != null">

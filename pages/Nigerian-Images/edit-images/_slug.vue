@@ -4,9 +4,9 @@
     <div class="container">
       <div v-if="(images = [])">
         <p>
-          You have not published any image on our African Stock Image Website.
+          You have not published any image on our Nigerian Stock Image Website.
         </p>
-        <nuxt-link to="/african-images/upload afro-images"
+        <nuxt-link to="/nigerian-images/upload afro-images"
           >Publish New Image</nuxt-link
         >
       </div>
