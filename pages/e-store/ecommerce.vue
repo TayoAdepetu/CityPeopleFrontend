@@ -17,9 +17,9 @@
             <div id="short-body">
               <p id="short-paragraph">₦ {{ product.price }}</p>
               <p id="short-paragraph">
-                {{ product.description }}
+                {{ product.landing_page_title }}
               </p>
-              <p id="short-paragraph">{{ product.location }}</p>
+              <p id="short-paragraph">{{ product.delivery_days }}</p>
 
               <p id="short-paragraph">{{ getDate(product.created_at) }}</p>
             </div>

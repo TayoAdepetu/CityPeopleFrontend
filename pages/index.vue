@@ -22,72 +22,11 @@
           >Explore More</nuxt-link
         >
       </div>
-      <hr />
-      <div>
-        <h2 class="index-h2">Explore A Large Nigerian Busineses Directory</h2>
-        <div class="grid-container">
-          <div
-            v-for="directory in directories"
-            :key="directory.id"
-            id="before-headlines"
-          >
-            <NuxtLink
-              :to="`/business-directory/${directory.user.business_name_slug}`"
-            >
-              <img id="short-image" :src="directory.image" />
-              <div id="before-title">
-                <h3 id="title">{{ directory.user.business_name }}</h3>
-              </div>
-              <div id="short-body">
-                <p id="short-paragraph">Location: {{ directory.location }}</p>
-                <p id="short-paragraph">
-                  Phone: {{ directory.user.phone_number }}
-                </p>
-                <p id="short-paragraph">Email: {{ directory.user.email }}</p>
-                <p id="short-paragraph">Website: {{ directory.website }}</p>
-              </div>
-            </NuxtLink>
-          </div>
-        </div>
-        <nuxt-link to="/business-directory" class="explore-more"
-          >Explore More</nuxt-link
-        >
-      </div>
+
       <hr />
 
       <div>
-        <h2 class="index-h2">
-          Search For Available Job Vacancies In Nigerian States
-        </h2>
-        <div class="grid-container">
-          <div v-for="job in jobs" :key="job.id" id="before-headlines">
-            <NuxtLink :to="`/job-directory/${job.job_slug}`">
-              <!--<img id="short-image" :src="baseURL + 'postimage/' + directory.image" />-->
-              <div id="before-title">
-                <h3 id="title">{{ job.title }}</h3>
-              </div>
-              <div id="short-body">
-                <p id="short-paragraph">Posted By: {{ job.user.name }}</p>
-                <p id="short-paragraph">Responsilities: {{ job.function }}</p>
-                <p id="short-paragraph">Location: {{ job.location }}</p>
-                <p id="short-paragraph">Salary: {{ job.salary }}</p>
-                <p id="short-paragraph">
-                  Posted: {{ getDate(job.created_at) }}
-                </p>
-              </div>
-            </NuxtLink>
-          </div>
-        </div>
-        <nuxt-link to="/job-vacancies" class="explore-more"
-          >Explore More</nuxt-link
-        >
-      </div>
-      <hr />
-
-      <div>
-        <h2 class="index-h2">
-          Buy and Sell On A Booming Nigerian E-commerce Platform
-        </h2>
+        <h2 class="index-h2">Buy Unique Products on Our E-commerce Platform</h2>
         <div class="grid-container">
           <div
             v-for="product in products"
@@ -150,28 +89,19 @@ export default {
   data() {
     return {
       products: [],
-      jobs: [],
       posts: [],
       images: [],
       baseURL: process.env.BASE_URL || "http://localhost:8000/",
-      directories: [],
     };
   },
 
   mounted() {
     this.getPosts();
-    this.getDirectories();
-    this.getJobs();
     this.getProducts();
     this.getImages();
-    this.getUser();
   },
 
   methods: {
-    getUser() {
-      console.log(this.$auth);
-    },
-
     getDate(datetime) {
       let date = new Date(datetime).toJSON().slice(0, 10).replace(/-/g, "/");
       return date;
@@ -193,30 +123,6 @@ export default {
       try {
         const { data } = await this.$axios.get(`/api/auth/posts`);
         this.posts = data.data;
-        return true;
-      } catch (error) {
-        this.loading = false;
-        console.log(error.response);
-        this.$toast.error(error.response.data.error);
-      }
-    },
-
-    async getDirectories() {
-      this.loading = true;
-      try {
-        const { data } = await this.$axios.get(`/api/auth/all-biz`);
-        this.directories = data.data;
-        return true;
-      } catch (error) {
-        this.loading = false;
-        this.$toast.error(error.response.data.error);
-      }
-    },
-
-    async getJobs() {
-      try {
-        const { data } = await this.$axios.get(`/api/auth/jobs`);
-        this.jobs = data.data;
         return true;
       } catch (error) {
         this.loading = false;
