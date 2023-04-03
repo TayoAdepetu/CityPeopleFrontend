@@ -188,7 +188,10 @@ export default {
         product_name_slug: "",
         description: "",
         price: "",
-        biz_location: "",
+        delivery_days: "",
+        headline_support: "",
+        landing_page_title: "",
+        category: "",
       },
       error: "",
     };
@@ -201,7 +204,7 @@ export default {
     },
 
     async getJobs(page) {
-      page = page || "all-ecommerce-products?page=1";
+      page = page || "all-myproducts?page=1";
       try {
         const { data } = await this.$axios.get(`/api/auth/${page}`);
         this.jobs = data.data;
@@ -243,7 +246,10 @@ export default {
       this.selectedPost.product_name_slug = job.product_name_slug;
       this.selectedPost.description = job.description;
       this.selectedPost.price = job.price;
-      this.selectedPost.biz_location = job.location;
+      this.selectedPost.delivery_days = job.delivery_days;
+      this.selectedPost.landing_page_title = job.landing_page_title;
+      this.selectedPost.headline_support = job.headline_support;
+      this.selectedPost.category = job.category;
 
       this.updateJobModal = true;
     },
@@ -254,7 +260,10 @@ export default {
       this.selectedPost.product_name_slug = job.product_name_slug;
       this.selectedPost.description = job.description;
       this.selectedPost.price = job.price;
-      this.selectedPost.biz_location = job.location;
+      this.selectedPost.delivery_days = job.delivery_days;
+      this.selectedPost.landing_page_title = job.landing_page_title;
+      this.selectedPost.headline_support = job.headline_support;
+      this.selectedPost.category = job.category;
 
       this.deleteJobModal = true;
     },
@@ -263,12 +272,14 @@ export default {
       this.loading = true;
 
       const { data } = await this.$axios.put(
-        `/api/auth/update-post/${this.selectedPost.product_name_slug}`,
+        `/api/auth/update-myproduct/${this.selectedPost.product_name_slug}`,
         {
-          product_name: this.selectedPost.product_name,
           description: this.selectedPost.description,
           price: this.selectedPost.price,
-          location: this.selectedPost.biz_location,
+          delivery_days: this.selectedPost.delivery_days,
+          headline_support: this.selectedPost.headline_support,
+          landing_page_title: this.selectedPost.landing_page_title,
+          category: this.selectedPost.category,
         }
       );
 
@@ -289,7 +300,7 @@ export default {
 
     async deleteJob() {
       await this.$axios.post(
-        `/api/auth/delete-post/${this.selectedPost.product_name_slug}`
+        `/api/auth/delete-myproduct/${this.selectedPost.product_name_slug}`
       );
       this.deleteJobModal = false;
       this.getJobs();
@@ -302,7 +313,6 @@ export default {
 };
 </script>
 
-<
 <style scoped>
 form,
 .fordeleteback {

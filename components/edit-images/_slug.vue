@@ -155,7 +155,7 @@
   </div>
 </template>
 
-<script>
+<script scoped>
 export default {
   middleware: "iscommenter",
   layout: "admin",

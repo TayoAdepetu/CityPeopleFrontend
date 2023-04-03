@@ -21,53 +21,75 @@
               <button class="dropbtn">Check Your Menu</button>
               <ul class="dropdown-content" v-if="role === 'superadmin'">
                 <li><nuxt-link to="/">Home</nuxt-link></li>
-                <li>Register Users</li>
-                <li>Categories</li>
-                <li>Adverts</li>
                 <li>
-                  <nuxt-link to="/nigerian-images/crud-images"
-                    >Nigerian Images</nuxt-link
+                  <nuxt-link to="/admin/published-articles/category"
+                    >Add Categories</nuxt-link
                   >
                 </li>
                 <li>
-                  <nuxt-link to="/create-post">Publish Article</nuxt-link>
+                  <nuxt-link to="/admin/published-articles/categories"
+                    >Edit Categories</nuxt-link
+                  >
+                </li>
+                <li>
+                  <nuxt-link to="/nigerian-images/crud-images"
+                    >Edit Nigerian Images</nuxt-link
+                  >
+                </li>
+                <li>
+                  <nuxt-link to="/nigerian-wiki/new_subject"
+                    >Publish Article</nuxt-link
+                  >
                 </li>
                 <li>
                   <nuxt-link to="/admin/published-articles/articles"
-                    >Articles</nuxt-link
+                    >Edit Articles</nuxt-link
                   >
                 </li>
                 <li><NuxtLink to="/admin/superadmin/">Users</NuxtLink></li>
 
-                <li><nuxt-link to="/admin/faq-admin">Faqs</nuxt-link></li>
+                <li><nuxt-link to="/faqs">Edit Faqs</nuxt-link></li>
                 <li>
                   <nuxt-link to="/admin/directory-product-admin/product-admin"
-                    >Products</nuxt-link
+                    >Edit Products</nuxt-link
                   >
                 </li>
               </ul>
               <ul class="dropdown-content" v-if="role === 'admin'">
                 <li><nuxt-link to="/">Home</nuxt-link></li>
+                <li>
+                  <nuxt-link to="/admin/published-articles/category"
+                    >Add Categories</nuxt-link
+                  >
+                </li>
+
+                <li>
+                  <nuxt-link to="/admin/published-articles/categories"
+                    >Edit Categories</nuxt-link
+                  >
+                </li>
 
                 <li>
                   <nuxt-link to="/nigerian-images/crud-images"
-                    >Nigerian Images</nuxt-link
+                    >Edit Nigerian Images</nuxt-link
                   >
                 </li>
                 <li>
-                  <nuxt-link to="/create-post">Publish Article</nuxt-link>
+                  <nuxt-link to="/nigerian-wiki/new_subject"
+                    >Publish Article</nuxt-link
+                  >
                 </li>
                 <li>
                   <nuxt-link to="/admin/published-articles/articles"
-                    >Articles</nuxt-link
+                    >Edit Articles</nuxt-link
                   >
                 </li>
                 <li>
                   <nuxt-link to="/admin/directory-product-admin/product-admin"
-                    >Products</nuxt-link
+                    >Edit Products</nuxt-link
                   >
                 </li>
-                <li><nuxt-link to="/admin/faq-admin">Faqs</nuxt-link></li>
+                <li><nuxt-link to="/faqs">Edit FAQs</nuxt-link></li>
               </ul>
 
               <ul class="dropdown-content" v-if="role === 'seller'">
@@ -79,25 +101,7 @@
             </div>
           </nav>
         </div>
-        <div class="biz-class">
-          <div v-if="this.$auth.user.business_name_slug != null">
-            <p>
-              {{ this.$auth.user.business_name }}
-            </p>
-          </div>
 
-          <div v-else>
-            <p>
-              Register your business and join millions of other businesses in
-              our business directory.
-            </p>
-            <button>
-              <nuxt-link to="/business-directory/create-business-name"
-                >Register Business</nuxt-link
-              >
-            </button>
-          </div>
-        </div>
         <Nuxt />
       </div>
     </div>

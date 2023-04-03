@@ -215,7 +215,7 @@ export default {
 
   async createDirectoryProduct() {
     try {
-      await this.$axios.post(`/api/auth/create-directory-product`, {
+      await this.$axios.post(`/api/auth/create-myproduct`, {
         product_name: this.product_name,
         product_name_slug: this.product_name.replace(/ +/g, "-"),
         description: this.description,

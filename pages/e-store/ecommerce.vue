@@ -58,7 +58,7 @@ export default {
     },
 
     async getProducts(page) {
-      page = page || "all-ecommerce-products?page=1";
+      page = page || "all-myproducts?page=1";
       try {
         const { data } = await this.$axios.get(`/api/auth/${page}`);
         this.products = data.data;

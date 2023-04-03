@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!--all users displayed for superadmin and admin here-->
     <div class="container">
       <thead>
         <tr>

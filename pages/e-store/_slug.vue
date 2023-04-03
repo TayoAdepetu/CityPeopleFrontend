@@ -2,6 +2,8 @@
   <div>
     <div class="container">
       <div id="new-headlines">
+        <h1>{{ product[0].landing_page_title }}</h1>
+        <h2>{{ product[0].headline_support }}</h2>
         <div>
           <!--Slider: https://www.digitalocean.com/community/tutorials/vuejs-create-image-slider-->
           <!--
@@ -26,13 +28,20 @@
           <p>
             <span class="seller-details">Delivery Date:</span>
             {{ product[0].delivery_days }}
-          </p>          
-        
+          </p>
         </div>
 
         <div id="product-description">
-          <h2 id="product-details">Product Details</h2>
           <div>{{ product[0].description }}</div>
+        </div>
+        <div id="product-description">
+          <div>{{ product[0].reviews_pictures }}</div>
+        </div>
+        <div id="product-description">
+          <div>{{ product[0].FAQs_pictures }}</div>
+        </div>
+        <div id="product-description">
+          <div>{{ product[0].more_pictures }}</div>
         </div>
       </div>
     </div>
@@ -58,11 +67,11 @@ export default {
   methods: {
     async fetchProducts(context) {
       let response = await context.$axios.get(
-        `/api/auth/product/${context.params.slug}`
+        `/api/auth/myproduct/${context.params.slug}`
       );
 
       this.product = response.data;
-      this.images = this.product[0].productimages;
+      this.images = this.product[0].myproductimages;
       return {
         product,
       };

@@ -2,21 +2,23 @@
   <div>
     <div class="container">
       <!--Showing individual images in frontend-->
-      <div>
-        <!--<img :src="baseURL + 'postimage/' + image.image_path" />-->
-        <img :src="image.data.image_path" :alt="image.data.image_name" />
-        <div>{{ image.data.image_name }}</div>
-        <div>{{ image.data.image_description }}</div>
-      </div>
-      <div>
-        <!--<button @click="downloadImage(image.data.id)" class="btn">      </button>
--->
-        <a
-          :href="image.data.image_path"
-          @click.prevent="downloadImage(image.data.image_path)"
-          class="btn href"
-          >Download Image</a
-        >
+      <div v-for="{ image, index } in images" :key="index">
+        <div>
+          <!--<img :src="baseURL + 'postimage/' + image.image_path" />-->
+          <img :src="image.data.image_path" :alt="image.data.image_name" />
+          <div>{{ image.data.image_name }}</div>
+          <div>{{ image.data.image_description }}</div>
+        </div>
+        <div>
+          <!--<button @click="downloadImage(image.data.id)" class="btn"></button>-->
+
+          <a
+            :href="image.data.image_path"
+            @click.prevent="downloadImage(image.data.image_path)"
+            class="btn href"
+            >Download Image</a
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -35,12 +37,12 @@ export default {
 
   async asyncData(context) {
     try {
-      const image = await context.$axios.get(
+      const images = await context.$axios.get(
         `/api/auth/retrieve-image/${context.params.slug}`
       );
 
       // console.log(data.data)
-      return { image };
+      return { images };
     } catch (error) {
       console.log(error);
       //this.$toast.error(error.response.data.error);

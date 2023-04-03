@@ -152,7 +152,7 @@
 
 <script>
 export default {
-  middleware: "ispublisher",
+  middleware: "isadmin",
   layout: "admin",
   data() {
     return {

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!--publish subsubject dynamically here-->
     <div class="container">
       <div>
         <form @submit.prevent="createPost" enctype="multipart/form-data">
@@ -40,7 +41,7 @@
 
 <script scoped>
 export default {
-  middleware: "ispublisher",
+  middleware: "isadmin",
   layout: "admin",
   data() {
     return {
@@ -65,6 +66,7 @@ export default {
           body: this.body,
           subsubject_name: this.subsubject_name,
           user_id: this.$auth.user.id,
+          user_reference_id: this.$auth.user.user_reference_id,
           status: this.status,
         });
 
