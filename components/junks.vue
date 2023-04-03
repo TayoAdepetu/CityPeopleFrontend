@@ -108,7 +108,7 @@
         :to="`/admin/biz/workinghours-admin/${this.$auth.user.business_name_slug}`"
         >MyWorkingHours</nuxt-link
       >
-    </li>   
+    </li>
     <li v-if="this.$auth.user.business_name_slug != null">
       <nuxt-link
         :to="`/admin/biz/directory-admin/${this.$auth.user.business_name_slug}`"
@@ -116,12 +116,67 @@
       >
     </li>
 
-     <li v-if="this.$auth.user.business_name_slug != null">
+    <li v-if="this.$auth.user.business_name_slug != null">
       <nuxt-link
         :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`"
         >Job Vacancy Board</nuxt-link
       >
     </li>
+
+    <div>
+      <h2 class="index-h2">Buy Unique Products on Our E-commerce Platform</h2>
+      <div class="grid-container">
+        <div
+          v-for="product in products"
+          :key="product.id"
+          id="before-headlines"
+        >
+          <NuxtLink
+            :to="`/business-directory/directory-product/${product.product_name_slug}`"
+          >
+            <img
+              id="short-image"
+              :src="product.productimages[0].product_image_path"
+            />
+            <div id="before-title">
+              <h3 id="title">{{ product.product_name }}</h3>
+            </div>
+            <div id="short-body">
+              <p id="short-paragraph">{{ product.price }}</p>
+              <p id="short-paragraph">
+                {{ product.description }}
+              </p>
+              <p id="short-paragraph">{{ product.location }}</p>
+
+              <p id="short-paragraph">{{ getDate(product.created_at) }}</p>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+      <nuxt-link to="/e-store/ecommerce" class="explore-more"
+        >Explore More</nuxt-link
+      >
+    </div>
+    <hr />
+    <div>
+      <h2 class="index-h2">
+        View and Download Pictures From The Most Beautiful Places and Events in
+        Nigeria
+      </h2>
+      <div class="grid-container">
+        <div v-for="image in images" :key="image.id" id="before-headlines">
+          <NuxtLink :to="`/nigerian-images/${image.id}`">
+            <img id="short-image" :src="image.image_path" />
+            <p id="short-paragraph">{{ image.image_name }}</p>
+          </NuxtLink>
+        </div>
+      </div>
+      <nuxt-link
+        to="/nigerian-images/beautiful-nigerian-images"
+        class="explore-more"
+        >Explore More</nuxt-link
+      >
+    </div>
   </div>
 </template>
 
@@ -146,6 +201,30 @@ export default {
       try {
         const { data } = await this.$axios.get(`/api/auth/jobs`);
         this.jobs = data.data;
+        return true;
+      } catch (error) {
+        this.loading = false;
+        console.log(error.response);
+        this.$toast.error(error.response.data.error);
+      }
+    },
+
+    async getImages() {
+      try {
+        const { data } = await this.$axios.get(`/api/auth/fetch-images`);
+        this.images = data.data;
+        return true;
+      } catch (error) {
+        this.loading = false;
+        console.log(error.response);
+        this.$toast.error(error.response.data.error);
+      }
+    },
+
+    async getProducts() {
+      try {
+        const { data } = await this.$axios.get(`/api/auth/all-products`);
+        this.products = data.data;
         return true;
       } catch (error) {
         this.loading = false;
