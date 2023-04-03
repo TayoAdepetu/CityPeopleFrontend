@@ -19,6 +19,7 @@ extra grey
   --darkest-blue: #036;
   --darker-blue: #003288;
   --dark-blue: #3448c5;
+  --naija: #008753;
 }
 
 * {
@@ -26,7 +27,7 @@ extra grey
   margin: 0;
   font-family: "Roboto", sans-serif;
   text-decoration: none;
-  color: var(--dark-blue);
+  color: black;
 }
 
 body {

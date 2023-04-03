@@ -118,6 +118,9 @@ export default {
 </script>
 
 <style scoped>
+.hero-end-horizontal {
+  margin-top: 10px;
+}
 .menu-list {
   list-style: none;
   gap: 2rem;
@@ -152,7 +155,7 @@ export default {
   flex-flow: row wrap;
   justify-content: space-between;
   font-size: 20px;
-  background-color: var(--dark-blue);
+  background-color: var(--naija);
   padding: 20px;
 }
 
@@ -186,7 +189,7 @@ export default {
     /*background:hsl(0 0% 100% / 0.1);
     backdrop-filter: blur(1rem);
     */
-    background: var(--dark-blue);
+    background: var(--naija);
     opacity: 0.9;
     flex-direction: column;
     padding: min(30vh, 10rem) 2em;
