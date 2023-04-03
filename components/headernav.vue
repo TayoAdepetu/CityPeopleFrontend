@@ -141,9 +141,11 @@ export default {
 .v-application a {
   color: var(--lightest) !important;
 }
+/*
 .logo {
   font-size: 1.2rem;
 }
+*/
 
 .map {
   width: 600px;
@@ -154,13 +156,13 @@ export default {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  font-size: 20px;
+  font-size: 0.8rem;
   background-color: var(--naija);
   padding: 20px;
 }
 
 .hero {
-  height: 50vh;
+  height: auto;
   width: 80%;
   margin-right: auto;
   margin-left: auto;
@@ -173,11 +175,11 @@ export default {
 }
 
 .head {
-  font-size: 40px;
+  font-size: 1.5rem;
 }
 
 .sub-head {
-  font-size: 20px;
+  font-size: 1rem;
 }
 
 @media screen and (max-width: 781px) {
