@@ -99,26 +99,27 @@
     </li>
     <li v-if="this.$auth.user.business_name_slug != null">
       <nuxt-link
-        :to="`/admin/faq-admin/published-faq/${this.$auth.user.business_name_slug}`"
+        :to="`/admin/biz/faq-admin/published-faq/${this.$auth.user.business_name_slug}`"
         >MyFaqs</nuxt-link
       >
     </li>
     <li v-if="this.$auth.user.business_name_slug != null">
       <nuxt-link
-        :to="`/admin/workinghours-admin/${this.$auth.user.business_name_slug}`"
+        :to="`/admin/biz/workinghours-admin/${this.$auth.user.business_name_slug}`"
         >MyWorkingHours</nuxt-link
       >
-    </li>
+    </li>   
     <li v-if="this.$auth.user.business_name_slug != null">
+      <nuxt-link
+        :to="`/admin/biz/directory-admin/${this.$auth.user.business_name_slug}`"
+        >Business Directory</nuxt-link
+      >
+    </li>
+
+     <li v-if="this.$auth.user.business_name_slug != null">
       <nuxt-link
         :to="`/admin/job-vacancy-admin/${this.$auth.user.business_name_slug}`"
         >Job Vacancy Board</nuxt-link
-      >
-    </li>
-    <li v-if="this.$auth.user.business_name_slug != null">
-      <nuxt-link
-        :to="`/admin/directory-admin/${this.$auth.user.business_name_slug}`"
-        >Business Directory</nuxt-link
       >
     </li>
   </div>

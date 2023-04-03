@@ -94,12 +94,68 @@
 
               <ul class="dropdown-content" v-if="role === 'seller'">
                 <li><nuxt-link to="/">Home</nuxt-link></li>
+                <li v-if="this.$auth.user.business_name_slug != null">
+                  <nuxt-link
+                    :to="`/admin/biz/faq-admin/published-faq/${this.$auth.user.business_name_slug}`"
+                    >MyFaqs</nuxt-link
+                  >
+                </li>
+                <li v-if="this.$auth.user.business_name_slug != null">
+                  <nuxt-link
+                    :to="`/admin/biz/workinghours-admin/${this.$auth.user.business_name_slug}`"
+                    >MyWorkingHours</nuxt-link
+                  >
+                </li>
+                <li v-if="this.$auth.user.business_name_slug != null">
+                  <nuxt-link
+                    :to="`/admin/biz/directory-admin/${this.$auth.user.business_name_slug}`"
+                    >Business Directory</nuxt-link
+                  >
+                </li>
               </ul>
               <ul class="dropdown-content" v-if="role === 'commenter'">
                 <li><nuxt-link to="/">Home</nuxt-link></li>
+                <li v-if="this.$auth.user.business_name_slug != null">
+                  <nuxt-link
+                    :to="`/admin/biz/faq-admin/published-faq/${this.$auth.user.business_name_slug}`"
+                    >MyFaqs</nuxt-link
+                  >
+                </li>
+                <li v-if="this.$auth.user.business_name_slug != null">
+                  <nuxt-link
+                    :to="`/admin/biz/workinghours-admin/${this.$auth.user.business_name_slug}`"
+                    >MyWorkingHours</nuxt-link
+                  >
+                </li>
+                <li v-if="this.$auth.user.business_name_slug != null">
+                  <nuxt-link
+                    :to="`/admin/biz/directory-admin/${this.$auth.user.business_name_slug}`"
+                    >Business Directory</nuxt-link
+                  >
+                </li>
               </ul>
             </div>
           </nav>
+        </div>
+
+        <div class="biz-class">
+          <div v-if="this.$auth.user.business_name_slug != null">
+            <p>
+              {{ this.$auth.user.business_name }}
+            </p>
+          </div>
+
+          <div v-else>
+            <p>
+              Register your business and join millions of other businesses in
+              our business directory.
+            </p>
+            <button>
+              <nuxt-link to="/business-directory/create-business-name"
+                >Register Business</nuxt-link
+              >
+            </button>
+          </div>
         </div>
 
         <Nuxt />

@@ -1,5 +1,8 @@
 <template>
-  <div>Dashboard, {{ user.name }}</div>
+  <div>
+    <div>Dashboard, {{ user.name }}</div>
+    <directory-products />
+  </div>
 </template>
 
 <script>

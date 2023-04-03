@@ -19,16 +19,26 @@
   </div>
 </template>
 
-<script>
+<script scoped>
 export default {
-  async asyncData(context) {
-    let response = await context.$axios.get(
-      `/api/auth/products/${context.params.slug}`
-    );
-    let products = response.data;
+  data() {
     return {
-      products,
+      products: [],
+      error: null,
+      business_name_slug: this.$auth.user.business_name_slug,
     };
+  },
+
+  methods: {
+    async fetchProducts(business_name_slug) {
+      let response = await context.$axios.get(
+        `/api/auth/products/${business_name_slug}`
+      );
+      let products = response.data;
+      return {
+        products,
+      };
+    },
   },
 };
 </script>
