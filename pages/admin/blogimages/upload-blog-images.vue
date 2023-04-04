@@ -50,6 +50,7 @@ export default {
       try {
         await this.axios.post(`/api/admin/auth/create-blog-images`, {
           image_name: this.image_name,
+          image_name_slug: this.image_name.replace(/ +/g, "-"),
           image_description: this.image_description,
           user_id: this.$auth.user.id,
           image: this.imagepiece,

@@ -27,6 +27,7 @@ export default {
       try {
         await this.$axios.post(`/api/auth/create-category`, {
           name: this.category_name,
+          name_slug: this.category_name.replace(/ +/g, "-"),
         });
 
         //this.$router.push('/admin/published-articles/categories')

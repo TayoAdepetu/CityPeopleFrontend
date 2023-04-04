@@ -27,6 +27,7 @@ export default {
       try {
         await this.$axios.post(`/api/auth/create-categories`, {
           name: this.name,
+          name_slug: this.name.replace(/ +/g, "-"),
         });
 
         this.$toast.success("Image category created.");
