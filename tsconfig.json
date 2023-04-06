@@ -1,9 +1,7 @@
 {
-    "extends": "./.nuxt/tsconfig.json",
-    "compilerOptions": {
-      "allowJs": true,
-        "types": [
-          "@nuxtjs/toast"
-        ]
-      }
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "types": ["@nuxtjs/toast"]
   }
+}

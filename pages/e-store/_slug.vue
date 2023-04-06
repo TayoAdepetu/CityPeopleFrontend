@@ -52,15 +52,10 @@
 export default {
   auth: false,
   data() {
-    return {
-      images: null,
-      timer: null,
-      currentIndex: 0,
-    };
+    return {};
   },
 
   mounted: function () {
-    this.startSlide();
     this.fetchProducts();
   },
 
@@ -75,23 +70,6 @@ export default {
       return {
         product,
       };
-    },
-
-    startSlide: function () {
-      this.timer = setInterval(this.next, 4000);
-    },
-
-    next: function () {
-      this.currentIndex += 1;
-    },
-    prev: function () {
-      this.currentIndex -= 1;
-    },
-  },
-
-  computed: {
-    currentImg: function () {
-      return this.images[Math.abs(this.currentIndex) % this.images.length];
     },
   },
 };

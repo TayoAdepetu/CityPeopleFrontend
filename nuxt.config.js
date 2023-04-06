@@ -43,7 +43,7 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/auth-next",
-    ,
+    "nuxt-paystack",
     /*"@nuxtjs/laravel-echo",*/ "@nuxtjs/toast",
   ],
 
@@ -122,5 +122,9 @@ https://devcenter.heroku.com/articles/getting-started-with-laravel
   // for netlify giving 404 page
   generate: {
     fallback: true,
+  },
+
+  env: {
+    PAYSTACK_KEY: process.env.PAYSTACK_PK,
   },
 };

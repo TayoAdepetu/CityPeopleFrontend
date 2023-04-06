@@ -28,7 +28,7 @@
               </p>
               <p>
                 <span class="list-contact">Website:</span>
-                {{ directory.website }} 
+                {{ directory.website }}
               </p>
             </div>
           </div>
@@ -38,6 +38,17 @@
     <div class="pagination">
       <button class="paginate" @click.prevent="moveBack()">Previous List</button
       ><button class="paginate" @click.prevent="moveFront()">Next List</button>
+    </div>
+    <div>
+      <h2>Search Business Directory For Each Nigerian State</h2>
+      <ul>
+        <li>
+          <nuxt-link
+            to="/business-directory/nigerian-business-directory-by-state/Abia"
+            >Abia</nuxt-link
+          >
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -91,7 +102,7 @@ export default {
       }
     },
 
-     moveFront() {
+    moveFront() {
       this.page = this.next_page;
       this.getPosts(this.page);
     },
@@ -151,7 +162,6 @@ export default {
   grid-column-gap: 2.5%;
   margin-top: 60px;
   margin-bottom: 20px;
-  
 }
 
 .before-directory-headlines {
@@ -181,25 +191,25 @@ export default {
   }
 
   .before-directory-headlines {
-  width: 70vw;
-  margin-right: auto;
-  margin-left: auto;
-}
-}
-
-@media screen and (max-width: 600px) {
-  .before-directory-headlines {
-  width: 80vw;
-  margin-right: auto;
-  margin-left: auto;
-}
+    width: 70vw;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 
 @media screen and (max-width: 600px) {
   .before-directory-headlines {
-  width: 90vw;
-  margin-right: auto;
-  margin-left: auto;
+    width: 80vw;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
+
+@media screen and (max-width: 600px) {
+  .before-directory-headlines {
+    width: 90vw;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 </style>

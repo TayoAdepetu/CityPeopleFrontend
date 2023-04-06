@@ -24,6 +24,7 @@
               <p id="short-paragraph">{{ getDate(product.created_at) }}</p>
             </div>
           </NuxtLink>
+          <button @click="addToCart()">Add To Cart</button>
         </div>
       </div>
       <div class="pagination">
@@ -92,6 +93,22 @@ export default {
     moveBack() {
       this.page = this.previous_page;
       this.getPosts(this.page);
+    },
+
+    async addToCart(product) {
+      try {
+        await this.$axios.post(`/api/auth/add-to-cart`, {
+          product_name_slug: this.product.product_name_slug,
+          user_id: this.$auth.user.id,
+        });
+
+        this.$toast.info("Product added to cart.");
+        return true;
+
+        //this.$router.push(`/add-to-cart/${this.title.replace(/ +/g, "-")}`);
+      } catch (e) {
+        this.error = e.response;
+      }
     },
   },
 

@@ -52,11 +52,31 @@
 
       <div class="form-group">
         <input
-          type="text"
+          type="number"
           v-model="price"
           class="form-control"
           id="title"
           placeholder="Enter price of the product"
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="number"
+          v-model="raw_price"
+          class="form-control"
+          id="title"
+          placeholder="Enter raw price of the product"
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="number"
+          v-model="commission"
+          class="form-control"
+          id="title"
+          placeholder="Enter affiliate commission"
         />
       </div>
 
@@ -132,7 +152,9 @@ export default {
       landing_page_title: "",
       headline_support: "",
       description: "",
-      price: "",
+      raw_price: null,
+      commission: null,
+      price: null,
       delivery_days: "",
       reviews_pictures: null,
       pictures: null,
@@ -228,6 +250,8 @@ export default {
         reviews_pictures: this.reviews_pictures,
         FAQs_pictures: this.FAQs_pictures,
         more_pictures: this.more_pictures,
+        raw_price: this.raw_price,
+        commission: this.commission,
       });
 
       this.$toast.success("Product/service published successfully.");

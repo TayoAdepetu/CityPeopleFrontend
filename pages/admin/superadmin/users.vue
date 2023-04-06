@@ -180,9 +180,9 @@ export default {
     },
 
     openStatusModal(user) {
-      this.selectedUser.name = user.name;
-      this.selectedUser.id = user.id;
-      this.selectedUser.scope = user.scope;
+      this.selectedUser.name = this.user.name;
+      this.selectedUser.id = this.user.id;
+      this.selectedUser.scope = this.user.scope;
       this.updateStatusModal = true;
     },
 
